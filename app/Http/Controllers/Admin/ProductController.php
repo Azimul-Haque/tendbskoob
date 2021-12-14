@@ -70,7 +70,7 @@ class ProductController extends BaseController
     {
         $validator = Validator::make($request->all(), [
             'category_id' => 'required',
-            'brand_id' => 'required',
+            // 'brand_id' => 'required',
             'unit' => 'required',
             'images' => 'required',
             'image' => 'required',
@@ -81,7 +81,7 @@ class ProductController extends BaseController
             'images.required' => 'Product images is required!',
             'image.required' => 'Product thumbnail is required!',
             'category_id.required' => 'category  is required!',
-            'brand_id.required' => 'brand  is required!',
+            // 'brand_id.required' => 'brand  is required!',
             'unit.required' => 'Unit  is required!',
         ]);
 
