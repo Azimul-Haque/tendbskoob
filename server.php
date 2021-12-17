@@ -18,5 +18,5 @@ if ($uri !== '/' && file_exists(__DIR__.'/public'.$uri)) { // public
     return false;
 }
 
-require_once __DIR__.'/public/index.php'; // public
+require_once __DIR__.'/index.php'; // public
 
