@@ -148,17 +148,21 @@ class AuthorController extends BaseController
             'excelfile.required' => 'An Excel file is required!',
         ]);
 
-        Excel::import(new AuthorImport, request()->file('excelfile'));
         try {
-
-          
-          Toastr::success('Authors from Excel File added successfully!');
-
+          $file= $request->file('excelfile')->store('import');
+          $import = new AuthorImport;
+          $import->import($file);
+          if($import->failures()->count() > 0) {
+              Toastr::info('Authors from Excel File added successfully!<br>' . $import->failures()->count() . ' duplicate entries skipped.');
+          } else {
+            Toastr::success('Authors from Excel File added successfully!');
+          }
         } catch (\Exception $e) {
             // return $e->getMessage();
             Toastr::warning('Error! Try with correct format.<br><small>' .$e->getMessage() . '</small>');
         }
 
+        unlink(storage_path('app/'.$file));
         return redirect()->route('admin.author.index');
     }
 }
