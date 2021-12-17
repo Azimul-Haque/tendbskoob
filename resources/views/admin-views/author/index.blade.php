@@ -164,7 +164,7 @@
                                     <tr>
                                         <td>{{ $author->name }}<br/> {{ $author->name_bangla }}</td>
                                         <td>{{$author['slug']}}</td>
-                                        <td>{{ asset('public/images/author/') }}/{{$author['image']}}
+                                        <td>{{ asset('public/images/author/' . $author['image']) }}
                                             <img width="64"
                                                  onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                                                  src="{{ asset('images/author/' . $author['image']) }}">
