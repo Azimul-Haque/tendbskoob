@@ -97,19 +97,20 @@
                             <label>Excel File</label><small style="color: red">
                                 (.xlsx, .xls )</small>
                             <div class="custom-file" style="text-align: left">
-                                <input type="file" name="image" id="customFileEg2"
+                                <input type="file" name="excelfile" id="excelFileUpload"
                                        class="custom-file-input"
-                                       accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                                       accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required="">
                                 <label class="custom-file-label"
-                                       for="customFileEg2">{{\App\CPU\translate('choose')}} {{\App\CPU\translate('file')}}</label>
+                                       for="excelFileUpload">{{\App\CPU\translate('choose')}} {{\App\CPU\translate('file')}}</label>
                             </div><br/><br/>
                             <div class="form-group">
                                 <center>
                                     <img
-                                        style="width: 50px;"
+                                        style="width: 40px;"
                                         id="excelviewer"
-                                        src="{{asset('/assets/back-end/img/excel.png')}}"
-                                        alt="image"/>
+                                        src="{{asset('/assets/back-end/img/white.png')}}"
+                                        alt="excelfile"/>
+                                    <span id="excelviewertxt"></span>
                                 </center>
                             </div>
                             <hr>
@@ -161,7 +162,7 @@
                                 <tbody>
                                 @foreach($authors as $key=>$author)
                                     <tr>
-                                        <td>{{$author['name']}}</td>
+                                        <td>{{ $author->name }}<br/> {{ $author->name_bangla }}</td>
                                         <td>{{$author['slug']}}</td>
                                         <td>
                                             <img width="64"
@@ -271,6 +272,12 @@
 
         $("#customFileEg1").change(function () {
             readURL(this);
+        });
+
+        $("#excelFileUpload").change(function () {
+            $('#excelviewer').attr('src', '{{asset('/assets/back-end/img/excel.png')}}');
+            var fileName = $('#excelFileUpload').val().match(/[^\\/]*$/)[0];
+            $('#excelviewertxt').text(fileName);
         });
     </script>
 @endpush

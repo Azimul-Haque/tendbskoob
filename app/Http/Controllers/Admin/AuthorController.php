@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Rap2hpoutre\FastExcel\FastExcel;
 use function App\CPU\translate;
+use App\Imports\AuthorImport;
+use Excel;
 use Image;
 
 class AuthorController extends BaseController
@@ -140,35 +142,23 @@ class AuthorController extends BaseController
 
     public function bulkUpload(Request $request)
     {
-        // $request->validate([
-        //     'name' => 'required',
-        //     'name_bangla' => 'required',
-        //     'image' => 'sometimes',
-        //     'description' => 'sometimes'
-        // ], [
-        //     'name.required' => 'Author name is required!',
-        // ]);
+        $request->validate([
+            'excelfile' => 'required'
+        ], [
+            'excelfile.required' => 'An Excel file is required!',
+        ]);
 
-        // $author = new Author;
-        // $author->name = $request->name;
-        // $author->name_bangla = $request->name_bangla;
-        // $author->slug = Helpers::random_number(5). '-' .Str::slug($request->name);
-        // if($author->slug == '') {
-        //     $author->slug = Helpers::random_slug(10);
-        // }
-        // // dd($author->slug);
-        // // $author->icon = ImageManager::upload('author/', 'png', $request->file('image'));
-        // if($request->hasFile('image')) {
-        //     $image      = $request->file('image');
-        //     $filename   = $author->slug . time() .'.' . $image->getClientOriginalExtension();
-        //     $location   = public_path('/images/author/'. $filename);
-        //     Image::make($image)->resize(200, 200)->save($location);
-        //     $author->image = $filename;
-        // }
-        // $author->description = $request->description;
-        // $author->save();
+        Excel::import(new AuthorImport, request()->file('excelfile'));
+        try {
 
-        // Toastr::success('Author added successfully!');
-        // return redirect()->route('admin.author.index');
+          
+          Toastr::success('Authors from Excel File added successfully!');
+
+        } catch (\Exception $e) {
+            // return $e->getMessage();
+            Toastr::warning('Error! Try with correct format.<br><small>' .$e->getMessage() . '</small>');
+        }
+
+        return redirect()->route('admin.author.index');
     }
 }
