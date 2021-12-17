@@ -167,7 +167,7 @@
                                         <td>{{ public_path('/images/author/') }}/{{$author['image']}}
                                             <img width="64"
                                                  onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                                 src="{{ asset('images/author/' . $author['image']) }}">
+                                                 src="{{ public_path('images/author/' . $author['image']) }}">
                                         </td>
                                         <td>
                                             <a class="btn btn-primary btn-sm edit" style="cursor: pointer;"
