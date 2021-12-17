@@ -61,6 +61,23 @@ class Product extends Model
         return $this->belongsTo(Brand::class);
     }
 
+    public function publisher()
+    {
+        return $this->belongsTo(Publisher::class);
+    }
+
+    public function writer() {
+      return $this->belongsTo(Author::class, 'writer_id', 'id');
+    }
+
+    public function translator() {
+      return $this->belongsTo(Author::class, 'translator_id', 'id');
+    }
+
+    public function editor() {
+      return $this->belongsTo(Author::class, 'editor_id', 'id');
+    }
+
     public function scopeStatus($query)
     {
         return $query->where('featured_status', 1);

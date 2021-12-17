@@ -226,6 +226,26 @@
                             <h4 class="border-bottom">{{$product['name']}}</h4>
                         </div>
                         <div class="flex-start">
+                            <span>{{\App\CPU\translate('Publisher')}} : </span>
+                            <span class="mx-1">{{ $product->publisher ? $product->publisher->name : '' }}</span>
+                        </div>
+                        <div class="flex-start">
+                            <span>{{\App\CPU\translate('Writer')}} : </span>
+                            <span class="mx-1">{{ $product->writer ? $product->writer->name : '' }}</span>
+                        </div>
+                        <div class="flex-start">
+                            <span>{{\App\CPU\translate('Translator')}} : </span>
+                            <span class="mx-1">{{ $product->translator ? $product->translator->name : '' }}</span>
+                        </div>
+                        <div class="flex-start">
+                            <span>{{\App\CPU\translate('Editor')}} : </span>
+                            <span class="mx-1">{{ $product->editor ? $product->editor->name : '' }}</span>
+                        </div>
+                        <div class="flex-start">
+                            <span>{{\App\CPU\translate('Category')}} : </span>
+                            <span class="mx-1">{{ $product->category ? $product->category->name : '' }}</span>
+                        </div>
+                        <div class="flex-start">
                             <span>{{\App\CPU\translate('Price')}} : </span>
                             <span
                                 class="mx-1">{{\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($product['unit_price']))}}</span>

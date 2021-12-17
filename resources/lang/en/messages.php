@@ -1361,4 +1361,8 @@
   'Configure_your_mail_setup_first' => 'Configure your mail setup first',
   'Mail_Body' => 'Mail Body',
   'no_data_found' => 'No data found',
+  'Publisher' => 'Publisher',
+  'Writer' => 'Writer',
+  'Translator' => 'Translator',
+  'Editor' => 'Editor',
 );
