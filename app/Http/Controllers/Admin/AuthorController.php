@@ -1,0 +1,174 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\CPU\BackEndHelper;
+use App\CPU\Helpers;
+use App\CPU\ImageManager;
+use App\Http\Controllers\BaseController;
+use App\Model\Brand;
+use App\Model\Category;
+use App\Model\Color;
+use App\Model\DealOfTheDay;
+use App\Model\FlashDealProduct;
+use App\Model\Product;
+use App\Model\Author;
+use App\Model\Review;
+use App\Model\Translation;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Rap2hpoutre\FastExcel\FastExcel;
+use function App\CPU\translate;
+use Image;
+
+class AuthorController extends BaseController
+{
+    public function index(Request $request)
+    {
+        $authors = Author::paginate(12);
+        $search = $request['search'];
+
+        return view('admin-views.author.index')
+                        ->withAuthors($authors)
+                        ->withSearch($search);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'name_bangla' => 'required',
+            'image' => 'sometimes',
+            'description' => 'sometimes'
+        ], [
+            'name.required' => 'Author name is required!',
+        ]);
+
+        $author = new Author;
+        $author->name = $request->name;
+        $author->name_bangla = $request->name_bangla;
+        $author->slug = Helpers::random_number(5). '-' .Str::slug($request->name);
+        if($author->slug == '') {
+            $author->slug = Helpers::random_slug(10);
+        }
+        // dd($author->slug);
+        // $author->icon = ImageManager::upload('author/', 'png', $request->file('image'));
+        if($request->hasFile('image')) {
+            $image      = $request->file('image');
+            $filename   = $author->slug . time() .'.' . $image->getClientOriginalExtension();
+            $location   = public_path('/images/author/'. $filename);
+            Image::make($image)->resize(200, 200)->save($location);
+            $author->image = $filename;
+        }
+        $author->description = $request->description;
+        $author->save();
+
+        Toastr::success('Author added successfully!');
+        return redirect()->route('admin.author.index');
+    }
+
+    public function edit($id)
+    {
+        // $request->validate([
+        //     'name' => 'required',
+        //     'name_bangla' => 'required',
+        //     'image' => 'sometimes',
+        //     'description' => 'sometimes'
+        // ], [
+        //     'name.required' => 'Author name is required!',
+        // ]);
+
+        // $author = new Author;
+        // $author->name = $request->name;
+        // $author->name_bangla = $request->name_bangla;
+        // $author->slug = Helpers::random_number(5). '-' .Str::slug($request->name);
+        // if($author->slug == '') {
+        //     $author->slug = Helpers::random_slug(10);
+        // }
+        // // dd($author->slug);
+        // // $author->icon = ImageManager::upload('author/', 'png', $request->file('image'));
+        // if($request->hasFile('image')) {
+        //     $image      = $request->file('image');
+        //     $filename   = $author->slug . time() .'.' . $image->getClientOriginalExtension();
+        //     $location   = public_path('/images/author/'. $filename);
+        //     Image::make($image)->resize(200, 200)->save($location);
+        //     $author->image = $filename;
+        // }
+        // $author->description = $request->description;
+        // $author->save();
+
+        // Toastr::success('Author added successfully!');
+        // return redirect()->route('admin.author.index');
+    }
+
+    public function update($id, Request $request)
+    {
+        // $request->validate([
+        //     'name' => 'required',
+        //     'name_bangla' => 'required',
+        //     'image' => 'sometimes',
+        //     'description' => 'sometimes'
+        // ], [
+        //     'name.required' => 'Author name is required!',
+        // ]);
+
+        // $author = new Author;
+        // $author->name = $request->name;
+        // $author->name_bangla = $request->name_bangla;
+        // $author->slug = Helpers::random_number(5). '-' .Str::slug($request->name);
+        // if($author->slug == '') {
+        //     $author->slug = Helpers::random_slug(10);
+        // }
+        // // dd($author->slug);
+        // // $author->icon = ImageManager::upload('author/', 'png', $request->file('image'));
+        // if($request->hasFile('image')) {
+        //     $image      = $request->file('image');
+        //     $filename   = $author->slug . time() .'.' . $image->getClientOriginalExtension();
+        //     $location   = public_path('/images/author/'. $filename);
+        //     Image::make($image)->resize(200, 200)->save($location);
+        //     $author->image = $filename;
+        // }
+        // $author->description = $request->description;
+        // $author->save();
+
+        // Toastr::success('Author added successfully!');
+        // return redirect()->route('admin.author.index');
+    }
+
+    public function bulkUpload(Request $request)
+    {
+        // $request->validate([
+        //     'name' => 'required',
+        //     'name_bangla' => 'required',
+        //     'image' => 'sometimes',
+        //     'description' => 'sometimes'
+        // ], [
+        //     'name.required' => 'Author name is required!',
+        // ]);
+
+        // $author = new Author;
+        // $author->name = $request->name;
+        // $author->name_bangla = $request->name_bangla;
+        // $author->slug = Helpers::random_number(5). '-' .Str::slug($request->name);
+        // if($author->slug == '') {
+        //     $author->slug = Helpers::random_slug(10);
+        // }
+        // // dd($author->slug);
+        // // $author->icon = ImageManager::upload('author/', 'png', $request->file('image'));
+        // if($request->hasFile('image')) {
+        //     $image      = $request->file('image');
+        //     $filename   = $author->slug . time() .'.' . $image->getClientOriginalExtension();
+        //     $location   = public_path('/images/author/'. $filename);
+        //     Image::make($image)->resize(200, 200)->save($location);
+        //     $author->image = $filename;
+        // }
+        // $author->description = $request->description;
+        // $author->save();
+
+        // Toastr::success('Author added successfully!');
+        // return redirect()->route('admin.author.index');
+    }
+}
