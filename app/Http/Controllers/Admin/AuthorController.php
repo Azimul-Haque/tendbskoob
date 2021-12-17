@@ -30,8 +30,21 @@ class AuthorController extends BaseController
 {
     public function index(Request $request)
     {
-        $authors = Author::paginate(12);
-        $search = $request['search'];
+        
+        $search  = $request['search'];
+
+        if($request->has('search'))
+        {
+            $key = explode(' ', $request['search']);
+            $authors = Author::where(function ($q) use ($key) {
+                foreach ($key as $value) {
+                    $q->orWhere('name', 'like', "%{$value}%");
+                    $q->orWhere('name_bangla', 'like', "%{$value}%");
+                }
+            })->paginate(12);
+        }else{
+            $authors = Author::paginate(12);
+        }
 
         return view('admin-views.author.index')
                         ->withAuthors($authors)
@@ -41,27 +54,27 @@ class AuthorController extends BaseController
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name'        => 'required',
             'name_bangla' => 'required',
-            'image' => 'sometimes',
+            'image'       => 'sometimes',
             'description' => 'sometimes'
         ], [
             'name.required' => 'Author name is required!',
         ]);
 
-        $author = new Author;
-        $author->name = $request->name;
+        $author              = new Author;
+        $author->name        = $request->name;
         $author->name_bangla = $request->name_bangla;
-        $author->slug = Helpers::random_number(5). '-' .Str::slug($request->name);
+        $author->slug        = Helpers::random_number(5). '-' .Str::slug($request->name);
         if($author->slug == '') {
             $author->slug = Helpers::random_slug(10);
         }
         // dd($author->slug);
         // $author->icon = ImageManager::upload('author/', 'png', $request->file('image'));
         if($request->hasFile('image')) {
-            $image      = $request->file('image');
-            $filename   = $author->slug . time() .'.' . $image->getClientOriginalExtension();
-            $location   = public_path('/images/author/'. $filename);
+            $image    = $request->file('image');
+            $filename = $author->slug . time() .'.' . $image->getClientOriginalExtension();
+            $location = public_path('/images/author/'. $filename);
             Image::make($image)->resize(200, 200)->save($location);
             $author->image = $filename;
         }

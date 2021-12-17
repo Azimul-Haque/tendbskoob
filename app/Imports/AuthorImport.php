@@ -11,11 +11,13 @@ use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\SkipsFailures;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
-
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Illuminate\Support\Str;
 use App\CPU\Helpers;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Throwable;
 
-class AuthorImport implements ToModel, WithHeadingRow, SkipsOnError, WithValidation, SkipsOnFailure
+class AuthorImport implements ToModel, WithHeadingRow, SkipsOnError, WithValidation, SkipsOnFailure, WithBatchInserts, WithChunkReading
 {
     use Importable, SkipsErrors, SkipsFailures;
 
@@ -27,9 +29,9 @@ class AuthorImport implements ToModel, WithHeadingRow, SkipsOnError, WithValidat
         }
         // dd($author_slug);
         return new Author([
-            'name'            => $row['name'],
-            'name_bangla'     => $row['name_bangla'],
-            'slug'            => $author_slug,
+            'name'        => ucwords(str_replace('-', ' ', $row['name'])),
+            'name_bangla' => $row['name_bangla'],
+            'slug'        => $author_slug,
         ]);
     }
 
@@ -38,5 +40,15 @@ class AuthorImport implements ToModel, WithHeadingRow, SkipsOnError, WithValidat
         return [
             '*.name' => ['required', 'unique:authors,name'],
         ];
+    }
+
+    public function batchSize(): int
+    {
+        return 1000;
+    }
+
+    public function chunkSize(): int
+    {
+        return 1000;
     }
 }
