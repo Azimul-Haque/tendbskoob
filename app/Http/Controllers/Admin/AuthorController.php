@@ -74,9 +74,10 @@ class AuthorController extends BaseController
         if($request->hasFile('image')) {
             $image    = $request->file('image');
             $filename = $author->slug . time() .'.' . $image->getClientOriginalExtension();
-            $location = public_path('/images/author/'. $filename);
+            $location = public_path('/public/images/author/'. $filename);
             Image::make($image)->resize(200, 200)->save($location);
-            $author->image = $filename;
+            // $author->image = $filename;
+            $author->image = ImageManager::upload('author/', 'png', $request->file('image'));
         }
         $author->description = $request->description;
         $author->save();
