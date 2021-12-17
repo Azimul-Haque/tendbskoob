@@ -1,12 +1,12 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-master',
+    'version' => 'dev-master',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => '81c98c76d12da04989bbd8b25cb9d2763b2ad819',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -484,12 +484,12 @@
     ),
     'intervention/image' => 
     array (
-      'pretty_version' => '2.7.0',
-      'version' => '2.7.0.0',
+      'pretty_version' => '2.7.1',
+      'version' => '2.7.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '9a8cc99d30415ec0b3f7649e1647d03a55698545',
+      'reference' => '744ebba495319501b873a4e48787759c72e3fb8c',
     ),
     'jakub-onderka/php-console-color' => 
     array (
@@ -523,12 +523,12 @@
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => '81c98c76d12da04989bbd8b25cb9d2763b2ad819',
     ),
     'laravel/passport' => 
     array (
@@ -1070,8 +1070,8 @@
     array (
       'provided' => 
       array (
-        0 => '1.0|2.0',
-        1 => '1.0.0 || 2.0.0 || 3.0.0',
+        0 => '1.0.0 || 2.0.0 || 3.0.0',
+        1 => '1.0|2.0',
       ),
     ),
     'psr/simple-cache' => 
@@ -1589,16 +1589,6 @@
       array (
       ),
       'reference' => 'bfcb92255c29d92b0c4e80355a65de14e2e156f3',
-    ),
-    'unisharp/laravel-ckeditor' => 
-    array (
-      'pretty_version' => 'dev-master',
-      'version' => 'dev-master',
-      'aliases' => 
-      array (
-        0 => '9999999-dev',
-      ),
-      'reference' => 'e404f291734aef3ef049809e7be203de286920d2',
     ),
     'vlucas/phpdotenv' => 
     array (

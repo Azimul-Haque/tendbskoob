@@ -16,9 +16,49 @@ class CreateAuthorsTable extends Migration
         Schema::create('authors', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->text('profile')->nullable();
+            $table->string('name_bangla');
+            $table->text('description')->nullable();
+            $table->string('image')->nullable();
+            $table->string('slug');
             $table->timestamps();
         });
+
+        Schema::create('author_product', function (Blueprint $table) {
+            $table->integer('author_id')->unsigned();
+            $table->integer('product_id')->unsigned();
+            $table->integer('author_type')->unsigned();
+
+            $table->foreign('author_id')->references('id')->on('authors')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')
+                ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->primary(['author_id', 'product_id', 'author_type']);
+        });
+
+        // Schema::create('product_translator', function (Blueprint $table) {
+        //     $table->integer('author_id')->unsigned();
+        //     $table->integer('product_id')->unsigned();
+
+        //     $table->foreign('author_id')->references('id')->on('authors')
+        //         ->onUpdate('cascade')->onDelete('cascade');
+        //     $table->foreign('product_id')->references('id')->on('products')
+        //         ->onUpdate('cascade')->onDelete('cascade');
+
+        //     $table->primary(['author_id', 'product_id']);
+        // });
+
+        // Schema::create('product_editor', function (Blueprint $table) {
+        //     $table->integer('author_id')->unsigned();
+        //     $table->integer('product_id')->unsigned();
+
+        //     $table->foreign('author_id')->references('id')->on('authors')
+        //         ->onUpdate('cascade')->onDelete('cascade');
+        //     $table->foreign('product_id')->references('id')->on('products')
+        //         ->onUpdate('cascade')->onDelete('cascade');
+
+        //     $table->primary(['author_id', 'product_id']);
+        // });
     }
 
     /**
@@ -29,5 +69,6 @@ class CreateAuthorsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('authors');
+        Schema::dropIfExists('author_product');
     }
 }

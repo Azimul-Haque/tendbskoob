@@ -678,6 +678,24 @@ class Helpers
         $mpdf->WriteHTML($mpdf_view);
         $mpdf->Output($file_prefix . $file_postfix . '.pdf', 'D');
     }
+
+    public static function random_string($length){
+          $pool = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+          $random_string = substr(str_shuffle(str_repeat($pool, $length)), 0, $length);
+          return $random_string;
+    }
+
+    public static function random_slug($length){
+          $pool = '0123456789abcdefghijklmnopqrstuvwxyz';
+          $random_slug = substr(str_shuffle(str_repeat($pool, $length)), 0, $length);
+          return $random_slug;
+    }
+
+    public static function random_number($length){
+          $pool = '0123456789';
+          $random_number = substr(str_shuffle(str_repeat($pool, $length)), 0, $length);
+          return $random_number;
+    }
 }
 
 
@@ -720,3 +738,6 @@ function translate($key)
     }
     return $result;
 }
+
+
+

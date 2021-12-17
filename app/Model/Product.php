@@ -66,16 +66,16 @@ class Product extends Model
         return $this->belongsTo(Publisher::class);
     }
 
-    public function writer() {
-      return $this->belongsTo(Author::class, 'writer_id', 'id');
+    public function writers() {
+      return $this->belongsToMany(Author::class)->wherePivot('author_type', 1); // 1 = writer
     }
 
-    public function translator() {
-      return $this->belongsTo(Author::class, 'translator_id', 'id');
+    public function translators() {
+      return $this->belongsToMany(Author::class)->wherePivot('author_type', 2); // , 2 = translator
     }
 
-    public function editor() {
-      return $this->belongsTo(Author::class, 'editor_id', 'id');
+    public function editors() {
+      return $this->belongsToMany(Author::class)->wherePivot('author_type', 3); // , 3 = editor
     }
 
     public function scopeStatus($query)

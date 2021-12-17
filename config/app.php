@@ -180,7 +180,7 @@ return [
         \App\Providers\PaymentConfigProvider::class,
         \App\Providers\ConfigServiceProvider::class,
         Laravelpkg\Laravelchk\LaravelchkServiceProvider::class,
-        Amirami\Localizator\ServiceProvider::class
+        Amirami\Localizator\ServiceProvider::class,
     ],
 
     /*

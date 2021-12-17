@@ -243,6 +243,14 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
             Route::post('bulk-import', 'ProductController@bulk_import_data');
             Route::get('bulk-export', 'ProductController@bulk_export_data')->name('bulk-export');
         });
+        Route::group(['prefix' => 'author', 'as' => 'author.','middleware'=>['module:product_management']], function () {
+            Route::get('index', 'AuthorController@index')->name('index');
+            Route::post('store', 'AuthorController@store')->name('store');
+            Route::get('edit/{id}', 'AuthorController@edit')->name('edit');
+            Route::delete('delete/{id}', 'AuthorController@delete')->name('delete');
+
+            Route::post('bulkupload', 'AuthorController@bulkUpload')->name('bulkupload');
+        });
 
         Route::group(['prefix' => 'transaction', 'as' => 'transaction.' ,'middleware'=>['module:business_section']], function () {
             Route::get('list', 'TransactionController@list')->name('list');

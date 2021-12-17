@@ -78,7 +78,6 @@ class ComposerStaticInite8a0c1a3fb1931510385107b63457fe6
         ),
         'U' => 
         array (
-            'Unisharp\\Ckeditor\\' => 18,
             'Unicodeveloper\\Paystack\\' => 24,
         ),
         'T' => 
@@ -266,10 +265,6 @@ class ComposerStaticInite8a0c1a3fb1931510385107b63457fe6
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
-        ),
-        'Unisharp\\Ckeditor\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/unisharp/laravel-ckeditor',
         ),
         'Unicodeveloper\\Paystack\\' => 
         array (
@@ -757,6 +752,7 @@ class ComposerStaticInite8a0c1a3fb1931510385107b63457fe6
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Admin\\AttributeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AttributeController.php',
         'App\\Http\\Controllers\\Admin\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/Auth/LoginController.php',
+        'App\\Http\\Controllers\\Admin\\AuthorController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AuthorController.php',
         'App\\Http\\Controllers\\Admin\\BannerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BannerController.php',
         'App\\Http\\Controllers\\Admin\\BrandController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BrandController.php',
         'App\\Http\\Controllers\\Admin\\BusinessSettingsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BusinessSettingsController.php',
@@ -9304,7 +9300,6 @@ class ComposerStaticInite8a0c1a3fb1931510385107b63457fe6
         'Unicodeveloper\\Paystack\\Paystack' => __DIR__ . '/..' . '/unicodeveloper/laravel-paystack/src/Paystack.php',
         'Unicodeveloper\\Paystack\\PaystackServiceProvider' => __DIR__ . '/..' . '/unicodeveloper/laravel-paystack/src/PaystackServiceProvider.php',
         'Unicodeveloper\\Paystack\\TransRef' => __DIR__ . '/..' . '/unicodeveloper/laravel-paystack/src/TransRef.php',
-        'Unisharp\\Ckeditor\\ServiceProvider' => __DIR__ . '/..' . '/unisharp/laravel-ckeditor/ServiceProvider.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Webmozart\\Assert\\InvalidArgumentException' => __DIR__ . '/..' . '/webmozart/assert/src/InvalidArgumentException.php',

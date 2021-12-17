@@ -53,7 +53,7 @@ final class Versions
   'guzzlehttp/guzzle' => '6.5.5@9d4290de1cfd701f38099ef7e183b64b4b7b0c5e',
   'guzzlehttp/promises' => '1.5.1@fe752aedc9fd8fcca3fe7ad05d419d32998a06da',
   'guzzlehttp/psr7' => '1.8.3@1afdd860a2566ed3c2b0b4a3de6e23434a79ec85',
-  'intervention/image' => '2.7.0@9a8cc99d30415ec0b3f7649e1647d03a55698545',
+  'intervention/image' => '2.7.1@744ebba495319501b873a4e48787759c72e3fb8c',
   'laravel/framework' => 'v6.20.42@251e09a2ecf41241b9892fe490eb301d5c9721b9',
   'laravel/passport' => 'v7.5.1@d63cdd672c3d65b3c35b73d0ef13a9dbfcb71c08',
   'laravel/socialite' => 'v5.2.6@b5c67f187ddcf15529ff7217fa735b132620dfac',
@@ -130,7 +130,6 @@ final class Versions
   'tijsverkoyen/css-to-inline-styles' => '2.2.3@b43b05cf43c1b6d849478965062b6ef73e223bb5',
   'twilio/sdk' => '6.31.2@be59275f0fc311cb45d5303d47bffaa06a19d6e5',
   'unicodeveloper/laravel-paystack' => '1.0.7@bfcb92255c29d92b0c4e80355a65de14e2e156f3',
-  'unisharp/laravel-ckeditor' => 'dev-master@e404f291734aef3ef049809e7be203de286920d2',
   'vlucas/phpdotenv' => 'v3.6.9@a1bf4c9853d90ade427b4efe35355fc41b3d6988',
   'vonage/client' => '2.3.0@e9c1492a9f1572124143e6fa963da417bb20d9ae',
   'vonage/client-core' => '2.1.0@ef7e8a0715c93c5ddc7915e8a29f29331798bb52',
@@ -177,7 +176,7 @@ final class Versions
   'sebastian/version' => '2.0.1@99732be0ddb3361e16ad77b68ba41efc8e979019',
   'theseer/tokenizer' => '1.2.1@34a41e998c2183e22995f158c581e7b5e755ab9e',
   'webmozart/assert' => '1.10.0@6964c76c7804814a842473e0c8fd15bab0f18e25',
-  'laravel/laravel' => 'dev-master@2bd0efb21a04dd39150410cb4bf0e1b0d05f959c',
+  'laravel/laravel' => 'dev-master@81c98c76d12da04989bbd8b25cb9d2763b2ad819',
 );
 
     private function __construct()

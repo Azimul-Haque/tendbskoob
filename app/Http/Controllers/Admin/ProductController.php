@@ -12,6 +12,7 @@ use App\Model\Color;
 use App\Model\DealOfTheDay;
 use App\Model\FlashDealProduct;
 use App\Model\Product;
+use App\Model\Author;
 use App\Model\Review;
 use App\Model\Translation;
 use Brian2694\Toastr\Facades\Toastr;
@@ -63,6 +64,9 @@ class ProductController extends BaseController
     {
         $product = Product::with(['reviews'])->where(['id' => $id])->first();
         $reviews = Review::where(['product_id' => $id])->paginate(Helpers::pagination_limit());
+
+        // $authors = Author::get();
+        // dd($authors[0]->products[0]->pivot);
         return view('admin-views.product.view', compact('product', 'reviews'));
     }
 
@@ -129,6 +133,15 @@ class ProductController extends BaseController
 
         $p->category_ids = json_encode($category);
         $p->brand_id = $request->brand_id;
+
+        // ATTACH AUTHOR PUBLSHER...
+        // associate members
+        // foreach ($request->member_ids as $key => $value) {
+        //     $publication->users()->attach($value);
+        // }
+        // $publication->users()->sync($request->member_ids, false);
+
+
         $p->unit = $request->unit;
         $p->details = $request->description[array_search('en', $request->lang)];
 

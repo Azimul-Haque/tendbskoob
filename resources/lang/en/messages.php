@@ -1365,4 +1365,12 @@
   'Writer' => 'Writer',
   'Translator' => 'Translator',
   'Editor' => 'Editor',
+  'Writer/Translator/Editor' => 'Writer/Translator/Editor',
+  'Writer/ Translators/ Editors' => 'Writer/ Translators/ Editors',
+  'author_table' => 'Author table',
+  'Author' => 'Author',
+  'author' => 'Author',
+  'Author_deleted_Successfully.' => 'Author deleted Successfully.',
+  'excel file' => 'Excel file',
+  'excel-file' => 'Excel-file',
 );

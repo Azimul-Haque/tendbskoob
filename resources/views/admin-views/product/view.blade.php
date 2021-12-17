@@ -229,22 +229,12 @@
                             <span>{{\App\CPU\translate('Publisher')}} : </span>
                             <span class="mx-1">{{ $product->publisher ? $product->publisher->name : '' }}</span>
                         </div>
+
                         <div class="flex-start">
                             <span>{{\App\CPU\translate('Writer')}} : </span>
-                            <span class="mx-1">{{ $product->writer ? $product->writer->name : '' }}</span>
+                            <span class="mx-1">{{ $product->writers ? $product->writers[0]->name : '' }}</span>
                         </div>
-                        <div class="flex-start">
-                            <span>{{\App\CPU\translate('Translator')}} : </span>
-                            <span class="mx-1">{{ $product->translator ? $product->translator->name : '' }}</span>
-                        </div>
-                        <div class="flex-start">
-                            <span>{{\App\CPU\translate('Editor')}} : </span>
-                            <span class="mx-1">{{ $product->editor ? $product->editor->name : '' }}</span>
-                        </div>
-                        <div class="flex-start">
-                            <span>{{\App\CPU\translate('Category')}} : </span>
-                            <span class="mx-1">{{ $product->category ? $product->category->name : '' }}</span>
-                        </div>
+                        
                         <div class="flex-start">
                             <span>{{\App\CPU\translate('Price')}} : </span>
                             <span
