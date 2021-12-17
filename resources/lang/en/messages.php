@@ -1374,4 +1374,5 @@
   'excel file' => 'Excel file',
   'excel-file' => 'Excel-file',
   'Publications' => 'Publications',
+  'forgot_password_verification_by' => 'Forgot password verification by',
 );
