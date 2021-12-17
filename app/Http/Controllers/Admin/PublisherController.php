@@ -28,5 +28,155 @@ use Image;
 
 class PublisherController extends BaseController
 {
-    //
+    public function index(Request $request)
+    {
+        
+        $search  = $request['search'];
+
+        if($request->has('search'))
+        {
+            $key = explode(' ', $request['search']);
+            $authors = Author::where(function ($q) use ($key) {
+                foreach ($key as $value) {
+                    $q->orWhere('name', 'like', "%{$value}%");
+                    $q->orWhere('name_bangla', 'like', "%{$value}%");
+                }
+            })->paginate(12);
+        }else{
+            $authors = Author::paginate(12);
+        }
+
+        return view('admin-views.author.index')
+                        ->withAuthors($authors)
+                        ->withSearch($search);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name'        => 'required',
+            'name_bangla' => 'required',
+            'image'       => 'sometimes',
+            'description' => 'sometimes'
+        ], [
+            'name.required' => 'Author name is required!',
+        ]);
+
+        $author              = new Author;
+        $author->name        = $request->name;
+        $author->name_bangla = $request->name_bangla;
+        $author->slug        = Helpers::random_number(5). '-' .Str::slug($request->name);
+        if($author->slug == '') {
+            $author->slug = Helpers::random_slug(10);
+        }
+        // dd($author->slug);
+        // $author->icon = ImageManager::upload('author/', 'png', $request->file('image'));
+        if($request->hasFile('image')) {
+            $image    = $request->file('image');
+            $filename = $author->slug . time() .'.' . $image->getClientOriginalExtension();
+            $location = public_path('/public/images/author/'. $filename);
+            Image::make($image)->resize(200, 200)->save($location);
+            // $author->image = $filename;
+            $author->image = ImageManager::upload('author/', 'png', $request->file('image'));
+        }
+        $author->description = $request->description;
+        $author->save();
+
+        Toastr::success('Author added successfully!');
+        return redirect()->route('admin.author.index');
+    }
+
+    public function edit($id)
+    {
+        // $request->validate([
+        //     'name' => 'required',
+        //     'name_bangla' => 'required',
+        //     'image' => 'sometimes',
+        //     'description' => 'sometimes'
+        // ], [
+        //     'name.required' => 'Author name is required!',
+        // ]);
+
+        // $author = new Author;
+        // $author->name = $request->name;
+        // $author->name_bangla = $request->name_bangla;
+        // $author->slug = Helpers::random_number(5). '-' .Str::slug($request->name);
+        // if($author->slug == '') {
+        //     $author->slug = Helpers::random_slug(10);
+        // }
+        // // dd($author->slug);
+        // // $author->icon = ImageManager::upload('author/', 'png', $request->file('image'));
+        // if($request->hasFile('image')) {
+        //     $image      = $request->file('image');
+        //     $filename   = $author->slug . time() .'.' . $image->getClientOriginalExtension();
+        //     $location   = public_path('/images/author/'. $filename);
+        //     Image::make($image)->resize(200, 200)->save($location);
+        //     $author->image = $filename;
+        // }
+        // $author->description = $request->description;
+        // $author->save();
+
+        // Toastr::success('Author added successfully!');
+        // return redirect()->route('admin.author.index');
+    }
+
+    public function update($id, Request $request)
+    {
+        // $request->validate([
+        //     'name' => 'required',
+        //     'name_bangla' => 'required',
+        //     'image' => 'sometimes',
+        //     'description' => 'sometimes'
+        // ], [
+        //     'name.required' => 'Author name is required!',
+        // ]);
+
+        // $author = new Author;
+        // $author->name = $request->name;
+        // $author->name_bangla = $request->name_bangla;
+        // $author->slug = Helpers::random_number(5). '-' .Str::slug($request->name);
+        // if($author->slug == '') {
+        //     $author->slug = Helpers::random_slug(10);
+        // }
+        // // dd($author->slug);
+        // // $author->icon = ImageManager::upload('author/', 'png', $request->file('image'));
+        // if($request->hasFile('image')) {
+        //     $image      = $request->file('image');
+        //     $filename   = $author->slug . time() .'.' . $image->getClientOriginalExtension();
+        //     $location   = public_path('/images/author/'. $filename);
+        //     Image::make($image)->resize(200, 200)->save($location);
+        //     $author->image = $filename;
+        // }
+        // $author->description = $request->description;
+        // $author->save();
+
+        // Toastr::success('Author added successfully!');
+        // return redirect()->route('admin.author.index');
+    }
+
+    public function bulkUpload(Request $request)
+    {
+        $request->validate([
+            'excelfile' => 'required'
+        ], [
+            'excelfile.required' => 'An Excel file is required!',
+        ]);
+
+        try {
+          $file= $request->file('excelfile')->store('import');
+          $import = new AuthorImport;
+          $import->import($file);
+          if($import->failures()->count() > 0) {
+              Toastr::info('Authors from Excel File added successfully!<br>' . $import->failures()->count() . ' duplicate entries skipped.');
+          } else {
+            Toastr::success('Authors from Excel File added successfully!');
+          }
+        } catch (\Exception $e) {
+            // return $e->getMessage();
+            Toastr::warning('Error! Try with correct format.<br><small>' .$e->getMessage() . '</small>');
+        }
+
+        unlink(storage_path('app/'.$file));
+        return redirect()->route('admin.author.index');
+    }
 }

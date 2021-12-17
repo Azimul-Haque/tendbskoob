@@ -1373,4 +1373,5 @@
   'Author_deleted_Successfully.' => 'Author deleted Successfully.',
   'excel file' => 'Excel file',
   'excel-file' => 'Excel-file',
+  'Publications' => 'Publications',
 );
