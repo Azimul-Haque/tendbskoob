@@ -63,7 +63,7 @@ class AuthorController extends BaseController
         ]);
 
         $author              = new Author;
-        $author->name        = $request->name;
+        $author->name        = ucwords(str_replace('-', ' ', $request->name));
         $author->name_bangla = $request->name_bangla;
         $author->slug        = Helpers::random_number(5). '-' .Str::slug($request->name);
         if($author->slug == '') {
