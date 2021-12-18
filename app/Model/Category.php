@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class Category extends Model
 {
-    protected $table = 'categories';
-
     protected $casts = [
         'parent_id' => 'integer',
         'position' => 'integer',
