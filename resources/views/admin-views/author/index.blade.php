@@ -162,7 +162,7 @@
                                 <tbody>
                                 @foreach($authors as $key=>$author)
                                     <tr>
-                                        <td>{{ $author->name }}<br/> {{ $author->name_bangla }}</td>
+                                        <td>{{ $author->name_bangla }}<br/> {{ $author->name }}</td>
                                         <td>{{$author['slug']}}</td>
                                         <td>
                                             {{-- {{ asset('public/images/author/' . $author['image']) }} --}}

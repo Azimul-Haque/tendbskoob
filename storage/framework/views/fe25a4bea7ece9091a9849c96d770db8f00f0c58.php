@@ -154,7 +154,10 @@
                                 <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
                                         <td class="text-center"><?php echo e($category['id']); ?></td>
-                                        <td><?php echo e($category['name']); ?></td>
+                                        <td>
+                                            <?php echo e($category['name']); ?><br/>
+                                            <?php echo e($category->name_bangla); ?>}}
+                                        </td>
                                         <td><?php echo e($category['slug']); ?></td>
                                         <td>
                                             <img width="64"

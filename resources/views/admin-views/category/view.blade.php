@@ -155,7 +155,10 @@
                                 @foreach($categories as $key=>$category)
                                     <tr>
                                         <td class="text-center">{{$category['id']}}</td>
-                                        <td>{{$category['name']}}</td>
+                                        <td>
+                                            {{ $category->name_bangla }}<br/>
+                                            {{$category['name']}}
+                                        </td>
                                         <td>{{$category['slug']}}</td>
                                         <td>
                                             <img width="64"

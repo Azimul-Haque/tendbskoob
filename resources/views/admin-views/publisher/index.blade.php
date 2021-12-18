@@ -162,7 +162,7 @@
                                 <tbody>
                                 @foreach($publishers as $key=>$publisher)
                                     <tr>
-                                        <td>{{ $publisher->name }}<br/> {{ $publisher->name_bangla }}</td>
+                                        <td>{{ $publisher->name_bangla }}<br/> {{ $publisher->name }}</td>
                                         <td>{{$publisher['slug']}}</td>
                                         <td>
                                             {{-- {{ asset('public/images/publisher/' . $publisher['image']) }} --}}
