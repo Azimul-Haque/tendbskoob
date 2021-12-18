@@ -155,8 +155,9 @@
                                     <tr>
                                         <td class="text-center"><?php echo e($category['id']); ?></td>
                                         <td>
-                                            <?php echo e($category['name']); ?><br/>
-                                            <?php echo e($category->name_bangla); ?>}}
+                                            <?php echo e($category->name_bangla); ?><br/>
+                                            <?php echo e($category['name']); ?>
+
                                         </td>
                                         <td><?php echo e($category['slug']); ?></td>
                                         <td>

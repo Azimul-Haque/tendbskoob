@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Rap2hpoutre\FastExcel\FastExcel;
 use function App\CPU\translate;
+use Illuminate\Filesystem\Filesystem;
 use App\Imports\PublisherImport;
 use Excel;
 use Image;
@@ -120,7 +121,10 @@ class PublisherController extends BaseController
             Toastr::warning('Error! Try with correct format.<br><small>' .$e->getMessage() . '</small>');
         }
 
-        unlink(storage_path('app/'.$file));
+        // unlink(storage_path('app/'.$file));
+        $deletefile = new Filesystem;
+        $deletefile->cleanDirectory(storage_path('app/import'));
+        $deletefile->cleanDirectory(storage_path('debugbar'));
         return redirect()->route('admin.publisher.index');
     }
 }

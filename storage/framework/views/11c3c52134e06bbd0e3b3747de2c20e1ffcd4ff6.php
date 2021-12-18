@@ -160,7 +160,7 @@
                                 <tbody>
                                 <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$author): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
-                                        <td><?php echo e($author->name); ?><br/> <?php echo e($author->name_bangla); ?></td>
+                                        <td><?php echo e($author->name_bangla); ?><br/> <?php echo e($author->name); ?></td>
                                         <td><?php echo e($author['slug']); ?></td>
                                         <td>
                                             

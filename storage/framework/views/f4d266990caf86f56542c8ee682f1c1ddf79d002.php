@@ -160,7 +160,7 @@
                                 <tbody>
                                 <?php $__currentLoopData = $publishers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$publisher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
-                                        <td><?php echo e($publisher->name); ?><br/> <?php echo e($publisher->name_bangla); ?></td>
+                                        <td><?php echo e($publisher->name_bangla); ?><br/> <?php echo e($publisher->name); ?></td>
                                         <td><?php echo e($publisher['slug']); ?></td>
                                         <td>
                                             

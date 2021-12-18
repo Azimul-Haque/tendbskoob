@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\CPU\Helpers;
-use App\CPU\ImageManager;
-use App\Http\Controllers\Controller;
 use App\Model\Category;
+use App\CPU\ImageManager;
 use App\Model\Translation;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Http\Request;
 use App\Imports\CategoryImport;
+use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Filesystem\Filesystem;
 
 class CategoryController extends Controller
 {
@@ -183,7 +184,10 @@ class CategoryController extends Controller
             Toastr::warning('Error! Try with correct format.<br><small>' .$e->getMessage() . '</small>');
         }
 
-        unlink(storage_path('app/'.$file));
+        // unlink(storage_path('app/'.$file));
+        $deletefile = new Filesystem;
+        $deletefile->cleanDirectory(storage_path('app/import'));
+        $deletefile->cleanDirectory(storage_path('debugbar'));
         return redirect()->route('admin.category.view');
     }
 }
