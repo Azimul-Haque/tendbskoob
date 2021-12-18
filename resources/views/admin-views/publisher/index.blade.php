@@ -34,7 +34,7 @@
                                         <label class="input-label"
                                                for="name">Name *</label>
                                         <input type="text" name="name" class="form-control"
-                                               placeholder="Name" required>
+                                               placeholder="Publication Name" required>
                                     </div>
                                     <input name="position" value="0" style="display: none">
                                 </div>
@@ -44,7 +44,7 @@
                                         <label class="input-label"
                                                for="name">Bangla Name *</label>
                                         <input type="text" name="name_bangla" class="form-control"
-                                               placeholder="Name" required>
+                                               placeholder="Publication Name in Bangla" required>
                                     </div>
                                     <input name="position" value="0" style="display: none">
                                 </div>
@@ -89,7 +89,7 @@
                 <div class="card">
                     <div class="card-header">
                         {{-- {{ \App\CPU\translate('category_form')}} --}}
-                        <h3>Bulk PUblication Upload Form</h3>
+                        <h3>Bulk Publication Upload Form</h3>
                     </div>
                     <div class="card-body" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
                         <form action="{{route('admin.publisher.bulkupload')}}" method="POST" enctype="multipart/form-data">

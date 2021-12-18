@@ -38,37 +38,43 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'  => 'required',
-            'image' => 'sometimes'
+            'name'        => 'required',
+            'name_bangla' => 'required',
+            'image'       => 'sometimes'
         ], [
             'name.required'  => 'Category name is required!',
+            'name_bangla.required'  => 'Category name in Bangla is required!',
             // 'image.required' => 'Category image is required!',
         ]);
 
         $category              = new Category;
-        $category->name        = $request->name[array_search('en', $request->lang)];
-        $category->slug        = Str::slug($request->name[array_search('en', $request->lang)]);
+        $category->name        = ucwords(str_replace('-', ' ', $request->name));
+        $category->name_bangla = $request->name_bangla;
+        $category->slug        = Helpers::random_number(5). '-' . Str::slug($request->name);
+        if($category->slug == '') {
+            $category->slug = Helpers::random_slug(10);
+        }
         $category->icon        = ImageManager::upload('category/', 'png', $request->file('image'));
         $category->parent_id   = 0;
         $category->position    = 0;
         $category->home_status = 1;
         $category->save();
 
-        $data = [];
-        foreach ($request->lang as $index => $key) {
-            if ($request->name[$index] && $key != 'en') {
-                array_push($data, array(
-                    'translationable_type' => 'App\Model\Category',
-                    'translationable_id'   => $category->id,
-                    'locale'               => $key,
-                    'key'                  => 'name',
-                    'value'                => $request->name[$index],
-                ));
-            }
-        }
-        if (count($data)) {
-            Translation::insert($data);
-        }
+        // $data = [];
+        // foreach ($request->lang as $index => $key) {
+        //     if ($request->name[$index] && $key != 'en') {
+        //         array_push($data, array(
+        //             'translationable_type' => 'App\Model\Category',
+        //             'translationable_id'   => $category->id,
+        //             'locale'               => $key,
+        //             'key'                  => 'name',
+        //             'value'                => $request->name[$index],
+        //         ));
+        //     }
+        // }
+        // if (count($data)) {
+        //     Translation::insert($data);
+        // }
 
         Toastr::success('Category added successfully!');
         return back();
@@ -161,18 +167,19 @@ class CategoryController extends Controller
             'excelfile.required' => 'An Excel file is required!',
         ]);
 
+        $file= $request->file('excelfile')->store('import');
+        $import = new CategoryImport;
+        $import->import($file);
+        if($import->failures()->count() > 0) {
+        //   dd($import->failures());
+            Toastr::info('Categories from Excel File added successfully!<br>' . $import->failures()->count() . ' duplicate entries skipped.');
+        } else {
+        Toastr::success('Categories from Excel File added successfully!');
+        }
         try {
-          $file= $request->file('excelfile')->store('import');
-          $import = new CategoryImport;
-          $import->import($file);
-          if($import->failures()->count() > 0) {
-            //   dd($import->failures());
-              Toastr::info('Categories from Excel File added successfully!<br>' . $import->failures()->count() . ' duplicate entries skipped.');
-          } else {
-            Toastr::success('Categories from Excel File added successfully!');
-          }
+          
         } catch (\Exception $e) {
-            // return $e->getMessage();
+            return $e->getMessage();
             Toastr::warning('Error! Try with correct format.<br><small>' .$e->getMessage() . '</small>');
         }
 

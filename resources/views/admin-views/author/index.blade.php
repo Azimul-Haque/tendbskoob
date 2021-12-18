@@ -34,7 +34,7 @@
                                         <label class="input-label"
                                                for="name">Name *</label>
                                         <input type="text" name="name" class="form-control"
-                                               placeholder="Name" required>
+                                               placeholder="Writer/Translator/Editor Name" required>
                                     </div>
                                     <input name="position" value="0" style="display: none">
                                 </div>
@@ -44,7 +44,7 @@
                                         <label class="input-label"
                                                for="name">Bangla Name *</label>
                                         <input type="text" name="name_bangla" class="form-control"
-                                               placeholder="Name" required>
+                                               placeholder="Name in Bangla" required>
                                     </div>
                                     <input name="position" value="0" style="display: none">
                                 </div>

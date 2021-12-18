@@ -23,7 +23,7 @@ class PublisherImport implements ToModel, WithHeadingRow, SkipsOnError, WithVali
 
     public function model(array $row)
     {
-        $publisher_slug = Helpers::random_number(5). '-' .Str::slug($row['name']);
+        $publisher_slug = Helpers::random_number(5). '-' . Str::slug($row['name']);
         if($publisher_slug == '') {
             $publisher_slug = Helpers::random_slug(10);
         }

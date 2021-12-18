@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 
 class Category extends Model
 {
+    protected $table = 'categories';
+
     protected $casts = [
         'parent_id' => 'integer',
         'position' => 'integer',
@@ -17,6 +19,8 @@ class Category extends Model
         'updated_at' => 'datetime',
         'home_status' => 'integer',
     ];
+
+    protected $fillable = ['name', 'name_bangla', 'slug', 'home_status'];
 
     public function translations()
     {

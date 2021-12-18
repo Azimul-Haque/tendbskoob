@@ -922,6 +922,7 @@ class ComposerStaticInite8a0c1a3fb1931510385107b63457fe6
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Imports\\AuthorImport' => __DIR__ . '/../..' . '/app/Imports/AuthorImport.php',
+        'App\\Imports\\CategoryImport' => __DIR__ . '/../..' . '/app/Imports/CategoryImport.php',
         'App\\Imports\\PublisherImport' => __DIR__ . '/../..' . '/app/Imports/PublisherImport.php',
         'App\\Library\\sslcommerz\\AbstractSslCommerz' => __DIR__ . '/../..' . '/app/Library/sslcommerz/AbstractSslCommerz.php',
         'App\\Library\\sslcommerz\\SslCommerzInterface' => __DIR__ . '/../..' . '/app/Library/sslcommerz/SslCommerzInterface.php',

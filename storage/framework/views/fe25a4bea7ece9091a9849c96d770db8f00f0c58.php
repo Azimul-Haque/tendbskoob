@@ -25,33 +25,25 @@
                     <div class="card-body" style="text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;">
                         <form action="<?php echo e(route('admin.category.store')); ?>" method="POST" enctype="multipart/form-data">
                             <?php echo csrf_field(); ?>
-                            <?php ($language=\App\Model\BusinessSetting::where('type','pnc_language')->first()); ?>
-                            <?php ($language = $language->value ?? null); ?>
-                            <?php ($default_lang = 'en'); ?>
-                            <?php ($default_lang = json_decode($language)[0]); ?>
-                            <ul class="nav nav-tabs mb-4">
-                                <?php $__currentLoopData = json_decode($language); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li class="nav-item">
-                                        <a class="nav-link lang_link <?php echo e($lang == $default_lang? 'active':''); ?>"
-                                           href="#"
-                                           id="<?php echo e($lang); ?>-link"><?php echo e(\App\CPU\Helpers::get_language_name($lang).'('.strtoupper($lang).')'); ?></a>
-                                    </li>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </ul>
                             <div class="row">
                                 <div class="col-6">
-                                    <?php $__currentLoopData = json_decode($language); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <div class="form-group <?php echo e($lang != $default_lang ? 'd-none':''); ?> lang_form"
-                                             id="<?php echo e($lang); ?>-form">
-                                            <label class="input-label"
-                                                   for="exampleFormControlInput1"><?php echo e(\App\CPU\translate('name')); ?>
-
-                                                (<?php echo e(strtoupper($lang)); ?>)</label>
-                                            <input type="text" name="name[]" class="form-control"
-                                                   placeholder="<?php echo e(\App\CPU\translate('New')); ?> <?php echo e(\App\CPU\translate('Category')); ?>" <?php echo e($lang == $default_lang? 'required':''); ?>>
-                                        </div>
-                                        <input type="hidden" name="lang[]" value="<?php echo e($lang); ?>">
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    <div class="form-group"
+                                         id="{">
+                                        <label class="input-label"
+                                               for="name">Name *</label>
+                                        <input type="text" name="name" class="form-control"
+                                               placeholder="Category Name" required>
+                                    </div>
+                                    <input name="position" value="0" style="display: none">
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group"
+                                         id="{">
+                                        <label class="input-label"
+                                               for="name">Bangla Name *</label>
+                                        <input type="text" name="name_bangla" class="form-control"
+                                               placeholder="Category Name in Bangla" required>
+                                    </div>
                                     <input name="position" value="0" style="display: none">
                                 </div>
                                 <div class="col-6 from_part_2">
@@ -63,19 +55,17 @@
                                                accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*">
                                         <label class="custom-file-label"
                                                for="customFileEg1"><?php echo e(\App\CPU\translate('choose')); ?> <?php echo e(\App\CPU\translate('file')); ?></label>
-                                    </div>
-                                </div>
-                                <div class="col-12 from_part_2">
+                                    </div><br/><br/>
                                     <div class="form-group">
-                                        <hr>
                                         <center>
                                             <img
-                                                style="width: 30%;border: 1px solid; border-radius: 10px;"
+                                                style="width: 40%;border: 1px solid; border-radius: 10px;"
                                                 id="viewer"
                                                 src="<?php echo e(asset('public/assets/back-end/img/900x400/img1.jpg')); ?>"
                                                 alt="image"/>
                                         </center>
                                     </div>
+
                                 </div>
                             </div>
                             <hr>
@@ -88,7 +78,7 @@
                 <div class="card">
                     <div class="card-header">
                         
-                        <h3>Bulk Upload Form</h3>
+                        <h3>Bulk Category Upload Form</h3>
                     </div>
                     <div class="card-body" style="text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;">
                         <form action="<?php echo e(route('admin.category.bulkupload')); ?>" method="POST" enctype="multipart/form-data">
@@ -224,22 +214,22 @@
 <?php $__env->startPush('script'); ?>
 
     <script>
-        $(".lang_link").click(function (e) {
-            e.preventDefault();
-            $(".lang_link").removeClass('active');
-            $(".lang_form").addClass('d-none');
-            $(this).addClass('active');
+        // $(".lang_link").click(function (e) {
+        //     e.preventDefault();
+        //     $(".lang_link").removeClass('active');
+        //     $(".lang_form").addClass('d-none');
+        //     $(this).addClass('active');
 
-            let form_id = this.id;
-            let lang = form_id.split("-")[0];
-            console.log(lang);
-            $("#" + lang + "-form").removeClass('d-none');
-            if (lang == '<?php echo e($default_lang); ?>') {
-                $(".from_part_2").removeClass('d-none');
-            } else {
-                $(".from_part_2").addClass('d-none');
-            }
-        });
+        //     let form_id = this.id;
+        //     let lang = form_id.split("-")[0];
+        //     console.log(lang);
+        //     $("#" + lang + "-form").removeClass('d-none');
+        
+        //         $(".from_part_2").removeClass('d-none');
+        //     } else {
+        //         $(".from_part_2").addClass('d-none');
+        //     }
+        // });
 
         $(document).ready(function () {
             $('#dataTable').DataTable();

@@ -23,7 +23,7 @@ class AuthorImport implements ToModel, WithHeadingRow, SkipsOnError, WithValidat
 
     public function model(array $row)
     {
-        $author_slug = Helpers::random_number(5). '-' .Str::slug($row['name']);
+        $author_slug = Helpers::random_number(5). '-' . Str::slug($row['name']);
         if($author_slug == '') {
             $author_slug = Helpers::random_slug(10);
         }

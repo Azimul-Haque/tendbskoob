@@ -23,7 +23,7 @@ class CategoryImport implements ToModel, WithHeadingRow, SkipsOnError, WithValid
 
     public function model(array $row)
     {
-        $category_slug = Helpers::random_number(5). '-' .Str::slug($row['name']);
+        $category_slug = Helpers::random_number(5). '-' . Str::slug($row['name']);
         if($category_slug == '') {
             $category_slug = Helpers::random_slug(10);
         }
@@ -32,13 +32,14 @@ class CategoryImport implements ToModel, WithHeadingRow, SkipsOnError, WithValid
             'name'        => ucwords(str_replace('-', ' ', $row['name'])),
             'name_bangla' => $row['name_bangla'],
             'slug'        => $category_slug,
+            'home_status' => 1,
         ]);
     }
 
     public function rules(): array
     {
         return [
-            '*.name' => ['required', 'unique:categorys,name'],
+            '*.name' => ['required', 'unique:categories,name'],
         ];
     }
 
