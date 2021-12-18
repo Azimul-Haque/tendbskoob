@@ -223,7 +223,7 @@
         //     let lang = form_id.split("-")[0];
         //     console.log(lang);
         //     $("#" + lang + "-form").removeClass('d-none');
-        {{-- //     if (lang == '- {{$default_lang}}- ') { --}}
+        //     if (lang == '- default_lang - ') { 
         //         $(".from_part_2").removeClass('d-none');
         //     } else {
         //         $(".from_part_2").addClass('d-none');
@@ -281,6 +281,12 @@
 
         $("#customFileEg1").change(function () {
             readURL(this);
+        });
+        
+        $("#excelFileUpload").change(function () {
+            $('#excelviewer').attr('src', '{{ asset('public/assets/back-end/img/excel.png') }}');
+            var fileName = $('#excelFileUpload').val().match(/[^\\/]*$/)[0];
+            $('#excelviewertxt').text(fileName);
         });
     </script>
 @endpush
