@@ -1375,4 +1375,6 @@
   'excel-file' => 'Excel-file',
   'Publications' => 'Publications',
   'forgot_password_verification_by' => 'Forgot password verification by',
+  'publication_table' => 'Publication table',
+  'Publisher_deleted_Successfully.' => 'Publisher deleted Successfully.',
 );

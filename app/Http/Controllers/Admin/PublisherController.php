@@ -13,6 +13,7 @@ use App\Model\DealOfTheDay;
 use App\Model\FlashDealProduct;
 use App\Model\Product;
 use App\Model\Author;
+use App\Model\Publisher;
 use App\Model\Review;
 use App\Model\Translation;
 use Brian2694\Toastr\Facades\Toastr;
@@ -36,18 +37,18 @@ class PublisherController extends BaseController
         if($request->has('search'))
         {
             $key = explode(' ', $request['search']);
-            $authors = Author::where(function ($q) use ($key) {
+            $publishers = Publisher::where(function ($q) use ($key) {
                 foreach ($key as $value) {
                     $q->orWhere('name', 'like', "%{$value}%");
                     $q->orWhere('name_bangla', 'like', "%{$value}%");
                 }
             })->paginate(12);
         }else{
-            $authors = Author::paginate(12);
+            $publishers = Publisher::paginate(12);
         }
 
-        return view('admin-views.author.index')
-                        ->withAuthors($authors)
+        return view('admin-views.publisher.index')
+                        ->withPublishers($publishers)
                         ->withSearch($search);
     }
 
