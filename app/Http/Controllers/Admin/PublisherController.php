@@ -64,7 +64,7 @@ class PublisherController extends BaseController
         ]);
 
         $publisher              = new Publisher();
-        $publisher->name        = $request->name;
+        $publisher->name        = ucwords(str_replace('-', ' ', $request->name));
         $publisher->name_bangla = $request->name_bangla;
         $publisher->slug        = Helpers::random_number(5). '-' .Str::slug($request->name);
         if($publisher->slug == '') {

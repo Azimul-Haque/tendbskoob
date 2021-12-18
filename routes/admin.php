@@ -93,6 +93,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
             Route::post('update/{id}', 'CategoryController@update')->name('update');
             Route::post('delete', 'CategoryController@delete')->name('delete');
             Route::get('status/{id}/{home_status}', 'CategoryController@status')->name('status');
+
+            Route::post('bulkupload', 'CategoryController@bulkUpload')->name('bulkupload');
         });
 
         Route::group(['prefix' => 'sub-category', 'as' => 'sub-category.','middleware'=>['module:product_management']], function () {

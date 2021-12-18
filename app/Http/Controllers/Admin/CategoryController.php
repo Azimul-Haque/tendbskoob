@@ -10,6 +10,7 @@ use App\Model\Translation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Brian2694\Toastr\Facades\Toastr;
+use App\Imports\CategoryImport;
 
 class CategoryController extends Controller
 {
@@ -37,19 +38,20 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'image' => 'required'
+            'name'  => 'required',
+            'image' => 'sometimes'
         ], [
-            'name.required' => 'Category name is required!',
-            'image.required' => 'Category image is required!',
+            'name.required'  => 'Category name is required!',
+            // 'image.required' => 'Category image is required!',
         ]);
 
-        $category = new Category;
-        $category->name = $request->name[array_search('en', $request->lang)];
-        $category->slug = Str::slug($request->name[array_search('en', $request->lang)]);
-        $category->icon = ImageManager::upload('category/', 'png', $request->file('image'));
-        $category->parent_id = 0;
-        $category->position = 0;
+        $category              = new Category;
+        $category->name        = $request->name[array_search('en', $request->lang)];
+        $category->slug        = Str::slug($request->name[array_search('en', $request->lang)]);
+        $category->icon        = ImageManager::upload('category/', 'png', $request->file('image'));
+        $category->parent_id   = 0;
+        $category->position    = 0;
+        $category->home_status = 1;
         $category->save();
 
         $data = [];
@@ -57,10 +59,10 @@ class CategoryController extends Controller
             if ($request->name[$index] && $key != 'en') {
                 array_push($data, array(
                     'translationable_type' => 'App\Model\Category',
-                    'translationable_id' => $category->id,
-                    'locale' => $key,
-                    'key' => 'name',
-                    'value' => $request->name[$index],
+                    'translationable_id'   => $category->id,
+                    'locale'               => $key,
+                    'key'                  => 'name',
+                    'value'                => $request->name[$index],
                 ));
             }
         }
@@ -149,5 +151,32 @@ class CategoryController extends Controller
         $category->save();
         Toastr::success('Service status updated!');
         return back();
+    }
+
+    public function bulkUpload(Request $request)
+    {
+        $request->validate([
+            'excelfile' => 'required'
+        ], [
+            'excelfile.required' => 'An Excel file is required!',
+        ]);
+
+        try {
+          $file= $request->file('excelfile')->store('import');
+          $import = new CategoryImport;
+          $import->import($file);
+          if($import->failures()->count() > 0) {
+            //   dd($import->failures());
+              Toastr::info('Categories from Excel File added successfully!<br>' . $import->failures()->count() . ' duplicate entries skipped.');
+          } else {
+            Toastr::success('Categories from Excel File added successfully!');
+          }
+        } catch (\Exception $e) {
+            // return $e->getMessage();
+            Toastr::warning('Error! Try with correct format.<br><small>' .$e->getMessage() . '</small>');
+        }
+
+        unlink(storage_path('app/'.$file));
+        return redirect()->route('admin.category.view');
     }
 }

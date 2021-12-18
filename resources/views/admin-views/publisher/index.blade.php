@@ -89,7 +89,7 @@
                 <div class="card">
                     <div class="card-header">
                         {{-- {{ \App\CPU\translate('category_form')}} --}}
-                        <h3>Bulk Upload Form</h3>
+                        <h3>Bulk PUblication Upload Form</h3>
                     </div>
                     <div class="card-body" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
                         <form action="{{route('admin.publisher.bulkupload')}}" method="POST" enctype="multipart/form-data">

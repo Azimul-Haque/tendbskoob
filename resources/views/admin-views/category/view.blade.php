@@ -18,7 +18,7 @@
 
         <!-- Content Row -->
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-7">
                 <div class="card">
                     <div class="card-header">
                         {{ \App\CPU\translate('category_form')}}
@@ -55,13 +55,12 @@
                                     <input name="position" value="0" style="display: none">
                                 </div>
                                 <div class="col-6 from_part_2">
-                                    <label>{{\App\CPU\translate('image')}}</label><small style="color: red">*
+                                    <label>{{\App\CPU\translate('image')}} (Optional)</label><small style="color: red">
                                         ( {{\App\CPU\translate('ratio')}} 3:1 )</small>
                                     <div class="custom-file" style="text-align: left">
                                         <input type="file" name="image" id="customFileEg1"
                                                class="custom-file-input"
-                                               accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*"
-                                               required>
+                                               accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*">
                                         <label class="custom-file-label"
                                                for="customFileEg1">{{\App\CPU\translate('choose')}} {{\App\CPU\translate('file')}}</label>
                                     </div>
@@ -78,6 +77,40 @@
                                         </center>
                                     </div>
                                 </div>
+                            </div>
+                            <hr>
+                            <button type="submit" class="btn btn-primary">{{\App\CPU\translate('submit')}}</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-header">
+                        {{-- {{ \App\CPU\translate('category_form')}} --}}
+                        <h3>Bulk Category Upload Form</h3>
+                    </div>
+                    <div class="card-body" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
+                        <form action="{{route('admin.category.bulkupload')}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <label>Excel File</label><small style="color: red">
+                                (.xlsx, .xls )</small>
+                            <div class="custom-file" style="text-align: left">
+                                <input type="file" name="excelfile" id="excelFileUpload"
+                                       class="custom-file-input"
+                                       accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" required="">
+                                <label class="custom-file-label"
+                                       for="excelFileUpload">{{\App\CPU\translate('choose')}} {{\App\CPU\translate('file')}}</label>
+                            </div><br/><br/>
+                            <div class="form-group">
+                                <center>
+                                    <img
+                                        style="width: 40px;"
+                                        id="excelviewer"
+                                        src="{{asset('public/assets/back-end/img/white.png')}}"
+                                        alt="excelfile"/>
+                                    <span id="excelviewertxt"></span>
+                                </center>
                             </div>
                             <hr>
                             <button type="submit" class="btn btn-primary">{{\App\CPU\translate('submit')}}</button>
