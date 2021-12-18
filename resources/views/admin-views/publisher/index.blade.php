@@ -165,10 +165,10 @@
                                         <td>{{ $publisher->name }}<br/> {{ $publisher->name_bangla }}</td>
                                         <td>{{$publisher['slug']}}</td>
                                         <td>
-                                            {{-- {{ asset('public/images/author/' . $publisher['image']) }} --}}
+                                            {{-- {{ asset('public/images/publisher/' . $publisher['image']) }} --}}
                                             <img width="64"
                                                  onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                                 src="{{ asset('public/images/author/' . $publisher['image']) }}">
+                                                 src="{{ asset('public/images/publisher/' . $publisher['image']) }}">
                                         </td>
                                         <td>
                                             <a class="btn btn-primary btn-sm edit" style="cursor: pointer;"

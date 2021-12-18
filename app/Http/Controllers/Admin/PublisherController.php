@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Rap2hpoutre\FastExcel\FastExcel;
 use function App\CPU\translate;
-use App\Imports\AuthorImport;
+use App\Imports\PublisherImport;
 use Excel;
 use Image;
 
@@ -55,104 +55,46 @@ class PublisherController extends BaseController
     public function store(Request $request)
     {
         $request->validate([
-            'name'        => 'required',
+             
             'name_bangla' => 'required',
             'image'       => 'sometimes',
             'description' => 'sometimes'
         ], [
-            'name.required' => 'Author name is required!',
+            'name.required' => 'Publisher name is required!',
         ]);
 
-        $author              = new Author;
-        $author->name        = $request->name;
-        $author->name_bangla = $request->name_bangla;
-        $author->slug        = Helpers::random_number(5). '-' .Str::slug($request->name);
-        if($author->slug == '') {
-            $author->slug = Helpers::random_slug(10);
+        $publisher              = new Publisher();
+        $publisher->name        = $request->name;
+        $publisher->name_bangla = $request->name_bangla;
+        $publisher->slug        = Helpers::random_number(5). '-' .Str::slug($request->name);
+        if($publisher->slug == '') {
+            $publisher->slug = Helpers::random_slug(10);
         }
-        // dd($author->slug);
-        // $author->icon = ImageManager::upload('author/', 'png', $request->file('image'));
+        // dd($publisher->slug);
+        // $publisher->icon = ImageManager::upload('publisher/', 'png', $request->file('image'));
         if($request->hasFile('image')) {
             $image    = $request->file('image');
-            $filename = $author->slug . time() .'.' . $image->getClientOriginalExtension();
-            $location = public_path('/public/images/author/'. $filename);
+            $filename = $publisher->slug . '-' . time() .'.' . $image->getClientOriginalExtension();
+            $location = public_path('/public/images/publisher/'. $filename);
             Image::make($image)->resize(200, 200)->save($location);
-            $author->image = $filename;
-            // $author->image = ImageManager::upload('author/', 'png', $request->file('image'));
+            $publisher->image = $filename;
+            // $publisher->image = ImageManager::upload('publisher/', 'png', $request->file('image'));
         }
-        $author->description = $request->description;
-        $author->save();
+        $publisher->description = $request->description;
+        $publisher->save();
 
-        Toastr::success('Author added successfully!');
-        return redirect()->route('admin.author.index');
+        Toastr::success('Publisher added successfully!');
+        return redirect()->route('admin.publisher.index');
     }
 
     public function edit($id)
     {
-        // $request->validate([
-        //     'name' => 'required',
-        //     'name_bangla' => 'required',
-        //     'image' => 'sometimes',
-        //     'description' => 'sometimes'
-        // ], [
-        //     'name.required' => 'Author name is required!',
-        // ]);
-
-        // $author = new Author;
-        // $author->name = $request->name;
-        // $author->name_bangla = $request->name_bangla;
-        // $author->slug = Helpers::random_number(5). '-' .Str::slug($request->name);
-        // if($author->slug == '') {
-        //     $author->slug = Helpers::random_slug(10);
-        // }
-        // // dd($author->slug);
-        // // $author->icon = ImageManager::upload('author/', 'png', $request->file('image'));
-        // if($request->hasFile('image')) {
-        //     $image      = $request->file('image');
-        //     $filename   = $author->slug . time() .'.' . $image->getClientOriginalExtension();
-        //     $location   = public_path('/images/author/'. $filename);
-        //     Image::make($image)->resize(200, 200)->save($location);
-        //     $author->image = $filename;
-        // }
-        // $author->description = $request->description;
-        // $author->save();
-
-        // Toastr::success('Author added successfully!');
-        // return redirect()->route('admin.author.index');
+        
     }
 
     public function update($id, Request $request)
     {
-        // $request->validate([
-        //     'name' => 'required',
-        //     'name_bangla' => 'required',
-        //     'image' => 'sometimes',
-        //     'description' => 'sometimes'
-        // ], [
-        //     'name.required' => 'Author name is required!',
-        // ]);
-
-        // $author = new Author;
-        // $author->name = $request->name;
-        // $author->name_bangla = $request->name_bangla;
-        // $author->slug = Helpers::random_number(5). '-' .Str::slug($request->name);
-        // if($author->slug == '') {
-        //     $author->slug = Helpers::random_slug(10);
-        // }
-        // // dd($author->slug);
-        // // $author->icon = ImageManager::upload('author/', 'png', $request->file('image'));
-        // if($request->hasFile('image')) {
-        //     $image      = $request->file('image');
-        //     $filename   = $author->slug . time() .'.' . $image->getClientOriginalExtension();
-        //     $location   = public_path('/images/author/'. $filename);
-        //     Image::make($image)->resize(200, 200)->save($location);
-        //     $author->image = $filename;
-        // }
-        // $author->description = $request->description;
-        // $author->save();
-
-        // Toastr::success('Author added successfully!');
-        // return redirect()->route('admin.author.index');
+        
     }
 
     public function bulkUpload(Request $request)
@@ -165,12 +107,13 @@ class PublisherController extends BaseController
 
         try {
           $file= $request->file('excelfile')->store('import');
-          $import = new AuthorImport;
+          $import = new PublisherImport;
           $import->import($file);
           if($import->failures()->count() > 0) {
-              Toastr::info('Authors from Excel File added successfully!<br>' . $import->failures()->count() . ' duplicate entries skipped.');
+            //   dd($import->failures());
+              Toastr::info('Publications from Excel File added successfully!<br>' . $import->failures()->count() . ' duplicate entries skipped.');
           } else {
-            Toastr::success('Authors from Excel File added successfully!');
+            Toastr::success('Publications from Excel File added successfully!');
           }
         } catch (\Exception $e) {
             // return $e->getMessage();
@@ -178,6 +121,6 @@ class PublisherController extends BaseController
         }
 
         unlink(storage_path('app/'.$file));
-        return redirect()->route('admin.author.index');
+        return redirect()->route('admin.publisher.index');
     }
 }

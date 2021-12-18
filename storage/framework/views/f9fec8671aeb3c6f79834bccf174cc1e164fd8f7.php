@@ -166,7 +166,7 @@
                                             
                                             <img width="64"
                                                  onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
-                                                 src="<?php echo e(asset('public/images/author/' . $publisher['image'])); ?>">
+                                                 src="<?php echo e(asset('public/images/publisher/' . $publisher['image'])); ?>">
                                         </td>
                                         <td>
                                             <a class="btn btn-primary btn-sm edit" style="cursor: pointer;"

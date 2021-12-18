@@ -54,7 +54,7 @@ class AuthorController extends BaseController
     public function store(Request $request)
     {
         $request->validate([
-            'name'        => 'required',
+            'name'        => 'required | unique:authors,name',
             'name_bangla' => 'required',
             'image'       => 'sometimes',
             'description' => 'sometimes'
@@ -73,7 +73,7 @@ class AuthorController extends BaseController
         // $author->icon = ImageManager::upload('author/', 'png', $request->file('image'));
         if($request->hasFile('image')) {
             $image    = $request->file('image');
-            $filename = $author->slug . time() .'.' . $image->getClientOriginalExtension();
+            $filename = $author->slug . '-' . time() .'.' . $image->getClientOriginalExtension();
             $location = public_path('/public/images/author/'. $filename);
             Image::make($image)->resize(200, 200)->save($location);
             $author->image = $filename;
