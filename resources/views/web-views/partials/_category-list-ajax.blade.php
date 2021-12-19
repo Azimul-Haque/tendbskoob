@@ -4,13 +4,13 @@
             <label class="text-center"
                    onclick="location.href='{{route('products',['id'=> $c['id'],'data_from'=>'category','page'=>1])}}'"
                    style="padding: 10px;border: 1px solid #0000001f;width: 100%;cursor: pointer;background: white">
-                {{$c['name']}}
+                {{$c['name_bangla']}}
             </label>
             <ul class="list-group">
                 @foreach($c->childes as $child)
                     <li class="list-group-item" style="cursor: pointer"
                         onclick="location.href='{{route('products',['id'=> $child['id'],'data_from'=>'category','page'=>1])}}'">
-                        {{$child['name']}}
+                        {{$child['name_bangla']}}
                     </li>
                 @endforeach
             </ul>

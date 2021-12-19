@@ -355,7 +355,7 @@
                                                             onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                                                             style="width: 18px; height: 18px; ">
                                                         <span
-                                                            class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>"><?php echo e($category['name']); ?></span>
+                                                            class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>"><?php echo e($category['name_bangla']); ?></span>
                                                     </div>
                                                     <?php if($category->childes->count() > 0): ?>
                                                         <div>
@@ -418,7 +418,7 @@
                                                          onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                                                          style="width: 18px; height: 18px; ">
                                                     <span
-                                                        class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>"><?php echo e($category['name']); ?></span>
+                                                        class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>"><?php echo e($category['name_bangla']); ?></span>
                                                 </div>
                                                 <?php if($category->childes->count() > 0): ?>
                                                     <div>

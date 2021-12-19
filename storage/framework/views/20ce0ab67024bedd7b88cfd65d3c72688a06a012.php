@@ -522,7 +522,7 @@
                             <img style="vertical-align: middle; padding: 16%;height: 100px"
                                  onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                                  src="<?php echo e(asset("storage/app/public/category/$category->icon")); ?>"
-                                 alt="<?php echo e($category->name); ?>">
+                                 alt="<?php echo e($category->name_bangla); ?>">
                             <p class="text-center small"
                                style="margin-top: -20px"><?php echo e(Str::limit($category->name, 17)); ?></p>
                         </a>
@@ -578,7 +578,7 @@
             <!-- Heading-->
             <div class="section-header">
                 <div class="feature_header">
-                    <span class="for-feature-title"><?php echo e($category['name']); ?></span>
+                    <span class="for-feature-title"><?php echo e($category['name_bangla']); ?></span>
                 </div>
                 <div>
                     <a class="btn btn-outline-accent btn-sm viw-btn-a"

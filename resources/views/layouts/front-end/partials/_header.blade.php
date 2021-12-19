@@ -347,7 +347,7 @@
                                                             onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                                                             style="width: 18px; height: 18px; ">
                                                         <span
-                                                            class="{{Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'}}">{{$category['name']}}</span>
+                                                            class="{{Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'}}">{{$category['name_bangla']}}</span>
                                                     </div>
                                                     @if ($category->childes->count() > 0)
                                                         <div>
@@ -409,7 +409,7 @@
                                                          onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                                                          style="width: 18px; height: 18px; ">
                                                     <span
-                                                        class="{{Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'}}">{{$category['name']}}</span>
+                                                        class="{{Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'}}">{{$category['name_bangla']}}</span>
                                                 </div>
                                                 @if ($category->childes->count() > 0)
                                                     <div>
