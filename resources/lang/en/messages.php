@@ -1377,4 +1377,5 @@
   'forgot_password_verification_by' => 'Forgot password verification by',
   'publication_table' => 'Publication table',
   'Publisher_deleted_Successfully.' => 'Publisher deleted Successfully.',
+  'No_data_to_show<' => 'No data to show ',
 );

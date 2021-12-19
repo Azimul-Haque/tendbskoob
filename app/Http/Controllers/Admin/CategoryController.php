@@ -90,24 +90,31 @@ class CategoryController extends Controller
     public function update(Request $request)
     {
         $category = Category::find($request->id);
-        $category->name = $request->name[array_search('en', $request->lang)];
-        $category->slug = Str::slug($request->name[array_search('en', $request->lang)]);
+        $oldname = $category->name;
+        $category->name        = ucwords(str_replace('-', ' ', $request->name));
+        $category->name_bangla = $request->name_bangla;
+        if($oldname != ucwords(str_replace('-', ' ', $request->name))) {
+            $category->slug        = Helpers::random_number(5). '-' . Str::slug($request->name);
+            if($category->slug == '') {
+                $category->slug = Helpers::random_slug(10);
+            }
+        }
         if ($request->image) {
             $category->icon = ImageManager::update('category/', $category->icon, 'png', $request->file('image'));
         }
         $category->save();
 
-        foreach ($request->lang as $index => $key) {
-            if ($request->name[$index] && $key != 'en') {
-                Translation::updateOrInsert(
-                    ['translationable_type' => 'App\Model\Category',
-                        'translationable_id' => $category->id,
-                        'locale' => $key,
-                        'key' => 'name'],
-                    ['value' => $request->name[$index]]
-                );
-            }
-        }
+        // foreach ($request->lang as $index => $key) {
+        //     if ($request->name[$index] && $key != 'en') {
+        //         Translation::updateOrInsert(
+        //             ['translationable_type' => 'App\Model\Category',
+        //                 'translationable_id' => $category->id,
+        //                 'locale' => $key,
+        //                 'key' => 'name'],
+        //             ['value' => $request->name[$index]]
+        //         );
+        //     }
+        // }
 
         Toastr::success('Category updated successfully!');
         return redirect()->route('admin.category.view');

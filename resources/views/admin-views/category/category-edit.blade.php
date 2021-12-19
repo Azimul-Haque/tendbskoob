@@ -26,7 +26,7 @@
                     <div class="card-body" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
                         <form action="{{route('admin.category.update',[$category['id']])}}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @php($language=\App\Model\BusinessSetting::where('type','pnc_language')->first())
+                            {{-- @php($language=\App\Model\BusinessSetting::where('type','pnc_language')->first())
                             @php($language = $language->value ?? null)
                             @php($default_lang = 'en')
 
@@ -39,11 +39,11 @@
                                            id="{{$lang}}-link">{{\App\CPU\Helpers::get_language_name($lang).'('.strtoupper($lang).')'}}</a>
                                     </li>
                                 @endforeach
-                            </ul>
-                            <div class="row">
+                            </ul> --}}
+                            {{-- <div class="row">
                                 <div class="col-6">
                                     @foreach(json_decode($language) as $lang)
-                                        <?php
+                                    @php
                                         if (count($category['translations'])) {
                                             $translate = [];
                                             foreach ($category['translations'] as $t) {
@@ -52,7 +52,7 @@
                                                 }
                                             }
                                         }
-                                        ?>
+                                        @endphp
                                         <div class="form-group {{$lang != $default_lang ? 'd-none':''}} lang_form"
                                              id="{{$lang}}-form">
                                             <label class="input-label">{{\App\CPU\translate('name')}}
@@ -64,9 +64,9 @@
                                         </div>
                                         <input type="hidden" name="lang[]" value="{{$lang}}">
                                     @endforeach
-                                </div>
+                                </div> --}}
                                 <!--image upload only for main category-->
-                                @if($category['parent_id']==0)
+                                {{-- @if($category['parent_id']==0)
                                     <div class="col-6 from_part_2">
                                         <label>{{\App\CPU\translate('image')}}</label><small style="color: red">
                                             ( {{\App\CPU\translate('ratio')}} 3:1 )</small>
@@ -82,14 +82,57 @@
                                         <div class="form-group">
                                             <hr>
                                             <center>
-                                                <img style="width: 30%;border: 1px solid; border-radius: 10px;"
-                                                     id="viewer"
-                                                     src="{{asset('storage/app/public/category')}}/{{$category['icon']}}"
-                                                     alt=""/>
+                                                <img style="width: 30%;border: 1px solid; border-radius: 10px;" id="viewer" src="{{asset('storage/app/public/category')}}/{{$category['icon']}}" alt=""/>
                                             </center>
                                         </div>
                                     </div>
-                                @endif
+                                @endif 
+                            </div>--}}
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group"
+                                         id="{">
+                                        <label class="input-label"
+                                               for="name">Name *</label>
+                                        <input type="text" name="name" class="form-control"
+                                               placeholder="Category Name" value="{{ $category->name }}" required>
+                                    </div>
+                                    <input name="position" value="0" style="display: none">
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group"
+                                         id="{">
+                                        <label class="input-label"
+                                               for="name">Bangla Name *</label>
+                                        <input type="text" name="name_bangla" class="form-control"
+                                               placeholder="Category Name in Bangla" value="{{ $category->name_bangla }}" required>
+                                    </div>
+                                    <input name="position" value="0" style="display: none">
+                                </div>
+                                <div class="col-6 from_part_2">
+                                    <label>{{\App\CPU\translate('image')}} (Optional)</label><small style="color: red">
+                                        ( {{\App\CPU\translate('ratio')}} 3:1 )</small>
+                                    <div class="custom-file" style="text-align: left">
+                                        <input type="file" name="image" id="customFileEg1"
+                                               class="custom-file-input"
+                                               accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*">
+                                        <label class="custom-file-label"
+                                               for="customFileEg1">{{\App\CPU\translate('choose')}} {{\App\CPU\translate('file')}}</label>
+                                    </div><br/><br/>
+                                    <div class="form-group">
+                                        <center>
+                                            <img
+                                                style="width: 40%;border: 1px solid; border-radius: 10px;"
+                                                id="viewer"
+                                                onerror="this.src='{{asset('public/assets/back-end/img/900x400/img1.jpg')}}'"
+                                                 src="{{asset('storage/app/public/category')}}/{{$category['icon']}}"
+                                                alt="image"/>
+                                            
+                                        </center>
+                                    </div>
+
+                                </div>
                             </div>
                             <hr>
                             <button type="submit" class="btn btn-primary">{{\App\CPU\translate('update')}}</button>
@@ -104,22 +147,7 @@
 @push('script')
 
     <script>
-        $(".lang_link").click(function (e) {
-            e.preventDefault();
-            $(".lang_link").removeClass('active');
-            $(".lang_form").addClass('d-none');
-            $(this).addClass('active');
-
-            let form_id = this.id;
-            let lang = form_id.split("-")[0];
-            console.log(lang);
-            $("#" + lang + "-form").removeClass('d-none');
-            if (lang == '{{$default_lang}}') {
-                $(".from_part_2").removeClass('d-none');
-            } else {
-                $(".from_part_2").addClass('d-none');
-            }
-        });
+        
 
         $(document).ready(function () {
             $('#dataTable').DataTable();
