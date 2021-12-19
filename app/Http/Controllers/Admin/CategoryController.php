@@ -58,7 +58,7 @@ class CategoryController extends Controller
         $category->icon        = ImageManager::upload('category/', 'png', $request->file('image'));
         $category->parent_id   = 0;
         $category->position    = 0;
-        $category->home_status = 1;
+        // $category->home_status = 1;
         $category->save();
 
         // $data = [];
