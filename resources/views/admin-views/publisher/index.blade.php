@@ -127,7 +127,7 @@
                     <div class="card-header">
                         <div class="flex-between justify-content-between align-items-center flex-grow-1">
                             <div>
-                                <h5>{{ \App\CPU\translate('publication_table')}} <span style="color: red;">({{ $publishers->count() }})</span></h5>
+                                <h5>{{ \App\CPU\translate('publication_table')}} <span style="color: red;">({{ $totalpublishers }})</span></h5>
                             </div>
                             <div style="width: 30vw">
                                 <!-- Search -->

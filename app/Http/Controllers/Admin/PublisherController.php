@@ -48,8 +48,11 @@ class PublisherController extends BaseController
             $publishers = Publisher::paginate(12);
         }
 
+        $totalpublishers = Publisher::get()->count();
+
         return view('admin-views.publisher.index')
                         ->withPublishers($publishers)
+                        ->withTotalpublishers($totalpublishers)
                         ->withSearch($search);
     }
 

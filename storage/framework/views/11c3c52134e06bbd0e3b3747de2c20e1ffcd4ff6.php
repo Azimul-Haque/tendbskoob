@@ -125,7 +125,7 @@
                     <div class="card-header">
                         <div class="flex-between justify-content-between align-items-center flex-grow-1">
                             <div>
-                                <h5><?php echo e(\App\CPU\translate('author_table')); ?> <span style="color: red;">(<?php echo e($authors->count()); ?>)</span></h5>
+                                <h5><?php echo e(\App\CPU\translate('author_table')); ?> <span style="color: red;">(<?php echo e($totalauthors); ?>)</span></h5>
                             </div>
                             <div style="width: 30vw">
                                 <!-- Search -->
@@ -206,22 +206,7 @@
 <?php $__env->startPush('script'); ?>
 
     <script>
-        // $(".lang_link").click(function (e) {
-        //     e.preventDefault();
-        //     $(".lang_link").removeClass('active');
-        //     $(".lang_form").addClass('d-none');
-        //     $(this).addClass('active');
-
-        //     let form_id = this.id;
-        //     let lang = form_id.split("-")[0];
-        //     console.log(lang);
-        //     $("#" + lang + "-form").removeClass('d-none');
         
-        //         $(".from_part_2").removeClass('d-none');
-        //     } else {
-        //         $(".from_part_2").addClass('d-none');
-        //     }
-        // });
 
         $(document).ready(function () {
             $('#dataTable').DataTable();

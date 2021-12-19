@@ -47,8 +47,12 @@ class AuthorController extends BaseController
             $authors = Author::paginate(12);
         }
 
+        $totalauthors = Author::get()->count();
+        // dd($totalauthors);
+
         return view('admin-views.author.index')
                         ->withAuthors($authors)
+                        ->withTotalauthors($totalauthors)
                         ->withSearch($search);
     }
 

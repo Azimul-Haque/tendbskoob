@@ -127,7 +127,7 @@
                     <div class="card-header">
                         <div class="flex-between justify-content-between align-items-center flex-grow-1">
                             <div>
-                                <h5>{{ \App\CPU\translate('author_table')}} <span style="color: red;">({{ $authors->count() }})</span></h5>
+                                <h5>{{ \App\CPU\translate('author_table')}} <span style="color: red;">({{ $totalauthors }})</span></h5>
                             </div>
                             <div style="width: 30vw">
                                 <!-- Search -->
