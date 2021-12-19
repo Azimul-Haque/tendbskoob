@@ -230,6 +230,9 @@
                             <h4 class="border-bottom"><?php echo e($product['name']); ?></h4>
                         </div>
                         <div class="flex-start">
+                            <h4 class="border-bottom"><?php echo e($product['name']); ?></h4>
+                        </div>
+                        <div class="flex-start">
                             <span><?php echo e(\App\CPU\translate('Publisher')); ?> : </span>
                             <span class="mx-1"><?php echo e($product->publisher ? $product->publisher->name : ''); ?></span>
                         </div>

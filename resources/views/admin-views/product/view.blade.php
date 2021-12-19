@@ -226,6 +226,9 @@
                             <h4 class="border-bottom">{{$product['name']}}</h4>
                         </div>
                         <div class="flex-start">
+                            <h4 class="border-bottom">{{$product['name']}}</h4>
+                        </div>
+                        <div class="flex-start">
                             <span>{{\App\CPU\translate('Publisher')}} : </span>
                             <span class="mx-1">{{ $product->publisher ? $product->publisher->name : '' }}</span>
                         </div>
