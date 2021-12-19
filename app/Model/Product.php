@@ -78,6 +78,10 @@ class Product extends Model
       return $this->belongsToMany(Author::class)->wherePivot('author_type', 3); // , 3 = editor
     }
 
+    public function categories() {
+      return $this->belongsToMany(Category::class); // , 3 = editor
+    }
+
     public function scopeStatus($query)
     {
         return $query->where('featured_status', 1);

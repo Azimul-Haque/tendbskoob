@@ -232,7 +232,22 @@
 
                         <div class="flex-start">
                             <span>{{\App\CPU\translate('Writer')}} : </span>
-                            <span class="mx-1">{{ $product->writers ? $product->writers[0]->name : '' }}</span>
+                            <span class="mx-1">{{ $product->writers->count() > 0 ? $product->writers[0]->name : '' }}</span>
+                        </div>
+
+                        <div class="flex-start">
+                            <span>{{\App\CPU\translate('Translator')}} : </span>
+                            <span class="mx-1">{{ $product->translators->count() > 0 ? $product->translators[0]->name : '' }}</span>
+                        </div>
+
+                        <div class="flex-start">
+                            <span>{{\App\CPU\translate('Editor')}} : </span>
+                            <span class="mx-1">{{ $product->editors->count() > 0 ? $product->editors[0]->name : '' }}</span>
+                        </div>
+
+                        <div class="flex-start">
+                            <span>{{\App\CPU\translate('Category')}} : </span>
+                            <span class="mx-1">{{ $product->categories->count() > 0 ? $product->categories[0]->name : '' }}</span>
                         </div>
                         
                         <div class="flex-start">

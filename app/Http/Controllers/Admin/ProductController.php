@@ -112,12 +112,20 @@ class ProductController extends BaseController
 
         $category = [];
 
-        if ($request->category_id != null) {
+        foreach($request->category_id as $categoryid) {
             array_push($category, [
-                'id' => $request->category_id,
+                'id' => $categoryid,
                 'position' => 1,
             ]);
         }
+        // dd($category);
+
+        // if ($request->category_id != null) {
+        //     array_push($category, [
+        //         'id' => $request->category_id,
+        //         'position' => 1,
+        //     ]);
+        // }
         if ($request->sub_category_id != null) {
             array_push($category, [
                 'id' => $request->sub_category_id,
@@ -133,14 +141,6 @@ class ProductController extends BaseController
 
         $p->category_ids = json_encode($category);
         $p->brand_id = $request->brand_id;
-
-        // ATTACH AUTHOR PUBLSHER...
-        // associate members
-        // foreach ($request->member_ids as $key => $value) {
-        //     $publication->users()->attach($value);
-        // }
-        // $publication->users()->sync($request->member_ids, false);
-
 
         $p->unit = $request->unit;
         $p->details = $request->description[array_search('en', $request->lang)];
@@ -244,6 +244,16 @@ class ProductController extends BaseController
             return response()->json([], 200);
         } else {
             $p->save();
+
+            // ATTACH CATEGORIES PUBLSHER...
+            // foreach ($request->category_id as $key => $value) {
+            //     $p->categories()->attach($value);
+            // }
+            $p->categories()->sync($request->category_id, false);
+
+            // ATTACH AUTHORS PUBLSHER...
+            // ATTACH AUTHORS PUBLSHER...
+            // ATTACH AUTHORS PUBLSHER...
 
             $data = [];
             foreach ($request->lang as $index => $key) {
