@@ -27,48 +27,92 @@
                       enctype="multipart/form-data"
                       id="product_form">
                     <?php echo csrf_field(); ?>
+                    
+
                     <div class="card">
                         <div class="card-header">
-                            <?php ($language=\App\Model\BusinessSetting::where('type','pnc_language')->first()); ?>
-                            <?php ($language = $language->value ?? null); ?>
-                            <?php ($default_lang = 'en'); ?>
-
-                            <?php ($default_lang = json_decode($language)[0]); ?>
-                            <ul class="nav nav-tabs mb-4">
-                                <?php $__currentLoopData = json_decode($language); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li class="nav-item">
-                                        <a class="nav-link lang_link <?php echo e($lang == $default_lang? 'active':''); ?>" href="#"
-                                           id="<?php echo e($lang); ?>-link"><?php echo e(\App\CPU\Helpers::get_language_name($lang).'('.strtoupper($lang).')'); ?></a>
-                                    </li>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </ul>
+                            <h4>Add New Book</h4>
                         </div>
 
                         <div class="card-body">
-                            <?php $__currentLoopData = json_decode($language); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <div class="<?php echo e($lang != $default_lang ? 'd-none':''); ?> lang_form"
-                                     id="<?php echo e($lang); ?>-form">
-                                    <div class="form-group">
-                                        <label class="input-label" for="<?php echo e($lang); ?>_name"><?php echo e(\App\CPU\translate('name')); ?>
-
-                                            (<?php echo e(strtoupper($lang)); ?>)</label>
-                                        <input type="text" <?php echo e($lang == $default_lang? 'required':''); ?> name="name[]"
-                                               id="<?php echo e($lang); ?>_name" class="form-control" placeholder="New Product" required>
+                            <div class="form-group">
+                                <label for="publisher_id"><?php echo e(\App\CPU\translate('Publication')); ?></label>
+                                <select
+                                    class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id[]" id="publisher_id" required>
+                                    <option value="<?php echo e(old('publisher_id')); ?>" selected disabled>Select Publication</option>
+                                    <?php $__currentLoopData = $publishers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $publisher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($publisher['id']); ?>" <?php echo e(old('name_bangla')==$publisher['id']? 'selected': ''); ?>>
+                                            <?php echo e($publisher['name_bangla']); ?> (<?php echo e($publisher['name']); ?>)
+                                        </option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="input-label" for="name"><?php echo e(\App\CPU\translate('Book Name')); ?></label>
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="Book Name" required>
                                     </div>
-                                    <input type="hidden" name="lang[]" value="<?php echo e($lang); ?>">
-                                    <div class="form-group pt-4">
-                                        <label class="input-label"
-                                               for="<?php echo e($lang); ?>_description"><?php echo e(\App\CPU\translate('description')); ?>
-
-                                            (<?php echo e(strtoupper($lang)); ?>)</label>
-                                        <textarea name="description[]" class="editor textarea" id="textarea" cols="30"
-                                                  rows="10" required><?php echo e(old('details')); ?></textarea>
+                                    <div class="col-md-6">
+                                        <label class="input-label" for="name_bangla"><?php echo e(\App\CPU\translate('Book Name (Bangla)')); ?></label>
+                                        <input type="text" name="name_bangla" id="name_bangla" class="form-control" placeholder="Book Name in Bangla" required>
                                     </div>
                                 </div>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="name"><?php echo e(\App\CPU\translate('Writer')); ?></label>
+                                    <select
+                                        class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
+                                        name="writer_id[]" id="writer_id" multiple
+                                        onchange="getRequest('<?php echo e(url('/')); ?>/admin/product/get-categories?parent_id='+this.value,'sub-category-select','select')">
+                                        
+                                        <?php $__currentLoopData = $cat; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($c['id']); ?>" <?php echo e(old('name_bangla')==$c['id']? 'selected': ''); ?>>
+                                                <?php echo e($c['name_bangla']); ?>
+
+                                            </option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </select><br/><br/>
+                                    
+                                    <label for="name"><?php echo e(\App\CPU\translate('Translator')); ?></label>
+                                    <select
+                                        class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
+                                        name="translator_id[]" id="translator_id" multiple
+                                        onchange="getRequest('<?php echo e(url('/')); ?>/admin/product/get-categories?parent_id='+this.value,'sub-category-select','select')">
+                                        
+                                        <?php $__currentLoopData = $cat; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($c['id']); ?>" <?php echo e(old('name_bangla')==$c['id']? 'selected': ''); ?>>
+                                                <?php echo e($c['name_bangla']); ?>
+
+                                            </option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </select><br/><br/>
+
+                                    <label for="name"><?php echo e(\App\CPU\translate('Editor')); ?></label>
+                                    <select
+                                        class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
+                                        name="editor_id[]" id="editor_id" multiple
+                                        onchange="getRequest('<?php echo e(url('/')); ?>/admin/product/get-categories?parent_id='+this.value,'sub-category-select','select')">
+                                        
+                                        <?php $__currentLoopData = $cat; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($c['id']); ?>" <?php echo e(old('name_bangla')==$c['id']? 'selected': ''); ?>>
+                                                <?php echo e($c['name_bangla']); ?>
+
+                                            </option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="input-label" for="description"><?php echo e(\App\CPU\translate('description (Optional)')); ?></label>
+                                        <textarea name="description" class="editor textarea" id="textarea" cols="30" rows="10" required><?php echo e(old('description')); ?></textarea>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
+                    
                     <div class="card mt-2 rest-part">
                         <div class="card-header">
                             <h4><?php echo e(\App\CPU\translate('General Info')); ?></h4>
@@ -85,7 +129,7 @@
                                             required>
                                             
                                             <?php $__currentLoopData = $cat; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($c['id']); ?>" <?php echo e(old('name')==$c['id']? 'selected': ''); ?>>
+                                                <option value="<?php echo e($c['id']); ?>" <?php echo e(old('name_bangla')==$c['id']? 'selected': ''); ?>>
                                                     <?php echo e($c['name_bangla']); ?>
 
                                                 </option>
@@ -464,8 +508,12 @@
             width: 'resolve'
         });
 
+        $("#publisher_id").select2({
+            placeholder: "Select Publication",
+        });
+
         $("#category_id").select2({
-            placeholder: "---Select---",
+            placeholder: "Select Category",
             multiple: true,
         });
     </script>
@@ -603,24 +651,7 @@
         };
     </script>
 
-    <script>
-        $(".lang_link").click(function (e) {
-            e.preventDefault();
-            $(".lang_link").removeClass('active');
-            $(".lang_form").addClass('d-none');
-            $(this).addClass('active');
-
-            let form_id = this.id;
-            let lang = form_id.split("-")[0];
-            console.log(lang);
-            $("#" + lang + "-form").removeClass('d-none');
-            if (lang == '<?php echo e($default_lang); ?>') {
-                $(".rest-part").removeClass('d-none');
-            } else {
-                $(".rest-part").addClass('d-none');
-            }
-        })
-    </script>
+    
 
     
     
@@ -631,7 +662,9 @@
             // $('.textarea').ckeditor({
             //     // contentsLangDirection : '<?php echo e(Session::get('direction')); ?>',
             // });
-            CKEDITOR.replace( 'textarea' );
+            CKEDITOR.replace('textarea', {
+                toolbar : 'Basic',
+            });
         });
     </script>
     

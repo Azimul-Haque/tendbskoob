@@ -29,7 +29,7 @@
                       enctype="multipart/form-data"
                       id="product_form">
                     @csrf
-                    <div class="card">
+                    {{-- <div class="card">
                         <div class="card-header">
                             @php($language=\App\Model\BusinessSetting::where('type','pnc_language')->first())
                             @php($language = $language->value ?? null)
@@ -67,8 +67,89 @@
                                 </div>
                             @endforeach
                         </div>
-                    </div>
+                    </div> --}}
 
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Add New Book</h4>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="publisher_id">{{\App\CPU\translate('Publication')}}</label>
+                                <select
+                                    class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id[]" id="publisher_id" required>
+                                    <option value="{{ old('publisher_id') }}" selected disabled>Select Publication</option>
+                                    @foreach($publishers as $publisher)
+                                        <option value="{{ $publisher['id'] }}" {{ old('name_bangla')==$publisher['id']? 'selected': '' }}>
+                                            {{ $publisher['name_bangla'] }} ({{ $publisher['name'] }})
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="input-label" for="name">{{\App\CPU\translate('Book Name')}}</label>
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="Book Name" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="input-label" for="name_bangla">{{\App\CPU\translate('Book Name (Bangla)')}}</label>
+                                        <input type="text" name="name_bangla" id="name_bangla" class="form-control" placeholder="Book Name in Bangla" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="name">{{\App\CPU\translate('Writer')}}</label>
+                                    <select
+                                        class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
+                                        name="writer_id[]" id="writer_id" multiple
+                                        onchange="getRequest('{{url('/')}}/admin/product/get-categories?parent_id='+this.value,'sub-category-select','select')">
+                                        {{-- <option value="{{old('writer_id')}}" selected disabled>---Select---</option> --}}
+                                        @foreach($cat as $c)
+                                            <option value="{{$c['id']}}" {{old('name_bangla')==$c['id']? 'selected': ''}}>
+                                                {{$c['name_bangla']}}
+                                            </option>
+                                        @endforeach
+                                    </select><br/><br/>
+                                    
+                                    <label for="name">{{\App\CPU\translate('Translator')}}</label>
+                                    <select
+                                        class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
+                                        name="translator_id[]" id="translator_id" multiple
+                                        onchange="getRequest('{{url('/')}}/admin/product/get-categories?parent_id='+this.value,'sub-category-select','select')">
+                                        {{-- <option value="{{old('translator_id')}}" selected disabled>---Select---</option> --}}
+                                        @foreach($cat as $c)
+                                            <option value="{{$c['id']}}" {{old('name_bangla')==$c['id']? 'selected': ''}}>
+                                                {{$c['name_bangla']}}
+                                            </option>
+                                        @endforeach
+                                    </select><br/><br/>
+
+                                    <label for="name">{{\App\CPU\translate('Editor')}}</label>
+                                    <select
+                                        class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
+                                        name="editor_id[]" id="editor_id" multiple
+                                        onchange="getRequest('{{url('/')}}/admin/product/get-categories?parent_id='+this.value,'sub-category-select','select')">
+                                        {{-- <option value="{{old('editor_id')}}" selected disabled>---Select---</option> --}}
+                                        @foreach($cat as $c)
+                                            <option value="{{$c['id']}}" {{old('name_bangla')==$c['id']? 'selected': ''}}>
+                                                {{$c['name_bangla']}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="input-label" for="description">{{\App\CPU\translate('description (Optional)')}}</label>
+                                        <textarea name="description" class="editor textarea" id="textarea" cols="30" rows="10" required>{{old('description')}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="card mt-2 rest-part">
                         <div class="card-header">
                             <h4>{{\App\CPU\translate('General Info')}}</h4>
@@ -85,7 +166,7 @@
                                             required>
                                             {{-- <option value="{{old('category_id')}}" selected disabled>---Select---</option> --}}
                                             @foreach($cat as $c)
-                                                <option value="{{$c['id']}}" {{old('name')==$c['id']? 'selected': ''}}>
+                                                <option value="{{$c['id']}}" {{old('name_bangla')==$c['id']? 'selected': ''}}>
                                                     {{$c['name_bangla']}}
                                                 </option>
                                             @endforeach
@@ -461,8 +542,12 @@
             width: 'resolve'
         });
 
+        $("#publisher_id").select2({
+            placeholder: "Select Publication",
+        });
+
         $("#category_id").select2({
-            placeholder: "---Select---",
+            placeholder: "Select Category",
             multiple: true,
         });
     </script>
@@ -600,7 +685,7 @@
         };
     </script>
 
-    <script>
+    {{-- <script>
         $(".lang_link").click(function (e) {
             e.preventDefault();
             $(".lang_link").removeClass('active');
@@ -611,13 +696,13 @@
             let lang = form_id.split("-")[0];
             console.log(lang);
             $("#" + lang + "-form").removeClass('d-none');
-            if (lang == '{{$default_lang}}') {
+            if (lang == ' default_lang ') {
                 $(".rest-part").removeClass('d-none');
             } else {
                 $(".rest-part").addClass('d-none');
             }
-        })
-    </script>
+        });
+    </script> --}}
 
     {{--ck editor--}}
     {{-- <script src="{{asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script> --}}
@@ -628,7 +713,9 @@
             // $('.textarea').ckeditor({
             //     // contentsLangDirection : '{{Session::get('direction')}}',
             // });
-            CKEDITOR.replace( 'textarea' );
+            CKEDITOR.replace('textarea', {
+                toolbar : 'Basic',
+            });
         });
     </script>
     {{--ck editor--}}

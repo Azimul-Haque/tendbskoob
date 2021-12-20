@@ -13,6 +13,7 @@ use App\Model\DealOfTheDay;
 use App\Model\FlashDealProduct;
 use App\Model\Product;
 use App\Model\Author;
+use App\Model\Publisher;
 use App\Model\Review;
 use App\Model\Translation;
 use Brian2694\Toastr\Facades\Toastr;
@@ -29,7 +30,9 @@ class ProductController extends BaseController
     {
         $cat = Category::where(['parent_id' => 0])->get();
         $br = Brand::orderBY('name', 'ASC')->get();
-        return view('admin-views.product.add-new', compact('cat', 'br'));
+        $publishers = Publisher::get();
+        $authors = Author::get();
+        return view('admin-views.product.add-new', compact('cat', 'br', 'publishers', 'authors'));
     }
 
     public function featured_status(Request $request)

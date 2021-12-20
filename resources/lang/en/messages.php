@@ -1388,4 +1388,12 @@
   'left sidebar' => 'Left sidebar',
   'Make sure to check' => 'Make sure to check',
   'must on' => 'Must on',
+  'Publication' => 'Publication',
+  'name_bangla' => 'Name bangla',
+  'book_name' => 'Book name',
+  'book name_bangla' => 'Book name bangla',
+  'book_name_bangla' => 'Book name bangla',
+  'Book Name' => 'Book Name',
+  'Book Name (Bangla)' => 'Book Name (Bangla)',
+  'description (Optional)' => 'Description (Optional)',
 );
