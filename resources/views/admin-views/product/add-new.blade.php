@@ -134,9 +134,7 @@
                                     </select><br/><br/>
 
                                     <label for="name">{{\App\CPU\translate('Category')}} *</label>
-                                    <select
-                                        class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
-                                        name="category_id[]" id="category_id" multiple required>
+                                    <select class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control" name="category_id[]" id="category_id" multiple required>
                                         @foreach($cat as $c)
                                             <option value="{{$c['id']}}" {{old('name_bangla')==$c['id']? 'selected': ''}}>
                                                 {{ $c['name_bangla'] }} ({{ $c['name'] }})
@@ -295,16 +293,14 @@
                                         <label class="control-label">{{\App\CPU\translate('ISBN Number')}}</label>
                                         <input type="number" min="0" step="0.01"
                                                placeholder="{{\App\CPU\translate('ISBN Number')}}"
-                                               name="isbn" value="{{old('isbn')}}" class="form-control"
-                                               required>
+                                               name="isbn" value="{{old('isbn')}}" class="form-control">
                                     </div>
                                     <div class="col-md-6">
                                         <label
                                             class="control-label">{{\App\CPU\translate('Book Weight (KG)')}}</label>
                                         <input type="number" min="0" step="0.01"
                                                placeholder="{{\App\CPU\translate('Book Weight')}}"
-                                               value="{{old('weight')}}"
-                                               name="weight" class="form-control" required>
+                                               value="{{old('weight')}}" name="weight" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row pt-4">
@@ -636,7 +632,7 @@
         });
 
         $('input[name="unit_price"]').on('keyup', function () {
-            update_sku();
+            // update_sku();
         });
 
         function update_sku() {

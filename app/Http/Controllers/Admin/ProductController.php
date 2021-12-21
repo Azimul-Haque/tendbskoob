@@ -2,27 +2,27 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\CPU\BackEndHelper;
 use App\CPU\Helpers;
-use App\CPU\ImageManager;
-use App\Http\Controllers\BaseController;
 use App\Model\Brand;
-use App\Model\Category;
 use App\Model\Color;
-use App\Model\DealOfTheDay;
-use App\Model\FlashDealProduct;
-use App\Model\Product;
 use App\Model\Author;
-use App\Model\Publisher;
 use App\Model\Review;
+use App\Model\Product;
+use App\Model\Category;
+use App\Model\Publisher;
+use App\CPU\ImageManager;
+use App\CPU\BackEndHelper;
 use App\Model\Translation;
-use Brian2694\Toastr\Facades\Toastr;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
+use App\Model\DealOfTheDay;
 use Illuminate\Support\Str;
-use Rap2hpoutre\FastExcel\FastExcel;
+use Illuminate\Http\Request;
+use App\Model\FlashDealProduct;
 use function App\CPU\translate;
+use Illuminate\Support\Facades\DB;
+use Brian2694\Toastr\Facades\Toastr;
+use Rap2hpoutre\FastExcel\FastExcel;
+use App\Http\Controllers\BaseController;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends BaseController
 {
@@ -76,20 +76,31 @@ class ProductController extends BaseController
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'category_id' => 'required',
+            'publisher_id' => 'required',
+            'name'         => 'required',
+            'name_bangla'  => 'required',
+            'category_id'  => 'required',
             // 'brand_id' => 'required',
             // 'unit' => 'required',
-            'images' => 'required',
-            'image' => 'required',
-            'tax' => 'required|min:0',
-            'unit_price' => 'required|numeric|min:1',
-            'purchase_price' => 'required|numeric|min:1',
+            // 'images' => 'required',
+            'image'          => 'required',
+            // 'tax'            => 'required|min:0',
+            'purchase_price'  => 'required|numeric|min:1',
+            'published_price' => 'required|numeric|min:1',
+            'unit_price'      => 'required|numeric|min:1',
+            'current_stock'   => 'required|numeric|min:1',
         ], [
-            'images.required' => 'Product images is required!',
-            'image.required' => 'Product thumbnail is required!',
-            'category_id.required' => 'category  is required!',
+            'publisher_id.required'    => 'Publication is required!',
+            'name.required'            => 'English name is required!',
+            'name_bangla.required'     => 'Bangla name is required!',
+            'category_id.required'     => 'Category is required!',
+            'image.required'           => 'Product thumbnail is required!',
+            'published_price.required' => 'Published Price is required!',
+            'unit_price.required'      => 'Unit Price is required!',
+            'current_stock.required'   => 'Total Quantity is required!',
+            
             // 'brand_id.required' => 'brand  is required!',
-            'unit.required' => 'Unit  is required!',
+            // 'unit.required' => 'Unit  is required!',
         ]);
 
         if ($request['discount_type'] == 'percent') {
@@ -106,21 +117,23 @@ class ProductController extends BaseController
             });
         }
 
-
         $p = new Product();
         $p->user_id = auth('admin')->id();
         $p->added_by = "admin";
-        $p->name = $request->name[array_search('en', $request->lang)];
-        $p->slug = Str::slug($request->name[array_search('en', $request->lang)], '-') . '-' . Str::random(6);
+        $p->name = $request->name;
+        $p->slug = Str::slug($request->name, '-') . '-' . Str::random(6);
 
         $category = [];
 
-        foreach($request->category_id as $categoryid) {
-            array_push($category, [
-                'id' => $categoryid,
-                'position' => 1,
-            ]);
+        if($request->category_id) {
+            foreach($request->category_id as $categoryid) {
+                array_push($category, [
+                    'id' => $categoryid,
+                    'position' => 1,
+                ]);
+            }
         }
+        
         // dd($category);
 
         // if ($request->category_id != null) {
@@ -146,7 +159,7 @@ class ProductController extends BaseController
         $p->brand_id = $request->brand_id;
 
         // $p->unit = $request->unit;
-        $p->details = $request->description[array_search('en', $request->lang)];
+        $p->details = $request->description;
 
         if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
             $p->colors = json_encode($request->colors);
@@ -387,7 +400,7 @@ class ProductController extends BaseController
     public function update(Request $request, $id)
     {
         dd($request);
-        
+
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'category_id' => 'required',
