@@ -76,7 +76,7 @@
 
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="publisher_id">{{\App\CPU\translate('Publication')}}</label>
+                                <label for="publisher_id">{{\App\CPU\translate('Publication')}} *</label>
                                 <select
                                     class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id[]" id="publisher_id" required>
                                     <option value="{{ old('publisher_id') }}" selected disabled>Select Publication</option>
@@ -90,12 +90,12 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label class="input-label" for="name">{{\App\CPU\translate('Book Name')}}</label>
-                                        <input type="text" name="name" id="name" class="form-control" placeholder="Book Name" required>
+                                        <label class="input-label" for="name_bangla">{{\App\CPU\translate('Book Name (Bangla)')}} *</label>
+                                        <input type="text" name="name_bangla" id="name_bangla" class="form-control" placeholder="Book Name in Bangla" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="input-label" for="name_bangla">{{\App\CPU\translate('Book Name (Bangla)')}}</label>
-                                        <input type="text" name="name_bangla" id="name_bangla" class="form-control" placeholder="Book Name in Bangla" required>
+                                        <label class="input-label" for="name">{{\App\CPU\translate('Book Name (English)')}} *</label>
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="Book Name" required>
                                     </div>
                                 </div>
                             </div>
@@ -104,12 +104,10 @@
                                     <label for="name">{{\App\CPU\translate('Writer')}}</label>
                                     <select
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
-                                        name="writer_id[]" id="writer_id" multiple
-                                        onchange="getRequest('{{url('/')}}/admin/product/get-categories?parent_id='+this.value,'sub-category-select','select')">
-                                        {{-- <option value="{{old('writer_id')}}" selected disabled>---Select---</option> --}}
-                                        @foreach($cat as $c)
-                                            <option value="{{$c['id']}}" {{old('name_bangla')==$c['id']? 'selected': ''}}>
-                                                {{$c['name_bangla']}}
+                                        name="writer_id[]" id="writer_id" multiple>
+                                        @foreach($authors as $writer)
+                                            <option value="{{$writer['id']}}" {{old('name_bangla')==$writer['id']? 'selected': ''}}>
+                                                {{ $writer['name_bangla'] }} ({{ $writer['name'] }})
                                             </option>
                                         @endforeach
                                     </select><br/><br/>
@@ -117,40 +115,55 @@
                                     <label for="name">{{\App\CPU\translate('Translator')}}</label>
                                     <select
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
-                                        name="translator_id[]" id="translator_id" multiple
-                                        onchange="getRequest('{{url('/')}}/admin/product/get-categories?parent_id='+this.value,'sub-category-select','select')">
-                                        {{-- <option value="{{old('translator_id')}}" selected disabled>---Select---</option> --}}
-                                        @foreach($cat as $c)
-                                            <option value="{{$c['id']}}" {{old('name_bangla')==$c['id']? 'selected': ''}}>
-                                                {{$c['name_bangla']}}
+                                        name="translator_id[]" id="translator_id" multiple>
+                                        @foreach($authors as $translator)
+                                            <option value="{{$translator['id']}}" {{old('name_bangla')==$translator['id']? 'selected': ''}}>
+                                                {{ $translator['name_bangla'] }} ({{ $translator['name'] }})
                                             </option>
                                         @endforeach
                                     </select><br/><br/>
 
                                     <label for="name">{{\App\CPU\translate('Editor')}}</label>
                                     <select
+                                        class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control" name="editor_id[]" id="editor_id" multiple>
+                                        @foreach($authors as $editor)
+                                            <option value="{{$editor['id']}}" {{old('name_bangla')==$editor['id']? 'selected': ''}}>
+                                                {{ $editor['name_bangla'] }} ({{ $editor['name'] }})
+                                            </option>
+                                        @endforeach
+                                    </select><br/><br/>
+
+                                    <label for="name">{{\App\CPU\translate('Category')}} *</label>
+                                    <select
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
-                                        name="editor_id[]" id="editor_id" multiple
-                                        onchange="getRequest('{{url('/')}}/admin/product/get-categories?parent_id='+this.value,'sub-category-select','select')">
-                                        {{-- <option value="{{old('editor_id')}}" selected disabled>---Select---</option> --}}
+                                        name="category_id[]" id="category_id" multiple required>
                                         @foreach($cat as $c)
                                             <option value="{{$c['id']}}" {{old('name_bangla')==$c['id']? 'selected': ''}}>
-                                                {{$c['name_bangla']}}
+                                                {{ $c['name_bangla'] }} ({{ $c['name'] }})
                                             </option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="input-label" for="description">{{\App\CPU\translate('description (Optional)')}}</label>
-                                        <textarea name="description" class="editor textarea" id="textarea" cols="30" rows="10" required>{{old('description')}}</textarea>
+                                        <label for="name">{{\App\CPU\translate('Book Image')}} *</label> <small
+                                            style="color: red">(w: 260px, h: 372px)</small>
                                     </div>
+                                    <center>
+                                        <div style="max-width:200px;">
+                                            <div class="row" id="thumbnail"></div>
+                                        </div>
+                                    </center>
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="input-label" for="description">{{\App\CPU\translate('description (Optional)')}}</label>
+                                <textarea name="description" class="editor textarea" id="textarea" cols="30" rows="10">{{old('description')}}</textarea>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="card mt-2 rest-part">
+                    {{-- <div class="card mt-2 rest-part">
                         <div class="card-header">
                             <h4>{{\App\CPU\translate('General Info')}}</h4>
                         </div>
@@ -164,7 +177,7 @@
                                             name="category_id[]" id="category_id" multiple
                                             onchange="getRequest('{{url('/')}}/admin/product/get-categories?parent_id='+this.value,'sub-category-select','select')"
                                             required>
-                                            {{-- <option value="{{old('category_id')}}" selected disabled>---Select---</option> --}}
+                                            <option value="{{old('category_id')}}" selected disabled>---Select---</option>
                                             @foreach($cat as $c)
                                                 <option value="{{$c['id']}}" {{old('name_bangla')==$c['id']? 'selected': ''}}>
                                                     {{$c['name_bangla']}}
@@ -218,9 +231,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="card mt-2 rest-part">
+                    {{-- <div class="card mt-2 rest-part">
                         <div class="card-header">
                             <h4>{{\App\CPU\translate('Variations')}}</h4>
                         </div>
@@ -269,7 +282,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="card mt-2 rest-part">
                         <div class="card-header">
@@ -279,23 +292,47 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label class="control-label">{{\App\CPU\translate('Unit price')}}</label>
+                                        <label class="control-label">{{\App\CPU\translate('ISBN Number')}}</label>
                                         <input type="number" min="0" step="0.01"
-                                               placeholder="{{\App\CPU\translate('Unit price')}}"
-                                               name="unit_price" value="{{old('unit_price')}}" class="form-control"
+                                               placeholder="{{\App\CPU\translate('ISBN Number')}}"
+                                               name="isbn" value="{{old('isbn')}}" class="form-control"
                                                required>
                                     </div>
                                     <div class="col-md-6">
                                         <label
-                                            class="control-label">{{\App\CPU\translate('Purchase price')}}</label>
+                                            class="control-label">{{\App\CPU\translate('Book Weight (KG)')}}</label>
                                         <input type="number" min="0" step="0.01"
-                                               placeholder="{{\App\CPU\translate('Purchase price')}}"
-                                               value="{{old('purchase_price')}}"
-                                               name="purchase_price" class="form-control" required>
+                                               placeholder="{{\App\CPU\translate('Book Weight')}}"
+                                               value="{{old('weight')}}"
+                                               name="weight" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="row pt-4">
-                                    <div class="col-md-5">
+                                    <div class="col-md-4">
+                                        <label
+                                            class="control-label">{{\App\CPU\translate('Purchase Price')}} (৳)</label>
+                                        <input type="number" min="0" step="0.01"
+                                               placeholder="{{\App\CPU\translate('Purchase Price')}}"
+                                               value="{{old('purchase_price')}}"
+                                               name="purchase_price" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="control-label">{{\App\CPU\translate('Published Price')}} (৳)</label>
+                                        <input type="number" min="0" step="0.01"
+                                               placeholder="{{\App\CPU\translate('Published Price')}}"
+                                               name="published_price" value="{{old('published_price')}}" class="form-control"
+                                               required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="control-label">{{\App\CPU\translate('Sale Price')}} (৳)</label>
+                                        <input type="number" min="0" step="0.01"
+                                               placeholder="{{\App\CPU\translate('Sale Price')}}"
+                                               name="unit_price" value="{{old('unit_price')}}" class="form-control"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="row pt-4">
+                                    {{-- <div class="col-md-5">
                                         <label class="control-label">{{\App\CPU\translate('Tax')}}</label>
                                         <label class="badge badge-info">{{\App\CPU\translate('Percent')}} ( % )</label>
                                         <input type="number" min="0" value="0" step="0.01"
@@ -321,7 +358,7 @@
                                     </div>
                                     <div class="pt-4 col-12 sku_combination" id="sku_combination">
 
-                                    </div>
+                                    </div> --}}
                                     <div class="col-md-6" id="quantity">
                                         <label
                                             class="control-label">{{\App\CPU\translate('total')}} {{\App\CPU\translate('Quantity')}}</label>
@@ -334,7 +371,7 @@
                         </div>
                     </div>
 
-                    <div class="card mt-2 mb-2 rest-part">
+                    {{-- <div class="card mt-2 mb-2 rest-part">
                         <div class="card-header">
                             <h4>{{\App\CPU\translate('seo_section')}}</h4>
                         </div>
@@ -360,9 +397,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="card mt-2 rest-part">
+                    {{-- <div class="card mt-2 rest-part">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12 mb-4">
@@ -381,19 +418,9 @@
                                     </div>
 
                                 </div>
-
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="name">{{\App\CPU\translate('Upload thumbnail')}}</label><small
-                                            style="color: red">* ( {{\App\CPU\translate('ratio')}} 1:1 )</small>
-                                    </div>
-                                    <div style="max-width:200px;">
-                                        <div class="row" id="thumbnail"></div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="card card-footer">
                         <div class="row">
@@ -454,7 +481,7 @@
                 groupClassName: 'col-12',
                 maxFileSize: '',
                 placeholderImage: {
-                    image: '{{asset('public/assets/back-end/img/400x400/img2.jpg')}}',
+                    image: '{{asset('public/assets/back-end/img/book_demo.jpg')}}',
                     width: '100%',
                 },
                 dropFileLabel: "Drop Here",
@@ -544,6 +571,21 @@
 
         $("#publisher_id").select2({
             placeholder: "Select Publication",
+        });
+
+        $("#writer_id").select2({
+            placeholder: "Select Witer",
+            multiple: true,
+        });
+
+        $("#translator_id").select2({
+            placeholder: "Select Translator",
+            multiple: true,
+        });
+
+        $("#editor_id").select2({
+            placeholder: "Select Editor",
+            multiple: true,
         });
 
         $("#category_id").select2({
@@ -672,6 +714,7 @@
                                     ProgressBar: true
                                 });
                             }
+                            console.log(data.errors);
                         } else {
                             toastr.success('{{\App\CPU\translate('product added successfully')}}!', {
                                 CloseButton: true,

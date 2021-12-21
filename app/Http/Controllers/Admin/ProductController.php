@@ -78,7 +78,7 @@ class ProductController extends BaseController
         $validator = Validator::make($request->all(), [
             'category_id' => 'required',
             // 'brand_id' => 'required',
-            'unit' => 'required',
+            // 'unit' => 'required',
             'images' => 'required',
             'image' => 'required',
             'tax' => 'required|min:0',
@@ -145,7 +145,7 @@ class ProductController extends BaseController
         $p->category_ids = json_encode($category);
         $p->brand_id = $request->brand_id;
 
-        $p->unit = $request->unit;
+        // $p->unit = $request->unit;
         $p->details = $request->description[array_search('en', $request->lang)];
 
         if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
@@ -386,6 +386,8 @@ class ProductController extends BaseController
 
     public function update(Request $request, $id)
     {
+        dd($request);
+        
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'category_id' => 'required',

@@ -25,6 +25,7 @@ class CategoryController extends Controller
             $categories = Category::where(function ($q) use ($key) {
                 foreach ($key as $value) {
                     $q->orWhere('name', 'like', "%{$value}%");
+                    $q->orWhere('name_bangla', 'like', "%{$value}%");
                 }
             });
             $query_param = ['search' => $request['search']];

@@ -36,7 +36,7 @@
 
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="publisher_id"><?php echo e(\App\CPU\translate('Publication')); ?></label>
+                                <label for="publisher_id"><?php echo e(\App\CPU\translate('Publication')); ?> *</label>
                                 <select
                                     class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id[]" id="publisher_id" required>
                                     <option value="<?php echo e(old('publisher_id')); ?>" selected disabled>Select Publication</option>
@@ -50,12 +50,12 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label class="input-label" for="name"><?php echo e(\App\CPU\translate('Book Name')); ?></label>
-                                        <input type="text" name="name" id="name" class="form-control" placeholder="Book Name" required>
+                                        <label class="input-label" for="name_bangla"><?php echo e(\App\CPU\translate('Book Name (Bangla)')); ?> *</label>
+                                        <input type="text" name="name_bangla" id="name_bangla" class="form-control" placeholder="Book Name in Bangla" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="input-label" for="name_bangla"><?php echo e(\App\CPU\translate('Book Name (Bangla)')); ?></label>
-                                        <input type="text" name="name_bangla" id="name_bangla" class="form-control" placeholder="Book Name in Bangla" required>
+                                        <label class="input-label" for="name"><?php echo e(\App\CPU\translate('Book Name (English)')); ?> *</label>
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="Book Name" required>
                                     </div>
                                 </div>
                             </div>
@@ -64,13 +64,10 @@
                                     <label for="name"><?php echo e(\App\CPU\translate('Writer')); ?></label>
                                     <select
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
-                                        name="writer_id[]" id="writer_id" multiple
-                                        onchange="getRequest('<?php echo e(url('/')); ?>/admin/product/get-categories?parent_id='+this.value,'sub-category-select','select')">
-                                        
-                                        <?php $__currentLoopData = $cat; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($c['id']); ?>" <?php echo e(old('name_bangla')==$c['id']? 'selected': ''); ?>>
-                                                <?php echo e($c['name_bangla']); ?>
-
+                                        name="writer_id[]" id="writer_id" multiple>
+                                        <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $writer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($writer['id']); ?>" <?php echo e(old('name_bangla')==$writer['id']? 'selected': ''); ?>>
+                                                <?php echo e($writer['name_bangla']); ?> (<?php echo e($writer['name']); ?>)
                                             </option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select><br/><br/>
@@ -78,164 +75,57 @@
                                     <label for="name"><?php echo e(\App\CPU\translate('Translator')); ?></label>
                                     <select
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
-                                        name="translator_id[]" id="translator_id" multiple
-                                        onchange="getRequest('<?php echo e(url('/')); ?>/admin/product/get-categories?parent_id='+this.value,'sub-category-select','select')">
-                                        
-                                        <?php $__currentLoopData = $cat; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($c['id']); ?>" <?php echo e(old('name_bangla')==$c['id']? 'selected': ''); ?>>
-                                                <?php echo e($c['name_bangla']); ?>
-
+                                        name="translator_id[]" id="translator_id" multiple>
+                                        <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $translator): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($translator['id']); ?>" <?php echo e(old('name_bangla')==$translator['id']? 'selected': ''); ?>>
+                                                <?php echo e($translator['name_bangla']); ?> (<?php echo e($translator['name']); ?>)
                                             </option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select><br/><br/>
 
                                     <label for="name"><?php echo e(\App\CPU\translate('Editor')); ?></label>
                                     <select
+                                        class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control" name="editor_id[]" id="editor_id" multiple>
+                                        <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $editor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($editor['id']); ?>" <?php echo e(old('name_bangla')==$editor['id']? 'selected': ''); ?>>
+                                                <?php echo e($editor['name_bangla']); ?> (<?php echo e($editor['name']); ?>)
+                                            </option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </select><br/><br/>
+
+                                    <label for="name"><?php echo e(\App\CPU\translate('Category')); ?> *</label>
+                                    <select
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
-                                        name="editor_id[]" id="editor_id" multiple
-                                        onchange="getRequest('<?php echo e(url('/')); ?>/admin/product/get-categories?parent_id='+this.value,'sub-category-select','select')">
-                                        
+                                        name="category_id[]" id="category_id" multiple required>
                                         <?php $__currentLoopData = $cat; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option value="<?php echo e($c['id']); ?>" <?php echo e(old('name_bangla')==$c['id']? 'selected': ''); ?>>
-                                                <?php echo e($c['name_bangla']); ?>
-
+                                                <?php echo e($c['name_bangla']); ?> (<?php echo e($c['name']); ?>)
                                             </option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="input-label" for="description"><?php echo e(\App\CPU\translate('description (Optional)')); ?></label>
-                                        <textarea name="description" class="editor textarea" id="textarea" cols="30" rows="10" required><?php echo e(old('description')); ?></textarea>
+                                        <label for="name"><?php echo e(\App\CPU\translate('Book Image')); ?> *</label> <small
+                                            style="color: red">(w: 260px, h: 372px)</small>
                                     </div>
+                                    <center>
+                                        <div style="max-width:200px;">
+                                            <div class="row" id="thumbnail"></div>
+                                        </div>
+                                    </center>
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="input-label" for="description"><?php echo e(\App\CPU\translate('description (Optional)')); ?></label>
+                                <textarea name="description" class="editor textarea" id="textarea" cols="30" rows="10"><?php echo e(old('description')); ?></textarea>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="card mt-2 rest-part">
-                        <div class="card-header">
-                            <h4><?php echo e(\App\CPU\translate('General Info')); ?></h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label for="name"><?php echo e(\App\CPU\translate('Category')); ?></label>
-                                        <select
-                                            class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
-                                            name="category_id[]" id="category_id" multiple
-                                            onchange="getRequest('<?php echo e(url('/')); ?>/admin/product/get-categories?parent_id='+this.value,'sub-category-select','select')"
-                                            required>
-                                            
-                                            <?php $__currentLoopData = $cat; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($c['id']); ?>" <?php echo e(old('name_bangla')==$c['id']? 'selected': ''); ?>>
-                                                    <?php echo e($c['name_bangla']); ?>
+                    
 
-                                                </option>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="name"><?php echo e(\App\CPU\translate('Sub Category')); ?></label>
-                                        <select class="js-example-basic-multiple form-control"
-                                            name="sub_category_id" id="sub-category-select"
-                                            onchange="getRequest('<?php echo e(url('/')); ?>/admin/product/get-categories?parent_id='+this.value,'sub-sub-category-select','select')">
-                                        </select>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="name"><?php echo e(\App\CPU\translate('Sub Sub Category')); ?></label>
-                                        <select
-                                            class="js-example-basic-multiple form-control"
-                                            name="sub_sub_category_id" id="sub-sub-category-select">
-
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="name"><?php echo e(\App\CPU\translate('Brand')); ?></label>
-                                        <select
-                                            class="js-example-basic-multiple js-states js-example-responsive form-control"
-                                            name="brand_id" required>
-                                            <option value="<?php echo e(null); ?>" selected disabled>---<?php echo e(\App\CPU\translate('Select')); ?>---</option>
-                                            <?php $__currentLoopData = $br; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $b): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($b['id']); ?>"><?php echo e($b['name']); ?></option>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label for="name"><?php echo e(\App\CPU\translate('Unit')); ?></label>
-                                        <select
-                                            class="js-example-basic-multiple form-control"
-                                            name="unit">
-                                            <?php $__currentLoopData = \App\CPU\Helpers::units(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $x): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option
-                                                    value="<?php echo e($x); ?>" <?php echo e(old('unit')==$x? 'selected':''); ?>><?php echo e($x); ?></option>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card mt-2 rest-part">
-                        <div class="card-header">
-                            <h4><?php echo e(\App\CPU\translate('Variations')); ?></h4>
-                        </div>
-                        <div class="card-body">
-
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label for="colors">
-                                            <?php echo e(\App\CPU\translate('Colors')); ?> :
-                                        </label>
-                                        <label class="switch">
-                                            <input type="checkbox" class="status" value="<?php echo e(old('colors_active')); ?>"
-                                                   name="colors_active">
-                                            <span class="slider round"></span>
-                                        </label>
-                                        <select
-                                            class="js-example-basic-multiple js-states js-example-responsive form-control color-var-select"
-                                            name="colors[]" multiple="multiple" id="colors-selector" disabled>
-                                            <?php $__currentLoopData = \App\Model\Color::orderBy('name', 'asc')->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $color): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($color->code); ?>">
-                                                    <?php echo e($color['name']); ?>
-
-                                                </option>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label for="attributes" style="padding-bottom: 3px">
-                                            <?php echo e(\App\CPU\translate('Attributes')); ?> :
-                                        </label>
-                                        <select
-                                            class="js-example-basic-multiple js-states js-example-responsive form-control"
-                                            name="choice_attributes[]" id="choice_attributes" multiple="multiple">
-                                            <?php $__currentLoopData = \App\Model\Attribute::orderBy('name', 'asc')->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $a): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($a['id']); ?>">
-                                                    <?php echo e($a['name']); ?>
-
-                                                </option>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-12 mt-2 mb-2">
-                                        <div class="customer_choice_options" id="customer_choice_options"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                     <div class="card mt-2 rest-part">
                         <div class="card-header">
@@ -245,49 +135,47 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label class="control-label"><?php echo e(\App\CPU\translate('Unit price')); ?></label>
+                                        <label class="control-label"><?php echo e(\App\CPU\translate('ISBN Number')); ?></label>
                                         <input type="number" min="0" step="0.01"
-                                               placeholder="<?php echo e(\App\CPU\translate('Unit price')); ?>"
-                                               name="unit_price" value="<?php echo e(old('unit_price')); ?>" class="form-control"
+                                               placeholder="<?php echo e(\App\CPU\translate('ISBN Number')); ?>"
+                                               name="isbn" value="<?php echo e(old('isbn')); ?>" class="form-control"
                                                required>
                                     </div>
                                     <div class="col-md-6">
                                         <label
-                                            class="control-label"><?php echo e(\App\CPU\translate('Purchase price')); ?></label>
+                                            class="control-label"><?php echo e(\App\CPU\translate('Book Weight (KG)')); ?></label>
                                         <input type="number" min="0" step="0.01"
-                                               placeholder="<?php echo e(\App\CPU\translate('Purchase price')); ?>"
-                                               value="<?php echo e(old('purchase_price')); ?>"
-                                               name="purchase_price" class="form-control" required>
+                                               placeholder="<?php echo e(\App\CPU\translate('Book Weight')); ?>"
+                                               value="<?php echo e(old('weight')); ?>"
+                                               name="weight" class="form-control" required>
                                     </div>
                                 </div>
                                 <div class="row pt-4">
-                                    <div class="col-md-5">
-                                        <label class="control-label"><?php echo e(\App\CPU\translate('Tax')); ?></label>
-                                        <label class="badge badge-info"><?php echo e(\App\CPU\translate('Percent')); ?> ( % )</label>
-                                        <input type="number" min="0" value="0" step="0.01"
-                                               placeholder="<?php echo e(\App\CPU\translate('Tax')); ?>}" name="tax"
-                                               value="<?php echo e(old('tax')); ?>"
-                                               class="form-control">
-                                        <input name="tax_type" value="percent" style="display: none">
+                                    <div class="col-md-4">
+                                        <label
+                                            class="control-label"><?php echo e(\App\CPU\translate('Purchase Price')); ?> (৳)</label>
+                                        <input type="number" min="0" step="0.01"
+                                               placeholder="<?php echo e(\App\CPU\translate('Purchase Price')); ?>"
+                                               value="<?php echo e(old('purchase_price')); ?>"
+                                               name="purchase_price" class="form-control" required>
                                     </div>
-
-                                    <div class="col-md-5">
-                                        <label class="control-label"><?php echo e(\App\CPU\translate('Discount')); ?></label>
-                                        <input type="number" min="0" value="<?php echo e(old('discount')); ?>" step="0.01"
-                                               placeholder="<?php echo e(\App\CPU\translate('Discount')); ?>" name="discount"
-                                               class="form-control">
+                                    <div class="col-md-4">
+                                        <label class="control-label"><?php echo e(\App\CPU\translate('Published Price')); ?> (৳)</label>
+                                        <input type="number" min="0" step="0.01"
+                                               placeholder="<?php echo e(\App\CPU\translate('Published Price')); ?>"
+                                               name="published_price" value="<?php echo e(old('published_price')); ?>" class="form-control"
+                                               required>
                                     </div>
-                                    <div class="col-md-2" style="padding-top: 30px;">
-                                        <select style="width: 100%"
-                                            class="js-example-basic-multiple js-states js-example-responsive demo-select2"
-                                            name="discount_type">
-                                            <option value="flat"><?php echo e(\App\CPU\translate('Flat')); ?></option>
-                                            <option value="percent"><?php echo e(\App\CPU\translate('Percent')); ?></option>
-                                        </select>
+                                    <div class="col-md-4">
+                                        <label class="control-label"><?php echo e(\App\CPU\translate('Sale Price')); ?> (৳)</label>
+                                        <input type="number" min="0" step="0.01"
+                                               placeholder="<?php echo e(\App\CPU\translate('Sale Price')); ?>"
+                                               name="unit_price" value="<?php echo e(old('unit_price')); ?>" class="form-control"
+                                               required>
                                     </div>
-                                    <div class="pt-4 col-12 sku_combination" id="sku_combination">
-
-                                    </div>
+                                </div>
+                                <div class="row pt-4">
+                                    
                                     <div class="col-md-6" id="quantity">
                                         <label
                                             class="control-label"><?php echo e(\App\CPU\translate('total')); ?> <?php echo e(\App\CPU\translate('Quantity')); ?></label>
@@ -300,66 +188,9 @@
                         </div>
                     </div>
 
-                    <div class="card mt-2 mb-2 rest-part">
-                        <div class="card-header">
-                            <h4><?php echo e(\App\CPU\translate('seo_section')); ?></h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 mb-4">
-                                    <label class="control-label"><?php echo e(\App\CPU\translate('Meta Title')); ?></label>
-                                    <input type="text" name="meta_title" placeholder="" class="form-control">
-                                </div>
+                    
 
-                                <div class="col-md-8 mb-4">
-                                    <label class="control-label"><?php echo e(\App\CPU\translate('Meta Description')); ?></label>
-                                    <textarea rows="10" type="text" name="meta_description" class="form-control"></textarea>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="form-group mb-0">
-                                        <label><?php echo e(\App\CPU\translate('Meta Image')); ?></label>
-                                    </div>
-                                    <div class="border border-dashed">
-                                        <div class="row" id="meta_img"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card mt-2 rest-part">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12 mb-4">
-                                    <label class="control-label"><?php echo e(\App\CPU\translate('Youtube video link')); ?></label>
-                                    <small class="badge badge-soft-danger"> ( <?php echo e(\App\CPU\translate('optional, please provide embed link not direct link')); ?>. )</small>
-                                    <input type="text" name="video_link" placeholder="<?php echo e(\App\CPU\translate('EX')); ?> : https://www.youtube.com/embed/5R06LRdUCSE" class="form-control" required>
-                                </div>
-
-                                <div class="col-md-8">
-                                    <div class="form-group">
-                                        <label><?php echo e(\App\CPU\translate('Upload product images')); ?></label><small
-                                            style="color: red">* ( <?php echo e(\App\CPU\translate('ratio')); ?> 1:1 )</small>
-                                    </div>
-                                    <div class="p-2 border border-dashed" style="max-width:430px;">
-                                        <div class="row" id="coba"></div>
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="name"><?php echo e(\App\CPU\translate('Upload thumbnail')); ?></label><small
-                                            style="color: red">* ( <?php echo e(\App\CPU\translate('ratio')); ?> 1:1 )</small>
-                                    </div>
-                                    <div style="max-width:200px;">
-                                        <div class="row" id="thumbnail"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                     <div class="card card-footer">
                         <div class="row">
@@ -420,7 +251,7 @@
                 groupClassName: 'col-12',
                 maxFileSize: '',
                 placeholderImage: {
-                    image: '<?php echo e(asset('public/assets/back-end/img/400x400/img2.jpg')); ?>',
+                    image: '<?php echo e(asset('public/assets/back-end/img/book_demo.jpg')); ?>',
                     width: '100%',
                 },
                 dropFileLabel: "Drop Here",
@@ -510,6 +341,21 @@
 
         $("#publisher_id").select2({
             placeholder: "Select Publication",
+        });
+
+        $("#writer_id").select2({
+            placeholder: "Select Witer",
+            multiple: true,
+        });
+
+        $("#translator_id").select2({
+            placeholder: "Select Translator",
+            multiple: true,
+        });
+
+        $("#editor_id").select2({
+            placeholder: "Select Editor",
+            multiple: true,
         });
 
         $("#category_id").select2({
@@ -638,6 +484,7 @@
                                     ProgressBar: true
                                 });
                             }
+                            console.log(data.errors);
                         } else {
                             toastr.success('<?php echo e(\App\CPU\translate('product added successfully')); ?>!', {
                                 CloseButton: true,

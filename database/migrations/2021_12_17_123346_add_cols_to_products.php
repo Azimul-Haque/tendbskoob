@@ -16,6 +16,8 @@ class AddColsToProducts extends Migration
         Schema::table('products', function (Blueprint $table) {
             $table->integer('publisher_id')->after('brand_id')->nullable();
             $table->string('name_bangla')->nullable();
+            $table->string('isbn')->nullable();
+            $table->string('weight')->nullable();
             // $table->integer('writer_id')->after('publisher_id')->nullable();
             // $table->integer('translator_id')->after('writer_id')->nullable();
             // $table->integer('editor_id')->after('translator_id')->nullable();
