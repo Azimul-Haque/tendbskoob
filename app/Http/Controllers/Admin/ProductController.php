@@ -96,9 +96,9 @@ class ProductController extends BaseController
             'category_id.required'     => 'Category is required!',
             'image.required'           => 'Product thumbnail is required!',
             'published_price.required' => 'Published Price is required!',
-            'unit_price.required'      => 'Unit Price is required!',
+            'unit_price.required'      => 'Sale Price is required!',
             'current_stock.required'   => 'Total Quantity is required!',
-            
+            'current_stock.numeric'    => 'Total Quantity is must be at least 1!',
             // 'brand_id.required' => 'brand  is required!',
             // 'unit.required' => 'Unit  is required!',
         ]);

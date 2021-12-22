@@ -153,7 +153,7 @@
                                         </div>
                                     </center>
                                 </div>
-                            </div>
+                            </div><br/>
                             <div class="form-group">
                                 <label class="input-label" for="description">{{\App\CPU\translate('description (Optional)')}}</label>
                                 <textarea name="description" class="editor textarea" id="textarea" cols="30" rows="10">{{old('description')}}</textarea>
