@@ -38,7 +38,7 @@
                             <div class="form-group">
                                 <label for="publisher_id"><?php echo e(\App\CPU\translate('Publication')); ?> *</label>
                                 <select
-                                    class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id[]" id="publisher_id" required>
+                                    class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id" id="publisher_id" required>
                                     <option value="<?php echo e(old('publisher_id')); ?>" selected disabled>Select Publication</option>
                                     <?php $__currentLoopData = $publishers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $publisher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <option value="<?php echo e($publisher['id']); ?>" <?php echo e(old('name_bangla')==$publisher['id']? 'selected': ''); ?>>

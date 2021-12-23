@@ -24,6 +24,9 @@ use Rap2hpoutre\FastExcel\FastExcel;
 use App\Http\Controllers\BaseController;
 use Illuminate\Support\Facades\Validator;
 
+use Image;
+use Carbon\Carbon;
+
 class ProductController extends BaseController
 {
     public function add_new()
@@ -94,7 +97,8 @@ class ProductController extends BaseController
             'name.required'            => 'English name is required!',
             'name_bangla.required'     => 'Bangla name is required!',
             'category_id.required'     => 'Category is required!',
-            'image.required'           => 'Product thumbnail is required!',
+            'image.required'           => 'Book image is required!',
+            'purchase_price.required'  => 'Purchase Price is required!',
             'published_price.required' => 'Published Price is required!',
             'unit_price.required'      => 'Sale Price is required!',
             'current_stock.required'   => 'Total Quantity is required!',
@@ -103,24 +107,26 @@ class ProductController extends BaseController
             // 'unit.required' => 'Unit  is required!',
         ]);
 
-        if ($request['discount_type'] == 'percent') {
-            $dis = ($request['unit_price'] / 100) * $request['discount'];
-        } else {
-            $dis = $request['discount'];
-        }
+        // if ($request['discount_type'] == 'percent') {
+        //     $dis = ($request['unit_price'] / 100) * $request['discount'];
+        // } else {
+        //     $dis = $request['discount'];
+        // }
 
-        if ($request['unit_price'] <= $dis) {
-            $validator->after(function ($validator) {
-                $validator->errors()->add(
-                    'unit_price', 'Discount can not be more or equal to the price!'
-                );
-            });
-        }
-
+        // if ($request['unit_price'] <= $dis) {
+        //     $validator->after(function ($validator) {
+        //         $validator->errors()->add(
+        //             'unit_price', 'Discount can not be more or equal to the price!'
+        //         );
+        //     });
+        // }
+        // dd($request->all());
         $p = new Product();
         $p->user_id = auth('admin')->id();
         $p->added_by = "admin";
+        $p->publisher_id = $request->publisher_id;
         $p->name = $request->name;
+        $p->name = $request->name_bangla;
         $p->slug = Str::slug($request->name, '-') . '-' . Str::random(6);
 
         $category = [];
@@ -133,9 +139,7 @@ class ProductController extends BaseController
                 ]);
             }
         }
-        
         // dd($category);
-
         // if ($request->category_id != null) {
         //     array_push($category, [
         //         'id' => $request->category_id,
@@ -160,100 +164,111 @@ class ProductController extends BaseController
 
         // $p->unit = $request->unit;
         $p->details = $request->description;
+        $stock_count = (integer)$request['current_stock'];
 
-        if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
-            $p->colors = json_encode($request->colors);
-        } else {
-            $colors = [];
-            $p->colors = json_encode($colors);
-        }
-        $choice_options = [];
-        if ($request->has('choice')) {
-            foreach ($request->choice_no as $key => $no) {
-                $str = 'choice_options_' . $no;
-                $item['name'] = 'choice_' . $no;
-                $item['title'] = $request->choice[$key];
-                $item['options'] = explode(',', implode('|', $request[$str]));
-                array_push($choice_options, $item);
-            }
-        }
-        $p->choice_options = json_encode($choice_options);
-        //combinations start
-        $options = [];
-        if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
-            $colors_active = 1;
-            array_push($options, $request->colors);
-        }
-        if ($request->has('choice_no')) {
-            foreach ($request->choice_no as $key => $no) {
-                $name = 'choice_options_' . $no;
-                $my_str = implode('|', $request[$name]);
-                array_push($options, explode(',', $my_str));
-            }
-        }
+        // if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
+        //     $p->colors = json_encode($request->colors);
+        // } else {
+        //     $colors = [];
+        //     $p->colors = json_encode($colors);
+        // }
+        // $choice_options = [];
+        // if ($request->has('choice')) {
+        //     foreach ($request->choice_no as $key => $no) {
+        //         $str = 'choice_options_' . $no;
+        //         $item['name'] = 'choice_' . $no;
+        //         $item['title'] = $request->choice[$key];
+        //         $item['options'] = explode(',', implode('|', $request[$str]));
+        //         array_push($choice_options, $item);
+        //     }
+        // }
+        // $p->choice_options = json_encode($choice_options);
+        // //combinations start
+        // $options = [];
+        // if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
+        //     $colors_active = 1;
+        //     array_push($options, $request->colors);
+        // }
+        // if ($request->has('choice_no')) {
+        //     foreach ($request->choice_no as $key => $no) {
+        //         $name = 'choice_options_' . $no;
+        //         $my_str = implode('|', $request[$name]);
+        //         array_push($options, explode(',', $my_str));
+        //     }
+        // }
         //Generates the combinations of customer choice options
 
-        $combinations = Helpers::combinations($options);
-
-        $variations = [];
-        $stock_count = 0;
-        if (count($combinations[0]) > 0) {
-            foreach ($combinations as $key => $combination) {
-                $str = '';
-                foreach ($combination as $k => $item) {
-                    if ($k > 0) {
-                        $str .= '-' . str_replace(' ', '', $item);
-                    } else {
-                        if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
-                            $color_name = Color::where('code', $item)->first()->name;
-                            $str .= $color_name;
-                        } else {
-                            $str .= str_replace(' ', '', $item);
-                        }
-                    }
-                }
-                $item = [];
-                $item['type'] = $str;
-                $item['price'] = BackEndHelper::currency_to_usd(abs($request['price_' . str_replace('.', '_', $str)]));
-                $item['sku'] = $request['sku_' . str_replace('.', '_', $str)];
-                $item['qty'] = abs($request['qty_' . str_replace('.', '_', $str)]);
-                array_push($variations, $item);
-                $stock_count += $item['qty'];
-            }
-        } else {
-            $stock_count = (integer)$request['current_stock'];
-        }
+        // $combinations = Helpers::combinations($options);
+        // $variations = [];
+        // if (count($combinations[0]) > 0) {
+        //     foreach ($combinations as $key => $combination) {
+        //         $str = '';
+        //         foreach ($combination as $k => $item) {
+        //             if ($k > 0) {
+        //                 $str .= '-' . str_replace(' ', '', $item);
+        //             } else {
+        //                 if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
+        //                     $color_name = Color::where('code', $item)->first()->name;
+        //                     $str .= $color_name;
+        //                 } else {
+        //                     $str .= str_replace(' ', '', $item);
+        //                 }
+        //             }
+        //         }
+        //         $item = [];
+        //         $item['type'] = $str;
+        //         $item['price'] = BackEndHelper::currency_to_usd(abs($request['price_' . str_replace('.', '_', $str)]));
+        //         $item['sku'] = $request['sku_' . str_replace('.', '_', $str)];
+        //         $item['qty'] = abs($request['qty_' . str_replace('.', '_', $str)]);
+        //         array_push($variations, $item);
+        //         $stock_count += $item['qty'];
+        //     }
+        // } else {
+        //     $stock_count = (integer)$request['current_stock'];
+        // }
 
         if ($validator->errors()->count() > 0) {
             return response()->json(['errors' => Helpers::error_processor($validator)]);
         }
 
-        if ($request->file('images')) {
-            foreach ($request->file('images') as $img) {
-                $product_images[] = ImageManager::upload('product/', 'png', $img);
-            }
-            $p->images = json_encode($product_images);
+        // if ($request->file('images')) {
+        //     foreach ($request->file('images') as $img) {
+        //         $product_images[] = ImageManager::upload('product/', 'png', $img);
+        //     }
+        //     $p->images = json_encode($product_images);
+        // }
+        // $p->thumbnail = ImageManager::upload('product/thumbnail/', 'png', $request->image);
+        // $p->thumbnail = Image::make('product/thumbnail/');
+        if($request->hasFile('image')) {
+            $thumbnail = $request->file('image');
+            $filename  = Carbon::now()->toDateString() . "-" . uniqid() . "." . $thumbnail->getClientOriginalExtension();
+            $location  = storage_path('app/public/product/thumbnail/'. $filename);
+            Image::make($thumbnail)->fit(260, 372)->save($location);
+            // dd($thumbnail);
+            $p->thumbnail = $filename;
         }
-        $p->thumbnail = ImageManager::upload('product/thumbnail/', 'png', $request->image);
 
 
         //combinations end
-        $p->variation = json_encode($variations);
-        $p->unit_price = BackEndHelper::currency_to_usd($request->unit_price);
-        $p->purchase_price = BackEndHelper::currency_to_usd($request->purchase_price);
-        $p->tax = $request->tax_type == 'flat' ? BackEndHelper::currency_to_usd($request->tax) : $request->tax;
-        $p->tax_type = $request->tax_type;
-        $p->discount = $request->discount_type == 'flat' ? BackEndHelper::currency_to_usd($request->discount) : $request->discount;
-        $p->discount_type = $request->discount_type;
-        $p->attributes = json_encode($request->choice_attributes);
+        // $p->variation = json_encode($variations);
+        // $p->unit_price = BackEndHelper::currency_to_usd($request->unit_price);
+        $p->purchase_price = $request->purchase_price;
+        $p->published_price = $request->published_price;
+        $p->unit_price = $request->unit_price;
+        
+        // $p->tax = $request->tax_type == 'flat' ? BackEndHelper::currency_to_usd($request->tax) : $request->tax;
+        // $p->tax_type = $request->tax_type;
+        // $p->discount = $request->discount_type == 'flat' ? BackEndHelper::currency_to_usd($request->discount) : $request->discount;
+        // $p->discount_type = $request->discount_type;
+        // $p->attributes = json_encode($request->choice_attributes);
         $p->current_stock = abs($stock_count);
 
-        $p->meta_title = $request->meta_title;
-        $p->meta_description = $request->meta_description;
-        $p->meta_image = ImageManager::upload('product/meta/', 'png', $request->meta_image);
+        $p->meta_title = $request->bangla_name . '-' . $request->_name;
+        $p->meta_description = $request->description;
+        $p->meta_image = ImageManager::upload('product/meta/', 'png', $request->image);
 
-        $p->video_provider = 'youtube';
-        $p->video_url = $request->video_link;
+        // $p->video_provider = 'youtube';
+        // $p->video_url = $request->video_link;
         $p->request_status = 1;
 
         if ($request->ajax()) {
@@ -266,33 +281,51 @@ class ProductController extends BaseController
             //     $p->categories()->attach($value);
             // }
             $p->categories()->sync($request->category_id, false);
-
-            // ATTACH AUTHORS PUBLSHER...
-            // ATTACH AUTHORS PUBLSHER...
-            // ATTACH AUTHORS PUBLSHER...
-
-            $data = [];
-            foreach ($request->lang as $index => $key) {
-                if ($request->name[$index] && $key != 'en') {
-                    array_push($data, array(
-                        'translationable_type' => 'App\Model\Product',
-                        'translationable_id' => $p->id,
-                        'locale' => $key,
-                        'key' => 'name',
-                        'value' => $request->name[$index],
-                    ));
-                }
-                if ($request->description[$index] && $key != 'en') {
-                    array_push($data, array(
-                        'translationable_type' => 'App\Model\Product',
-                        'translationable_id' => $p->id,
-                        'locale' => $key,
-                        'key' => 'description',
-                        'value' => $request->description[$index],
-                    ));
+            
+            // ATTACH AUTHORS WRITER...
+            if($request->writer_id != null) {
+                foreach ($request->writer_id as $key => $value) {
+                    $p->writers()->attach([$value => ['author_type' => 1]]);
                 }
             }
-            Translation::insert($data);
+            
+            // ATTACH AUTHORS TRANSLATOR...
+            if($request->translator_id != null) {
+                foreach ($request->translator_id as $key => $value) {
+                    $p->translators()->attach([$value => ['author_type' => 2]]);
+                }
+            }
+            
+            // ATTACH AUTHORS EDITOR...
+            if($request->editor_id != null) {
+                foreach ($request->editor_id as $key => $value) {
+                    $p->editors()->attach([$value => ['author_type' => 3]]);
+                }
+            }
+            
+
+            // $data = [];
+            // foreach ($request->lang as $index => $key) {
+            //     if ($request->name[$index] && $key != 'en') {
+            //         array_push($data, array(
+            //             'translationable_type' => 'App\Model\Product',
+            //             'translationable_id' => $p->id,
+            //             'locale' => $key,
+            //             'key' => 'name',
+            //             'value' => $request->name[$index],
+            //         ));
+            //     }
+            //     if ($request->description[$index] && $key != 'en') {
+            //         array_push($data, array(
+            //             'translationable_type' => 'App\Model\Product',
+            //             'translationable_id' => $p->id,
+            //             'locale' => $key,
+            //             'key' => 'description',
+            //             'value' => $request->description[$index],
+            //         ));
+            //     }
+            // }
+            // Translation::insert($data);
 
             Toastr::success(translate('Product added successfully!'));
             return redirect()->route('admin.product.list', ['in_house']);

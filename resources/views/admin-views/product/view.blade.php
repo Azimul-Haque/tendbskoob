@@ -272,8 +272,10 @@
                     </div>
 
                     <div class="col-8 pt-2 border-left">
-
-                        <span> @if (count(json_decode($product->colors)) > 0)
+                        
+                        <span>
+                            @if ($product->colors)
+                            @if (count(json_decode($product->colors)) > 0)
                                 <div class="row no-gutters">
                                 <div class="col-2">
                                     <div class="product-description-label mt-2">{{\App\CPU\translate('Available color')}}:
@@ -291,12 +293,12 @@
                                         @endforeach
                                     </ul>
                                 </div>
-                            </div>
-                            @endif</span><br>
-                        <span>
+                            @endif
+                            @endif
+                        </span><br>
                         {{\App\CPU\translate('Product Image')}}
-
-                     <div class="row">
+                    </div>
+                     {{-- <div class="row">
                          @foreach (json_decode($product->images) as $key => $photo)
                              <div class="col-md-3">
                                  <div class="card">
@@ -309,7 +311,7 @@
                                  </div>
                              </div>
                          @endforeach
-                     </div>
+                     </div> --}}
                     </span>
                     </div>
                 </div>
