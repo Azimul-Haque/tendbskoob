@@ -129,10 +129,10 @@
                     <div class="col-md-auto mb-3 mb-md-0">
                         <div class="d-flex align-items-center">
                             <img
-                                class="avatar avatar-xxl avatar-4by3 <?php echo e(Session::get('direction') === "rtl" ? 'ml-4' : 'mr-4'); ?>"
+                                class="<?php echo e(Session::get('direction') === "rtl" ? 'ml-4' : 'mr-4'); ?>"
                                 onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                                 src="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($product['thumbnail']); ?>"
-                                alt="Image Description">
+                                alt="Image Description" style="width: 260px; height:372px;">
 
                             <div class="d-block">
                                 <h4 class="display-2 text-dark mb-0"><?php echo e(count($product->rating)>0?number_format($product->rating[0]->average, 2, '.', ' '):0); ?></h4>
