@@ -667,9 +667,9 @@ class ProductController extends BaseController
             ->where('translationable_id', $id);
         $translation->delete();
         $product = Product::find($id);
-        foreach (json_decode($product['images'], true) as $image) {
-            ImageManager::delete('/product/' . $image);
-        }
+        // foreach (json_decode($product['images'], true) as $image) {
+        //     ImageManager::delete('/product/' . $image);
+        // }
         ImageManager::delete('/product/thumbnail/' . $product['thumbnail']);
         $product->delete();
         FlashDealProduct::where(['product_id' => $id])->delete();
