@@ -151,6 +151,7 @@
                                 class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
                                 <thead class="thead-light">
                                 <tr>
+                                    <th><?php echo e(\App\CPU\translate('ID')); ?></th>
                                     <th><?php echo e(\App\CPU\translate('name')); ?></th>
                                     <th><?php echo e(\App\CPU\translate('slug')); ?></th>
                                     <th><?php echo e(\App\CPU\translate('image')); ?></th>
@@ -160,6 +161,7 @@
                                 <tbody>
                                 <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$author): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
+                                        <td><?php echo e($author->id); ?></td>
                                         <td><?php echo e($author->name_bangla); ?><br/> <?php echo e($author->name); ?></td>
                                         <td><?php echo e($author['slug']); ?></td>
                                         <td>

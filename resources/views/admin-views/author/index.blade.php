@@ -153,6 +153,7 @@
                                 class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
                                 <thead class="thead-light">
                                 <tr>
+                                    <th>{{ \App\CPU\translate('ID')}}</th>
                                     <th>{{ \App\CPU\translate('name')}}</th>
                                     <th>{{ \App\CPU\translate('slug')}}</th>
                                     <th>{{ \App\CPU\translate('image')}}</th>
@@ -162,6 +163,7 @@
                                 <tbody>
                                 @foreach($authors as $key=>$author)
                                     <tr>
+                                        <td>{{ $author->id }}</td>
                                         <td>{{ $author->name_bangla }}<br/> {{ $author->name }}</td>
                                         <td>{{$author['slug']}}</td>
                                         <td>
