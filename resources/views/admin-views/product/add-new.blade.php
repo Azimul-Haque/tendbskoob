@@ -362,6 +362,19 @@
                                                placeholder="{{\App\CPU\translate('Quantity')}}"
                                                name="current_stock" class="form-control" required>
                                     </div>
+                                    <div class="col-md-6 pt-6">
+                                        <center>
+                                            <label class="radio-inline" style="margin-right: 10px;">
+                                                <input type="radio" name="stock_status" value="1" checked> In Stock 
+                                            </label>
+                                            <label class="radio-inline" style="margin-right: 10px;">
+                                                <input type="radio" name="stock_status" value="2"> Out of Stock 
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="stock_status" value="3"> Back Order 
+                                            </label>
+                                        </center>
+                                    </div>
                                 </div>
                             </div>
                         </div>

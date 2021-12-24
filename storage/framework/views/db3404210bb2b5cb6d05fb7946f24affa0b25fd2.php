@@ -38,7 +38,7 @@
                             <div class="form-group">
                                 <label for="publisher_id"><?php echo e(\App\CPU\translate('Publication')); ?> *</label>
                                 <select
-                                    class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id[]" id="publisher_id" required>
+                                    class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id" id="publisher_id" required>
                                     <option value="<?php echo e(old('publisher_id')); ?>" selected disabled>Select Publication</option>
                                     <?php $__currentLoopData = $publishers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $publisher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <option value="<?php echo e($publisher['id']); ?>" <?php echo e(old('name_bangla')==$publisher['id']? 'selected': ''); ?>>
@@ -113,7 +113,7 @@
                                         </div>
                                     </center>
                                 </div>
-                            </div>
+                            </div><br/>
                             <div class="form-group">
                                 <label class="input-label" for="description"><?php echo e(\App\CPU\translate('description (Optional)')); ?></label>
                                 <textarea name="description" class="editor textarea" id="textarea" cols="30" rows="10"><?php echo e(old('description')); ?></textarea>
@@ -178,6 +178,19 @@
                                         <input type="number" min="0" value="0" step="1"
                                                placeholder="<?php echo e(\App\CPU\translate('Quantity')); ?>"
                                                name="current_stock" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6 pt-6">
+                                        <center>
+                                            <label class="radio-inline" style="margin-right: 10px;">
+                                                <input type="radio" name="stock_status" value="1" checked> In Stock 
+                                            </label>
+                                            <label class="radio-inline" style="margin-right: 10px;">
+                                                <input type="radio" name="stock_status" value="2"> Out of Stock 
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="stock_status" value="3"> Back Order 
+                                            </label>
+                                        </center>
                                     </div>
                                 </div>
                             </div>

@@ -122,15 +122,13 @@ class ProductController extends BaseController
         // }
         // dd($request->all());
         $p = new Product();
-        $p->user_id = auth('admin')->id();
         $p->added_by = "admin";
-        $p->publisher_id = $request->publisher_id;
+        $p->user_id = auth('admin')->id();
         $p->name = $request->name;
         $p->name = $request->name_bangla;
         $p->slug = Str::slug($request->name, '-') . '-' . Str::random(6);
-
+    
         $category = [];
-
         if($request->category_id) {
             foreach($request->category_id as $categoryid) {
                 array_push($category, [
@@ -139,6 +137,7 @@ class ProductController extends BaseController
                 ]);
             }
         }
+        // CATEGORY IDs ARE SYNCED LATER, AFTER SAVE
         // dd($category);
         // if ($request->category_id != null) {
         //     array_push($category, [
@@ -161,10 +160,11 @@ class ProductController extends BaseController
 
         $p->category_ids = json_encode($category);
         $p->brand_id = $request->brand_id;
-
+        $p->publisher_id = $request->publisher_id;
         // $p->unit = $request->unit;
-        $p->details = $request->description;
-        $stock_count = (integer)$request['current_stock'];
+        $p->isbn = $request->isbn;
+        $p->weight = $request->weight;
+
 
         // if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
         //     $p->colors = json_encode($request->colors);
@@ -239,41 +239,52 @@ class ProductController extends BaseController
         // }
         // $p->thumbnail = ImageManager::upload('product/thumbnail/', 'png', $request->image);
         // $p->thumbnail = Image::make('product/thumbnail/');
-        if($request->hasFile('image')) {
-            $thumbnail = $request->file('image');
-            $filename  = Carbon::now()->toDateString() . "-" . uniqid() . "." . $thumbnail->getClientOriginalExtension();
-            $location  = storage_path('app/public/product/thumbnail/'. $filename);
-            Image::make($thumbnail)->fit(260, 372)->save($location);
-            // dd($thumbnail);
-            $p->thumbnail = $filename;
-        }
-
-
         //combinations end
         // $p->variation = json_encode($variations);
         // $p->unit_price = BackEndHelper::currency_to_usd($request->unit_price);
+        
         $p->purchase_price = $request->purchase_price;
         $p->published_price = $request->published_price;
         $p->unit_price = $request->unit_price;
-        
         // $p->tax = $request->tax_type == 'flat' ? BackEndHelper::currency_to_usd($request->tax) : $request->tax;
         // $p->tax_type = $request->tax_type;
         // $p->discount = $request->discount_type == 'flat' ? BackEndHelper::currency_to_usd($request->discount) : $request->discount;
         // $p->discount_type = $request->discount_type;
         // $p->attributes = json_encode($request->choice_attributes);
+        $stock_count = (integer) $request['current_stock'];
         $p->current_stock = abs($stock_count);
+        $p->details = $request->description;
 
+
+        // $p->video_provider = 'youtube';
+        // $p->video_url = $request->video_link;
+        $p->request_status = 1; // status default to 1
+        $p->stock_status = $request->stock_status; // 1 = in stock, 2 = out of stock, 3 = back order
         $p->meta_title = $request->bangla_name . '-' . $request->_name;
         $p->meta_description = $request->description;
         $p->meta_image = ImageManager::upload('product/meta/', 'png', $request->image);
 
-        // $p->video_provider = 'youtube';
-        // $p->video_url = $request->video_link;
-        $p->request_status = 1;
-
         if ($request->ajax()) {
             return response()->json([], 200);
         } else {
+            // to avoid the status 200 and uploading of image twice
+            if($request->hasFile('image')) {
+                $thumbnail = $request->file('image');
+                $filename  = Carbon::now()->toDateString() . "-" . uniqid() . "." . $thumbnail->getClientOriginalExtension();
+                $location  = storage_path('app/public/product/thumbnail/'. $filename);
+                Image::make($thumbnail)
+                     ->fit(260, 372)
+                     ->insert(public_path('public/assets/back-end/img/watermark.png'), 'bottom-right', 10, 10)
+                     ->text('www.booksbd.net', 30, 185, function($font) {
+                        $font->file(public_path('public/fonts/Roboto-Black.ttf'));
+                        $font->size(24);
+                        $font->color(array(230, 230, 230, 0.50));
+                        // $font->angle(45);
+                    })
+                    ->save($location);
+                // dd($thumbnail);
+                $p->thumbnail = $filename;
+            }
             $p->save();
 
             // ATTACH CATEGORIES PUBLSHER...

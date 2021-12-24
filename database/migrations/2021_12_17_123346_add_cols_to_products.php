@@ -18,6 +18,8 @@ class AddColsToProducts extends Migration
             $table->string('name_bangla')->nullable();
             $table->string('isbn')->nullable();
             $table->string('weight')->nullable();
+            $table->string('published_price')->default(0);
+            $table->integer('stock_status');
             // $table->integer('writer_id')->after('publisher_id')->nullable();
             // $table->integer('translator_id')->after('writer_id')->nullable();
             // $table->integer('editor_id')->after('translator_id')->nullable();

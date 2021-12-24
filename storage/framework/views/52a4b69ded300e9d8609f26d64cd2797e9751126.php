@@ -276,8 +276,10 @@
                     </div>
 
                     <div class="col-8 pt-2 border-left">
-
-                        <span> <?php if(count(json_decode($product->colors)) > 0): ?>
+                        
+                        <span>
+                            <?php if($product->colors): ?>
+                            <?php if(count(json_decode($product->colors)) > 0): ?>
                                 <div class="row no-gutters">
                                 <div class="col-2">
                                     <div class="product-description-label mt-2"><?php echo e(\App\CPU\translate('Available color')); ?>:
@@ -295,26 +297,13 @@
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </ul>
                                 </div>
-                            </div>
-                            <?php endif; ?></span><br>
-                        <span>
+                            <?php endif; ?>
+                            <?php endif; ?>
+                        </span><br>
                         <?php echo e(\App\CPU\translate('Product Image')); ?>
 
-
-                     <div class="row">
-                         <?php $__currentLoopData = json_decode($product->images); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $photo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                             <div class="col-md-3">
-                                 <div class="card">
-                                     <div class="card-body">
-                                         <img style="width: 100%"
-                                              onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
-                                              src="<?php echo e(asset("storage/app/public/product/$photo")); ?>" alt="Product image">
-
-                                     </div>
-                                 </div>
-                             </div>
-                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                     </div>
+                    </div>
+                     
                     </span>
                     </div>
                 </div>
