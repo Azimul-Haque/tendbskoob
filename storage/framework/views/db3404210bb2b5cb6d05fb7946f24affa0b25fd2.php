@@ -87,7 +87,7 @@
                                     <select
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control" name="editor_id[]" id="editor_id" multiple>
                                         <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $editor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($editor['id']); ?>" imagename="<?php echo e($writer->editor != '' ? $writer->editor : 0); ?>" <?php echo e(old('name_bangla')==$editor['id']? 'selected': ''); ?>>
+                                            <option value="<?php echo e($editor['id']); ?>" imagename="<?php echo e($editor->image != '' ? $editor->image : 0); ?>" <?php echo e(old('name_bangla')==$editor['id']? 'selected': ''); ?>>
                                                 <?php echo e($editor['name_bangla']); ?> (<?php echo e($editor['name']); ?>)
                                             </option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -358,13 +358,13 @@
             }
             console.log(state.element.attributes['imagename'].value);
             if(state.element.attributes['imagename'].value != 0) {
-                var baseUrl = "/public/images/author";
+                var baseUrl = "/images/author";
                 var $state = $(
                     '<span><img src="' + baseUrl + '/' + state.element.attributes['imagename'].value + '" style="height:50px;width:50px;" /> ' + state.text + '</span>'
                 );
             } else {
                 var $state = $(
-                    '<span><img src="/public/assets/back-end/img/user.png" ="/assets/back-end/img/user.png" style="height:50px;width:50px;" /> ' + state.text + '</span>'
+                    '<span><img src="/assets/back-end/img/user.png" ="/assets/back-end/img/user.png" style="height:50px;width:50px;" /> ' + state.text + '</span>'
                 );
             }
             

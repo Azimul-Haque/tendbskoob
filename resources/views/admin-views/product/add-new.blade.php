@@ -127,7 +127,7 @@
                                     <select
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control" name="editor_id[]" id="editor_id" multiple>
                                         @foreach($authors as $editor)
-                                            <option value="{{$editor['id']}}" imagename="{{ $writer->editor != '' ? $writer->editor : 0 }}" {{old('name_bangla')==$editor['id']? 'selected': ''}}>
+                                            <option value="{{$editor['id']}}" imagename="{{ $editor->image != '' ? $editor->image : 0 }}" {{old('name_bangla')==$editor['id']? 'selected': ''}}>
                                                 {{ $editor['name_bangla'] }} ({{ $editor['name'] }})
                                             </option>
                                         @endforeach
@@ -586,15 +586,15 @@
             if (!state.id) {
                 return state.text;
             }
-            console.log(state.element.attributes['imagename'].value);
+            // console.log(state.element.attributes['imagename'].value);
             if(state.element.attributes['imagename'].value != 0) {
-                var baseUrl = "/public/images/author";
+                var baseUrl = "/images/author";
                 var $state = $(
                     '<span><img src="' + baseUrl + '/' + state.element.attributes['imagename'].value + '" style="height:50px;width:50px;" /> ' + state.text + '</span>'
                 );
             } else {
                 var $state = $(
-                    '<span><img src="/public/assets/back-end/img/user.png" ="/assets/back-end/img/user.png" style="height:50px;width:50px;" /> ' + state.text + '</span>'
+                    '<span><img src="/assets/back-end/img/user.png" ="/assets/back-end/img/user.png" style="height:50px;width:50px;" /> ' + state.text + '</span>'
                 );
             }
             
