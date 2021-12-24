@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Image;
 use App\CPU\Helpers;
 use App\Model\Category;
 use App\CPU\ImageManager;
@@ -11,9 +12,9 @@ use Illuminate\Http\Request;
 use App\Imports\CategoryImport;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
-use Illuminate\Filesystem\Filesystem;
 
-use Image;
+use Illuminate\Support\Facades\File;
+use Illuminate\Filesystem\Filesystem;
 
 class CategoryController extends Controller
 {
@@ -110,8 +111,20 @@ class CategoryController extends Controller
                 $category->slug = Helpers::random_slug(10);
             }
         }
-        if ($request->image) {
-            $category->icon = ImageManager::update('category/', $category->icon, 'png', $request->file('image'));
+        // if ($request->image) {
+        //     $category->icon = ImageManager::update('category/', $category->icon, 'png', $request->file('image'));
+        // }
+        if($request->hasFile('image')) {
+            $image_path = public_path('/public/images/category/'. $category->icon);
+            if(File::exists($image_path)) {
+                File::delete($image_path);
+            }
+            $image    = $request->file('image');
+            $filename = $category->slug . '-' . time() .'.' . $image->getClientOriginalExtension();
+            $location = public_path('/public/images/category/'. $filename);
+            Image::make($image)->fit(300, 100)->save($location);
+            $category->icon = $filename;
+            // $publisher->image = ImageManager::upload('publisher/', 'png', $request->file('image'));
         }
         $category->save();
 
