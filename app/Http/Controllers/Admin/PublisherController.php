@@ -125,19 +125,20 @@ class PublisherController extends BaseController
         }
         $publisher->save();
 
-        // foreach ($request->lang as $index => $key) {
-        //     if ($request->name[$index] && $key != 'en') {
-        //         Translation::updateOrInsert(
-        //             ['translationable_type' => 'App\Model\Category',
-        //                 'translationable_id' => $category->id,
-        //                 'locale' => $key,
-        //                 'key' => 'name'],
-        //             ['value' => $request->name[$index]]
-        //         );
-        //     }
-        // }
-
         Toastr::success('Publisher updated successfully!');
+        return redirect()->route('admin.publisher.index');
+    }
+
+    public function delete(Request $request)
+    {
+        $publisher = Publisher::find($request->id);
+        $image_path = public_path('/public/images/publisher/'. $publisher->image);
+        if(File::exists($image_path)) {
+            File::delete($image_path);
+        }
+        // dd($image_path);
+        $publisher->delete();
+        Toastr::success('Publisher removed successfully!');
         return redirect()->route('admin.publisher.index');
     }
 

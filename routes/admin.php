@@ -261,7 +261,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
             Route::post('store', 'PublisherController@store')->name('store');
             Route::get('edit/{id}', 'PublisherController@edit')->name('edit');
             Route::post('update/{id}', 'PublisherController@update')->name('update');
-            Route::delete('delete/{id}', 'PublisherController@delete')->name('delete');
+            Route::post('delete', 'PublisherController@delete')->name('delete');
 
             Route::post('bulkupload', 'PublisherController@bulkUpload')->name('bulkupload');
         });

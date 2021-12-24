@@ -175,7 +175,7 @@
 
                                             </a>
                                             <button class="btn btn-danger btn-sm delete" style="cursor: pointer;"
-                                               id="<?php echo e($publisher['id']); ?>" disabled>
+                                               id="<?php echo e($publisher['id']); ?>">
                                                 <i class="tio-add-to-trash"></i><?php echo e(\App\CPU\translate('Delete')); ?>
 
                                             </button>
@@ -246,7 +246,7 @@
                         }
                     });
                     $.ajax({
-                        url: "admin/publisher/delete/",
+                        url: "<?php echo e(route('admin.publisher.delete')); ?>",
                         method: 'POST',
                         data: {id: id},
                         success: function () {
