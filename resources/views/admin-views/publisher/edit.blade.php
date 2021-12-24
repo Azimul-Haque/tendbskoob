@@ -68,9 +68,10 @@
                                     <div class="form-group">
                                         <center>
                                             <img
-                                                style="width: 30%;border: 1px solid; border-radius: 10px;"
+                                                style="width: 40%;border: 1px solid; border-radius: 10px;"
                                                 id="viewer"
-                                                src="{{asset('public/assets/back-end/img/400x400/img1.jpg')}}"
+                                                onerror="this.src='{{asset('public/assets/back-end/img/900x400/img1.jpg')}}'"
+                                                src="{{ asset('public/images/publisher/' . $publisher->image) }}"
                                                 alt="image"/>
                                         </center>
                                     </div>

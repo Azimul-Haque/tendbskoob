@@ -53,11 +53,11 @@ class CategoryController extends Controller
         ]);
 
         $category              = new Category;
-        $category->name        = ucwords(str_replace('-', ' ', $request->name));
+        $category->name        = Str::slug($request->name) == '' ? $request->name : ucwords(str_replace('-', ' ', $request->name));
         $category->name_bangla = $request->name_bangla;
-        $category->slug        = Helpers::random_number(5). '-' . Str::slug($request->name);
-        if($category->slug == '') {
-            $category->slug = Helpers::random_slug(10);
+        $category->slug        = Helpers::random_number(10). '-' . Str::slug($request->name);
+        if(Str::slug($request->name) == '') {
+            $category->slug = Helpers::random_slug(15) . '-' . Helpers::random_number(5);
         }
         // $category->icon        = ImageManager::upload('category/', 'png', $request->file('image'));
         if($request->hasFile('image')) {
@@ -103,12 +103,12 @@ class CategoryController extends Controller
     {
         $category = Category::find($request->id);
         $oldname = $category->name;
-        $category->name        = ucwords(str_replace('-', ' ', $request->name));
+        $category->name        = Str::slug($request->name) == '' ? $request->name : ucwords(str_replace('-', ' ', $request->name));
         $category->name_bangla = $request->name_bangla;
         if($oldname != ucwords(str_replace('-', ' ', $request->name))) {
-            $category->slug        = Helpers::random_number(5). '-' . Str::slug($request->name);
-            if($category->slug == '') {
-                $category->slug = Helpers::random_slug(10);
+            $category->slug        = Helpers::random_number(10). '-' . Str::slug($request->name);
+            if(Str::slug($request->name) == '') {
+                $category->slug = Helpers::random_slug(15) . '-' . Helpers::random_number(5);
             }
         }
         // if ($request->image) {

@@ -2,31 +2,32 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\CPU\BackEndHelper;
-use App\CPU\Helpers;
-use App\CPU\ImageManager;
-use App\Http\Controllers\BaseController;
-use App\Model\Brand;
-use App\Model\Category;
-use App\Model\Color;
-use App\Model\DealOfTheDay;
-use App\Model\FlashDealProduct;
-use App\Model\Product;
-use App\Model\Author;
-use App\Model\Publisher;
-use App\Model\Review;
-use App\Model\Translation;
-use Brian2694\Toastr\Facades\Toastr;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
-use Rap2hpoutre\FastExcel\FastExcel;
-use function App\CPU\translate;
-use Illuminate\Filesystem\Filesystem;
-use App\Imports\PublisherImport;
 use Excel;
 use Image;
+use App\CPU\Helpers;
+use App\Model\Brand;
+use App\Model\Color;
+use App\Model\Author;
+use App\Model\Review;
+use App\Model\Product;
+use App\Model\Category;
+use App\Model\Publisher;
+use App\CPU\ImageManager;
+use App\CPU\BackEndHelper;
+use App\Model\Translation;
+use App\Model\DealOfTheDay;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Model\FlashDealProduct;
+use function App\CPU\translate;
+use App\Imports\PublisherImport;
+use Illuminate\Support\Facades\DB;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\File;
+use Rap2hpoutre\FastExcel\FastExcel;
+use Illuminate\Filesystem\Filesystem;
+use App\Http\Controllers\BaseController;
+use Illuminate\Support\Facades\Validator;
 
 class PublisherController extends BaseController
 {
@@ -70,7 +71,7 @@ class PublisherController extends BaseController
         $publisher              = new Publisher();
         $publisher->name        = Str::slug($request->name) == '' ? $request->name : ucwords(str_replace('-', ' ', $request->name));
         $publisher->name_bangla = $request->name_bangla;
-        $publisher->slug        = Helpers::random_number(5). '-' . Str::slug($request->name);
+        $publisher->slug        = Helpers::random_number(10). '-' . Str::slug($request->name);
         if(Str::slug($request->name) == '') {
             $publisher->slug = Helpers::random_slug(15) . '-' . Helpers::random_number(5);
         }
@@ -94,12 +95,50 @@ class PublisherController extends BaseController
     public function edit($id)
     {
         $publisher = Publisher::withoutGlobalScopes()->find($id);
+        // dd($publisher);
         return view('admin-views.publisher.edit', compact('publisher'));
     }
 
     public function update($id, Request $request)
     {
-        
+        $publisher = Publisher::find($request->id);
+        $oldname = $publisher->name;
+        $publisher->name        = Str::slug($request->name) == '' ? $request->name : ucwords(str_replace('-', ' ', $request->name));
+        $publisher->name_bangla = $request->name_bangla;
+        if($oldname != ucwords(str_replace('-', ' ', $request->name))) {
+            $publisher->slug        = Helpers::random_number(10). '-' . Str::slug($request->name);
+            if(Str::slug($request->name) == '') {
+                $publisher->slug = Helpers::random_slug(15) . '-' . Helpers::random_number(5);
+            }
+        }
+        if($request->hasFile('image')) {
+            $image_path = public_path('/public/images/publisher/'. $publisher->image);
+            if(File::exists($image_path)) {
+                File::delete($image_path);
+            }
+            $image    = $request->file('image');
+            $filename = $publisher->slug . '-' . time() .'.' . $image->getClientOriginalExtension();
+            $location = public_path('/public/images/publisher/'. $filename);
+            Image::make($image)->resize(200, 200)->save($location);
+            $publisher->image = $filename;
+            // $publisher->image = ImageManager::upload('publisher/', 'png', $request->file('image'));
+        }
+        $publisher->save();
+
+        // foreach ($request->lang as $index => $key) {
+        //     if ($request->name[$index] && $key != 'en') {
+        //         Translation::updateOrInsert(
+        //             ['translationable_type' => 'App\Model\Category',
+        //                 'translationable_id' => $category->id,
+        //                 'locale' => $key,
+        //                 'key' => 'name'],
+        //             ['value' => $request->name[$index]]
+        //         );
+        //     }
+        // }
+
+        Toastr::success('Publisher updated successfully!');
+        return redirect()->route('admin.publisher.index');
     }
 
     public function bulkUpload(Request $request)

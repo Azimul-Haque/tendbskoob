@@ -66,9 +66,10 @@
                                     <div class="form-group">
                                         <center>
                                             <img
-                                                style="width: 30%;border: 1px solid; border-radius: 10px;"
+                                                style="width: 40%;border: 1px solid; border-radius: 10px;"
                                                 id="viewer"
-                                                src="<?php echo e(asset('public/assets/back-end/img/400x400/img1.jpg')); ?>"
+                                                onerror="this.src='<?php echo e(asset('public/assets/back-end/img/900x400/img1.jpg')); ?>'"
+                                                src="<?php echo e(asset('public/images/publisher/' . $publisher->image)); ?>"
                                                 alt="image"/>
                                         </center>
                                     </div>
