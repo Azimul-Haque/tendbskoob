@@ -13,6 +13,8 @@ use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Filesystem\Filesystem;
 
+use Image;
+
 class CategoryController extends Controller
 {
     public function index(Request $request)
@@ -56,7 +58,15 @@ class CategoryController extends Controller
         if($category->slug == '') {
             $category->slug = Helpers::random_slug(10);
         }
-        $category->icon        = ImageManager::upload('category/', 'png', $request->file('image'));
+        // $category->icon        = ImageManager::upload('category/', 'png', $request->file('image'));
+        if($request->hasFile('image')) {
+            $image    = $request->file('image');
+            $filename = $category->slug . '-' . time() .'.' . $image->getClientOriginalExtension();
+            $location = public_path('/public/images/category/'. $filename);
+            Image::make($image)->fit(300, 100)->save($location);
+            $category->icon = $filename;
+            // $publisher->image = ImageManager::upload('publisher/', 'png', $request->file('image'));
+        }
         $category->parent_id   = 0;
         $category->position    = 0;
         // $category->home_status = 1;
