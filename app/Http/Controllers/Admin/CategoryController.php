@@ -147,6 +147,7 @@ class CategoryController extends Controller
     public function delete(Request $request)
     {
         $categories = Category::where('parent_id', $request->id)->get();
+        // dd($categories);
         if (!empty($categories)) {
             foreach ($categories as $category) {
                 $categories1 = Category::where('parent_id', $category->id)->get();
@@ -169,6 +170,12 @@ class CategoryController extends Controller
         $translation = Translation::where('translationable_type','App\Model\Category')
                                     ->where('translationable_id',$request->id);
         $translation->delete();
+
+        $finalcategory = Category::findOrFail($request->id);
+        $image_path = public_path('/public/images/category/'. $finalcategory->icon);
+        if(File::exists($image_path)) {
+            File::delete($image_path);
+        }
         Category::destroy($request->id);
 
         return response()->json();
