@@ -278,7 +278,7 @@ class ProductController extends BaseController
                      ->text('www.booksbd.net', 30, 185, function($font) {
                         $font->file(public_path('public/fonts/Roboto-Black.ttf'));
                         $font->size(24);
-                        $font->color(array(230, 230, 230, 0.50));
+                        $font->color(array(250, 250, 250, 0.25));
                         // $font->angle(45);
                     })
                     ->save($location);
