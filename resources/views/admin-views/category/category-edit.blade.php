@@ -126,7 +126,7 @@
                                                 style="width: 40%;border: 1px solid; border-radius: 10px;"
                                                 id="viewer"
                                                 onerror="this.src='{{asset('public/assets/back-end/img/900x400/img1.jpg')}}'"
-                                                 src="{{asset('storage/app/public/category')}}/{{$category['icon']}}"
+                                                 src="{{asset('public/images/category/')}}/{{$category['icon']}}"
                                                 alt="image"/>
                                             
                                         </center>

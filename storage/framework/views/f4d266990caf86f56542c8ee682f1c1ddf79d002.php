@@ -170,7 +170,7 @@
                                         </td>
                                         <td>
                                             <a class="btn btn-primary btn-sm edit" style="cursor: pointer;"
-                                               href="<?php echo e(route('admin.author.edit',[$publisher['id']])); ?>">
+                                               href="<?php echo e(route('admin.publisher.edit',[$publisher['id']])); ?>">
                                                 <i class="tio-edit"></i><?php echo e(\App\CPU\translate('Edit')); ?>
 
                                             </a>

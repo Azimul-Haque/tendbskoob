@@ -250,6 +250,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
             Route::get('index', 'AuthorController@index')->name('index');
             Route::post('store', 'AuthorController@store')->name('store');
             Route::get('edit/{id}', 'AuthorController@edit')->name('edit');
+            Route::post('update/{id}', 'AuthorController@update')->name('update');
             Route::delete('delete/{id}', 'AuthorController@delete')->name('delete');
 
             Route::post('bulkupload', 'AuthorController@bulkUpload')->name('bulkupload');
@@ -259,6 +260,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
             Route::get('index', 'PublisherController@index')->name('index');
             Route::post('store', 'PublisherController@store')->name('store');
             Route::get('edit/{id}', 'PublisherController@edit')->name('edit');
+            Route::post('update/{id}', 'PublisherController@update')->name('update');
             Route::delete('delete/{id}', 'PublisherController@delete')->name('delete');
 
             Route::post('bulkupload', 'PublisherController@bulkUpload')->name('bulkupload');

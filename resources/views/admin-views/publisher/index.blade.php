@@ -172,7 +172,7 @@
                                         </td>
                                         <td>
                                             <a class="btn btn-primary btn-sm edit" style="cursor: pointer;"
-                                               href="{{route('admin.author.edit',[$publisher['id']])}}">
+                                               href="{{route('admin.publisher.edit',[$publisher['id']])}}">
                                                 <i class="tio-edit"></i>{{ \App\CPU\translate('Edit')}}
                                             </a>
                                             <button class="btn btn-danger btn-sm delete" style="cursor: pointer;"
