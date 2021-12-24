@@ -163,7 +163,8 @@
                                         <td>
                                             <img width="64"
                                                  onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                                 src="{{asset('storage/app/public/category')}}/{{$category['icon']}}">
+                                                 {{-- src="{{asset('storage/app/public/category')}}/{{$category['icon']}}" --}}
+                                                 src="{{ asset('public/images/category/' . $category['icon']) }}">
                                         </td>
                                         <td>
                                             @if($category->home_status == true)
