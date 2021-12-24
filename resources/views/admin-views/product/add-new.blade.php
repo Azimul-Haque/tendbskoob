@@ -445,8 +445,8 @@
 @endsection
 
 @push('script')
-    <script src="/assets/back-end/img/user.png" ="{{asset('public/assets/back-end')}}/js/tags-input.min.js"></script>
-    <script src="/assets/back-end/img/user.png" ="{{asset('public/assets/back-end/js/spartan-multi-image-picker.js')}}"></script>
+    <script src="{{asset('public/assets/back-end')}}/js/tags-input.min.js"></script>
+    <script src="{{asset('public/assets/back-end/js/spartan-multi-image-picker.js')}}"></script>
     <script>
         $(function () {
             $("#coba").spartanMultiImagePicker({
@@ -557,7 +557,7 @@
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    $('#viewer').attr('src="/assets/back-end/img/user.png" ', e.target.result);
+                    $('#viewer').attr('src="public/public/assets/back-end/img/book_demo.jpg', e.target.result);
                 }
 
                 reader.readAsDataURL(input.files[0]);
@@ -594,7 +594,7 @@
                 );
             } else {
                 var $state = $(
-                    '<span><img src="/public/assets/back-end/img/user.png" ="/assets/back-end/img/user.png" style="height:50px;width:50px;" /> ' + state.text + '</span>'
+                    '<span><img src="/public/assets/back-end/img/user.png" style="height:50px;width:50px;" /> ' + state.text + '</span>'
                 );
             }
             
@@ -779,9 +779,9 @@
     </script> --}}
 
     {{--ck editor--}}
-    {{-- <script src="/assets/back-end/img/user.png" ="{{asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script> --}}
-    <script src="/assets/back-end/img/user.png" ="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-    <script src="/assets/back-end/img/user.png" ="{{asset('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')}}"></script>
+    {{-- <script src="{{asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script> --}}
+    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <script src="{{asset('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')}}"></script>
     <script>
         $(document).ready(function() {
             // $('.textarea').ckeditor({
