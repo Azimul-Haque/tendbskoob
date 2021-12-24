@@ -78,6 +78,7 @@ class ProductController extends BaseController
 
     public function store(Request $request)
     {
+        dd(Str::slug($request->name, '-') . '-' . Str::random(6));
         $validator = Validator::make($request->all(), [
             'publisher_id' => 'required',
             'name'         => 'required',
