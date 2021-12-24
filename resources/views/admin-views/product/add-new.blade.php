@@ -106,7 +106,7 @@
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
                                         name="writer_id[]" id="writer_id" multiple>
                                         @foreach($authors as $writer)
-                                            <option value="{{$writer['id']}}" {{old('name_bangla')==$writer['id']? 'selected': ''}}>
+                                            <option value="{{$writer['id']}}" imagename="{{ $writer->image != '' ? $writer->image : 0 }}" {{old('name_bangla')==$writer['id']? 'selected': ''}}>
                                                 {{ $writer['name_bangla'] }} ({{ $writer['name'] }})
                                             </option>
                                         @endforeach
@@ -117,7 +117,7 @@
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
                                         name="translator_id[]" id="translator_id" multiple>
                                         @foreach($authors as $translator)
-                                            <option value="{{$translator['id']}}" {{old('name_bangla')==$translator['id']? 'selected': ''}}>
+                                            <option value="{{$translator['id']}}" imagename="{{ $translator->image != '' ? $translator->image : 0 }}" {{old('name_bangla')==$translator['id']? 'selected': ''}}>
                                                 {{ $translator['name_bangla'] }} ({{ $translator['name'] }})
                                             </option>
                                         @endforeach
@@ -127,7 +127,7 @@
                                     <select
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control" name="editor_id[]" id="editor_id" multiple>
                                         @foreach($authors as $editor)
-                                            <option value="{{$editor['id']}}" {{old('name_bangla')==$editor['id']? 'selected': ''}}>
+                                            <option value="{{$editor['id']}}" imagename="{{ $writer->editor != '' ? $writer->editor : 0 }}" {{old('name_bangla')==$editor['id']? 'selected': ''}}>
                                                 {{ $editor['name_bangla'] }} ({{ $editor['name'] }})
                                             </option>
                                         @endforeach
@@ -445,8 +445,8 @@
 @endsection
 
 @push('script')
-    <script src="{{asset('public/assets/back-end')}}/js/tags-input.min.js"></script>
-    <script src="{{asset('public/assets/back-end/js/spartan-multi-image-picker.js')}}"></script>
+    <script src="/assets/back-end/img/user.png" ="{{asset('public/assets/back-end')}}/js/tags-input.min.js"></script>
+    <script src="/assets/back-end/img/user.png" ="{{asset('public/assets/back-end/js/spartan-multi-image-picker.js')}}"></script>
     <script>
         $(function () {
             $("#coba").spartanMultiImagePicker({
@@ -557,7 +557,7 @@
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    $('#viewer').attr('src', e.target.result);
+                    $('#viewer').attr('src="/assets/back-end/img/user.png" ', e.target.result);
                 }
 
                 reader.readAsDataURL(input.files[0]);
@@ -582,19 +582,41 @@
             placeholder: "Select Publication",
         });
 
+        function formatState (state) {
+            if (!state.id) {
+                return state.text;
+            }
+            console.log(state.element.attributes['imagename'].value);
+            if(state.element.attributes['imagename'].value != 0) {
+                var baseUrl = "/public/images/author";
+                var $state = $(
+                    '<span><img src="' + baseUrl + '/' + state.element.attributes['imagename'].value + '" style="height:50px;width:50px;" /> ' + state.text + '</span>'
+                );
+            } else {
+                var $state = $(
+                    '<span><img src="/public/assets/back-end/img/user.png" ="/assets/back-end/img/user.png" style="height:50px;width:50px;" /> ' + state.text + '</span>'
+                );
+            }
+            
+            return $state;
+        };
+
         $("#writer_id").select2({
             placeholder: "Select Witer",
             multiple: true,
+            templateResult: formatState,
         });
 
         $("#translator_id").select2({
             placeholder: "Select Translator",
             multiple: true,
+            templateResult: formatState,
         });
 
         $("#editor_id").select2({
             placeholder: "Select Editor",
             multiple: true,
+            templateResult: formatState,
         });
 
         $("#category_id").select2({
@@ -757,9 +779,9 @@
     </script> --}}
 
     {{--ck editor--}}
-    {{-- <script src="{{asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script> --}}
-    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-    <script src="{{asset('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')}}"></script>
+    {{-- <script src="/assets/back-end/img/user.png" ="{{asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script> --}}
+    <script src="/assets/back-end/img/user.png" ="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <script src="/assets/back-end/img/user.png" ="{{asset('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')}}"></script>
     <script>
         $(document).ready(function() {
             // $('.textarea').ckeditor({

@@ -66,7 +66,7 @@
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
                                         name="writer_id[]" id="writer_id" multiple>
                                         <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $writer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($writer['id']); ?>" <?php echo e(old('name_bangla')==$writer['id']? 'selected': ''); ?>>
+                                            <option value="<?php echo e($writer['id']); ?>" imagename="<?php echo e($writer->image != '' ? $writer->image : 0); ?>" <?php echo e(old('name_bangla')==$writer['id']? 'selected': ''); ?>>
                                                 <?php echo e($writer['name_bangla']); ?> (<?php echo e($writer['name']); ?>)
                                             </option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -77,7 +77,7 @@
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
                                         name="translator_id[]" id="translator_id" multiple>
                                         <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $translator): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($translator['id']); ?>" <?php echo e(old('name_bangla')==$translator['id']? 'selected': ''); ?>>
+                                            <option value="<?php echo e($translator['id']); ?>" imagename="<?php echo e($translator->image != '' ? $translator->image : 0); ?>" <?php echo e(old('name_bangla')==$translator['id']? 'selected': ''); ?>>
                                                 <?php echo e($translator['name_bangla']); ?> (<?php echo e($translator['name']); ?>)
                                             </option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -87,7 +87,7 @@
                                     <select
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control" name="editor_id[]" id="editor_id" multiple>
                                         <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $editor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($editor['id']); ?>" <?php echo e(old('name_bangla')==$editor['id']? 'selected': ''); ?>>
+                                            <option value="<?php echo e($editor['id']); ?>" imagename="<?php echo e($writer->editor != '' ? $writer->editor : 0); ?>" <?php echo e(old('name_bangla')==$editor['id']? 'selected': ''); ?>>
                                                 <?php echo e($editor['name_bangla']); ?> (<?php echo e($editor['name']); ?>)
                                             </option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -215,8 +215,8 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('script'); ?>
-    <script src="<?php echo e(asset('public/assets/back-end')); ?>/js/tags-input.min.js"></script>
-    <script src="<?php echo e(asset('public/assets/back-end/js/spartan-multi-image-picker.js')); ?>"></script>
+    <script src="/assets/back-end/img/user.png" ="<?php echo e(asset('public/assets/back-end')); ?>/js/tags-input.min.js"></script>
+    <script src="/assets/back-end/img/user.png" ="<?php echo e(asset('public/assets/back-end/js/spartan-multi-image-picker.js')); ?>"></script>
     <script>
         $(function () {
             $("#coba").spartanMultiImagePicker({
@@ -327,7 +327,7 @@
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    $('#viewer').attr('src', e.target.result);
+                    $('#viewer').attr('src="/assets/back-end/img/user.png" ', e.target.result);
                 }
 
                 reader.readAsDataURL(input.files[0]);
@@ -352,19 +352,41 @@
             placeholder: "Select Publication",
         });
 
+        function formatState (state) {
+            if (!state.id) {
+                return state.text;
+            }
+            console.log(state.element.attributes['imagename'].value);
+            if(state.element.attributes['imagename'].value != 0) {
+                var baseUrl = "/public/images/author";
+                var $state = $(
+                    '<span><img src="' + baseUrl + '/' + state.element.attributes['imagename'].value + '" style="height:50px;width:50px;" /> ' + state.text + '</span>'
+                );
+            } else {
+                var $state = $(
+                    '<span><img src="/public/assets/back-end/img/user.png" ="/assets/back-end/img/user.png" style="height:50px;width:50px;" /> ' + state.text + '</span>'
+                );
+            }
+            
+            return $state;
+        };
+
         $("#writer_id").select2({
             placeholder: "Select Witer",
             multiple: true,
+            templateResult: formatState,
         });
 
         $("#translator_id").select2({
             placeholder: "Select Translator",
             multiple: true,
+            templateResult: formatState,
         });
 
         $("#editor_id").select2({
             placeholder: "Select Editor",
             multiple: true,
+            templateResult: formatState,
         });
 
         $("#category_id").select2({
@@ -511,8 +533,8 @@
 
     
     
-    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-    <script src="<?php echo e(asset('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')); ?>"></script>
+    <script src="/assets/back-end/img/user.png" ="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <script src="/assets/back-end/img/user.png" ="<?php echo e(asset('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')); ?>"></script>
     <script>
         $(document).ready(function() {
             // $('.textarea').ckeditor({
