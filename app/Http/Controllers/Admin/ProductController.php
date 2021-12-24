@@ -78,7 +78,6 @@ class ProductController extends BaseController
 
     public function store(Request $request)
     {
-        dd(Str::slug($request->name, '-') . '-' . Str::random(6));
         $validator = Validator::make($request->all(), [
             'publisher_id' => 'required',
             'name'         => 'required',
@@ -127,7 +126,8 @@ class ProductController extends BaseController
         $p->user_id = auth('admin')->id();
         $p->name = $request->name;
         $p->name = $request->name_bangla;
-        $p->slug = Str::slug($request->name, '-') . '-' . Str::random(6);
+        $p->slug = Str::slug($request->name, '-') . '-' . Helpers::random_number(5);
+        dd($p->slug);
     
         $category = [];
         if($request->category_id) {
