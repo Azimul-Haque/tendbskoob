@@ -93,7 +93,8 @@ class PublisherController extends BaseController
 
     public function edit($id)
     {
-        
+        $publisher = Publisher::withoutGlobalScopes()->find($id);
+        return view('admin-views.publisher.edit', compact('publisher'));
     }
 
     public function update($id, Request $request)
