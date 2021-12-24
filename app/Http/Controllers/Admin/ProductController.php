@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Image;
+use Carbon\Carbon;
 use App\CPU\Helpers;
 use App\Model\Brand;
 use App\Model\Color;
@@ -21,11 +23,9 @@ use function App\CPU\translate;
 use Illuminate\Support\Facades\DB;
 use Brian2694\Toastr\Facades\Toastr;
 use Rap2hpoutre\FastExcel\FastExcel;
+
 use App\Http\Controllers\BaseController;
 use Illuminate\Support\Facades\Validator;
-
-use Image;
-use Carbon\Carbon;
 
 class ProductController extends BaseController
 {
@@ -240,21 +240,23 @@ class ProductController extends BaseController
         // $p->thumbnail = ImageManager::upload('product/thumbnail/', 'png', $request->image);
         // $p->thumbnail = Image::make('product/thumbnail/');
         //combinations end
-        $variations = [];
-        $p->variation = json_encode($variations);
+        $empty_array      = [];
+        $p->colors        = json_encode($empty_array);
+        $p->choice_option = json_encode($empty_array);
+        $p->variation     = json_encode($empty_array);
         // $p->unit_price = BackEndHelper::currency_to_usd($request->unit_price);
         
-        $p->purchase_price = $request->purchase_price;
+        $p->purchase_price  = $request->purchase_price;
         $p->published_price = $request->published_price;
-        $p->unit_price = $request->unit_price;
+        $p->unit_price      = $request->unit_price;
         // $p->tax = $request->tax_type == 'flat' ? BackEndHelper::currency_to_usd($request->tax) : $request->tax;
         // $p->tax_type = $request->tax_type;
         // $p->discount = $request->discount_type == 'flat' ? BackEndHelper::currency_to_usd($request->discount) : $request->discount;
         // $p->discount_type = $request->discount_type;
         // $p->attributes = json_encode($request->choice_attributes);
-        $stock_count = (integer) $request['current_stock'];
+        $stock_count      = (integer) $request['current_stock'];
         $p->current_stock = abs($stock_count);
-        $p->details = $request->description;
+        $p->details       = $request->description;
 
 
         // $p->video_provider = 'youtube';
