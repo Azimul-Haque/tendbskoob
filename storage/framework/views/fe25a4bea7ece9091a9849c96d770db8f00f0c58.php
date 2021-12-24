@@ -164,7 +164,7 @@
                                             <img width="64"
                                                  onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                                                  
-                                                 src="<?php echo e(asset('/images/category/' . $category['icon'])); ?>">
+                                                 src="<?php echo e(asset('public/images/category/' . $category['icon'])); ?>">
                                         </td>
                                         <td>
                                             <?php if($category->home_status == true): ?>
