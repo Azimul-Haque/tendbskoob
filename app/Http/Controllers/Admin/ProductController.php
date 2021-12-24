@@ -244,10 +244,10 @@ class ProductController extends BaseController
         // $p->thumbnail = ImageManager::upload('product/thumbnail/', 'png', $request->image);
         // $p->thumbnail = Image::make('product/thumbnail/');
         //combinations end
-        $empty_array      = [];
-        $p->colors        = json_encode($empty_array);
-        $p->choice_option = json_encode($empty_array);
-        $p->variation     = json_encode($empty_array);
+        $empty_array       = [];
+        $p->colors         = json_encode($empty_array);
+        $p->choice_options = json_encode($empty_array);
+        $p->variation      = json_encode($empty_array);
         // $p->unit_price = BackEndHelper::currency_to_usd($request->unit_price);
         
         $p->purchase_price  = $request->purchase_price;
