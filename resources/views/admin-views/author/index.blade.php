@@ -176,7 +176,7 @@
                                                 <i class="tio-edit"></i>{{ \App\CPU\translate('Edit')}}
                                             </a>
                                             <button class="btn btn-danger btn-sm delete" style="cursor: pointer;"
-                                               id="{{$author['id']}}" disabled>
+                                               id="{{$author['id']}}">
                                                 <i class="tio-add-to-trash"></i>{{ \App\CPU\translate('Delete')}}
                                             </button>
                                         </td>
@@ -230,7 +230,7 @@
                         }
                     });
                     $.ajax({
-                        url: "admin/author/delete/",
+                        url: "{{ route('admin.author.delete') }}",
                         method: 'POST',
                         data: {id: id},
                         success: function () {

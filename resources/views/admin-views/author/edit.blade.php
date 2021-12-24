@@ -1,6 +1,6 @@
 @extends('layouts.back-end.app')
 
-@section('title', \App\CPU\translate('Publications'))
+@section('title', \App\CPU\translate('Author'))
 
 @push('css_or_js')
 
@@ -12,7 +12,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{\App\CPU\translate('Dashboard')}}</a>
                 </li>
-                <li class="breadcrumb-item" aria-current="page">{{\App\CPU\translate('Publications')}}</li>
+                <li class="breadcrumb-item" aria-current="page">{{\App\CPU\translate('Author')}}</li>
             </ol>
         </nav>
 
@@ -22,10 +22,10 @@
                 <div class="card">
                     <div class="card-header">
                         {{-- {{ \App\CPU\translate('category_form')}} --}}
-                        Publications Form
+                        Author Form
                     </div>
                     <div class="card-body" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
-                        <form action="{{route('admin.publisher.update',[$publisher['id']])}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('admin.author.update',[$author['id']])}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-6">
@@ -33,7 +33,7 @@
                                          id="{">
                                         <label class="input-label"
                                                for="name">Name *</label>
-                                        <input type="text" name="name" class="form-control" value="{{ $publisher->name }}" placeholder="Publication Name" required>
+                                        <input type="text" name="name" class="form-control" value="{{ $author->name }}" placeholder="Publication Name" required>
                                     </div>
                                     <input name="position" value="0" style="display: none">
                                 </div>
@@ -42,7 +42,7 @@
                                          id="{">
                                         <label class="input-label"
                                                for="name">Bangla Name *</label>
-                                        <input type="text" name="name_bangla" class="form-control" value="{{ $publisher->name_bangla }}" placeholder="Publication Name in Bangla" required>
+                                        <input type="text" name="name_bangla" class="form-control" value="{{ $author->name_bangla }}" placeholder="Publication Name in Bangla" required>
                                     </div>
                                     <input name="position" value="0" style="display: none">
                                 </div>
@@ -51,7 +51,7 @@
                                          id="{">
                                         <label class="input-label"
                                                for="description">Description (Optional)</label>
-                                        <textarea class="form-control" style="min-height: 150px;" name="description" placeholder="Description">{{ $publisher->description }}</textarea>
+                                        <textarea class="form-control" style="min-height: 150px;" name="description" placeholder="Description">{{ $author->description }}</textarea>
                                     </div>
                                     <input name="position" value="0" style="display: none">
                                 </div>
@@ -71,7 +71,7 @@
                                                 style="width: 40%;border: 1px solid; border-radius: 10px;"
                                                 id="viewer"
                                                 onerror="this.src='{{asset('public/assets/back-end/img/400x400/img1.jpg')}}'"
-                                                src="{{ asset('public/images/publisher/' . $publisher->image) }}"
+                                                src="{{ asset('public/images/author/' . $author->image) }}"
                                                 alt="image"/>
                                         </center>
                                     </div>
@@ -131,11 +131,11 @@
                         }
                     });
                     $.ajax({
-                        url: "admin/publisher/delete/",
+                        url: "admin/author/delete/",
                         method: 'POST',
                         data: {id: id},
                         success: function () {
-                            toastr.success('{{\App\CPU\translate('Publisher_deleted_Successfully.')}}');
+                            toastr.success('{{\App\CPU\translate('Author_deleted_Successfully.')}}');
                             location.reload();
                         }
                     });
