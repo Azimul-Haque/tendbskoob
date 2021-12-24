@@ -197,7 +197,7 @@ class ProductController extends BaseController
         //     }
         // }
         //Generates the combinations of customer choice options
-
+        
         // $combinations = Helpers::combinations($options);
         // $variations = [];
         // if (count($combinations[0]) > 0) {
@@ -240,7 +240,8 @@ class ProductController extends BaseController
         // $p->thumbnail = ImageManager::upload('product/thumbnail/', 'png', $request->image);
         // $p->thumbnail = Image::make('product/thumbnail/');
         //combinations end
-        // $p->variation = json_encode($variations);
+        $variations = [];
+        $p->variation = json_encode($variations);
         // $p->unit_price = BackEndHelper::currency_to_usd($request->unit_price);
         
         $p->purchase_price = $request->purchase_price;
