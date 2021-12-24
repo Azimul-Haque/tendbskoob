@@ -68,11 +68,11 @@ class AuthorController extends BaseController
         ]);
 
         $author              = new Author;
-        $author->name        = ucwords(str_replace('-', ' ', $request->name));
+        $author->name        = Str::slug($request->name) == '' ? $request->name : ucwords(str_replace('-', ' ', $request->name));
         $author->name_bangla = $request->name_bangla;
         $author->slug        = Helpers::random_number(10). '-' . Str::slug($request->name);
-        if($author->slug == '') {
-            $author->slug = Helpers::random_slug(15);
+        if(Str::slug($request->name) == '') {
+            $author->slug = Helpers::random_slug(15) . '-' . Helpers::random_number(5);
         }
         // dd($author->slug);
         // $author->icon = ImageManager::upload('author/', 'png', $request->file('image'));

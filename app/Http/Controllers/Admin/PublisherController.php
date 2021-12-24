@@ -68,11 +68,11 @@ class PublisherController extends BaseController
         ]);
 
         $publisher              = new Publisher();
-        $publisher->name        = ucwords(str_replace('-', ' ', $request->name));
+        $publisher->name        = Str::slug($request->name) == '' ? $request->name : ucwords(str_replace('-', ' ', $request->name));
         $publisher->name_bangla = $request->name_bangla;
         $publisher->slug        = Helpers::random_number(5). '-' . Str::slug($request->name);
-        if($publisher->slug == '') {
-            $publisher->slug = Helpers::random_slug(10);
+        if(Str::slug($request->name) == '') {
+            $publisher->slug = Helpers::random_slug(15) . '-' . Helpers::random_number(5);
         }
         // dd($publisher->slug);
         // $publisher->icon = ImageManager::upload('publisher/', 'png', $request->file('image'));
