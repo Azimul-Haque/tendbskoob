@@ -235,20 +235,19 @@
                 </form>
             </div>
         </div>
-        <?php
+    </div>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startPush('script'); ?>
+    <?php
         $thumbnail = asset('public/assets/back-end/img/book_demo.jpg');
         if($product->thumbnail != null) {
             if(file_exists(\App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product['thumbnail'])) {
                 $thumbnail = \App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product['thumbnail'];
             }
         }
-        echo \App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product['thumbnail'];
+        // echo \App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product['thumbnail'];
     ?>
-    </div>
-<?php $__env->stopSection(); ?>
-
-<?php $__env->startPush('script'); ?>
-    
     <script src="<?php echo e(asset('public/assets/back-end')); ?>/js/tags-input.min.js"></script>
     <script src="<?php echo e(asset('public/assets/back-end/js/spartan-multi-image-picker.js')); ?>"></script>
     <script>
