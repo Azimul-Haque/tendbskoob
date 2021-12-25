@@ -300,6 +300,7 @@ class ProductController extends BaseController
             // }
             $p->categories()->sync($request->category_id, false);
             
+            
             // ATTACH AUTHORS WRITER...
             if($request->writer_id != null) {
                 foreach ($request->writer_id as $key => $value) {
@@ -320,7 +321,6 @@ class ProductController extends BaseController
                     $p->editors()->attach([$value => ['author_type' => 3]]);
                 }
             }
-            
 
             // $data = [];
             // foreach ($request->lang as $index => $key) {
@@ -442,10 +442,12 @@ class ProductController extends BaseController
         $product = Product::withoutGlobalScopes()->with('translations')->find($id);
         $product_category = json_decode($product->category_ids);
         $product->colors = json_decode($product->colors);
-        $categories = Category::where(['parent_id' => 0])->get();
+        $cat = Category::where(['parent_id' => 0])->get();
         $br = Brand::orderBY('name', 'ASC')->get();
+        $publishers = Publisher::get();
+        $authors = Author::get();
 
-        return view('admin-views.product.edit', compact('categories', 'br', 'product', 'product_category'));
+        return view('admin-views.product.edit', compact('cat', 'br', 'product', 'product_category', 'publishers', 'authors'));
     }
 
     public function update(Request $request, $id)

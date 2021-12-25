@@ -17,7 +17,7 @@
                 <li class="breadcrumb-item" aria-current="page"><a
                         href="{{route('admin.product.list', 'in_house')}}">{{\App\CPU\translate('Product')}}</a>
                 </li>
-                <li class="breadcrumb-item">{{\App\CPU\translate('Add')}} {{\App\CPU\translate('New')}} </li>
+                <li class="breadcrumb-item">{{\App\CPU\translate('Add')}} {{\App\CPU\translate('New')}} {{\App\CPU\translate('Book')}}</li>
             </ol>
         </nav>
 

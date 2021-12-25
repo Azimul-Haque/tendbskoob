@@ -1407,4 +1407,6 @@
   'Published Price' => 'Published Price',
   'Sale Price' => 'Sale Price',
   'Book Weight' => 'Book Weight',
+  'Book' => 'Book',
+  'Add New Book' => 'Add New Book',
 );

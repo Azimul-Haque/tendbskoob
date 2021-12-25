@@ -15,7 +15,7 @@
                 <li class="breadcrumb-item" aria-current="page"><a
                         href="<?php echo e(route('admin.product.list', 'in_house')); ?>"><?php echo e(\App\CPU\translate('Product')); ?></a>
                 </li>
-                <li class="breadcrumb-item"><?php echo e(\App\CPU\translate('Add')); ?> <?php echo e(\App\CPU\translate('New')); ?> </li>
+                <li class="breadcrumb-item"><?php echo e(\App\CPU\translate('Add')); ?> <?php echo e(\App\CPU\translate('New')); ?> <?php echo e(\App\CPU\translate('Book')); ?></li>
             </ol>
         </nav>
 
@@ -382,12 +382,14 @@
             placeholder: "Select Translator",
             multiple: true,
             templateResult: formatState,
+            templateSelection: formatState,
         });
 
         $("#editor_id").select2({
             placeholder: "Select Editor",
             multiple: true,
             templateResult: formatState,
+            templateSelection: formatState,
         });
 
         $("#category_id").select2({
