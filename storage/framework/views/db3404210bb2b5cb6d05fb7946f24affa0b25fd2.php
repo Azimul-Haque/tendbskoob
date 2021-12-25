@@ -375,6 +375,7 @@
             placeholder: "Select Witer",
             multiple: true,
             templateResult: formatState,
+            templateSelection: formatState,
         });
 
         $("#translator_id").select2({

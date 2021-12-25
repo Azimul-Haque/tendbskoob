@@ -605,18 +605,21 @@
             placeholder: "Select Witer",
             multiple: true,
             templateResult: formatState,
+            templateSelection: formatState,
         });
 
         $("#translator_id").select2({
             placeholder: "Select Translator",
             multiple: true,
             templateResult: formatState,
+            templateSelection: formatState,
         });
 
         $("#editor_id").select2({
             placeholder: "Select Editor",
             multiple: true,
             templateResult: formatState,
+            templateSelection: formatState,
         });
 
         $("#category_id").select2({
