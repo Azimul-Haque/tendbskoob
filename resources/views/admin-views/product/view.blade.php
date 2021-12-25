@@ -127,7 +127,7 @@
                             <img
                                 class="{{Session::get('direction') === "rtl" ? 'ml-4' : 'mr-4'}}"
                                 onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail']}}"
+                                src="{{ \App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail'] }}"
                                 alt="Image Description" style="width: 260px; height:372px;">
 
                             <div class="d-block">

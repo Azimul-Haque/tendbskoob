@@ -101,42 +101,66 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
+                                    <?php
+                                        $writer_id_array = [];
+                                        foreach ($product->writers as $writer) {
+                                            $writer_id_array[] = $writer->id;
+                                        }
+                                    ?>
                                     <label for="name">{{\App\CPU\translate('Writer')}}</label>
                                     <select
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
                                         name="writer_id[]" id="writer_id" multiple>
                                         @foreach($authors as $writer)
-                                            <option value="{{$writer['id']}}" imagename="{{ $writer->image != '' ? $writer->image : 0 }}" {{old('name_bangla')==$writer['id']? 'selected': ''}}>
+                                            <option value="{{$writer['id']}}" imagename="{{ $writer->image != '' ? $writer->image : 0 }}" @if (in_array($writer->id, $writer_id_array)) selected="" @endif>
                                                 {{ $writer['name_bangla'] }} ({{ $writer['name'] }})
                                             </option>
                                         @endforeach
                                     </select><br/><br/>
                                     
+                                    <?php
+                                        $translator_id_array = [];
+                                        foreach ($product->translators as $translator) {
+                                            $translator_id_array[] = $translator->id;
+                                        }
+                                    ?>
                                     <label for="name">{{\App\CPU\translate('Translator')}}</label>
                                     <select
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
                                         name="translator_id[]" id="translator_id" multiple>
                                         @foreach($authors as $translator)
-                                            <option value="{{$translator['id']}}" imagename="{{ $translator->image != '' ? $translator->image : 0 }}" {{old('name_bangla')==$translator['id']? 'selected': ''}}>
+                                            <option value="{{$translator['id']}}" imagename="{{ $translator->image != '' ? $translator->image : 0 }}" @if (in_array($translator->id, $translator_id_array)) selected="" @endif>
                                                 {{ $translator['name_bangla'] }} ({{ $translator['name'] }})
                                             </option>
                                         @endforeach
                                     </select><br/><br/>
 
+                                    <?php
+                                        $editors_id_array = [];
+                                        foreach ($product->editors as $editor) {
+                                            $editors_id_array[] = $editor->id;
+                                        }
+                                    ?>
                                     <label for="name">{{\App\CPU\translate('Editor')}}</label>
                                     <select
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control" name="editor_id[]" id="editor_id" multiple>
                                         @foreach($authors as $editor)
-                                            <option value="{{$editor['id']}}" imagename="{{ $editor->image != '' ? $editor->image : 0 }}" {{old('name_bangla')==$editor['id']? 'selected': ''}}>
+                                            <option value="{{$editor['id']}}" imagename="{{ $editor->image != '' ? $editor->image : 0 }}" @if (in_array($editor->id, $editors_id_array)) selected="" @endif>
                                                 {{ $editor['name_bangla'] }} ({{ $editor['name'] }})
                                             </option>
                                         @endforeach
                                     </select><br/><br/>
 
+                                    <?php
+                                        $category_id_array = [];
+                                        foreach ($product->categories as $category) {
+                                            $category_id_array[] = $category->id;
+                                        }
+                                    ?>
                                     <label for="name">{{\App\CPU\translate('Category')}} *</label>
                                     <select class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control" name="category_id[]" id="category_id" multiple required>
                                         @foreach($cat as $c)
-                                            <option value="{{$c['id']}}" {{old('name_bangla')==$c['id']? 'selected': ''}}>
+                                            <option value="{{$c['id']}}" @if (in_array($c->id, $category_id_array)) selected="" @endif>
                                                 {{ $c['name_bangla'] }} ({{ $c['name'] }})
                                             </option>
                                         @endforeach
@@ -445,6 +469,15 @@
 @endsection
 
 @push('script')
+    <?php
+        $thumbnail = asset('public/assets/back-end/img/book_demo.jpg');
+        if($product->thumbnail != null) {
+            if(file_exists(\App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product['thumbnail'])) {
+                $thumbnail = \App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product['thumbnail'];
+            }
+        }
+        // echo \App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product['thumbnail'];
+    ?>
     <script src="{{asset('public/assets/back-end')}}/js/tags-input.min.js"></script>
     <script src="{{asset('public/assets/back-end/js/spartan-multi-image-picker.js')}}"></script>
     <script>
@@ -483,6 +516,7 @@
                 }
             });
 
+            
             $("#thumbnail").spartanMultiImagePicker({
                 fieldName: 'image',
                 maxCount: 1,
@@ -490,7 +524,7 @@
                 groupClassName: 'col-12',
                 maxFileSize: '',
                 placeholderImage: {
-                    image: '{{asset('public/assets/back-end/img/book_demo.jpg')}}',
+                    image: '{{ $thumbnail }}',
                     width: '100%',
                 },
                 dropFileLabel: "Drop Here",

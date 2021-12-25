@@ -61,42 +61,66 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
+                                    <?php
+                                        $writer_id_array = [];
+                                        foreach ($product->writers as $writer) {
+                                            $writer_id_array[] = $writer->id;
+                                        }
+                                    ?>
                                     <label for="name"><?php echo e(\App\CPU\translate('Writer')); ?></label>
                                     <select
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
                                         name="writer_id[]" id="writer_id" multiple>
                                         <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $writer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($writer['id']); ?>" imagename="<?php echo e($writer->image != '' ? $writer->image : 0); ?>" <?php echo e(old('name_bangla')==$writer['id']? 'selected': ''); ?>>
+                                            <option value="<?php echo e($writer['id']); ?>" imagename="<?php echo e($writer->image != '' ? $writer->image : 0); ?>" <?php if(in_array($writer->id, $writer_id_array)): ?> selected="" <?php endif; ?>>
                                                 <?php echo e($writer['name_bangla']); ?> (<?php echo e($writer['name']); ?>)
                                             </option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select><br/><br/>
                                     
+                                    <?php
+                                        $translator_id_array = [];
+                                        foreach ($product->translators as $translator) {
+                                            $translator_id_array[] = $translator->id;
+                                        }
+                                    ?>
                                     <label for="name"><?php echo e(\App\CPU\translate('Translator')); ?></label>
                                     <select
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
                                         name="translator_id[]" id="translator_id" multiple>
                                         <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $translator): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($translator['id']); ?>" imagename="<?php echo e($translator->image != '' ? $translator->image : 0); ?>" <?php echo e(old('name_bangla')==$translator['id']? 'selected': ''); ?>>
+                                            <option value="<?php echo e($translator['id']); ?>" imagename="<?php echo e($translator->image != '' ? $translator->image : 0); ?>" <?php if(in_array($translator->id, $translator_id_array)): ?> selected="" <?php endif; ?>>
                                                 <?php echo e($translator['name_bangla']); ?> (<?php echo e($translator['name']); ?>)
                                             </option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select><br/><br/>
 
+                                    <?php
+                                        $editors_id_array = [];
+                                        foreach ($product->editors as $editor) {
+                                            $editors_id_array[] = $editor->id;
+                                        }
+                                    ?>
                                     <label for="name"><?php echo e(\App\CPU\translate('Editor')); ?></label>
                                     <select
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control" name="editor_id[]" id="editor_id" multiple>
                                         <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $editor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($editor['id']); ?>" imagename="<?php echo e($editor->image != '' ? $editor->image : 0); ?>" <?php echo e(old('name_bangla')==$editor['id']? 'selected': ''); ?>>
+                                            <option value="<?php echo e($editor['id']); ?>" imagename="<?php echo e($editor->image != '' ? $editor->image : 0); ?>" <?php if(in_array($editor->id, $editors_id_array)): ?> selected="" <?php endif; ?>>
                                                 <?php echo e($editor['name_bangla']); ?> (<?php echo e($editor['name']); ?>)
                                             </option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select><br/><br/>
 
+                                    <?php
+                                        $category_id_array = [];
+                                        foreach ($product->categories as $category) {
+                                            $category_id_array[] = $category->id;
+                                        }
+                                    ?>
                                     <label for="name"><?php echo e(\App\CPU\translate('Category')); ?> *</label>
                                     <select class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control" name="category_id[]" id="category_id" multiple required>
                                         <?php $__currentLoopData = $cat; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($c['id']); ?>" <?php echo e(old('name_bangla')==$c['id']? 'selected': ''); ?>>
+                                            <option value="<?php echo e($c['id']); ?>" <?php if(in_array($c->id, $category_id_array)): ?> selected="" <?php endif; ?>>
                                                 <?php echo e($c['name_bangla']); ?> (<?php echo e($c['name']); ?>)
                                             </option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -211,10 +235,20 @@
                 </form>
             </div>
         </div>
+        <?php
+        $thumbnail = asset('public/assets/back-end/img/book_demo.jpg');
+        if($product->thumbnail != null) {
+            if(file_exists(\App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product['thumbnail'])) {
+                $thumbnail = \App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product['thumbnail'];
+            }
+        }
+        echo \App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product['thumbnail'];
+    ?>
     </div>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('script'); ?>
+    
     <script src="<?php echo e(asset('public/assets/back-end')); ?>/js/tags-input.min.js"></script>
     <script src="<?php echo e(asset('public/assets/back-end/js/spartan-multi-image-picker.js')); ?>"></script>
     <script>
@@ -253,6 +287,7 @@
                 }
             });
 
+            
             $("#thumbnail").spartanMultiImagePicker({
                 fieldName: 'image',
                 maxCount: 1,
@@ -260,7 +295,7 @@
                 groupClassName: 'col-12',
                 maxFileSize: '',
                 placeholderImage: {
-                    image: '<?php echo e(asset('public/assets/back-end/img/book_demo.jpg')); ?>',
+                    image: '<?php echo e($thumbnail); ?>',
                     width: '100%',
                 },
                 dropFileLabel: "Drop Here",
