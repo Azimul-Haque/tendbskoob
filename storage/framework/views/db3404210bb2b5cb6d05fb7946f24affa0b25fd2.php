@@ -134,7 +134,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label class="control-label"><?php echo e(\App\CPU\translate('ISBN Number')); ?></label>
-                                        <input type="number" min="0" step="0.01"
+                                        <input type="text"
                                                placeholder="<?php echo e(\App\CPU\translate('ISBN Number')); ?>"
                                                name="isbn" value="<?php echo e(old('isbn')); ?>" class="form-control">
                                     </div>
@@ -364,7 +364,7 @@
                 );
             } else {
                 var $state = $(
-                    '<span><img src="/public/assets/back-end/img/user.png" ="/assets/back-end/img/user.png" style="height:50px;width:50px;" /> ' + state.text + '</span>'
+                    '<span><img src="/public/assets/back-end/img/user.png" style="height:50px;width:50px;" /> ' + state.text + '</span>'
                 );
             }
             

@@ -291,7 +291,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label class="control-label">{{\App\CPU\translate('ISBN Number')}}</label>
-                                        <input type="number" min="0" step="0.01"
+                                        <input type="text"
                                                placeholder="{{\App\CPU\translate('ISBN Number')}}"
                                                name="isbn" value="{{old('isbn')}}" class="form-control">
                                     </div>
