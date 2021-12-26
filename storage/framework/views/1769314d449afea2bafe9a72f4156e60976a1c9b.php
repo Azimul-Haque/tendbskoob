@@ -1169,9 +1169,9 @@
 
     /* const img = document.getElementByTagName('img') */
     
-    $('img').error( function() {
-        $(this).attr('src', '<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>');
-    });
+    /* $('img').error( function() {
+        $(this).attr('src', '<?php echo e(asset('public/assets/front-end/img/category_demo.jpg')); ?>');
+    }); */
     /* const $img = jQuery(this).prop("img"); */
     /* img.on("error", function (event) {
         event.target.src = '/';

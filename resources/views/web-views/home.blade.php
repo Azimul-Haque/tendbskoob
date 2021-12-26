@@ -478,10 +478,10 @@
                     <div class="category_div" style="height: 132px; width: 100%;">
                         <a href="{{route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])}}">
                             <img style="vertical-align: middle; padding: 16%;height: 100px"
-                                 onerror="this.src='{{asset('public/assets/front-end/img/category_demo.jpg')}}'"
                                  src="{{asset("storage/app/public/category/" . $category->icon)}}"
+                                 onerror="this.src='{{asset('public/assets/front-end/img/category_demo.jpg')}}'"
                                  alt="{{$category->name_bangla}}">
-                            <p class="text-center small" style="margin-top: -20px">{{\Illuminate\Support\Str::limit($category->name_bangla, 17)}}</p>
+                            <p class="text-center small" style="margin-top: -10px">{{\Illuminate\Support\Str::limit($category->name_bangla, 17)}}</p>
                         </a>
                     </div>
                 @endforeach
@@ -512,9 +512,7 @@
                         <a href="{{route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1])}}">
                             <div class="brand_div d-flex align-items-center justify-content-center"
                                  style="height:100px">
-                                <img
-                                    onerror="this.src='{{asset('public/assets/front-end/img/user_demo.jpg')}}'"
-                                    src="{{asset("public/images/author/" . $author->image)}}" alt="{{$author->name}}">
+                                <img src="{{asset("public/images/author/" . $author->image)}}" alt="{{$author->name}}" onerror="this.src='{{asset('public/assets/front-end/img/user_demo.jpg')}}'">
                             </div>
                         </a>
                         <small>{{ $author->name_bangla }}</small>
@@ -613,8 +611,8 @@
                                 <a class="d-block {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"
                                    href="{{route('product',$bestSell->product->slug)}}">
                                     <img style="height: 77px; width: 54px"
-                                         onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"
                                          src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$bestSell->product['thumbnail']}}"
+                                         onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"
                                          alt="Product"/>
                                 </a>
                                 <div class="media-body">
@@ -666,8 +664,8 @@
                                 <a class="d-block {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"
                                    href="{{route('product',$product->slug)}}">
                                     <img style="height: 77px; width: 54px"
-                                         onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"
                                          src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail']}}"
+                                         onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"
                                          alt="Product"/>
                                 </a>
                                 <div class="media-body">
@@ -717,8 +715,8 @@
                                 <a class="d-block {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"
                                    href="{{route('product',$top->product->slug)}}">
                                     <img style="height: 77px; width: 54px"
-                                         onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"
                                          src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$top->product['thumbnail']}}"
+                                         onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"
                                          alt="Product"/>
                                 </a>
                                 <div class="media-body">
