@@ -608,7 +608,7 @@
                                  data-href="{{route('product',$bestSell->product->slug)}}">
                                 <a class="d-block {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"
                                    href="{{route('product',$bestSell->product->slug)}}">
-                                    <img style="height: 54px; width: 54px"
+                                    <img style="height: 77px; width: 54px"
                                          onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                                          src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$bestSell->product['thumbnail']}}"
                                          alt="Product"/>
@@ -657,7 +657,7 @@
                                  data-href="{{route('product',$product->slug)}}">
                                 <a class="d-block {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"
                                    href="{{route('product',$product->slug)}}">
-                                    <img style="height: 54px; width: 54px"
+                                    <img style="height: 77px; width: 54px"
                                          onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                                          src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail']}}"
                                          alt="Product"/>
@@ -703,7 +703,7 @@
                                  data-href="{{route('product',$top->product->slug)}}">
                                 <a class="d-block {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"
                                    href="{{route('product',$top->product->slug)}}">
-                                    <img style="height: 54px; width: 54px"
+                                    <img style="height: 77px; width: 54px"
                                          onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                                          src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$top->product['thumbnail']}}"
                                          alt="Product"/>
