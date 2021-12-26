@@ -24,7 +24,7 @@
         <!-- Content Row -->
         <div class="row">
             <div class="col-md-12">
-                <form class="product-form" action="{{route('admin.product.store')}}" method="POST"
+                <form class="product-form" action="{{route('admin.product.update', $product->id)}}" method="POST"
                       style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"
                       enctype="multipart/form-data"
                       id="product_form">
@@ -180,7 +180,7 @@
                             </div><br/>
                             <div class="form-group">
                                 <label class="input-label" for="description">{{\App\CPU\translate('description (Optional)')}}</label>
-                                <textarea name="description" class="editor textarea" id="textarea" cols="30" rows="10">{{old('description')}}</textarea>
+                                <textarea name="description" class="editor textarea" id="textarea" cols="30" rows="10">{{  $product->details  }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -317,14 +317,14 @@
                                         <label class="control-label">{{\App\CPU\translate('ISBN Number')}}</label>
                                         <input type="text"
                                                placeholder="{{\App\CPU\translate('ISBN Number')}}"
-                                               name="isbn" value="{{old('isbn')}}" class="form-control">
+                                               name="isbn" value="{{ $product->isbn }}" class="form-control">
                                     </div>
                                     <div class="col-md-6">
                                         <label
                                             class="control-label">{{\App\CPU\translate('Book Weight (KG)')}}</label>
                                         <input type="number" min="0" step="0.01"
                                                placeholder="{{\App\CPU\translate('Book Weight')}}"
-                                               value="{{old('weight')}}" name="weight" class="form-control">
+                                               value="{{ $product->weight }}" name="weight" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row pt-4">
@@ -333,21 +333,21 @@
                                             class="control-label">{{\App\CPU\translate('Purchase Price')}} (৳)</label>
                                         <input type="number" min="0" step="0.01"
                                                placeholder="{{\App\CPU\translate('Purchase Price')}}"
-                                               value="{{old('purchase_price')}}"
+                                               value="{{ $product->purchase_price }}"
                                                name="purchase_price" class="form-control" required>
                                     </div>
                                     <div class="col-md-4">
                                         <label class="control-label">{{\App\CPU\translate('Published Price')}} (৳)</label>
                                         <input type="number" min="0" step="0.01"
                                                placeholder="{{\App\CPU\translate('Published Price')}}"
-                                               name="published_price" value="{{old('published_price')}}" class="form-control"
+                                               name="published_price" value="{{ $product->published_price }}" class="form-control"
                                                required>
                                     </div>
                                     <div class="col-md-4">
                                         <label class="control-label">{{\App\CPU\translate('Sale Price')}} (৳)</label>
                                         <input type="number" min="0" step="0.01"
                                                placeholder="{{\App\CPU\translate('Sale Price')}}"
-                                               name="unit_price" value="{{old('unit_price')}}" class="form-control"
+                                               name="unit_price" value="{{ $product->unit_price }}" class="form-control"
                                                required>
                                     </div>
                                 </div>
@@ -382,20 +382,18 @@
                                     <div class="col-md-6" id="quantity">
                                         <label
                                             class="control-label">{{\App\CPU\translate('total')}} {{\App\CPU\translate('Quantity')}}</label>
-                                        <input type="number" min="0" value="0" step="1"
-                                               placeholder="{{\App\CPU\translate('Quantity')}}"
-                                               name="current_stock" class="form-control" required>
+                                        <input type="number" min="0" step="1" placeholder="{{\App\CPU\translate('Quantity')}}" name="current_stock" value="{{ $product->current_stock }}" class="form-control" required>
                                     </div>
                                     <div class="col-md-6 pt-6">
                                         <center>
                                             <label class="radio-inline" style="margin-right: 10px;">
-                                                <input type="radio" name="stock_status" value="1" checked> In Stock 
+                                                <input type="radio" name="stock_status" value="1" @if ($product->stock_status == 1) checked @endif> In Stock 
                                             </label>
                                             <label class="radio-inline" style="margin-right: 10px;">
-                                                <input type="radio" name="stock_status" value="2"> Out of Stock 
+                                                <input type="radio" name="stock_status" value="2" @if ($product->stock_status == 2) checked @endif> Out of Stock 
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="stock_status" value="3"> Back Order 
+                                                <input type="radio" name="stock_status" value="3" @if ($product->stock_status == 3) checked @endif> Back Order 
                                             </label>
                                         </center>
                                     </div>
@@ -771,7 +769,7 @@
                     }
                 });
                 $.post({
-                    url: '{{route('admin.product.store')}}',
+                    url: '{{route('admin.product.update', $product->id)}}',
                     data: formData,
                     contentType: false,
                     processData: false,

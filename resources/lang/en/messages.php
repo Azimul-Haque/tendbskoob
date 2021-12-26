@@ -1409,4 +1409,5 @@
   'Book Weight' => 'Book Weight',
   'Book' => 'Book',
   'Add New Book' => 'Add New Book',
+  'Product updated successfully!' => 'Product updated successfully!',
 );

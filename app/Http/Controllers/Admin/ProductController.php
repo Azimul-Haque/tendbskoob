@@ -22,8 +22,9 @@ use App\Model\FlashDealProduct;
 use function App\CPU\translate;
 use Illuminate\Support\Facades\DB;
 use Brian2694\Toastr\Facades\Toastr;
-use Rap2hpoutre\FastExcel\FastExcel;
+use Illuminate\Support\Facades\File;
 
+use Rap2hpoutre\FastExcel\FastExcel;
 use App\Http\Controllers\BaseController;
 use Illuminate\Support\Facades\Validator;
 
@@ -267,9 +268,9 @@ class ProductController extends BaseController
         // $p->video_url = $request->video_link;
         $p->request_status = 1; // status default to 1
         $p->stock_status = $request->stock_status; // 1 = in stock, 2 = out of stock, 3 = back order
-        $p->meta_title = $request->bangla_name . '-' . $request->_name;
+        $p->meta_title = $request->bangla_name . '-' . $request->name;
         $p->meta_description = $request->description;
-        $p->meta_image = ImageManager::upload('product/meta/', 'png', $request->image);
+        // $p->meta_image = ImageManager::upload('product/meta/', 'png', $request->image);
 
         if ($request->ajax()) {
             return response()->json([], 200);
@@ -278,7 +279,8 @@ class ProductController extends BaseController
             if($request->hasFile('image')) {
                 $thumbnail = $request->file('image');
                 $filename  = Carbon::now()->toDateString() . "-" . uniqid() . "." . $thumbnail->getClientOriginalExtension();
-                $location  = storage_path('app/public/product/thumbnail/'. $filename);
+                $location1  = storage_path('app/public/product/thumbnail/'. $filename);
+                $location2  = storage_path('app/public/product/meta/'. $filename);
                 Image::make($thumbnail)
                      ->fit(260, 372)
                      ->insert(public_path('public/assets/back-end/img/watermark.png'), 'bottom-right', 10, 10)
@@ -287,10 +289,19 @@ class ProductController extends BaseController
                         $font->size(24);
                         $font->color(array(250, 250, 250, 0.25));
                         // $font->angle(45);
-                    })
-                    ->save($location);
+                    })->save($location1);
+                Image::make($thumbnail)
+                     ->fit(260, 372)
+                     ->insert(public_path('public/assets/back-end/img/watermark.png'), 'bottom-right', 10, 10)
+                     ->text('www.booksbd.net', 30, 185, function($font) {
+                        $font->file(public_path('public/fonts/Roboto-Black.ttf'));
+                        $font->size(24);
+                        $font->color(array(250, 250, 250, 0.25));
+                        // $font->angle(45);
+                    })->save($location2);
                 // dd($thumbnail);
                 $p->thumbnail = $filename;
+                $p->meta_image = $filename;
             }
             $p->save();
 
@@ -452,45 +463,52 @@ class ProductController extends BaseController
 
     public function update(Request $request, $id)
     {
-        dd($request);
-
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'category_id' => 'required',
-            'brand_id' => 'required',
-            'unit' => 'required',
-            'tax' => 'required|min:0',
-            'unit_price' => 'required|numeric|min:1',
-            'purchase_price' => 'required|numeric|min:1',
+            'publisher_id' => 'required',
+            'name'         => 'required',
+            'name_bangla'  => 'required',
+            'category_id'  => 'required',
+            'purchase_price'  => 'required|numeric|min:1',
+            'published_price' => 'required|numeric|min:1',
+            'unit_price'      => 'required|numeric|min:1',
+            'current_stock'   => 'required|numeric|min:1',
         ], [
-            'name.required' => 'Product name is required!',
-            'category_id.required' => 'category  is required!',
-            'brand_id.required' => 'brand  is required!',
-            'unit.required' => 'Unit  is required!',
+            'publisher_id.required'    => 'Publication is required!',
+            'name.required'            => 'English name is required!',
+            'name_bangla.required'     => 'Bangla name is required!',
+            'category_id.required'     => 'Category is required!',
+            'purchase_price.required'  => 'Purchase Price is required!',
+            'published_price.required' => 'Published Price is required!',
+            'unit_price.required'      => 'Sale Price is required!',
+            'current_stock.required'   => 'Total Quantity is required!',
+            'current_stock.numeric'    => 'Total Quantity is must be at least 1!',
+            // 'brand_id.required' => 'brand  is required!',
+            // 'unit.required' => 'Unit  is required!',
         ]);
-
-        if ($request['discount_type'] == 'percent') {
-            $dis = ($request['unit_price'] / 100) * $request['discount'];
-        } else {
-            $dis = $request['discount'];
+        
+        $p = Product::find($id);
+        $oldname = $p->name;
+        $p->name        = Str::slug($request->name) == '' ? $request->name : ucwords(str_replace('-', ' ', $request->name));
+        $p->name_bangla = $request->name_bangla;
+        if($oldname != ucwords(str_replace('-', ' ', $request->name))) {
+            $p->slug = Str::slug($request->name, '-') . '-' . Helpers::random_number(5);
+            if(Str::slug($request->name) == '') {
+                $p->slug = Helpers::random_slug(15) . '-' . Helpers::random_number(5);
+            }
         }
-
-        if ($request['unit_price'] <= $dis) {
-            $validator->after(function ($validator) {
-                $validator->errors()->add('unit_price', 'Discount can not be more or equal to the price!');
-            });
-        }
-
-        $product = Product::find($id);
-        $product->name = $request->name[array_search('en', $request->lang)];
-
+        // dd($p->slug);
+    
         $category = [];
-        if ($request->category_id != null) {
-            array_push($category, [
-                'id' => $request->category_id,
-                'position' => 1,
-            ]);
+        if($request->category_id) {
+            foreach($request->category_id as $categoryid) {
+                array_push($category, [
+                    'id' => $categoryid,
+                    'position' => 1,
+                ]);
+            }
         }
+        // CATEGORY IDs ARE SYNCED LATER, AFTER SAVE
+
         if ($request->sub_category_id != null) {
             array_push($category, [
                 'id' => $request->sub_category_id,
@@ -503,142 +521,104 @@ class ProductController extends BaseController
                 'position' => 3,
             ]);
         }
-        $product->category_ids = json_encode($category);
-        $product->brand_id = $request->brand_id;
-        $product->unit = $request->unit;
-        $product->details = $request->description[array_search('en', $request->lang)];
-        $product_images = json_decode($product->images);
 
-        if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
-            $product->colors = json_encode($request->colors);
-        } else {
-            $colors = [];
-            $product->colors = json_encode($colors);
-        }
-        $choice_options = [];
-        if ($request->has('choice')) {
-            foreach ($request->choice_no as $key => $no) {
-                $str = 'choice_options_' . $no;
-                $item['name'] = 'choice_' . $no;
-                $item['title'] = $request->choice[$key];
-                $item['options'] = explode(',', implode('|', $request[$str]));
-                array_push($choice_options, $item);
-            }
-        }
-        $product->choice_options = json_encode($choice_options);
-        $variations = [];
-        //combinations start
-        $options = [];
-        if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
-            $colors_active = 1;
-            array_push($options, $request->colors);
-        }
-        if ($request->has('choice_no')) {
-            foreach ($request->choice_no as $key => $no) {
-                $name = 'choice_options_' . $no;
-                $my_str = implode('|', $request[$name]);
-                array_push($options, explode(',', $my_str));
-            }
-        }
-        //Generates the combinations of customer choice options
-        $combinations = Helpers::combinations($options);
-        $variations = [];
-        $stock_count = 0;
-        if (count($combinations[0]) > 0) {
-            foreach ($combinations as $key => $combination) {
-                $str = '';
-                foreach ($combination as $k => $item) {
-                    if ($k > 0) {
-                        $str .= '-' . str_replace(' ', '', $item);
-                    } else {
-                        if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
-                            $color_name = Color::where('code', $item)->first()->name;
-                            $str .= $color_name;
-                        } else {
-                            $str .= str_replace(' ', '', $item);
-                        }
-                    }
-                }
-                $item = [];
-                $item['type'] = $str;
-                $item['price'] = BackEndHelper::currency_to_usd(abs($request['price_' . str_replace('.', '_', $str)]));
-                $item['sku'] = $request['sku_' . str_replace('.', '_', $str)];
-                $item['qty'] = abs($request['qty_' . str_replace('.', '_', $str)]);
-                array_push($variations, $item);
-
-                $stock_count += $item['qty'];
-            }
-        }else {
-            $stock_count = (integer)$request['current_stock'];
-        }
+        $p->category_ids = json_encode($category);
+        $p->brand_id = $request->brand_id;
+        $p->publisher_id = $request->publisher_id;
+        // $p->unit = $request->unit;
+        $p->isbn = $request->isbn;
+        $p->weight = $request->weight;
 
         if ($validator->errors()->count() > 0) {
             return response()->json(['errors' => Helpers::error_processor($validator)]);
         }
+        
+        $p->purchase_price  = $request->purchase_price;
+        $p->published_price = $request->published_price;
+        $p->unit_price      = $request->unit_price;
+        $stock_count      = (integer) $request['current_stock'];
+        $p->current_stock = abs($stock_count);
+        $p->details       = $request->description;
 
-        if ($validator->fails()) {
-            return back()->withErrors($validator)
-                ->withInput();
-        }
-
-        if ($request->file('images')) {
-            foreach ($request->file('images') as $img) {
-                $product_images[] = ImageManager::upload('product/', 'png', $img);
-            }
-            $product->images = json_encode($product_images);
-        }
-
-        if ($request->file('image')) {
-            $product->thumbnail = ImageManager::update('product/thumbnail/', $product->thumbnail, 'png', $request->file('image'));
-        }
-        //combinations end
-        $product->variation = json_encode($variations);
-        $product->unit_price = BackEndHelper::currency_to_usd($request->unit_price);
-        $product->purchase_price = BackEndHelper::currency_to_usd($request->purchase_price);
-        $product->tax = $request->tax == 'flat' ? BackEndHelper::currency_to_usd($request->tax) : $request->tax;
-        $product->tax_type = $request->tax_type;
-        $product->discount = $request->discount_type == 'flat' ? BackEndHelper::currency_to_usd($request->discount) : $request->discount;
-        $product->attributes = json_encode($request->choice_attributes);
-        $product->discount_type = $request->discount_type;
-        $product->current_stock = abs($stock_count);
-
-        $product->meta_title = $request->meta_title;
-        $product->meta_description = $request->meta_description;
-        if ($request->file('meta_image')) {
-            $product->meta_image = ImageManager::update('product/meta/', $product->meta_image, 'png', $request->file('meta_image'));
-        }
-        $product->video_provider = 'youtube';
-        $product->video_url = $request->video_link;
-        if ($product->added_by == 'seller' && $product->request_status == 2) {
-            $product->request_status = 1;
-        }
+        $p->request_status = 1; // status default to 1
+        $p->stock_status = $request->stock_status; // 1 = in stock, 2 = out of stock, 3 = back order
+        $p->meta_title = $request->bangla_name . '-' . $request->name;
+        $p->meta_description = $request->description;
 
         if ($request->ajax()) {
             return response()->json([], 200);
         } else {
-            $product->save();
-            foreach ($request->lang as $index => $key) {
-                if ($request->name[$index] && $key != 'en') {
-                    Translation::updateOrInsert(
-                        ['translationable_type' => 'App\Model\Product',
-                            'translationable_id' => $product->id,
-                            'locale' => $key,
-                            'key' => 'name'],
-                        ['value' => $request->name[$index]]
-                    );
+            // to avoid the status 200 and uploading of image twice
+            if($request->hasFile('image')) {
+                $image_path1 = storage_path('app/public/product/thumbnail/'. $p->thumbnail);
+                if(File::exists($image_path1)) {
+                    File::delete($image_path1);
                 }
-                if ($request->description[$index] && $key != 'en') {
-                    Translation::updateOrInsert(
-                        ['translationable_type' => 'App\Model\Product',
-                            'translationable_id' => $product->id,
-                            'locale' => $key,
-                            'key' => 'description'],
-                        ['value' => $request->description[$index]]
-                    );
+                $image_path2 = storage_path('app/public/product/meta/'. $p->meta_image);
+                if(File::exists($image_path2)) {
+                    File::delete($image_path2);
+                }
+                $thumbnail = $request->file('image');
+                $filename  = Carbon::now()->toDateString() . "-" . uniqid() . "." . $thumbnail->getClientOriginalExtension();
+                $location1  = storage_path('app/public/product/thumbnail/'. $filename);
+                $location2  = storage_path('app/public/product/meta/'. $filename);
+                Image::make($thumbnail)
+                     ->fit(260, 372)
+                     ->insert(public_path('public/assets/back-end/img/watermark.png'), 'bottom-right', 10, 10)
+                     ->text('www.booksbd.net', 30, 185, function($font) {
+                        $font->file(public_path('public/fonts/Roboto-Black.ttf'));
+                        $font->size(24);
+                        $font->color(array(250, 250, 250, 0.25));
+                        // $font->angle(45);
+                    })->save($location1);
+                Image::make($thumbnail)
+                     ->fit(260, 372)
+                     ->insert(public_path('public/assets/back-end/img/watermark.png'), 'bottom-right', 10, 10)
+                     ->text('www.booksbd.net', 30, 185, function($font) {
+                        $font->file(public_path('public/fonts/Roboto-Black.ttf'));
+                        $font->size(24);
+                        $font->color(array(250, 250, 250, 0.25));
+                        // $font->angle(45);
+                    })->save($location2);
+                // dd($thumbnail);
+                $p->thumbnail = $filename;
+                $p->meta_image = $filename;
+            }
+            $p->save();
+
+            // ATTACH CATEGORIES PUBLSHER...
+            // foreach ($request->category_id as $key => $value) {
+            //     $p->categories()->attach($value);
+            // }
+            $p->categories()->detach();
+            $p->categories()->sync($request->category_id, false);
+            
+            // ATTACH AUTHORS WRITER...
+            $p->writers()->detach();
+            if($request->writer_id != null) {
+                foreach ($request->writer_id as $key => $value) {
+                    $p->writers()->attach([$value => ['author_type' => 1]]);
                 }
             }
-            Toastr::success('Product updated successfully.');
-            return back();
+            
+            // ATTACH AUTHORS TRANSLATOR...
+            $p->translators()->detach();
+            if($request->translator_id != null) {
+                foreach ($request->translator_id as $key => $value) {
+                    $p->translators()->attach([$value => ['author_type' => 2]]);
+                }
+            }
+            
+            // ATTACH AUTHORS EDITOR...
+            $p->editors()->detach();
+            if($request->editor_id != null) {
+                foreach ($request->editor_id as $key => $value) {
+                    $p->editors()->attach([$value => ['author_type' => 3]]);
+                }
+            }
+
+            Toastr::success(translate('Product updated successfully!'));
+            return redirect()->route('admin.product.list', ['in_house']);
         }
     }
 

@@ -22,7 +22,7 @@
         <!-- Content Row -->
         <div class="row">
             <div class="col-md-12">
-                <form class="product-form" action="<?php echo e(route('admin.product.store')); ?>" method="POST"
+                <form class="product-form" action="<?php echo e(route('admin.product.update', $product->id)); ?>" method="POST"
                       style="text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;"
                       enctype="multipart/form-data"
                       id="product_form">
@@ -140,7 +140,7 @@
                             </div><br/>
                             <div class="form-group">
                                 <label class="input-label" for="description"><?php echo e(\App\CPU\translate('description (Optional)')); ?></label>
-                                <textarea name="description" class="editor textarea" id="textarea" cols="30" rows="10"><?php echo e(old('description')); ?></textarea>
+                                <textarea name="description" class="editor textarea" id="textarea" cols="30" rows="10"><?php echo e($product->details); ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -160,14 +160,14 @@
                                         <label class="control-label"><?php echo e(\App\CPU\translate('ISBN Number')); ?></label>
                                         <input type="text"
                                                placeholder="<?php echo e(\App\CPU\translate('ISBN Number')); ?>"
-                                               name="isbn" value="<?php echo e(old('isbn')); ?>" class="form-control">
+                                               name="isbn" value="<?php echo e($product->isbn); ?>" class="form-control">
                                     </div>
                                     <div class="col-md-6">
                                         <label
                                             class="control-label"><?php echo e(\App\CPU\translate('Book Weight (KG)')); ?></label>
                                         <input type="number" min="0" step="0.01"
                                                placeholder="<?php echo e(\App\CPU\translate('Book Weight')); ?>"
-                                               value="<?php echo e(old('weight')); ?>" name="weight" class="form-control">
+                                               value="<?php echo e($product->weight); ?>" name="weight" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row pt-4">
@@ -176,21 +176,21 @@
                                             class="control-label"><?php echo e(\App\CPU\translate('Purchase Price')); ?> (৳)</label>
                                         <input type="number" min="0" step="0.01"
                                                placeholder="<?php echo e(\App\CPU\translate('Purchase Price')); ?>"
-                                               value="<?php echo e(old('purchase_price')); ?>"
+                                               value="<?php echo e($product->purchase_price); ?>"
                                                name="purchase_price" class="form-control" required>
                                     </div>
                                     <div class="col-md-4">
                                         <label class="control-label"><?php echo e(\App\CPU\translate('Published Price')); ?> (৳)</label>
                                         <input type="number" min="0" step="0.01"
                                                placeholder="<?php echo e(\App\CPU\translate('Published Price')); ?>"
-                                               name="published_price" value="<?php echo e(old('published_price')); ?>" class="form-control"
+                                               name="published_price" value="<?php echo e($product->published_price); ?>" class="form-control"
                                                required>
                                     </div>
                                     <div class="col-md-4">
                                         <label class="control-label"><?php echo e(\App\CPU\translate('Sale Price')); ?> (৳)</label>
                                         <input type="number" min="0" step="0.01"
                                                placeholder="<?php echo e(\App\CPU\translate('Sale Price')); ?>"
-                                               name="unit_price" value="<?php echo e(old('unit_price')); ?>" class="form-control"
+                                               name="unit_price" value="<?php echo e($product->unit_price); ?>" class="form-control"
                                                required>
                                     </div>
                                 </div>
@@ -199,20 +199,18 @@
                                     <div class="col-md-6" id="quantity">
                                         <label
                                             class="control-label"><?php echo e(\App\CPU\translate('total')); ?> <?php echo e(\App\CPU\translate('Quantity')); ?></label>
-                                        <input type="number" min="0" value="0" step="1"
-                                               placeholder="<?php echo e(\App\CPU\translate('Quantity')); ?>"
-                                               name="current_stock" class="form-control" required>
+                                        <input type="number" min="0" step="1" placeholder="<?php echo e(\App\CPU\translate('Quantity')); ?>" name="current_stock" value="<?php echo e($product->current_stock); ?>" class="form-control" required>
                                     </div>
                                     <div class="col-md-6 pt-6">
                                         <center>
                                             <label class="radio-inline" style="margin-right: 10px;">
-                                                <input type="radio" name="stock_status" value="1" checked> In Stock 
+                                                <input type="radio" name="stock_status" value="1" <?php if($product->stock_status == 1): ?> checked <?php endif; ?>> In Stock 
                                             </label>
                                             <label class="radio-inline" style="margin-right: 10px;">
-                                                <input type="radio" name="stock_status" value="2"> Out of Stock 
+                                                <input type="radio" name="stock_status" value="2" <?php if($product->stock_status == 2): ?> checked <?php endif; ?>> Out of Stock 
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="stock_status" value="3"> Back Order 
+                                                <input type="radio" name="stock_status" value="3" <?php if($product->stock_status == 3): ?> checked <?php endif; ?>> Back Order 
                                             </label>
                                         </center>
                                     </div>
@@ -242,9 +240,10 @@
     <?php
         $thumbnail = asset('public/assets/back-end/img/book_demo.jpg');
         if($product->thumbnail != null) {
-            if(file_exists(\App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product['thumbnail'])) {
-                $thumbnail = \App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product['thumbnail'];
+            if(file_exists(\App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product->thumbnail)) {
+                $thumbnail = \App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product->thumbnail;
             }
+            $thumbnail = \App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product->thumbnail;
         }
         // echo \App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product['thumbnail'];
     ?>
@@ -540,7 +539,7 @@
                     }
                 });
                 $.post({
-                    url: '<?php echo e(route('admin.product.store')); ?>',
+                    url: '<?php echo e(route('admin.product.update', $product->id)); ?>',
                     data: formData,
                     contentType: false,
                     processData: false,

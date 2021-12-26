@@ -1,1 +1,0 @@
-<?php /**PATH C:\xampp\htdocs\booksbd\resources\views/layouts/back-end/partials/_front-settings.blade.php ENDPATH**/ ?>

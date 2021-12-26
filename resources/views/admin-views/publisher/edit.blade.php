@@ -25,7 +25,7 @@
                         Publications Form
                     </div>
                     <div class="card-body" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
-                        <form action="{{route('admin.publisher.update',[$publisher['id']])}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('admin.publisher.update', [$publisher['id']])}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-6">
