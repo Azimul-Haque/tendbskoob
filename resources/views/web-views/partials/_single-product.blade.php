@@ -28,7 +28,7 @@
             <a href="{{route('product',$product->slug)}}">
                 <img src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail']}}"
                      onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                     style="width: 100%;max-height: 215px!important;">
+                     style="width: 95%;max-height: 215px!important;">
             </a>
         </div>
     </div>

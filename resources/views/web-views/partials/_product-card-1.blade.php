@@ -15,7 +15,7 @@
     <div class=" d-flex">
         <div class="d-flex align-items-center justify-content-center"
              style="min-width: 110px">
-            <img style="height: 130px!important;"
+            <img style="height: 130px!important; width: 91px!important;"
                  src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail']}}"
                  onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"/>
         </div>

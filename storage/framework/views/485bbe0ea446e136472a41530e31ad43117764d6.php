@@ -17,7 +17,7 @@
     <div class=" d-flex">
         <div class="d-flex align-items-center justify-content-center"
              style="min-width: 110px">
-            <img style="height: 130px!important;"
+            <img style="height: 130px!important; width: 91px!important;"
                  src="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($product['thumbnail']); ?>"
                  onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"/>
         </div>
