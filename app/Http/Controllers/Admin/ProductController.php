@@ -51,9 +51,9 @@ class ProductController extends BaseController
     public function stock_status(Request $request)
     {
         $product = Product::find($request->id);
-        $product->featured = ($product['featured'] == 0 || $product['featured'] == null) ? 1 : 0;
+        $product->stock_status = $request->stock_status;
         $product->save();
-        $data = $request->status;
+        $data = $request->stock_status;
         return response()->json($data);
     }
 

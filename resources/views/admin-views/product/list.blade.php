@@ -64,6 +64,7 @@
                                 <th>Price</th>
                                 <th>{{\App\CPU\translate('featured')}}</th>
                                 <th>{{\App\CPU\translate('Active')}} {{\App\CPU\translate('status')}}</th>
+                                <th>Stocks</th>
                                 <th>Stock Status</th>
                                 <th style="width: 5px" class="text-center">{{\App\CPU\translate('Action')}}</th>
                             </tr>
@@ -80,11 +81,11 @@
                                     </td>
                                     <td>
                                         <small>
-                                            {{\App\CPU\translate('purchase_price')}}: 
+                                            {{\App\CPU\translate('purchase')}}: 
                                             <b>{{\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['purchase_price']))}}</b>
                                         </small><br/>
                                         <small>
-                                            {{\App\CPU\translate('published_price')}}: 
+                                            {{\App\CPU\translate('published')}}: 
                                             <b>{{\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['published_price']))}}</b>
                                         </small><br/>
                                         <small>
@@ -107,7 +108,10 @@
                                         </label>
                                     </td>
                                     <td>
-                                        <select id="stock_status{{$p['id']}}" onclick="stock_status('{{$p['id']}}')" class="form-control" style="width: 140px;">
+                                        {{ $p->current_stock }}
+                                    </td>
+                                    <td>
+                                        <select id="stock_status{{$p['id']}}" onchange="stock_status('{{$p['id']}}')" class="form-control" style="width: 140px;">
                                             <option value="1" {{$p->stock_status == 1?'selected':''}}>In Stock</option>
                                             <option value="2" {{$p->stock_status == 2?'selected':''}}>Out of Stock</option>
                                             <option value="3" {{$p->stock_status == 3?'selected':''}}>Back Order</option>
@@ -211,6 +215,8 @@
         }
 
         function stock_status(id) {
+            var stock_status_val = $('#stock_status' + id).val();
+            // console.log(stock_status_val);
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -220,10 +226,11 @@
                 url: "{{route('admin.product.stock-status')}}",
                 method: 'POST',
                 data: {
-                    id: id
+                    id: id,
+                    stock_status: stock_status_val,
                 },
                 success: function () {
-                    toastr.success('{{\App\CPU\translate('Featured status updated successfully')}}');
+                    toastr.success('{{\App\CPU\translate('Stock status updated successfully')}}');
                 }
             });
         }

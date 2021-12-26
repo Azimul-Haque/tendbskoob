@@ -1415,4 +1415,6 @@
   'book_table' => 'Book table',
   'Search Book' => 'Search Book',
   'published_price' => 'Published price',
+  'Stock status updated successfully' => 'Stock status updated successfully',
+  'purchase' => 'Purchase',
 );
