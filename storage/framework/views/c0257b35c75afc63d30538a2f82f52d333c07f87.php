@@ -336,8 +336,7 @@
                                 <i class="czi-menu align-middle mt-n1 <?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?>"></i>
                                 <span
                                     style="margin-<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>: 40px !important;margin-<?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>: 50px">
-                                    <?php echo e(\App\CPU\translate('categories')); ?>
-
+                                    বিষয়সমূহ
                                 </span>
                             </a>
                             <?php if(request()->is('/')): ?>
@@ -477,7 +476,7 @@
                                href="#" data-toggle="dropdown">
                                 <i class="czi-menu align-middle mt-n1 <?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?>"></i>
                                 <span
-                                    style="margin-<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>: 20px !important;"><?php echo e(\App\CPU\translate('categories')); ?></span>
+                                    style="margin-<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>: 20px !important;">বিষয়সমূহ</span>
                             </a>
                             <ul class="dropdown-menu"
                                 style="right: 0%; text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;">
@@ -485,11 +484,11 @@
                                     <li class="dropdown">
                                         <a class="dropdown-item <?php if ($category->childes->count() > 0) echo "dropdown-toggle"?> "
                                            <?php if ($category->childes->count() > 0) echo "data-toggle='dropdown'"?> href="<?php echo e(route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])); ?>">
-                                            <img src="<?php echo e(asset("storage/app/public/category/$category->icon")); ?>"
+                                            <img src="<?php echo e(asset("public/images/category/" . $category->icon)); ?>"
                                                  onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                                                  style="width: 18px; height: 18px; ">
                                             <span
-                                                class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>"><?php echo e($category['name']); ?></span>
+                                                class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>"><?php echo e($category['name_bangla']); ?></span>
                                         </a>
                                         <?php if($category->childes->count()>0): ?>
                                             <ul class="dropdown-menu"
@@ -499,7 +498,7 @@
                                                         <a class="dropdown-item <?php if ($subCategory->childes->count() > 0) echo "dropdown-toggle"?> "
                                                            <?php if ($subCategory->childes->count() > 0) echo "data-toggle='dropdown'"?> href="<?php echo e(route('products',['id'=> $subCategory['id'],'data_from'=>'category','page'=>1])); ?>">
                                                             <span
-                                                                class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>"><?php echo e($subCategory['name']); ?></span>
+                                                                class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>"><?php echo e($subCategory['name_bangla']); ?></span>
                                                         </a>
                                                         <?php if($subCategory->childes->count()>0): ?>
                                                             <ul class="dropdown-menu"
@@ -507,7 +506,7 @@
                                                                 <?php $__currentLoopData = $subCategory['childes']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subSubCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                     <li>
                                                                         <a class="dropdown-item"
-                                                                           href="<?php echo e(route('products',['id'=> $subSubCategory['id'],'data_from'=>'category','page'=>1])); ?>"><?php echo e($subSubCategory['name']); ?></a>
+                                                                           href="<?php echo e(route('products',['id'=> $subSubCategory['id'],'data_from'=>'category','page'=>1])); ?>"><?php echo e($subSubCategory['name_bangla']); ?></a>
                                                                     </li>
                                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </ul>
@@ -524,7 +523,7 @@
                     <!-- Primary menu-->
                     <ul class="navbar-nav" style="<?php echo e(Session::get('direction') === "rtl" ? 'padding-right: 0px' : ''); ?>">
                         <li class="nav-item dropdown <?php echo e(request()->is('/')?'active':''); ?>">
-                            <a class="nav-link" href="<?php echo e(route('home')); ?>"><?php echo e(\App\CPU\translate('Home')); ?></a>
+                            <a class="nav-link" href="<?php echo e(route('home')); ?>"><?php echo e(\App\CPU\translate('নীড়পাতা')); ?></a>
                         </li>
 
                         <li class="nav-item dropdown">

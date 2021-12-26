@@ -310,7 +310,7 @@
         <!-- Grid-->
             <div class="row mt-2 mb-3">
                 <?php $__currentLoopData = $featured_products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="col-xl-2 col-sm-3 col-6" style="margin-bottom: 10px">
+                    <div class="col-xl-2 col-sm-3 col-6" style="margin-bottom: 20px">
                         <?php echo $__env->make('web-views.partials._single-product',['product'=>$product], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                         
                     </div>

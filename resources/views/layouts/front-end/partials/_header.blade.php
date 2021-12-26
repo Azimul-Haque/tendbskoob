@@ -329,7 +329,7 @@
                                 <i class="czi-menu align-middle mt-n1 {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i>
                                 <span
                                     style="margin-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 40px !important;margin-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}: 50px">
-                                    {{ \App\CPU\translate('categories')}}
+                                    বিষয়সমূহ
                                 </span>
                             </a>
                             @if(request()->is('/'))
@@ -467,7 +467,7 @@
                                href="#" data-toggle="dropdown">
                                 <i class="czi-menu align-middle mt-n1 {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i>
                                 <span
-                                    style="margin-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 20px !important;">{{ \App\CPU\translate('categories')}}</span>
+                                    style="margin-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 20px !important;">বিষয়সমূহ</span>
                             </a>
                             <ul class="dropdown-menu"
                                 style="right: 0%; text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
@@ -475,11 +475,11 @@
                                     <li class="dropdown">
                                         <a class="dropdown-item <?php if ($category->childes->count() > 0) echo "dropdown-toggle"?> "
                                            <?php if ($category->childes->count() > 0) echo "data-toggle='dropdown'"?> href="{{route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])}}">
-                                            <img src="{{asset("storage/app/public/category/$category->icon")}}"
+                                            <img src="{{asset("public/images/category/" . $category->icon)}}"
                                                  onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                                                  style="width: 18px; height: 18px; ">
                                             <span
-                                                class="{{Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'}}">{{$category['name']}}</span>
+                                                class="{{Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'}}">{{$category['name_bangla']}}</span>
                                         </a>
                                         @if($category->childes->count()>0)
                                             <ul class="dropdown-menu"
@@ -489,7 +489,7 @@
                                                         <a class="dropdown-item <?php if ($subCategory->childes->count() > 0) echo "dropdown-toggle"?> "
                                                            <?php if ($subCategory->childes->count() > 0) echo "data-toggle='dropdown'"?> href="{{route('products',['id'=> $subCategory['id'],'data_from'=>'category','page'=>1])}}">
                                                             <span
-                                                                class="{{Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'}}">{{$subCategory['name']}}</span>
+                                                                class="{{Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'}}">{{$subCategory['name_bangla']}}</span>
                                                         </a>
                                                         @if($subCategory->childes->count()>0)
                                                             <ul class="dropdown-menu"
@@ -497,7 +497,7 @@
                                                                 @foreach($subCategory['childes'] as $subSubCategory)
                                                                     <li>
                                                                         <a class="dropdown-item"
-                                                                           href="{{route('products',['id'=> $subSubCategory['id'],'data_from'=>'category','page'=>1])}}">{{$subSubCategory['name']}}</a>
+                                                                           href="{{route('products',['id'=> $subSubCategory['id'],'data_from'=>'category','page'=>1])}}">{{$subSubCategory['name_bangla']}}</a>
                                                                     </li>
                                                                 @endforeach
                                                             </ul>
@@ -514,7 +514,7 @@
                     <!-- Primary menu-->
                     <ul class="navbar-nav" style="{{Session::get('direction') === "rtl" ? 'padding-right: 0px' : ''}}">
                         <li class="nav-item dropdown {{request()->is('/')?'active':''}}">
-                            <a class="nav-link" href="{{route('home')}}">{{ \App\CPU\translate('Home')}}</a>
+                            <a class="nav-link" href="{{route('home')}}">{{ \App\CPU\translate('নীড়পাতা')}}</a>
                         </li>
 
                         <li class="nav-item dropdown">

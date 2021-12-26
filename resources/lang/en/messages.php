@@ -1424,4 +1424,5 @@
   'hi' => 'Hi',
   'welcome_to_dashboard' => 'Welcome to dashboard',
   'Authors' => 'Authors',
+  'নীড়পাতা' => '���ীড়পাতা',
 );
