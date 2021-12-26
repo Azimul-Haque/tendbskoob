@@ -229,67 +229,12 @@
                                 <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                             </li>
                             <!-- Pages -->
-                            <li class="navbar-vertical-aside-has-menu <?php echo e(Request::is('admin/brand*')?'active':''); ?>">
-                                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
-                                   href="javascript:">
-                                    <i class="tio-apple-outlined nav-icon"></i>
-                                    <span
-                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate"><?php echo e(\App\CPU\translate('brands')); ?></span>
-                                </a>
-                                <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
-                                    style="display: <?php echo e(Request::is('admin/brand*')?'block':'none'); ?>">
-                                    <li class="nav-item <?php echo e(Request::is('admin/brand/add-new')?'active':''); ?>">
-                                        <a class="nav-link " href="<?php echo e(route('admin.brand.add-new')); ?>">
-                                            <span class="tio-circle nav-indicator-icon"></span>
-                                            <span class="text-truncate"><?php echo e(\App\CPU\translate('add_new')); ?></span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item <?php echo e(Request::is('admin/brand/list')?'active':''); ?>">
-                                        <a class="nav-link " href="<?php echo e(route('admin.brand.list')); ?>">
-                                            <span class="tio-circle nav-indicator-icon"></span>
-                                            <span class="text-truncate"><?php echo e(\App\CPU\translate('List')); ?></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="navbar-vertical-aside-has-menu <?php echo e((Request::is('admin/category*') ||Request::is('admin/sub*')) ?'active':''); ?>">
-                                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
-                                   href="javascript:">
-                                    <i class="tio-filter-list nav-icon"></i>
-                                    <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                        <?php echo e(\App\CPU\translate('categories')); ?>
-
-                                    </span>
-                                </a>
-                                <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
-                                    style="display: <?php echo e((Request::is('admin/category*') ||Request::is('admin/sub*'))?'block':''); ?>">
-                                    <li class="nav-item <?php echo e(Request::is('admin/category/view')?'active':''); ?>">
-                                        <a class="nav-link " href="<?php echo e(route('admin.category.view')); ?>">
-                                            <span class="tio-circle nav-indicator-icon"></span>
-                                            <span class="text-truncate"><?php echo e(\App\CPU\translate('category')); ?></span>
-                                        </a>
-
-                                    </li>
-                                    <li class="nav-item <?php echo e(Request::is('admin/sub-category/view')?'active':''); ?>">
-                                        <a class="nav-link " href="<?php echo e(route('admin.sub-category.view')); ?>">
-                                            <span class="tio-circle nav-indicator-icon"></span>
-                                            <span class="text-truncate"><?php echo e(\App\CPU\translate('sub_category')); ?></span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item <?php echo e(Request::is('admin/sub-sub-category/view')?'active':''); ?>">
-                                        <a class="nav-link " href="<?php echo e(route('admin.sub-sub-category.view')); ?>">
-                                            <span class="tio-circle nav-indicator-icon"></span>
-                                            <span class="text-truncate"><?php echo e(\App\CPU\translate('sub_sub_category')); ?></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="navbar-vertical-aside-has-menu <?php echo e(Request::is('admin/attribute*')?'active':''); ?>">
+                            <li class="navbar-vertical-aside-has-menu <?php echo e(Request::is('admin/category*')?'active':''); ?>">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link"
-                                   href="<?php echo e(route('admin.attribute.view')); ?>">
-                                    <i class="tio-category-outlined nav-icon"></i>
+                                   href="<?php echo e(route('admin.category.view')); ?>">
+                                    <i class="tio-filter-list nav-icon"></i>
                                     <span
-                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate"><?php echo e(\App\CPU\translate('Attribute')); ?></span>
+                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate"><?php echo e(\App\CPU\translate('Categories')); ?></span>
                                 </a>
                             </li>
 
@@ -300,7 +245,6 @@
                                     <span
                                         class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate"><?php echo e(\App\CPU\translate('Writer/Translator/Editor')); ?></span>
                                 </a>
-                            </li>
                             </li>
 
                             <li class="navbar-vertical-aside-has-menu <?php echo e(Request::is('admin/publisher*')?'active':''); ?>">
@@ -320,6 +264,17 @@
                                         class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate"><?php echo e(\App\CPU\translate('Books')); ?></span>
                                 </a>
                             </li>
+
+
+                            
+                            
+                            
+                            
+                            
+
+                            
+
+                            
 
                             <li class="navbar-vertical-aside-has-menu">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"

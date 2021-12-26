@@ -1417,4 +1417,7 @@
   'published_price' => 'Published price',
   'Stock status updated successfully' => 'Stock status updated successfully',
   'purchase' => 'Purchase',
+  'Categories' => 'Categories',
+  'Author ID' => 'Author ID',
+  'Publisher ID' => 'Publisher ID',
 );

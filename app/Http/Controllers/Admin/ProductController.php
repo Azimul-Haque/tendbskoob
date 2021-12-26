@@ -88,6 +88,7 @@ class ProductController extends BaseController
 
     public function store(Request $request)
     {
+        dd($request->all());
         $validator = Validator::make($request->all(), [
             'publisher_id' => 'required',
             'name'         => 'required',
@@ -684,18 +685,113 @@ class ProductController extends BaseController
             return back();
         }
 
+        dd($collections[0]);
         $data = [];
-        $skip = ['youtube_video_url', 'details'];
-        foreach ($collections as $collection) {
-            foreach ($collection as $key => $value) {
-                if ($value === "" && !in_array($key, $skip)) {
-                    Toastr::error('Please fill ' . $key . ' fields');
-                    return back();
+        // $skip = ['youtube_video_url', 'details'];
+        foreach ($collections as $collection) 
+        {            
+            $p              = new Product();
+            $p->added_by    = "admin";
+            $p->user_id     = auth('admin')->id();
+            $p->name        = Str::slug($collection['name']) == '' ? $collection['name'] : ucwords(str_replace('-', ' ', $collection['name']));
+            $p->name_bangla = $collection['name_bangla'];
+            $p->slug        = Str::slug($collection['name'], '-') . '-' . Helpers::random_number(5);
+            if(Str::slug($collection['name']) == '') {
+                $p->slug = Helpers::random_slug(15) . '-' . Helpers::random_number(5);
+            }
+            // dd($p->slug);
+    
+            $category = [];
+            if($collection['category_id']) {
+                foreach($collection['category_id'] as $categoryid) {
+                    array_push($category, [
+                        'id' => $categoryid,
+                        'position' => 1,
+                    ]);
+                }
+            }
+            // CATEGORY IDs ARE SYNCED LATER, AFTER SAVE
+
+            $p->category_ids = json_encode($category);
+            $p->brand_id = $request->brand_id;
+            $p->publisher_id = $request->publisher_id;
+            $p->isbn = $request->isbn;
+            $p->weight = $request->weight;
+
+            $empty_array       = [];
+            $p->colors         = json_encode($empty_array);
+            $p->choice_options = json_encode($empty_array);
+            $p->variation      = json_encode($empty_array);
+        
+            $p->purchase_price  = $request->purchase_price;
+            $p->published_price = $request->published_price;
+            $p->unit_price      = $request->unit_price;
+            $stock_count      = (integer) $request['current_stock'];
+            $p->current_stock = abs($stock_count);
+            $p->details       = $request->description;
+            $p->request_status = 1; // status default to 1
+            $p->stock_status = $request->stock_status; // 1 = in stock, 2 = out of stock, 3 = back order
+            $p->meta_title = $request->bangla_name . '-' . $request->name;
+            $p->meta_description = $request->description;
+
+            if($request->hasFile('image')) {
+                $thumbnail = $request->file('image');
+                $filename  = Carbon::now()->toDateString() . "-" . uniqid() . "." . $thumbnail->getClientOriginalExtension();
+                $location1  = storage_path('app/public/product/thumbnail/'. $filename);
+                $location2  = storage_path('app/public/product/meta/'. $filename);
+                Image::make($thumbnail)
+                     ->fit(260, 372)
+                     ->insert(public_path('public/assets/back-end/img/watermark.png'), 'bottom-right', 10, 10)
+                     ->text('www.booksbd.net', 30, 185, function($font) {
+                        $font->file(public_path('public/fonts/Roboto-Black.ttf'));
+                        $font->size(24);
+                        $font->color(array(250, 250, 250, 0.25));
+                        // $font->angle(45);
+                    })->save($location1);
+                Image::make($thumbnail)
+                     ->fit(260, 372)
+                     ->insert(public_path('public/assets/back-end/img/watermark.png'), 'bottom-right', 10, 10)
+                     ->text('www.booksbd.net', 30, 185, function($font) {
+                        $font->file(public_path('public/fonts/Roboto-Black.ttf'));
+                        $font->size(24);
+                        $font->color(array(250, 250, 250, 0.25));
+                        // $font->angle(45);
+                    })->save($location2);
+                // dd($thumbnail);
+                $p->thumbnail = $filename;
+                $p->meta_image = $filename;
+            }
+            $p->save();
+
+            // ATTACH CATEGORIES PUBLSHER...
+            $p->categories()->sync($collection['category_id'], false);
+        
+            // ATTACH AUTHORS WRITER...
+            if($request->writer_id != null) {
+                foreach ($request->writer_id as $key => $value) {
+                    $p->writers()->attach([$value => ['author_type' => 1]]);
+                }
+            }
+            
+            // ATTACH AUTHORS TRANSLATOR...
+            if($request->translator_id != null) {
+                foreach ($request->translator_id as $key => $value) {
+                    $p->translators()->attach([$value => ['author_type' => 2]]);
+                }
+            }
+            
+            // ATTACH AUTHORS EDITOR...
+            if($request->editor_id != null) {
+                foreach ($request->editor_id as $key => $value) {
+                    $p->editors()->attach([$value => ['author_type' => 3]]);
                 }
             }
 
-
+            Toastr::success(translate('Product added successfully!'));
+            return redirect()->route('admin.product.list', ['in_house']);
             array_push($data, [
+                'publisher_id' => $collection['publisher_id'],
+                'name_bangla' => $collection['name_bangla'],
                 'name' => $collection['name'],
                 'slug' => Str::slug($collection['name'], '-') . '-' . Str::random(6),
                 'category_ids' => json_encode([['id' => $collection['category_id'], 'position' => 0], ['id' => $collection['sub_category_id'], 'position' => 1], ['id' => $collection['sub_sub_category_id'], 'position' => 2]]),

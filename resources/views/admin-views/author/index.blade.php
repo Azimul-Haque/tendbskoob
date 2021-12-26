@@ -153,7 +153,7 @@
                                 class="table table-borderless table-thead-bordered table-nowrap table-align-middle card-table">
                                 <thead class="thead-light">
                                 <tr>
-                                    <th>{{ \App\CPU\translate('ID')}}</th>
+                                    <th>{{ \App\CPU\translate('Author ID')}}</th>
                                     <th>{{ \App\CPU\translate('name')}}</th>
                                     <th>{{ \App\CPU\translate('slug')}}</th>
                                     <th>{{ \App\CPU\translate('image')}}</th>

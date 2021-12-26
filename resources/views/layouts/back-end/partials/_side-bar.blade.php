@@ -209,30 +209,45 @@
                                 <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                             </li>
                             <!-- Pages -->
-                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/brand*')?'active':''}}">
-                                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
-                                   href="javascript:">
-                                    <i class="tio-apple-outlined nav-icon"></i>
+                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/category*')?'active':''}}">
+                                <a class="js-navbar-vertical-aside-menu-link nav-link"
+                                   href="{{route('admin.category.view')}}">
+                                    <i class="tio-filter-list nav-icon"></i>
                                     <span
-                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('brands')}}</span>
+                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Categories')}}</span>
                                 </a>
-                                <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
-                                    style="display: {{Request::is('admin/brand*')?'block':'none'}}">
-                                    <li class="nav-item {{Request::is('admin/brand/add-new')?'active':''}}">
-                                        <a class="nav-link " href="{{route('admin.brand.add-new')}}">
-                                            <span class="tio-circle nav-indicator-icon"></span>
-                                            <span class="text-truncate">{{\App\CPU\translate('add_new')}}</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item {{Request::is('admin/brand/list')?'active':''}}">
-                                        <a class="nav-link " href="{{route('admin.brand.list')}}">
-                                            <span class="tio-circle nav-indicator-icon"></span>
-                                            <span class="text-truncate">{{\App\CPU\translate('List')}}</span>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
-                            <li class="navbar-vertical-aside-has-menu {{(Request::is('admin/category*') ||Request::is('admin/sub*')) ?'active':''}}">
+
+                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/author*')?'active':''}}">
+                                <a class="js-navbar-vertical-aside-menu-link nav-link"
+                                   href="{{route('admin.author.index')}}">
+                                    <i class="tio-user nav-icon"></i>
+                                    <span
+                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Writer/Translator/Editor')}}</span>
+                                </a>
+                            </li>
+
+                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/publisher*')?'active':''}}">
+                                <a class="js-navbar-vertical-aside-menu-link nav-link"
+                                   href="{{route('admin.publisher.index')}}">
+                                    <i class="tio-bookmarks nav-icon"></i>
+                                    <span
+                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Publications')}}</span>
+                                </a>
+                            </li>
+
+                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/product/list/in_hous*')?'active':''}}">
+                                <a class="js-navbar-vertical-aside-menu-link nav-link"
+                                   href="{{route('admin.product.list',['in_house', ''])}}">
+                                    <i class="tio-book nav-icon"></i>
+                                    <span
+                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Books')}}</span>
+                                </a>
+                            </li>
+
+
+                            
+                            {{-- <li class="navbar-vertical-aside-has-menu {{(Request::is('admin/category*') ||Request::is('admin/sub*')) ?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
                                    href="javascript:">
                                     <i class="tio-filter-list nav-icon"></i>
@@ -262,43 +277,43 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
-                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/attribute*')?'active':''}}">
+                            </li> --}}
+                            
+                            {{-- <li class="navbar-vertical-aside-has-menu {{Request::is('admin/brand*')?'active':''}}">
+                                <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
+                                   href="javascript:">
+                                    <i class="tio-apple-outlined nav-icon"></i>
+                                    <span
+                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('brands')}}</span>
+                                </a>
+                                <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
+                                    style="display: {{Request::is('admin/brand*')?'block':'none'}}">
+                                    <li class="nav-item {{Request::is('admin/brand/add-new')?'active':''}}">
+                                        <a class="nav-link " href="{{route('admin.brand.add-new')}}">
+                                            <span class="tio-circle nav-indicator-icon"></span>
+                                            <span class="text-truncate">{{\App\CPU\translate('add_new')}}</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item {{Request::is('admin/brand/list')?'active':''}}">
+                                        <a class="nav-link " href="{{route('admin.brand.list')}}">
+                                            <span class="tio-circle nav-indicator-icon"></span>
+                                            <span class="text-truncate">{{\App\CPU\translate('List')}}</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li> --}}
+                            
+
+                            {{-- <li class="navbar-vertical-aside-has-menu {{Request::is('admin/attribute*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link"
                                    href="{{route('admin.attribute.view')}}">
                                     <i class="tio-category-outlined nav-icon"></i>
                                     <span
                                         class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Attribute')}}</span>
                                 </a>
-                            </li>
+                            </li> --}}
 
-                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/author*')?'active':''}}">
-                                <a class="js-navbar-vertical-aside-menu-link nav-link"
-                                   href="{{route('admin.author.index')}}">
-                                    <i class="tio-user nav-icon"></i>
-                                    <span
-                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Writer/Translator/Editor')}}</span>
-                                </a>
-                            </li>
-                            </li>
-
-                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/publisher*')?'active':''}}">
-                                <a class="js-navbar-vertical-aside-menu-link nav-link"
-                                   href="{{route('admin.publisher.index')}}">
-                                    <i class="tio-bookmarks nav-icon"></i>
-                                    <span
-                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Publications')}}</span>
-                                </a>
-                            </li>
-
-                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/product/list/in_hous*')?'active':''}}">
-                                <a class="js-navbar-vertical-aside-menu-link nav-link"
-                                   href="{{route('admin.product.list',['in_house', ''])}}">
-                                    <i class="tio-book nav-icon"></i>
-                                    <span
-                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Books')}}</span>
-                                </a>
-                            </li>
+                            
 
                             <li class="navbar-vertical-aside-has-menu">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"

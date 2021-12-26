@@ -470,9 +470,9 @@
     <?php
         $thumbnail = asset('public/assets/back-end/img/book_demo.jpg');
         if($product->thumbnail != null) {
-            if(file_exists(\App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product->thumbnail)) {
-                $thumbnail = \App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product->thumbnail;
-            }
+            // if(file_exists(\App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product->thumbnail)) {
+            //     $thumbnail = \App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product->thumbnail;
+            // }
             $thumbnail = \App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product->thumbnail;
         }
         // echo \App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product['thumbnail'];
