@@ -27,15 +27,13 @@
     <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
     <link rel="stylesheet" href="<?php echo e(asset('public/assets/back-end')); ?>/css/toastr.css"/>
     <link rel="stylesheet" href="<?php echo e(asset('public/assets/front-end')); ?>/css/master.css"/>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Titillium+Web:wght@400;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Titillium+Web:wght@400;600;700&display=swap" rel="stylesheet">
 
     <?php echo $__env->yieldPushContent('css_or_js'); ?>
 
     <link rel="stylesheet" href="<?php echo e(asset('public/assets/front-end')); ?>/css/home.css"/>
     <link rel="stylesheet" href="<?php echo e(asset('public/assets/front-end')); ?>/css/responsive1.css"/>
-    <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
+    
 
     
     <meta name="_token" content="<?php echo e(csrf_token()); ?>">
