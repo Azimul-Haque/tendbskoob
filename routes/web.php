@@ -38,6 +38,8 @@ Route::group(['namespace' => 'Web','middleware'=>['maintenance_mode']], function
     Route::get('category-ajax/{id}', 'WebController@categories_by_category')->name('category-ajax');
 
     Route::get('brands', 'WebController@all_brands')->name('brands');
+    Route::get('authors', 'WebController@all_authors')->name('authors');
+    Route::get('publishers', 'WebController@all_publishers')->name('publishers');
     Route::get('sellers', 'WebController@all_sellers')->name('sellers');
     Route::get('seller-profile/{id}', 'WebController@seller_profile')->name('seller-profile');
 

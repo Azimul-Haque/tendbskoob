@@ -33,6 +33,7 @@ use function App\CPU\translate;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Model\Author;
+use App\Model\Publisher;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Artisan;
@@ -173,6 +174,18 @@ class WebController extends Controller
     {
         $brands = Brand::paginate(24);
         return view('web-views.brands', compact('brands'));
+    }
+
+    public function all_authors()
+    {
+        $authors = Author::paginate(24);
+        return view('web-views.authors', compact('authors'));
+    }
+
+    public function all_publishers()
+    {
+        $publishers = Publisher::paginate(24);
+        return view('web-views.publishers', compact('publishers'));
     }
 
     public function all_sellers()
@@ -432,6 +445,7 @@ class WebController extends Controller
 
         $porduct_data = Product::active()->with(['reviews']);
 
+        // dd($porduct_data->get());
         if ($request['data_from'] == 'category') {
             $products = $porduct_data->get();
             $product_ids = [];
@@ -447,6 +461,21 @@ class WebController extends Controller
 
         if ($request['data_from'] == 'brand') {
             $query = $porduct_data->where('brand_id', $request['id']);
+        }
+        
+        if ($request['data_from'] == 'author') {
+            $author = Author::find($request['id']);
+            $products = $porduct_data->get();
+            $product_ids = [];
+            foreach ($products as $product) {
+                foreach ($author->products as $authorproduct) {
+                    if ($product['id'] == $authorproduct['id']) {
+                        array_push($product_ids, $product['id']);
+                    }
+                }
+            }
+            $query = $porduct_data->whereIn('id', $product_ids);
+            // dd($query);
         }
 
         if ($request['data_from'] == 'latest') {
@@ -543,6 +572,12 @@ class WebController extends Controller
         }
         if ($request['data_from'] == 'brand') {
             $data['brand_name'] = Brand::find((int)$request['id'])->name;
+        }
+        if ($request['data_from'] == 'author') {
+            $data['author_name'] = Author::find((int)$request['id'])->name;
+        }
+        if ($request['data_from'] == 'publisher') {
+            $data['publisher_name'] = Author::find((int)$request['id'])->name;
         }
 
         return view('web-views.products.view', compact('products', 'data'), $data);

@@ -514,32 +514,66 @@
                     <!-- Primary menu-->
                     <ul class="navbar-nav" style="{{Session::get('direction') === "rtl" ? 'padding-right: 0px' : ''}}">
                         <li class="nav-item dropdown {{request()->is('/')?'active':''}}">
-                            <a class="nav-link" href="{{route('home')}}">{{ \App\CPU\translate('নীড়পাতা')}}</a>
+                            <a class="nav-link" href="{{route('home')}}">নীড়পাতা</a>
                         </li>
 
+                        @php($authors=\App\Model\Author::paginate(15))
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#"
-                               data-toggle="dropdown">{{ \App\CPU\translate('brand') }}</a>
+                               data-toggle="dropdown">লেখক</a>
                             <ul class="dropdown-menu dropdown-menu-{{Session::get('direction') === "rtl" ? 'right' : 'left'}} scroll-bar"
                                 style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
-                                @foreach(\App\CPU\BrandManager::get_brands() as $brand)
+                                @foreach($authors as $author)
                                     <li style="border-bottom: 1px solid #e3e9ef; display:flex; justify-content:space-between; ">
                                         <div>
                                             <a class="dropdown-item"
-                                               href="{{route('products',['id'=> $brand['id'],'data_from'=>'brand','page'=>1])}}">
-                                                {{$brand['name']}}
+                                               href="{{route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1])}}">
+                                                {{$author['name_bangla']}}
                                             </a>
                                         </div>
+                                        
                                         <div class="align-baseline">
-                                            @if($brand['brand_products_count'] > 0 )
-                                                <span class="count-value px-2">( {{ $brand['brand_products_count'] }} )</span>
+                                            @if($author->products()->count() > 0)
+                                                <span class="count-value px-2">( {{ $author->products()->count() }} )</span>
                                             @endif
                                         </div>
                                     </li>
                                 @endforeach
                                 <li style="border-bottom: 1px solid #e3e9ef; display:flex; justify-content:center; ">
                                     <div>
-                                        <a class="dropdown-item" href="{{route('brands')}}">
+                                        <a class="dropdown-item" href="{{route('authors')}}">
+                                            {{ \App\CPU\translate('View_more') }}
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        @php($publishers=\App\Model\Publisher::paginate(15))
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#"
+                               data-toggle="dropdown">প্রকাশনী</a>
+                            <ul class="dropdown-menu dropdown-menu-{{Session::get('direction') === "rtl" ? 'right' : 'left'}} scroll-bar"
+                                style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
+                                @foreach($publishers as $publisher)
+                                    <li style="border-bottom: 1px solid #e3e9ef; display:flex; justify-content:space-between; ">
+                                        <div>
+                                            <a class="dropdown-item"
+                                               href="{{route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1])}}">
+                                                {{$publisher['name_bangla']}}
+                                            </a>
+                                        </div>
+                                        
+                                        <div class="align-baseline">
+                                            @if($publisher->products()->count() > 0)
+                                                <span class="count-value px-2">( {{ $publisher->products()->count() }} )</span>
+                                            @endif
+                                        </div>
+                                    </li>
+                                @endforeach
+                                <li style="border-bottom: 1px solid #e3e9ef; display:flex; justify-content:center; ">
+                                    <div>
+                                        <a class="dropdown-item" href="{{route('publishers')}}">
                                             {{ \App\CPU\translate('View_more') }}
                                         </a>
                                     </div>
@@ -547,7 +581,7 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item dropdown {{request()->is('/')?'active':''}}">
+                        <!-- <li class="nav-item dropdown {{request()->is('/')?'active':''}}">
                             <a class="nav-link" href="{{route('sellers')}}">{{ \App\CPU\translate('Sellers')}}</a>
                         </li>
 
@@ -572,7 +606,7 @@
                                     </div>
                                 </div>
                             </li>
-                        @endif
+                        @endif -->
                     </ul>
                 </div>
             </div>

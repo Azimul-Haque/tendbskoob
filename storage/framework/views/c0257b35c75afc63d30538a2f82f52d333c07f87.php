@@ -523,33 +523,69 @@
                     <!-- Primary menu-->
                     <ul class="navbar-nav" style="<?php echo e(Session::get('direction') === "rtl" ? 'padding-right: 0px' : ''); ?>">
                         <li class="nav-item dropdown <?php echo e(request()->is('/')?'active':''); ?>">
-                            <a class="nav-link" href="<?php echo e(route('home')); ?>"><?php echo e(\App\CPU\translate('নীড়পাতা')); ?></a>
+                            <a class="nav-link" href="<?php echo e(route('home')); ?>">নীড়পাতা</a>
                         </li>
 
+                        <?php ($authors=\App\Model\Author::paginate(15)); ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#"
-                               data-toggle="dropdown"><?php echo e(\App\CPU\translate('brand')); ?></a>
+                               data-toggle="dropdown">লেখক</a>
                             <ul class="dropdown-menu dropdown-menu-<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?> scroll-bar"
                                 style="text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;">
-                                <?php $__currentLoopData = \App\CPU\BrandManager::get_brands(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $brand): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $author): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <li style="border-bottom: 1px solid #e3e9ef; display:flex; justify-content:space-between; ">
                                         <div>
                                             <a class="dropdown-item"
-                                               href="<?php echo e(route('products',['id'=> $brand['id'],'data_from'=>'brand','page'=>1])); ?>">
-                                                <?php echo e($brand['name']); ?>
+                                               href="<?php echo e(route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1])); ?>">
+                                                <?php echo e($author['name_bangla']); ?>
 
                                             </a>
                                         </div>
+                                        
                                         <div class="align-baseline">
-                                            <?php if($brand['brand_products_count'] > 0 ): ?>
-                                                <span class="count-value px-2">( <?php echo e($brand['brand_products_count']); ?> )</span>
+                                            <?php if($author->products()->count() > 0): ?>
+                                                <span class="count-value px-2">( <?php echo e($author->products()->count()); ?> )</span>
                                             <?php endif; ?>
                                         </div>
                                     </li>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 <li style="border-bottom: 1px solid #e3e9ef; display:flex; justify-content:center; ">
                                     <div>
-                                        <a class="dropdown-item" href="<?php echo e(route('brands')); ?>">
+                                        <a class="dropdown-item" href="<?php echo e(route('authors')); ?>">
+                                            <?php echo e(\App\CPU\translate('View_more')); ?>
+
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <?php ($publishers=\App\Model\Publisher::paginate(15)); ?>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#"
+                               data-toggle="dropdown">প্রকাশনী</a>
+                            <ul class="dropdown-menu dropdown-menu-<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?> scroll-bar"
+                                style="text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;">
+                                <?php $__currentLoopData = $publishers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $publisher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li style="border-bottom: 1px solid #e3e9ef; display:flex; justify-content:space-between; ">
+                                        <div>
+                                            <a class="dropdown-item"
+                                               href="<?php echo e(route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1])); ?>">
+                                                <?php echo e($publisher['name_bangla']); ?>
+
+                                            </a>
+                                        </div>
+                                        
+                                        <div class="align-baseline">
+                                            <?php if($publisher->products()->count() > 0): ?>
+                                                <span class="count-value px-2">( <?php echo e($publisher->products()->count()); ?> )</span>
+                                            <?php endif; ?>
+                                        </div>
+                                    </li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                <li style="border-bottom: 1px solid #e3e9ef; display:flex; justify-content:center; ">
+                                    <div>
+                                        <a class="dropdown-item" href="<?php echo e(route('publishers')); ?>">
                                             <?php echo e(\App\CPU\translate('View_more')); ?>
 
                                         </a>
@@ -558,7 +594,7 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item dropdown <?php echo e(request()->is('/')?'active':''); ?>">
+                        <!-- <li class="nav-item dropdown <?php echo e(request()->is('/')?'active':''); ?>">
                             <a class="nav-link" href="<?php echo e(route('sellers')); ?>"><?php echo e(\App\CPU\translate('Sellers')); ?></a>
                         </li>
 
@@ -584,7 +620,7 @@
                                     </div>
                                 </div>
                             </li>
-                        <?php endif; ?>
+                        <?php endif; ?> -->
                     </ul>
                 </div>
             </div>

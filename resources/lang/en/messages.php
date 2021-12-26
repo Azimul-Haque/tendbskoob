@@ -1425,4 +1425,6 @@
   'welcome_to_dashboard' => 'Welcome to dashboard',
   'Authors' => 'Authors',
   'নীড়পাতা' => '���ীড়পাতা',
+  'All Authors Page' => 'All Authors Page',
+  'All Pulication Page' => 'All Pulication Page',
 );
