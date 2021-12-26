@@ -51,7 +51,7 @@
         </div>
         <div style="position: relative;" class="product-title1">
             <a href="<?php echo e(route('product',$product->slug)); ?>">
-                <?php echo e(\Illuminate\Support\Str::limit($product['name_name'], 25)); ?>
+                <?php echo e(\Illuminate\Support\Str::limit($product['name_bangla'], 25)); ?>
 
             </a>
         </div>

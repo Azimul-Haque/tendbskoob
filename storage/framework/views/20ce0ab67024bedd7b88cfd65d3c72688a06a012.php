@@ -489,9 +489,7 @@
                                  src="<?php echo e(asset("storage/app/public/category/$category->icon")); ?>"
                                  alt="<?php echo e($category->name_bangla); ?>">
                             <p class="text-center small"
-                               style="margin-top: -20px"><?php echo e(\Illuminate\Support\Str::limit($category->name_bangla, 17)); ?>
-
-                            <?php echo e($category->name_bangla); ?></p>
+                               style="margin-top: -20px"><?php echo e(\Illuminate\Support\Str::limit($category->name_bangla, 17)); ?></p>
                         </a>
                     </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -49,7 +49,7 @@
         </div>
         <div style="position: relative;" class="product-title1">
             <a href="{{route('product',$product->slug)}}">
-                {{ \Illuminate\Support\Str::limit($product['name_name'], 25) }}
+                {{ \Illuminate\Support\Str::limit($product['name_bangla'], 25) }}
             </a>
         </div>
         <div class="justify-content-between text-center">
