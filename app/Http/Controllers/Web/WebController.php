@@ -2,39 +2,40 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\User;
+use App\Model\Cart;
+use App\Model\Shop;
 use App\CPU\Helpers;
-use App\CPU\OrderManager;
-use App\CPU\ProductManager;
-use App\CPU\CartManager;
-use App\Http\Controllers\Controller;
 use App\Model\Admin;
 use App\Model\Brand;
-use App\Model\BusinessSetting;
-use App\Model\Cart;
-use App\Model\CartShipping;
-use App\Model\Category;
-use App\Model\Contact;
-use App\Model\DealOfTheDay;
-use App\Model\FlashDeal;
-use App\Model\FlashDealProduct;
-use App\Model\HelpTopic;
-use App\Model\OrderDetail;
-use App\Model\Product;
+use App\Model\Order;
 use App\Model\Review;
 use App\Model\Seller;
-use App\Model\ShippingMethod;
-use App\Model\Shop;
-use App\Model\Order;
+use App\Model\Contact;
+use App\Model\Product;
+use App\Model\Category;
+use App\Model\Wishlist;
+use App\CPU\CartManager;
+use App\Model\FlashDeal;
+use App\Model\HelpTopic;
+use App\CPU\OrderManager;
+use App\Model\OrderDetail;
 use App\Model\Transaction;
 use App\Model\Translation;
-use App\User;
-use App\Model\Wishlist;
-use Brian2694\Toastr\Facades\Toastr;
+use App\CPU\ProductManager;
+use App\Model\CartShipping;
+use App\Model\DealOfTheDay;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session;
+use App\Model\ShippingMethod;
+use App\Model\BusinessSetting;
+use App\Model\FlashDealProduct;
 use function App\CPU\translate;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Session;
 
 class WebController extends Controller
 {
@@ -101,6 +102,19 @@ class WebController extends Controller
         $deal_of_the_day = DealOfTheDay::join('products', 'products.id', '=', 'deal_of_the_days.product_id')->select('deal_of_the_days.*', 'products.unit_price')->where('deal_of_the_days.status', 1)->first();
 
         return view('web-views.home', compact('featured_products', 'topRated', 'bestSellProduct', 'latest_products', 'categories', 'brands', 'deal_of_the_day', 'top_sellers', 'home_categories'));
+    }
+
+    public function clear()
+    {
+        Artisan::call('route:clear');
+        // Artisan::call('optimize');
+        Artisan::call('cache:clear');
+        Artisan::call('view:clear');
+        Artisan::call('key:generate');
+        Artisan::call('config:clear');
+        Artisan::call('config:cache');
+        Session::flush();
+        echo 'Config and Route Cached. All Cache Cleared';
     }
 
     public function flash_deals($id)
