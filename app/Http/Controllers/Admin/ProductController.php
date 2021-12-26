@@ -102,7 +102,7 @@ class ProductController extends BaseController
             'purchase_price'  => 'required|numeric|min:1',
             'published_price' => 'required|numeric|min:1',
             'unit_price'      => 'required|numeric|min:1',
-            'current_stock'   => 'required|numeric|min:1',
+            'current_stock'   => 'required|numeric',
         ], [
             'publisher_id.required'    => 'Publication is required!',
             'name.required'            => 'English name is required!',
@@ -113,7 +113,6 @@ class ProductController extends BaseController
             'published_price.required' => 'Published Price is required!',
             'unit_price.required'      => 'Sale Price is required!',
             'current_stock.required'   => 'Total Quantity is required!',
-            'current_stock.numeric'    => 'Total Quantity is must be at least 1!',
             // 'brand_id.required' => 'brand  is required!',
             // 'unit.required' => 'Unit  is required!',
         ]);
@@ -288,7 +287,8 @@ class ProductController extends BaseController
             // to avoid the status 200 and uploading of image twice
             if($request->hasFile('image')) {
                 $thumbnail = $request->file('image');
-                $filename  = Carbon::now()->toDateString() . "-" . uniqid() . "." . $thumbnail->getClientOriginalExtension();
+                // $filename  = Carbon::now()->toDateString() . "-" . uniqid() . "." . $thumbnail->getClientOriginalExtension();
+                $filename  = Carbon::now()->toDateString() . "-" . uniqid() . ".jpg";
                 $location1  = storage_path('app/public/product/thumbnail/'. $filename);
                 $location2  = storage_path('app/public/product/meta/'. $filename);
                 Image::make($thumbnail)
@@ -484,7 +484,7 @@ class ProductController extends BaseController
             'purchase_price'  => 'required|numeric|min:1',
             'published_price' => 'required|numeric|min:1',
             'unit_price'      => 'required|numeric|min:1',
-            'current_stock'   => 'required|numeric|min:1',
+            'current_stock'   => 'required|numeric',
         ], [
             'publisher_id.required'    => 'Publication is required!',
             'name.required'            => 'English name is required!',
@@ -494,7 +494,6 @@ class ProductController extends BaseController
             'published_price.required' => 'Published Price is required!',
             'unit_price.required'      => 'Sale Price is required!',
             'current_stock.required'   => 'Total Quantity is required!',
-            'current_stock.numeric'    => 'Total Quantity is must be at least 1!',
             // 'brand_id.required' => 'brand  is required!',
             // 'unit.required' => 'Unit  is required!',
         ]);
@@ -572,7 +571,8 @@ class ProductController extends BaseController
                     File::delete($image_path2);
                 }
                 $thumbnail = $request->file('image');
-                $filename  = Carbon::now()->toDateString() . "-" . uniqid() . "." . $thumbnail->getClientOriginalExtension();
+                // $filename  = Carbon::now()->toDateString() . "-" . uniqid() . "." . $thumbnail->getClientOriginalExtension();
+                $filename  = Carbon::now()->toDateString() . "-" . uniqid() . ".jpg";
                 $location1  = storage_path('app/public/product/thumbnail/'. $filename);
                 $location2  = storage_path('app/public/product/meta/'. $filename);
                 Image::make($thumbnail)

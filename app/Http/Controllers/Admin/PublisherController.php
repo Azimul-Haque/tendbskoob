@@ -79,7 +79,8 @@ class PublisherController extends BaseController
         // $publisher->icon = ImageManager::upload('publisher/', 'png', $request->file('image'));
         if($request->hasFile('image')) {
             $image    = $request->file('image');
-            $filename = Helpers::random_slug(10) . '.' . $image->getClientOriginalExtension();
+            // $filename = Helpers::random_slug(10) . '.' . $image->getClientOriginalExtension();
+            $filename = Helpers::random_slug(10) . '.jpg';
             $location = public_path('/public/images/publisher/'. $filename);
             Image::make($image)->resize(200, 200)->save($location);
             $publisher->image = $filename;
@@ -117,7 +118,8 @@ class PublisherController extends BaseController
                 File::delete($image_path);
             }
             $image    = $request->file('image');
-            $filename = Helpers::random_slug(10) . '.' . $image->getClientOriginalExtension();
+            // $filename = Helpers::random_slug(10) . '.' . $image->getClientOriginalExtension();
+            $filename = Helpers::random_slug(10) . '.jpg';
             $location = public_path('/public/images/publisher/'. $filename);
             Image::make($image)->resize(200, 200)->save($location);
             $publisher->image = $filename;

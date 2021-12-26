@@ -80,7 +80,8 @@ class AuthorController extends BaseController
         // $author->icon = ImageManager::upload('author/', 'png', $request->file('image'));
         if($request->hasFile('image')) {
             $image    = $request->file('image');
-            $filename = Helpers::random_slug(10) . '.' . $image->getClientOriginalExtension();
+            // $filename = Helpers::random_slug(10) . '.' . $image->getClientOriginalExtension();
+            $filename = Helpers::random_slug(10) . '.jpg';
             $location = public_path('/public/images/author/'. $filename);
             Image::make($image)->resize(200, 200)->save($location);
             $author->image = $filename;
@@ -118,7 +119,8 @@ class AuthorController extends BaseController
                 File::delete($image_path);
             }
             $image    = $request->file('image');
-            $filename = Helpers::random_slug(10) . '.' . $image->getClientOriginalExtension();
+            // $filename = Helpers::random_slug(10) . '.' . $image->getClientOriginalExtension();
+            $filename = Helpers::random_slug(10) . '.jpg';
             $location = public_path('/public/images/author/'. $filename);
             Image::make($image)->resize(200, 200)->save($location);
             $author->image = $filename;

@@ -62,7 +62,8 @@ class CategoryController extends Controller
         // $category->icon        = ImageManager::upload('category/', 'png', $request->file('image'));
         if($request->hasFile('image')) {
             $image    = $request->file('image');
-            $filename = Helpers::random_slug(10) . '.' . $image->getClientOriginalExtension();
+            // $filename = Helpers::random_slug(10) . '.' . $image->getClientOriginalExtension();
+            $filename = Helpers::random_slug(10) . '.jpg';
             $location = public_path('/public/images/category/'. $filename);
             Image::make($image)->fit(300, 100)->save($location);
             $category->icon = $filename;
@@ -120,7 +121,8 @@ class CategoryController extends Controller
                 File::delete($image_path);
             }
             $image    = $request->file('image');
-            $filename = Helpers::random_slug(10) . '.' . $image->getClientOriginalExtension();
+            // $filename = Helpers::random_slug(10) . '.' . $image->getClientOriginalExtension();
+            $filename = Helpers::random_slug(10) . '.jpg';
             $location = public_path('/public/images/category/'. $filename);
             Image::make($image)->fit(300, 100)->save($location);
             $category->icon = $filename;
