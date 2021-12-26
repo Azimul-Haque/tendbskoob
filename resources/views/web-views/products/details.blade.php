@@ -202,41 +202,13 @@
         <div class="row" style="direction: ltr">
             <!-- Product gallery-->
             <div class="col-lg-6 col-md-6">
-                <div class="cz-product-gallery">
-                    <div class="cz-preview">
-                        <div
-                            class="cz-preview-item d-flex align-items-center justify-content-center>
-                            <img class="cz-image-zoom img-responsive"
-                                    onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                    src="{{ \App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail'] }}"
-                                    data-zoom="{{ \App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail'] }}"
-                                    alt="Product image" width="">
-                            <div class="cz-image-zoom-pane"></div>
-                        </div>
-                    </div>
-                    <div class="cz">
-                        <div class="container">
-                            <div class="row">
-                                <div class="table-responsive" data-simplebar style="max-height: 515px; padding: 1px;">
-                                    <div class="d-flex">
-                                        @if($product->images!=null)
-                                            @foreach (json_decode($product->images) as $key => $photo)
-                                                <div class="cz-thumblist">
-                                                    <a class="cz-thumblist-item  {{$key==0?'active':''}} d-flex align-items-center justify-content-center "
-                                                       href="#image{{$key}}">
-                                                        <img
-                                                            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                                            src="{{asset("storage/app/public/product/$photo")}}"
-                                                            alt="Product thumb">
-                                                    </a>
-                                                </div>
-                                            @endforeach
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="d-flex align-items-center justify-content-center">
+                    <img class="img-responsive"
+                            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                            src="{{ \App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail'] }}"
+                            data-zoom="{{ \App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail'] }}"
+                            alt="Product image" width="">
+                    <div class="cz-image-zoom-pane"></div>
                 </div>
             </div>
             <!-- Product details-->
