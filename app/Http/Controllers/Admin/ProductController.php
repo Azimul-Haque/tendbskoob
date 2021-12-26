@@ -717,23 +717,23 @@ class ProductController extends BaseController
 
             $p->category_ids = json_encode($category);
             $p->publisher_id = $collection['publisher_id'];
-            $p->isbn = $collection['isbn'];
-            $p->weight = $collection['weight'];
+            $p->isbn         = $collection['isbn'];
+            $p->weight       = $collection['weight'];
 
             $empty_array       = [];
             $p->colors         = json_encode($empty_array);
             $p->choice_options = json_encode($empty_array);
             $p->variation      = json_encode($empty_array);
         
-            $p->purchase_price  = $collection['purchase_price'];
-            $p->published_price = $collection['published_price'];
-            $p->unit_price      = $collection['sale_price'];
-            $stock_count      = (integer) $collection['current_stock'];
-            $p->current_stock = abs($stock_count);
-            $p->details       = $collection['description'];
-            $p->request_status = 1; // status default to 1
-            $p->stock_status = $collection['stock_status']; // in stock, 2 = out of stock, 3 = back order
-            $p->meta_title = $collection['name_bangla'] . '-' . $collection['name'];
+            $p->purchase_price   = $collection['purchase_price'];
+            $p->published_price  = $collection['published_price'];
+            $p->unit_price       = $collection['sale_price'];
+            $stock_count         = (integer) $collection['current_stock'];
+            $p->current_stock    = abs($stock_count);
+            $p->details          = $collection['description'];
+            $p->request_status   = 1;                                                       // status default to 1
+            $p->stock_status     = $collection['stock_status'];                             // in stock, 2 = out of stock, 3 = back order
+            $p->meta_title       = $collection['name_bangla'] . '-' . $collection['name'];
             $p->meta_description = $collection['description'];
 
             $p->save();
@@ -810,37 +810,61 @@ class ProductController extends BaseController
         $products = Product::where(['added_by' => 'admin'])->get();
         //export from product
         $storage = [];
-        foreach ($products as $item) {
-            $category_id = 0;
-            $sub_category_id = 0;
-            $sub_sub_category_id = 0;
-            foreach (json_decode($item->category_ids, true) as $category) {
-                if ($category['position'] == 1) {
-                    $category_id = $category['id'];
-                } else if ($category['position'] == 2) {
-                    $sub_category_id = $category['id'];
-                } else if ($category['position'] == 3) {
-                    $sub_sub_category_id = $category['id'];
+        foreach ($products as $product)
+        {   
+            $writer_ids = '';
+            $writer_ids_array = [];
+            if($product->writers) {
+                foreach ($product->writers as $writer) {
+                    $writer_ids_array[] = $writer->id;
                 }
+                $writer_ids = implode(",", $writer_ids_array);
             }
-            $storage[] = [
-                'name' => $item->name,
-                'category_id' => $category_id,
-                'sub_category_id' => $sub_category_id,
-                'sub_sub_category_id' => $sub_sub_category_id,
-                'brand_id' => $item->brand_id,
-                'unit' => $item->unit,
-                'min_qty' => $item->min_qty,
-                'refundable' => $item->refundable,
-                'youtube_video_url' => $item->video_url,
-                'unit_price' => $item->unit_price,
-                'purchase_price' => $item->purchase_price,
-                'tax' => $item->tax,
-                'discount' => $item->discount,
-                'discount_type' => $item->discount_type,
-                'current_stock' => $item->current_stock,
-                'details' => $item->details,
+            
+            $translator_ids = '';
+            $translator_ids_array = [];
+            if($product->translators) {
+                foreach ($product->translators as $translator) {
+                    $translator_ids_array[] = $translator->id;
+                }
+                $translator_ids = implode(",", $translator_ids_array);
+            }
+            
+            $editor_ids = '';
+            $editor_ids_array = [];
+            if($product->editors) {
+                foreach ($product->editors as $editor) {
+                    $editor_ids_array[] = $editor->id;
+                }
+                $editor_ids = implode(",", $editor_ids_array);
+            }
+            
+            $category_ids = '';
+            $category_ids_array = [];
+            foreach (json_decode($product->category_ids, true) as $category) {
+                if ($category['position'] == 1) {
+                    $category_ids_array[] = $category['id'];
+                }
+                $category_ids = implode(",", $category_ids_array);
+            }
+            // dd($category_ids);
 
+            $storage[] = [
+                'publisher_id'    => $product->name,
+                'name_bangla'     => $product->name_bangla,
+                'name'            => $product->name,
+                'writer_id'       => $writer_ids,
+                'translator_id'   => $translator_ids,
+                'editor_id'       => $editor_ids,
+                'category_id'     => $category_ids,
+                'description'     => $product->details,
+                'isbn'            => $product->isbn,
+                'weight'          => $product->weight,
+                'purchase_price'  => $product->purchase_price,
+                'published_price' => $product->published_price,
+                'sale_price'      => $product->unit_price,
+                'current_stock'   => $product->current_stock,
+                'stock_status'    => $product->stock_status,                
             ];
         }
         return (new FastExcel($storage))->download('inhouse_products.xlsx');
