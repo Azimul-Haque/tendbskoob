@@ -309,7 +309,7 @@
         <!-- Grid-->
             <div class="row mt-2 mb-3">
                 @foreach($featured_products as $product)
-                    <div class="col-xl-2 col-sm-3 col-6" style="margin-bottom: 10px">
+                    <div class="col-xl-2 col-sm-3 col-6" style="margin-bottom: 20px">
                         @include('web-views.partials._single-product',['product'=>$product])
                         {{--<hr class="d-sm-none">--}}
                     </div>
