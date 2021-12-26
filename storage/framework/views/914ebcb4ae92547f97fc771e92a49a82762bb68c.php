@@ -29,7 +29,7 @@
         <div class="d-flex d-block center-div element-center" style="cursor: pointer">
             <a href="<?php echo e(route('product',$product->slug)); ?>">
                 <img src="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($product['thumbnail']); ?>"
-                     onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
+                     onerror="this.src='<?php echo e(asset('public/assets/front-end/img/book_demo.jpg')); ?>'"
                      style="width: 90%;max-height: 215px!important;">
             </a>
         </div>

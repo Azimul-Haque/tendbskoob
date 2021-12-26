@@ -27,7 +27,7 @@
         <div class="d-flex d-block center-div element-center" style="cursor: pointer">
             <a href="{{route('product',$product->slug)}}">
                 <img src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail']}}"
-                     onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                     onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"
                      style="width: 90%;max-height: 215px!important;">
             </a>
         </div>

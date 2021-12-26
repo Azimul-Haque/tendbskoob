@@ -204,7 +204,7 @@
             <div class="col-lg-6 col-md-6">
                 <div class="d-flex align-items-center justify-content-center">
                     <img class="img-responsive"
-                            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
+                            onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"
                             src="{{ \App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail'] }}"
                             data-zoom="{{ \App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail'] }}"
                             alt="Product image" width="">
