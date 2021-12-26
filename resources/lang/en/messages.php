@@ -1421,4 +1421,6 @@
   'Author ID' => 'Author ID',
   'Publisher ID' => 'Publisher ID',
   'Products imported successfully!' => 'Products imported successfully!',
+  'hi' => 'Hi',
+  'welcome_to_dashboard' => 'Welcome to dashboard',
 );

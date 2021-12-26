@@ -46,7 +46,7 @@ class BannerController extends Controller
         $banner = new Banner;
         $banner->banner_type = $request->banner_type;
         $banner->url = $request->url;
-        $banner->photo = ImageManager::upload('banner/', 'png', $request->file('image'));
+        $banner->photo = ImageManager::upload('banner/', 'jpg', $request->file('image'));
         $banner->save();
         Toastr::success('Banner added successfully!');
         return back();
@@ -81,7 +81,7 @@ class BannerController extends Controller
         $banner->url = $request->url;
         if($request->file('image'))
         {
-            $banner->photo = ImageManager::update('banner/', $banner['photo'], 'png', $request->file('image'));
+            $banner->photo = ImageManager::update('banner/', $banner['photo'], 'jpg', $request->file('image'));
         }
 
         $banner->save();
