@@ -213,7 +213,7 @@
                         
                         
                         <h1 class="h3 text-dark mb-3 headerTitle text-uppercase">
-                            <?php echo e($data['data_from']); ?> <?php echo e(\App\CPU\translate('products')); ?> <?php echo e(isset($brand_name) ? '('.$brand_name.')' : ''); ?>
+                            <?php echo e($data['data_from']); ?> <?php echo e(\App\CPU\translate('products')); ?> <?php echo e(isset($data_from_name) ? '('.$data_from_name.')' : ''); ?>
 
                             <label>( <?php echo e($products->total()); ?> <?php echo e(\App\CPU\translate('items found')); ?> )</label>
                         </h1>

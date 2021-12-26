@@ -572,16 +572,16 @@ class WebController extends Controller
             ], 200);
         }
         if ($request['data_from'] == 'category') {
-            $data['brand_name'] = Category::find((int)$request['id'])->name;
+            $data['data_from_name'] = Category::find((int)$request['id'])->name_bangla;
         }
         if ($request['data_from'] == 'brand') {
-            $data['brand_name'] = Brand::find((int)$request['id'])->name;
+            $data['data_from_name'] = Brand::find((int)$request['id'])->name_bangla;
         }
         if ($request['data_from'] == 'author') {
-            $data['author_name'] = Author::find((int)$request['id'])->name;
+            $data['data_from_name'] = Author::find((int)$request['id'])->name_bangla;
         }
         if ($request['data_from'] == 'publisher') {
-            $data['publisher_name'] = Publisher::find((int)$request['id'])->name;
+            $data['data_from_name'] = Publisher::find((int)$request['id'])->name_bangla;
         }
 
         return view('web-views.products.view', compact('products', 'data'), $data);
