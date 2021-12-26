@@ -289,41 +289,6 @@
         </div>
     <?php endif; ?>
 
-    
-    <section class="container rtl">
-        <!-- Heading-->
-        <div class="section-header">
-            <div class="feature_header" style="color: black">
-                <span> <?php echo e(\App\CPU\translate('brands')); ?></span>
-            </div>
-            <div>
-                <a class="btn btn-outline-accent btn-sm viw-btn-a" href="<?php echo e(route('brands')); ?>">
-                    <?php echo e(\App\CPU\translate('view_all')); ?>
-
-                    <i class="czi-arrow-<?php echo e(Session::get('direction') === "rtl" ? 'left mr-1 ml-n1' : 'right ml-1 mr-n1'); ?>"></i>
-                </a>
-            </div>
-        </div>
-    
-    <!-- Grid-->
-        <div class="mt-2 mb-3 brand-slider">
-            <div class="owl-carousel owl-theme" id="brands-slider">
-                <?php $__currentLoopData = $brands; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $brand): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="text-center">
-                        <a href="<?php echo e(route('products',['id'=> $brand['id'],'data_from'=>'brand','page'=>1])); ?>">
-                            <div class="brand_div d-flex align-items-center justify-content-center"
-                                 style="height:100px">
-                                <img
-                                    onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
-                                    src="<?php echo e(asset("storage/app/public/brand/$brand->image")); ?>" alt="<?php echo e($brand->name); ?>">
-                            </div>
-                        </a>
-                    </div>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            </div>
-        </div>
-    </section>
-
     <!-- Products grid (featured products)-->
     <?php if(count($featured_products) > 0): ?>
         <section class="container rtl">
@@ -524,8 +489,44 @@
                                  src="<?php echo e(asset("storage/app/public/category/$category->icon")); ?>"
                                  alt="<?php echo e($category->name_bangla); ?>">
                             <p class="text-center small"
-                               style="margin-top: -20px"><?php echo e(Str::limit($category->name, 17)); ?></p>
+                               style="margin-top: -20px"><?php echo e(Str::limit($category->name_bangla, 17)); ?></p>
                         </a>
+                    </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="container rtl">
+        <!-- Heading-->
+        <div class="section-header">
+            <div class="feature_header" style="color: black">
+                <span> <?php echo e(\App\CPU\translate('Authors')); ?></span>
+            </div>
+            <div>
+                <a class="btn btn-outline-accent btn-sm viw-btn-a" href="<?php echo e(route('brands')); ?>">
+                    <?php echo e(\App\CPU\translate('view_all')); ?>
+
+                    <i class="czi-arrow-<?php echo e(Session::get('direction') === "rtl" ? 'left mr-1 ml-n1' : 'right ml-1 mr-n1'); ?>"></i>
+                </a>
+            </div>
+        </div>
+    
+    <!-- Grid-->
+        <div class="mt-2 mb-3 brand-slider">
+            <div class="owl-carousel owl-theme" id="brands-slider">
+                <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $author): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="text-center">
+                        <a href="<?php echo e(route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1])); ?>">
+                            <div class="brand_div d-flex align-items-center justify-content-center"
+                                 style="height:100px">
+                                <img
+                                    onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
+                                    src="<?php echo e(asset("/images/author/" . $author->image)); ?>" alt="<?php echo e($author->name); ?>">
+                            </div>
+                        </a>
+                        <small><?php echo e($author->name_bangla); ?></small>
                     </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>

@@ -161,7 +161,6 @@
     <script
         src="<?php echo e(asset('public/assets/back-end')); ?>/vendor/hs-navbar-vertical-aside/hs-navbar-vertical-aside-mini-cache.js"></script>
     <link rel="stylesheet" href="<?php echo e(asset('public/assets/back-end')); ?>/css/toastr.css">
-    
 </head>
 
 <body class="footer-offset">

@@ -1423,4 +1423,5 @@
   'Products imported successfully!' => 'Products imported successfully!',
   'hi' => 'Hi',
   'welcome_to_dashboard' => 'Welcome to dashboard',
+  'Authors' => 'Authors',
 );

@@ -32,6 +32,7 @@ use App\Model\FlashDealProduct;
 use function App\CPU\translate;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Model\Author;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Artisan;
@@ -69,6 +70,7 @@ class WebController extends Controller
 
         $latest_products = Product::with(['reviews'])->active()->orderBy('id', 'desc')->take(8)->get();
         $categories = Category::where('position', 0)->take(12)->get();
+        $authors = Author::take(15)->get();
         $brands = Brand::take(15)->get();
         //best sell product
         $bestSellProduct = OrderDetail::with('product.reviews')
@@ -101,7 +103,7 @@ class WebController extends Controller
 
         $deal_of_the_day = DealOfTheDay::join('products', 'products.id', '=', 'deal_of_the_days.product_id')->select('deal_of_the_days.*', 'products.unit_price')->where('deal_of_the_days.status', 1)->first();
 
-        return view('web-views.home', compact('featured_products', 'topRated', 'bestSellProduct', 'latest_products', 'categories', 'brands', 'deal_of_the_day', 'top_sellers', 'home_categories'));
+        return view('web-views.home', compact('featured_products', 'topRated', 'bestSellProduct', 'latest_products', 'categories', 'authors', 'brands', 'deal_of_the_day', 'top_sellers', 'home_categories'));
     }
 
     public function clear()
