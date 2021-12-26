@@ -1,6 +1,6 @@
 @extends('layouts.back-end.app')
 
-@section('title', \App\CPU\translate('Product List'))
+@section('title', \App\CPU\translate('Book List'))
 
 @push('css_or_js')
 
@@ -11,7 +11,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{\App\CPU\translate('Dashboard')}}</a></li>
-            <li class="breadcrumb-item" aria-current="page">{{\App\CPU\translate('Products')}}</li>
+            <li class="breadcrumb-item" aria-current="page">{{\App\CPU\translate('Books')}}</li>
         </ol>
     </nav>
 
@@ -22,7 +22,7 @@
                     <div class="row flex-between justify-content-between align-items-center flex-grow-1">
                         <div>
                             <h5 class="flex-between">
-                                <div>{{\App\CPU\translate('product_table')}}</div>
+                                <div>{{\App\CPU\translate('book_table')}}</div>
                                 <div style="color: red; padding: 0 .4375rem;">({{ $pro->total() }})</div>
                             </h5>
                         </div>
@@ -36,7 +36,7 @@
                                         </div>
                                     </div>
                                     <input id="datatableSearch_" type="search" name="search" class="form-control"
-                                           placeholder="{{\App\CPU\translate('Search Product Name')}}" aria-label="Search orders"
+                                           placeholder="{{\App\CPU\translate('Search Book')}}" aria-label="Search orders"
                                            value="{{ $search }}" required>
                                     <input type="hidden" value="{{ $request_status }}" name="status">
                                     <button type="submit" class="btn btn-primary">{{\App\CPU\translate('search')}}</button>
@@ -60,11 +60,11 @@
                             <thead class="thead-light">
                             <tr>
                                 <th>{{\App\CPU\translate('SL#')}}</th>
-                                <th>{{\App\CPU\translate('Product Name')}}</th>
-                                <th>{{\App\CPU\translate('purchase_price')}}</th>
-                                <th>{{\App\CPU\translate('selling_price')}}</th>
+                                <th>{{\App\CPU\translate('Book Name')}}</th>
+                                <th>Price</th>
                                 <th>{{\App\CPU\translate('featured')}}</th>
                                 <th>{{\App\CPU\translate('Active')}} {{\App\CPU\translate('status')}}</th>
+                                <th>Stock Status</th>
                                 <th style="width: 5px" class="text-center">{{\App\CPU\translate('Action')}}</th>
                             </tr>
                             </thead>
@@ -74,14 +74,23 @@
                                     <th scope="row">{{$pro->firstItem()+$k}}</th>
                                     <td>
                                         <a href="{{route('admin.product.view',[$p['id']])}}">
+                                            {{\Illuminate\Support\Str::limit($p['name_bangla'],20)}}<br/>
                                             {{\Illuminate\Support\Str::limit($p['name'],20)}}
                                         </a>
                                     </td>
                                     <td>
-                                        {{\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['purchase_price']))}}
-                                    </td>
-                                    <td>
-                                        {{\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['unit_price']))}}
+                                        <small>
+                                            {{\App\CPU\translate('purchase_price')}}: 
+                                            <b>{{\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['purchase_price']))}}</b>
+                                        </small><br/>
+                                        <small>
+                                            {{\App\CPU\translate('published_price')}}: 
+                                            <b>{{\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['published_price']))}}</b>
+                                        </small><br/>
+                                        <small>
+                                            {{\App\CPU\translate('sale')}}: 
+                                            <b>{{\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['unit_price']))}}</b>
+                                        </small>
                                     </td>
                                     <td>
                                         <label class="switch">
@@ -98,9 +107,16 @@
                                         </label>
                                     </td>
                                     <td>
+                                        <select id="stock_status{{$p['id']}}" onclick="stock_status('{{$p['id']}}')" class="form-control" style="width: 140px;">
+                                            <option value="1" {{$p->stock_status == 1?'selected':''}}>In Stock</option>
+                                            <option value="2" {{$p->stock_status == 2?'selected':''}}>Out of Stock</option>
+                                            <option value="3" {{$p->stock_status == 3?'selected':''}}>Back Order</option>
+                                        </select>
+                                    </td>
+                                    <td>
                                         <a class="btn btn-primary btn-sm"
                                            href="{{route('admin.product.edit',[$p['id']])}}">
-                                            <i class="tio-edit"></i>{{\App\CPU\translate('Edit')}}
+                                            <i class="tio-edit"></i> {{\App\CPU\translate('Edit')}}
                                         </a>
                                         <a class="btn btn-danger btn-sm" href="javascript:"
                                            onclick="form_alert('product-{{$p['id']}}','Want to delete this item ?')">
@@ -184,6 +200,24 @@
             });
             $.ajax({
                 url: "{{route('admin.product.featured-status')}}",
+                method: 'POST',
+                data: {
+                    id: id
+                },
+                success: function () {
+                    toastr.success('{{\App\CPU\translate('Featured status updated successfully')}}');
+                }
+            });
+        }
+
+        function stock_status(id) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "{{route('admin.product.stock-status')}}",
                 method: 'POST',
                 data: {
                     id: id

@@ -306,13 +306,22 @@
                             <li class="navbar-vertical-aside-has-menu <?php echo e(Request::is('admin/publisher*')?'active':''); ?>">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link"
                                    href="<?php echo e(route('admin.publisher.index')); ?>">
-                                    <i class="tio-book nav-icon"></i>
+                                    <i class="tio-bookmarks nav-icon"></i>
                                     <span
                                         class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate"><?php echo e(\App\CPU\translate('Publications')); ?></span>
                                 </a>
                             </li>
 
-                            <li class="navbar-vertical-aside-has-menu <?php echo e((Request::is('admin/product/list/in_house') || Request::is('admin/product/bulk-import'))?'active':''); ?>">
+                            <li class="navbar-vertical-aside-has-menu <?php echo e(Request::is('admin/product/list/in_hous*')?'active':''); ?>">
+                                <a class="js-navbar-vertical-aside-menu-link nav-link"
+                                   href="<?php echo e(route('admin.product.list',['in_house', ''])); ?>">
+                                    <i class="tio-book nav-icon"></i>
+                                    <span
+                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate"><?php echo e(\App\CPU\translate('Books')); ?></span>
+                                </a>
+                            </li>
+
+                            <li class="navbar-vertical-aside-has-menu">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
                                    href="javascript:">
                                     <i class="tio-shop nav-icon"></i>
@@ -321,11 +330,11 @@
                                     </span>
                                 </a>
                                 <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
-                                    style="display: <?php echo e((Request::is('admin/product/list/in_house') || Request::is('admin/product/bulk-import'))?'block':''); ?>">
+                                    style="display: Request::is('admin/product/bulk-import'))?'block':''}}">
                                     <li class="nav-item <?php echo e(Request::is('admin/product/list/in_house')?'active':''); ?>">
                                         <a class="nav-link " href="<?php echo e(route('admin.product.list',['in_house', ''])); ?>">
                                             <span class="tio-circle nav-indicator-icon"></span>
-                                            <span class="text-truncate"><?php echo e(\App\CPU\translate('Products')); ?></span>
+                                            <span class="text-truncate"><?php echo e(\App\CPU\translate('Books')); ?></span>
                                         </a>
                                     </li>
                                     <li class="nav-item <?php echo e(Request::is('admin/product/bulk-import')?'active':''); ?>">

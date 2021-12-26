@@ -47,6 +47,15 @@ class ProductController extends BaseController
         $data = $request->status;
         return response()->json($data);
     }
+    
+    public function stock_status(Request $request)
+    {
+        $product = Product::find($request->id);
+        $product->featured = ($product['featured'] == 0 || $product['featured'] == null) ? 1 : 0;
+        $product->save();
+        $data = $request->status;
+        return response()->json($data);
+    }
 
     public function approve_status(Request $request)
     {
@@ -375,7 +384,8 @@ class ProductController extends BaseController
             $key = explode(' ', $request['search']);
             $pro = $pro->where(function ($q) use ($key) {
                 foreach ($key as $value) {
-                    $q->Where('name', 'like', "%{$value}%");
+                    $q->orWhere('name', 'like', "%{$value}%");
+                    $q->orWhere('name_bangla', 'like', "%{$value}%");
                 }
             });
             $query_param = ['search' => $request['search']];

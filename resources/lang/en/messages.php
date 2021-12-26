@@ -1410,4 +1410,9 @@
   'Book' => 'Book',
   'Add New Book' => 'Add New Book',
   'Product updated successfully!' => 'Product updated successfully!',
+  'Books' => 'Books',
+  'Book List' => 'Book List',
+  'book_table' => 'Book table',
+  'Search Book' => 'Search Book',
+  'published_price' => 'Published price',
 );
