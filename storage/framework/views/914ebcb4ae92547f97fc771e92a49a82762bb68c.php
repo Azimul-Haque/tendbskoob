@@ -37,36 +37,31 @@
 
     <div class="card-body inline_product text-center p-1 clickable"
          style="cursor: pointer; max-height:7.5rem;">
-        <div class="rating-show">
-            <span class="d-inline-block font-size-sm text-body">
-                <?php for($inc=0;$inc<5;$inc++): ?>
-                    <?php if($inc<$overallRating[0]): ?>
-                        <i class="sr-star czi-star-filled active"></i>
-                    <?php else: ?>
-                        <i class="sr-star czi-star"></i>
-                    <?php endif; ?>
-                <?php endfor; ?>
-                <label class="badge-style">( <?php echo e($product->reviews_count); ?> )</label>
-            </span>
-        </div>
+        
         <div style="position: relative;" class="product-title1">
             <a href="<?php echo e(route('product',$product->slug)); ?>">
                 <?php echo e(\Illuminate\Support\Str::limit($product['name_bangla'], 25)); ?>
 
-            </a>
+            </a><br/>
+            <?php if($product->writers->count() > 0): ?>
+                <small><?php echo e($product->writers[0]->name_bangla); ?></small>
+            <?php elseif($product->translators->count() > 0): ?>
+                <small><?php echo e($product->translators[0]->name_bangla); ?></small>
+            <?php elseif($product->editors->count() > 0): ?>
+                <small><?php echo e($product->editors[0]->name_bangla); ?></small>
+            <?php endif; ?>
         </div>
         <div class="justify-content-between text-center">
             <div class="product-price text-center">
-                <?php if($product->discount > 0): ?>
+                
+                <?php if($product->published_price > $product->unit_price): ?>
                     <strike style="font-size: 12px!important;color: grey!important;">
-                        <?php echo e(\App\CPU\Helpers::currency_converter($product->unit_price)); ?>
+                        ৳ <?php echo e(number_format($product->published_price, 0)); ?>
 
                     </strike><br>
                 <?php endif; ?>
                 <span class="text-accent">
-                    <?php echo e(\App\CPU\Helpers::currency_converter(
-                        $product->unit_price-(\App\CPU\Helpers::get_product_discount($product,$product->unit_price))
-                    )); ?>
+                    ৳ <?php echo e(number_format($product->unit_price, 0)); ?>
 
                 </span>
             </div>

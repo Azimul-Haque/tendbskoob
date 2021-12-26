@@ -236,7 +236,7 @@ class DealController extends Controller
         $deal_id = DB::table('deal_of_the_days')->insertGetId([
             'title' => $request['title'][array_search('en', $request->lang)],
             'discount' => $product['discount_type'] == 'amount' ? BackEndHelper::currency_to_usd($product['discount']) : $product['discount'],
-            'discount_type' => $product['discount_type'],
+            'discount_type' => 'percent',
             'product_id' => $request['product_id'],
             'status' => 0,
             'created_at' => now(),

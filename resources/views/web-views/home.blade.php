@@ -351,7 +351,7 @@
                         <h1 style="color: white"> {{ \App\CPU\translate('deal_of_the_day') }}</h1>
                         <center>
                             <strong style="font-size: 21px!important;color: {{$web_config['primary_color']}}">
-                                {{$deal_of_the_day->discount_type=='amount'?\App\CPU\Helpers::currency_converter($deal_of_the_day->discount):$deal_of_the_day->discount.' % '}}
+                                ৳ {{  $deal_of_the_day->product->published_price - $deal_of_the_day->product->unit_price }}
                                 {{\App\CPU\translate('off')}}
                             </strong>
                         </center>
@@ -363,16 +363,21 @@
                         </div>
                         <div style="text-align: center; padding-top: 26px;">
                             <h5 style="font-weight: 600; color: {{$web_config['primary_color']}}">
-                                {{\Illuminate\Support\Str::limit($deal_of_the_day->product['name_bangla'],40)}}
+                                {{\Illuminate\Support\Str::limit($deal_of_the_day->product['name_bangla'],40)}}<br/>
+                                @if ($deal_of_the_day->product->writers->count() > 0)
+                                    <small>{{$deal_of_the_day->product->writers[0]->name_bangla}}</small>
+                                @elseif($deal_of_the_day->product->translators->count() > 0)
+                                    <small>{{$deal_of_the_day->product->translators[0]->name_bangla}}</small>
+                                @elseif($deal_of_the_day->product->editors->count() > 0)
+                                    <small>{{$deal_of_the_day->product->editors[0]->name_bangla}}</small>
+                                @endif
                             </h5>
                             <span class="text-accent">
-                                {{\App\CPU\Helpers::currency_converter(
-                                    $deal_of_the_day->product->unit_price-(\App\CPU\Helpers::get_product_discount($deal_of_the_day->product,$deal_of_the_day->product->unit_price))
-                                )}}
+                                ৳ {{ number_format($deal_of_the_day->product->unit_price, 0) }}
                             </span>
-                            @if($deal_of_the_day->product->discount > 0)
+                            @if($deal_of_the_day->product->published_price > $deal_of_the_day->product->unit_price)
                                 <strike style="font-size: 12px!important;color: grey!important;">
-                                    {{\App\CPU\Helpers::currency_converter($deal_of_the_day->product->unit_price)}}
+                                    ৳ {{ number_format($deal_of_the_day->product->published_price, 0) }}
                                 </strike>
                             @endif
 
@@ -521,7 +526,7 @@
     </section>
 
     <!-- top sellers -->
-    @if(count($top_sellers) > 0)
+    {{-- @if(count($top_sellers) > 0)
         <section class="container rtl">
             <!-- Heading-->
             <div class="section-header">
@@ -557,7 +562,7 @@
             </div>
 
         </section>
-    @endif
+    @endif --}}
 
     {{-- Categorized product --}}
     @foreach($home_categories as $category)
@@ -618,17 +623,21 @@
                                         <a class="ptr"
                                            href="{{route('product',$product->slug)}}">
                                             {{\Illuminate\Support\Str::limit($bestSell->product['name_bangla'],30)}}
-                                        </a>
+                                        </a><br/>
+                                        @if ($bestSell->product->writers->count() > 0)
+                                            <small>{{$bestSell->product->writers[0]->name_bangla}}</small>
+                                        @elseif($bestSell->product->translators->count() > 0)
+                                            <small>{{$bestSell->product->translators[0]->name_bangla}}</small>
+                                        @elseif($bestSell->product->editors->count() > 0)
+                                            <small>{{$bestSell->product->editors[0]->name_bangla}}</small>
+                                        @endif
                                     </h6>
                                     <div class="widget-product-meta">
                                         <span class="text-accent">
-                                            {{\App\CPU\Helpers::currency_converter(
-                                            $bestSell->product->unit_price-(\App\CPU\Helpers::get_product_discount($bestSell->product,$bestSell->product->unit_price))
-                                            )}}
-
-                                            @if($bestSell->product->discount > 0)
+                                            ৳ {{ number_format($bestSell->product->unit_price, 0) }}
+                                            @if($bestSell->product->published_price > $bestSell->product->unit_price)
                                                 <strike style="font-size: 12px!important;color: grey!important;">
-                                                    {{\App\CPU\Helpers::currency_converter($bestSell->product->unit_price)}}
+                                                    ৳ {{ number_format($bestSell->product->published_price, 0) }}
                                                 </strike>
                                             @endif
                                         </span>
@@ -667,18 +676,23 @@
                                         <a class="ptr"
                                            href="{{route('product',$product->slug)}}">
                                             {{\Illuminate\Support\Str::limit($product['name_bangla'],30)}}
-                                        </a>
+                                        </a><br/>
+                                        @if ($product->writers->count() > 0)
+                                            <small>{{$product->writers[0]->name_bangla}}</small>
+                                        @elseif($product->translators->count() > 0)
+                                            <small>{{$product->translators[0]->name_bangla}}</small>
+                                        @elseif($product->editors->count() > 0)
+                                            <small>{{$product->editors[0]->name_bangla}}</small>
+                                        @endif
                                     </h6>
                                     <div class="widget-product-meta">
                                           <span class="text-accent">
-                                            {{\App\CPU\Helpers::currency_converter(
-                                            $product->unit_price-(\App\CPU\Helpers::get_product_discount($product,$product->unit_price))
-                                            )}}
-                                              @if($product->discount > 0)
-                                                  <strike style="font-size: 12px!important;color: grey!important;">
-                                                    {{\App\CPU\Helpers::currency_converter($product->unit_price)}}
-                                                </strike>
-                                              @endif
+                                            ৳ {{ number_format($product->unit_price, 0) }}
+                                            @if($product->published_price > $product->unit_price)
+                                            <strike style="font-size: 12px!important;color: grey!important;">
+                                                ৳ {{ number_format($product->published_price, 0) }}
+                                            </strike>
+                                            @endif
                                         </span>
                                     </div>
                                 </div>
@@ -713,19 +727,23 @@
                                         <a class="ptr"
                                            href="{{route('product',$top->product->slug)}}">
                                             {{\Illuminate\Support\Str::limit($top->product['name_bangla'],30)}}
-                                        </a>
+                                        </a><br/>
+                                        @if ($top->product->writers->count() > 0)
+                                            <small>{{$top->product->writers[0]->name_bangla}}</small>
+                                        @elseif($top->product->translators->count() > 0)
+                                            <small>{{$top->product->translators[0]->name_bangla}}</small>
+                                        @elseif($top->product->editors->count() > 0)
+                                            <small>{{$top->product->editors[0]->name_bangla}}</small>
+                                        @endif
                                     </h6>
                                     <div class="widget-product-meta">
                                        <span class="text-accent">
-                                            {{\App\CPU\Helpers::currency_converter(
-                                            $top->product->unit_price-(\App\CPU\Helpers::get_product_discount($top->product,$top->product->unit_price))
-                                            )}}
-
-                                           @if($top->product->discount > 0)
-                                               <strike style="font-size: 12px!important;color: grey!important;">
-                                                    {{\App\CPU\Helpers::currency_converter($top->product->unit_price)}}
-                                                </strike>
-                                           @endif
+                                            ৳ {{ number_format($top->product->unit_price, 0) }}
+                                            @if($top->product->published_price > $top->product->unit_price)
+                                            <strike style="font-size: 12px!important;color: grey!important;">
+                                                ৳ {{ number_format($top->product->published_price, 0) }}
+                                            </strike>
+                                            @endif
                                         </span>
                                     </div>
                                 </div>

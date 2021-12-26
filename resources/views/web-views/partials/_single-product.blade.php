@@ -35,7 +35,7 @@
 
     <div class="card-body inline_product text-center p-1 clickable"
          style="cursor: pointer; max-height:7.5rem;">
-        <div class="rating-show">
+        {{-- <div class="rating-show">
             <span class="d-inline-block font-size-sm text-body">
                 @for($inc=0;$inc<5;$inc++)
                     @if($inc<$overallRating[0])
@@ -46,23 +46,29 @@
                 @endfor
                 <label class="badge-style">( {{$product->reviews_count}} )</label>
             </span>
-        </div>
+        </div> --}}
         <div style="position: relative;" class="product-title1">
             <a href="{{route('product',$product->slug)}}">
                 {{ \Illuminate\Support\Str::limit($product['name_bangla'], 25) }}
-            </a>
+            </a><br/>
+            @if ($product->writers->count() > 0)
+                <small>{{$product->writers[0]->name_bangla}}</small>
+            @elseif($product->translators->count() > 0)
+                <small>{{$product->translators[0]->name_bangla}}</small>
+            @elseif($product->editors->count() > 0)
+                <small>{{$product->editors[0]->name_bangla}}</small>
+            @endif
         </div>
         <div class="justify-content-between text-center">
             <div class="product-price text-center">
-                @if($product->discount > 0)
+                
+                @if($product->published_price > $product->unit_price)
                     <strike style="font-size: 12px!important;color: grey!important;">
-                        {{\App\CPU\Helpers::currency_converter($product->unit_price)}}
+                        ৳ {{ number_format($product->published_price, 0) }}
                     </strike><br>
                 @endif
                 <span class="text-accent">
-                    {{\App\CPU\Helpers::currency_converter(
-                        $product->unit_price-(\App\CPU\Helpers::get_product_discount($product,$product->unit_price))
-                    )}}
+                    ৳ {{ number_format($product->unit_price, 0) }}
                 </span>
             </div>
         </div>

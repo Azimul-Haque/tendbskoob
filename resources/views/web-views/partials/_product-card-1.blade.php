@@ -22,14 +22,21 @@
         <div class="flash_deal_product_details pl-2 pr-1 d-flex align-items-center">
             <div>
                 <h6 class="flash-product-title">
-                    {{$product['name_bangla']}}
-                </h6>
+                    {{\Illuminate\Support\Str::limit($product['name_bangla'],20)}}          
+                </h6><br/>
+                @if ($product->writers->count() > 0)
+                    <small>{{$product->writers[0]->name_bangla}}</small>
+                @elseif($product->translators->count() > 0)
+                    <small>{{$product->translators[0]->name_bangla}}</small>
+                @elseif($product->editors->count() > 0)
+                    <small>{{$product->editors[0]->name_bangla}}</small>
+                @endif
                 <div class="flash-product-price">
-                    {{\App\CPU\Helpers::currency_converter($product->unit_price-\App\CPU\Helpers::get_product_discount($product,$product->unit_price))}}
-                    @if($product->discount > 0)
+                    ৳ {{ number_format($product->unit_price, 0) }}
+                    @if($product->published_price > $product->unit_price)
                         <strike
                             style="font-size: 12px!important;color: grey!important;">
-                            {{\App\CPU\Helpers::currency_converter($product->unit_price)}}
+                            ৳ {{ number_format($product->published_price, 0) }}
                         </strike>
                     @endif
                 </div>

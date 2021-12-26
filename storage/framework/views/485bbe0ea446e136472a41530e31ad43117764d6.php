@@ -24,16 +24,22 @@
         <div class="flash_deal_product_details pl-2 pr-1 d-flex align-items-center">
             <div>
                 <h6 class="flash-product-title">
-                    <?php echo e($product['name_bangla']); ?>
-
-                </h6>
+                    <?php echo e(\Illuminate\Support\Str::limit($product['name_bangla'],20)); ?>          
+                </h6><br/>
+                <?php if($product->writers->count() > 0): ?>
+                    <small><?php echo e($product->writers[0]->name_bangla); ?></small>
+                <?php elseif($product->translators->count() > 0): ?>
+                    <small><?php echo e($product->translators[0]->name_bangla); ?></small>
+                <?php elseif($product->editors->count() > 0): ?>
+                    <small><?php echo e($product->editors[0]->name_bangla); ?></small>
+                <?php endif; ?>
                 <div class="flash-product-price">
-                    <?php echo e(\App\CPU\Helpers::currency_converter($product->unit_price-\App\CPU\Helpers::get_product_discount($product,$product->unit_price))); ?>
+                    ৳ <?php echo e(number_format($product->unit_price, 0)); ?>
 
-                    <?php if($product->discount > 0): ?>
+                    <?php if($product->published_price > $product->unit_price): ?>
                         <strike
                             style="font-size: 12px!important;color: grey!important;">
-                            <?php echo e(\App\CPU\Helpers::currency_converter($product->unit_price)); ?>
+                            ৳ <?php echo e(number_format($product->published_price, 0)); ?>
 
                         </strike>
                     <?php endif; ?>

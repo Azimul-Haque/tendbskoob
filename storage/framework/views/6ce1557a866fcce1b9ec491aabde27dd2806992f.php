@@ -1,4 +1,21 @@
-<?php $__env->startSection('title',$product['name']); ?>
+<?php
+    if($product->writers->count() > 0){
+        $bn_book_writer_for_title = $product->writers[0]->name_bangla;
+        $en_book_writer_for_title = $product->writers[0]->name;
+    } elseif($product->translators->count() > 0) {
+        $bn_book_writer_for_title = $product->translators[0]->name_bangla;
+        $en_book_writer_for_title = $product->translators[0]->name;
+    } elseif($product->editors->count() > 0) {
+        $bn_book_writer_for_title = $product->editors[0]->name_bangla;
+        $en_book_writer_for_title = $product->editors[0]->name;
+    } else {
+        $bn_book_writer_for_title = '';
+        $en_book_writer_for_title = '';
+    }
+    
+?>
+
+<?php $__env->startSection('title',$product['name_bangla'] . ':' . $bn_book_writer_for_title . ' - ' . $product['name'] . ':' . $en_book_writer_for_title . ' | Booksbd.net'); ?>
 
 <?php $__env->startPush('css_or_js'); ?>
     <meta name="description" content="<?php echo e($product->slug); ?>">
@@ -21,11 +38,11 @@
     <?php endif; ?>
 
     <?php if($product['meta_title']!=null): ?>
-        <meta property="og:title" content="<?php echo e($product->meta_title); ?>"/>
-        <meta property="twitter:title" content="<?php echo e($product->meta_title); ?>"/>
+        <meta property="og:title" content="<?php echo e($product->name_bangla . ' - ' . $product->name); ?>"/>
+        <meta property="twitter:title" content="<?php echo e($product->name_bangla . ' - ' . $product->name); ?>"/>
     <?php else: ?>
-        <meta property="og:title" content="<?php echo e($product->name); ?>"/>
-        <meta property="twitter:title" content="<?php echo e($product->name); ?>"/>
+        <meta property="og:title" content="<?php echo e($product->name_bangla . ' - ' . $product->name); ?>"/>
+        <meta property="twitter:title" content="<?php echo e($product->name_bangla . ' - ' . $product->name); ?>"/>
     <?php endif; ?>
     <meta property="og:url" content="<?php echo e(route('product',[$product->slug])); ?>">
 
@@ -41,135 +58,7 @@
     <meta property="twitter:url" content="<?php echo e(route('product',[$product->slug])); ?>">
 
     <link rel="stylesheet" href="<?php echo e(asset('public/assets/front-end/css/product-details.css')); ?>"/>
-    <style>
-        .msg-option {
-            display: none;
-        }
-
-        .chatInputBox {
-            width: 100%;
-        }
-
-        .go-to-chatbox {
-            width: 100%;
-            text-align: center;
-            padding: 5px 0px;
-            display: none;
-        }
-
-        .feature_header {
-            display: flex;
-            justify-content: center;
-        }
-
-        .btn-number:hover {
-            color: <?php echo e($web_config['secondary_color']); ?>;
-
-        }
-
-        .for-total-price {
-            margin- <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>: -30%;
-        }
-
-        .feature_header span {
-            padding- <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>: 15px;
-            font-weight: 700;
-            font-size: 25px;
-            background-color: #ffffff;
-            text-transform: uppercase;
-        }
-
-        @media (max-width: 768px) {
-            .feature_header span {
-                margin-bottom: -40px;
-            }
-
-            .for-total-price {
-                padding- <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>: 30%;
-            }
-
-            .product-quantity {
-                padding- <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>: 4%;
-            }
-
-            .for-margin-bnt-mobile {
-                margin- <?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>: 7px;
-            }
-
-            .font-for-tab {
-                font-size: 11px !important;
-            }
-
-            .pro {
-                font-size: 13px;
-            }
-        }
-
-        @media (max-width: 375px) {
-            .for-margin-bnt-mobile {
-                margin- <?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>: 3px;
-            }
-
-            .for-discount {
-                margin- <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>: 10% !important;
-            }
-
-            .for-dicount-div {
-                margin-top: -5%;
-                margin- <?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>: -7%;
-            }
-
-            .product-quantity {
-                margin- <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>: 4%;
-            }
-
-        }
-
-        @media (max-width: 500px) {
-            .for-dicount-div {
-                margin-top: -4%;
-                margin- <?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>: -5%;
-            }
-
-            .for-total-price {
-                margin- <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>: -20%;
-            }
-
-            .view-btn-div {
-
-                margin-top: -9%;
-                float: <?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>;
-            }
-
-            .for-discount {
-                margin- <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>: 7%;
-            }
-
-            .viw-btn-a {
-                font-size: 10px;
-                font-weight: 600;
-            }
-
-            .feature_header span {
-                margin-bottom: -7px;
-            }
-
-            .for-mobile-capacity {
-                margin- <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>: 7%;
-            }
-        }
-    </style>
-    <style>
-        th, td {
-            border-bottom: 1px solid #ddd;
-            padding: 5px;
-        }
-
-        thead {
-            background: <?php echo e($web_config['primary_color']); ?>                         !important;
-            color: white;
-        }
-    </style>
+    
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -185,20 +74,15 @@
             <div class="col-lg-6 col-md-6">
                 <div class="cz-product-gallery">
                     <div class="cz-preview">
-                        <?php if($product->images!=null): ?>
-                            <?php $__currentLoopData = json_decode($product->images); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $photo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <div
-                                    class="cz-preview-item d-flex align-items-center justify-content-center <?php echo e($key==0?'active':''); ?>"
-                                    id="image<?php echo e($key); ?>">
-                                    <img class="cz-image-zoom img-responsive"
-                                         onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
-                                         src="<?php echo e(asset("storage/app/public/product/$photo")); ?>"
-                                         data-zoom="<?php echo e(asset("storage/app/public/product/$photo")); ?>"
-                                         alt="Product image" width="">
-                                    <div class="cz-image-zoom-pane"></div>
-                                </div>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <?php endif; ?>
+                        <div
+                            class="cz-preview-item d-flex align-items-center justify-content-center>
+                            <img class="cz-image-zoom img-responsive"
+                                    onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
+                                    src="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($product['thumbnail']); ?>"
+                                    data-zoom="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($product['thumbnail']); ?>"
+                                    alt="Product image" width="">
+                            <div class="cz-image-zoom-pane"></div>
+                        </div>
                     </div>
                     <div class="cz">
                         <div class="container">

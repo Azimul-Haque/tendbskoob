@@ -352,7 +352,7 @@
                         <h1 style="color: white"> <?php echo e(\App\CPU\translate('deal_of_the_day')); ?></h1>
                         <center>
                             <strong style="font-size: 21px!important;color: <?php echo e($web_config['primary_color']); ?>">
-                                <?php echo e($deal_of_the_day->discount_type=='amount'?\App\CPU\Helpers::currency_converter($deal_of_the_day->discount):$deal_of_the_day->discount.' % '); ?>
+                                ৳ <?php echo e($deal_of_the_day->product->published_price - $deal_of_the_day->product->unit_price); ?>
 
                                 <?php echo e(\App\CPU\translate('off')); ?>
 
@@ -366,18 +366,22 @@
                         </div>
                         <div style="text-align: center; padding-top: 26px;">
                             <h5 style="font-weight: 600; color: <?php echo e($web_config['primary_color']); ?>">
-                                <?php echo e(\Illuminate\Support\Str::limit($deal_of_the_day->product['name_bangla'],40)); ?>
-
+                                <?php echo e(\Illuminate\Support\Str::limit($deal_of_the_day->product['name_bangla'],40)); ?><br/>
+                                <?php if($deal_of_the_day->product->writers->count() > 0): ?>
+                                    <small><?php echo e($deal_of_the_day->product->writers[0]->name_bangla); ?></small>
+                                <?php elseif($deal_of_the_day->product->translators->count() > 0): ?>
+                                    <small><?php echo e($deal_of_the_day->product->translators[0]->name_bangla); ?></small>
+                                <?php elseif($deal_of_the_day->product->editors->count() > 0): ?>
+                                    <small><?php echo e($deal_of_the_day->product->editors[0]->name_bangla); ?></small>
+                                <?php endif; ?>
                             </h5>
                             <span class="text-accent">
-                                <?php echo e(\App\CPU\Helpers::currency_converter(
-                                    $deal_of_the_day->product->unit_price-(\App\CPU\Helpers::get_product_discount($deal_of_the_day->product,$deal_of_the_day->product->unit_price))
-                                )); ?>
+                                ৳ <?php echo e(number_format($deal_of_the_day->product->unit_price, 0)); ?>
 
                             </span>
-                            <?php if($deal_of_the_day->product->discount > 0): ?>
+                            <?php if($deal_of_the_day->product->published_price > $deal_of_the_day->product->unit_price): ?>
                                 <strike style="font-size: 12px!important;color: grey!important;">
-                                    <?php echo e(\App\CPU\Helpers::currency_converter($deal_of_the_day->product->unit_price)); ?>
+                                    ৳ <?php echo e(number_format($deal_of_the_day->product->published_price, 0)); ?>
 
                                 </strike>
                             <?php endif; ?>
@@ -534,44 +538,7 @@
     </section>
 
     <!-- top sellers -->
-    <?php if(count($top_sellers) > 0): ?>
-        <section class="container rtl">
-            <!-- Heading-->
-            <div class="section-header">
-                <div class="feature_header">
-                    <span><?php echo e(\App\CPU\translate('sellers')); ?></span>
-                </div>
-                <div>
-                    <a class="btn btn-outline-accent btn-sm viw-btn-a"
-                       href="<?php echo e(route('sellers')); ?>"><?php echo e(\App\CPU\translate('view_all')); ?>
-
-                        <i class="czi-arrow-<?php echo e(Session::get('direction') === "rtl" ? 'left mr-1 ml-n1' : 'right ml-1 mr-n1'); ?>"></i>
-                    </a>
-                </div>
-            </div>
-            <!-- top seller Grid-->
-            <div class="mt-2 mb-3 brand-slider">
-                <div class="owl-carousel owl-theme" id="top-seller-slider">
-                    <?php $__currentLoopData = $top_sellers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $seller): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <?php if($seller->shop): ?>
-                            <div style="height: 100px; padding: 2%; background: white;border-radius: 5px">
-                                <center>
-                                    <a href="<?php echo e(route('shopView',['id'=>$seller['id']])); ?>">
-                                        <img
-                                            style="vertical-align: middle; padding: 2%;width:75px;height: 75px;border-radius: 50%"
-                                            onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
-                                            src="<?php echo e(asset("storage/app/public/shop")); ?>/<?php echo e($seller->shop->image); ?>">
-                                        <p class="text-center small font-weight-bold"><?php echo e(Str::limit($seller->shop->name, 14)); ?></p>
-                                    </a>
-                                </center>
-                            </div>
-                        <?php endif; ?>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </div>
-            </div>
-
-        </section>
-    <?php endif; ?>
+    
 
     
     <?php $__currentLoopData = $home_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -635,18 +602,22 @@
                                            href="<?php echo e(route('product',$product->slug)); ?>">
                                             <?php echo e(\Illuminate\Support\Str::limit($bestSell->product['name_bangla'],30)); ?>
 
-                                        </a>
+                                        </a><br/>
+                                        <?php if($bestSell->product->writers->count() > 0): ?>
+                                            <small><?php echo e($bestSell->product->writers[0]->name_bangla); ?></small>
+                                        <?php elseif($bestSell->product->translators->count() > 0): ?>
+                                            <small><?php echo e($bestSell->product->translators[0]->name_bangla); ?></small>
+                                        <?php elseif($bestSell->product->editors->count() > 0): ?>
+                                            <small><?php echo e($bestSell->product->editors[0]->name_bangla); ?></small>
+                                        <?php endif; ?>
                                     </h6>
                                     <div class="widget-product-meta">
                                         <span class="text-accent">
-                                            <?php echo e(\App\CPU\Helpers::currency_converter(
-                                            $bestSell->product->unit_price-(\App\CPU\Helpers::get_product_discount($bestSell->product,$bestSell->product->unit_price))
-                                            )); ?>
+                                            ৳ <?php echo e(number_format($bestSell->product->unit_price, 0)); ?>
 
-
-                                            <?php if($bestSell->product->discount > 0): ?>
+                                            <?php if($bestSell->product->published_price > $bestSell->product->unit_price): ?>
                                                 <strike style="font-size: 12px!important;color: grey!important;">
-                                                    <?php echo e(\App\CPU\Helpers::currency_converter($bestSell->product->unit_price)); ?>
+                                                    ৳ <?php echo e(number_format($bestSell->product->published_price, 0)); ?>
 
                                                 </strike>
                                             <?php endif; ?>
@@ -688,20 +659,25 @@
                                            href="<?php echo e(route('product',$product->slug)); ?>">
                                             <?php echo e(\Illuminate\Support\Str::limit($product['name_bangla'],30)); ?>
 
-                                        </a>
+                                        </a><br/>
+                                        <?php if($product->writers->count() > 0): ?>
+                                            <small><?php echo e($product->writers[0]->name_bangla); ?></small>
+                                        <?php elseif($product->translators->count() > 0): ?>
+                                            <small><?php echo e($product->translators[0]->name_bangla); ?></small>
+                                        <?php elseif($product->editors->count() > 0): ?>
+                                            <small><?php echo e($product->editors[0]->name_bangla); ?></small>
+                                        <?php endif; ?>
                                     </h6>
                                     <div class="widget-product-meta">
                                           <span class="text-accent">
-                                            <?php echo e(\App\CPU\Helpers::currency_converter(
-                                            $product->unit_price-(\App\CPU\Helpers::get_product_discount($product,$product->unit_price))
-                                            )); ?>
+                                            ৳ <?php echo e(number_format($product->unit_price, 0)); ?>
 
-                                              <?php if($product->discount > 0): ?>
-                                                  <strike style="font-size: 12px!important;color: grey!important;">
-                                                    <?php echo e(\App\CPU\Helpers::currency_converter($product->unit_price)); ?>
+                                            <?php if($product->published_price > $product->unit_price): ?>
+                                            <strike style="font-size: 12px!important;color: grey!important;">
+                                                ৳ <?php echo e(number_format($product->published_price, 0)); ?>
 
-                                                </strike>
-                                              <?php endif; ?>
+                                            </strike>
+                                            <?php endif; ?>
                                         </span>
                                     </div>
                                 </div>
@@ -738,21 +714,25 @@
                                            href="<?php echo e(route('product',$top->product->slug)); ?>">
                                             <?php echo e(\Illuminate\Support\Str::limit($top->product['name_bangla'],30)); ?>
 
-                                        </a>
+                                        </a><br/>
+                                        <?php if($top->product->writers->count() > 0): ?>
+                                            <small><?php echo e($top->product->writers[0]->name_bangla); ?></small>
+                                        <?php elseif($top->product->translators->count() > 0): ?>
+                                            <small><?php echo e($top->product->translators[0]->name_bangla); ?></small>
+                                        <?php elseif($top->product->editors->count() > 0): ?>
+                                            <small><?php echo e($top->product->editors[0]->name_bangla); ?></small>
+                                        <?php endif; ?>
                                     </h6>
                                     <div class="widget-product-meta">
                                        <span class="text-accent">
-                                            <?php echo e(\App\CPU\Helpers::currency_converter(
-                                            $top->product->unit_price-(\App\CPU\Helpers::get_product_discount($top->product,$top->product->unit_price))
-                                            )); ?>
+                                            ৳ <?php echo e(number_format($top->product->unit_price, 0)); ?>
 
+                                            <?php if($top->product->published_price > $top->product->unit_price): ?>
+                                            <strike style="font-size: 12px!important;color: grey!important;">
+                                                ৳ <?php echo e(number_format($top->product->published_price, 0)); ?>
 
-                                           <?php if($top->product->discount > 0): ?>
-                                               <strike style="font-size: 12px!important;color: grey!important;">
-                                                    <?php echo e(\App\CPU\Helpers::currency_converter($top->product->unit_price)); ?>
-
-                                                </strike>
-                                           <?php endif; ?>
+                                            </strike>
+                                            <?php endif; ?>
                                         </span>
                                     </div>
                                 </div>
