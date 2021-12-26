@@ -24,7 +24,7 @@
         <div class="flash_deal_product_details pl-2 pr-1 d-flex align-items-center">
             <div>
                 <h6 class="flash-product-title">
-                    <?php echo e($product['name']); ?>
+                    <?php echo e($product['name_bangla']); ?>
 
                 </h6>
                 <div class="flash-product-price">

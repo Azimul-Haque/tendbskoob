@@ -366,7 +366,7 @@
                         </div>
                         <div style="text-align: center; padding-top: 26px;">
                             <h5 style="font-weight: 600; color: <?php echo e($web_config['primary_color']); ?>">
-                                <?php echo e(\Illuminate\Support\Str::limit($deal_of_the_day->product['name'],40)); ?>
+                                <?php echo e(\Illuminate\Support\Str::limit($deal_of_the_day->product['name_bangla'],40)); ?>
 
                             </h5>
                             <span class="text-accent">
@@ -489,7 +489,9 @@
                                  src="<?php echo e(asset("storage/app/public/category/$category->icon")); ?>"
                                  alt="<?php echo e($category->name_bangla); ?>">
                             <p class="text-center small"
-                               style="margin-top: -20px"><?php echo e(Str::limit($category->name_bangla, 17)); ?></p>
+                               style="margin-top: -20px"><?php echo e(\Illuminate\Support\Str::limit($category->name_bangla, 17)); ?>
+
+                            <?php echo e($category->name_bangla); ?></p>
                         </a>
                     </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -633,7 +635,7 @@
                                     <h6 class="widget-product-title">
                                         <a class="ptr"
                                            href="<?php echo e(route('product',$product->slug)); ?>">
-                                            <?php echo e(\Illuminate\Support\Str::limit($bestSell->product['name'],30)); ?>
+                                            <?php echo e(\Illuminate\Support\Str::limit($bestSell->product['name_bangla'],30)); ?>
 
                                         </a>
                                     </h6>
@@ -686,7 +688,7 @@
                                     <h6 class="widget-product-title">
                                         <a class="ptr"
                                            href="<?php echo e(route('product',$product->slug)); ?>">
-                                            <?php echo e(\Illuminate\Support\Str::limit($product['name'],30)); ?>
+                                            <?php echo e(\Illuminate\Support\Str::limit($product['name_bangla'],30)); ?>
 
                                         </a>
                                     </h6>
@@ -736,7 +738,7 @@
                                     <h6 class="widget-product-title">
                                         <a class="ptr"
                                            href="<?php echo e(route('product',$top->product->slug)); ?>">
-                                            <?php echo e(\Illuminate\Support\Str::limit($top->product['name'],30)); ?>
+                                            <?php echo e(\Illuminate\Support\Str::limit($top->product['name_bangla'],30)); ?>
 
                                         </a>
                                     </h6>

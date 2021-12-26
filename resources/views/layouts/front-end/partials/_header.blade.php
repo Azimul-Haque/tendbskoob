@@ -519,8 +519,7 @@
 
                         @php($authors=\App\Model\Author::paginate(15))
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#"
-                               data-toggle="dropdown">লেখক</a>
+                            <a class="nav-link" href="{{route('authors')}}">লেখক</a>
                             <ul class="dropdown-menu dropdown-menu-{{Session::get('direction') === "rtl" ? 'right' : 'left'}} scroll-bar"
                                 style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
                                 @foreach($authors as $author)
@@ -551,8 +550,7 @@
                         
                         @php($publishers=\App\Model\Publisher::paginate(15))
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#"
-                               data-toggle="dropdown">প্রকাশনী</a>
+                            <a class="nav-link" href="{{route('publishers')}}">প্রকাশনী</a>
                             <ul class="dropdown-menu dropdown-menu-{{Session::get('direction') === "rtl" ? 'right' : 'left'}} scroll-bar"
                                 style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
                                 @foreach($publishers as $publisher)

@@ -22,7 +22,7 @@
         <div class="flash_deal_product_details pl-2 pr-1 d-flex align-items-center">
             <div>
                 <h6 class="flash-product-title">
-                    {{$product['name']}}
+                    {{$product['name_bangla']}}
                 </h6>
                 <div class="flash-product-price">
                     {{\App\CPU\Helpers::currency_converter($product->unit_price-\App\CPU\Helpers::get_product_discount($product,$product->unit_price))}}

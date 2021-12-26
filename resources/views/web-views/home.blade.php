@@ -363,7 +363,7 @@
                         </div>
                         <div style="text-align: center; padding-top: 26px;">
                             <h5 style="font-weight: 600; color: {{$web_config['primary_color']}}">
-                                {{\Illuminate\Support\Str::limit($deal_of_the_day->product['name'],40)}}
+                                {{\Illuminate\Support\Str::limit($deal_of_the_day->product['name_bangla'],40)}}
                             </h5>
                             <span class="text-accent">
                                 {{\App\CPU\Helpers::currency_converter(
@@ -477,7 +477,7 @@
                                  src="{{asset("storage/app/public/category/$category->icon")}}"
                                  alt="{{$category->name_bangla}}">
                             <p class="text-center small"
-                               style="margin-top: -20px">{{Str::limit($category->name_bangla, 17)}}</p>
+                               style="margin-top: -20px">{{\Illuminate\Support\Str::limit($category->name_bangla, 17)}}</p>
                         </a>
                     </div>
                 @endforeach
@@ -617,7 +617,7 @@
                                     <h6 class="widget-product-title">
                                         <a class="ptr"
                                            href="{{route('product',$product->slug)}}">
-                                            {{\Illuminate\Support\Str::limit($bestSell->product['name'],30)}}
+                                            {{\Illuminate\Support\Str::limit($bestSell->product['name_bangla'],30)}}
                                         </a>
                                     </h6>
                                     <div class="widget-product-meta">
@@ -666,7 +666,7 @@
                                     <h6 class="widget-product-title">
                                         <a class="ptr"
                                            href="{{route('product',$product->slug)}}">
-                                            {{\Illuminate\Support\Str::limit($product['name'],30)}}
+                                            {{\Illuminate\Support\Str::limit($product['name_bangla'],30)}}
                                         </a>
                                     </h6>
                                     <div class="widget-product-meta">
@@ -712,7 +712,7 @@
                                     <h6 class="widget-product-title">
                                         <a class="ptr"
                                            href="{{route('product',$top->product->slug)}}">
-                                            {{\Illuminate\Support\Str::limit($top->product['name'],30)}}
+                                            {{\Illuminate\Support\Str::limit($top->product['name_bangla'],30)}}
                                         </a>
                                     </h6>
                                     <div class="widget-product-meta">

@@ -528,8 +528,7 @@
 
                         <?php ($authors=\App\Model\Author::paginate(15)); ?>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#"
-                               data-toggle="dropdown">লেখক</a>
+                            <a class="nav-link" href="<?php echo e(route('authors')); ?>">লেখক</a>
                             <ul class="dropdown-menu dropdown-menu-<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?> scroll-bar"
                                 style="text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;">
                                 <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $author): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -562,8 +561,7 @@
                         
                         <?php ($publishers=\App\Model\Publisher::paginate(15)); ?>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#"
-                               data-toggle="dropdown">প্রকাশনী</a>
+                            <a class="nav-link" href="<?php echo e(route('publishers')); ?>">প্রকাশনী</a>
                             <ul class="dropdown-menu dropdown-menu-<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?> scroll-bar"
                                 style="text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;">
                                 <?php $__currentLoopData = $publishers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $publisher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
