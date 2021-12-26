@@ -91,7 +91,7 @@
     <!-- Banner group-->
 </div>
 
-
+<script src="{{asset('public/assets/front-end')}}/vendor/jquery/dist/jquery-2.2.4.min.js"></script>
 <script>
     $(function () {
         $('.list-group-item').on('click', function () {

@@ -1167,11 +1167,16 @@
         }
     });
 
-    const img = document.getElementByTagName("img")
-    img.addEventListener("error", function (event) {
-        event.target.src = '<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>';
+    /* const img = document.getElementByTagName('img') */
+    
+    $('img').error( function() {
+        $(this).attr('src', '<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>');
+    });
+    /* const $img = jQuery(this).prop("img"); */
+    /* img.on("error", function (event) {
+        event.target.src = '/';
         event.onerror = null
-    })
+    }) */
 
     function route_alert(route, message) {
         Swal.fire({
