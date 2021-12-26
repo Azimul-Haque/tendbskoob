@@ -475,6 +475,10 @@ class WebController extends Controller
                 }
             }
             $query = $porduct_data->whereIn('id', $product_ids);
+        }
+        
+        if ($request['data_from'] == 'publisher') {
+            $query = $porduct_data->where('publisher_id', $request['id']);
             // dd($query);
         }
 
@@ -577,7 +581,7 @@ class WebController extends Controller
             $data['author_name'] = Author::find((int)$request['id'])->name;
         }
         if ($request['data_from'] == 'publisher') {
-            $data['publisher_name'] = Author::find((int)$request['id'])->name;
+            $data['publisher_name'] = Publisher::find((int)$request['id'])->name;
         }
 
         return view('web-views.products.view', compact('products', 'data'), $data);
