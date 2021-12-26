@@ -88,7 +88,7 @@ class ProductController extends BaseController
 
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'publisher_id' => 'required',
             'name'         => 'required',
@@ -469,6 +469,8 @@ class ProductController extends BaseController
         $publishers = Publisher::get();
         $authors = Author::get();
 
+        // dd($product->writers);
+
         return view('admin-views.product.edit', compact('cat', 'br', 'product', 'product_category', 'publishers', 'authors'));
     }
 
@@ -685,7 +687,6 @@ class ProductController extends BaseController
             return back();
         }
 
-        dd($collections[0]);
         $data = [];
         // $skip = ['youtube_video_url', 'details'];
         foreach ($collections as $collection) 
@@ -702,8 +703,10 @@ class ProductController extends BaseController
             // dd($p->slug);
     
             $category = [];
+            $category_array = explode(',', $collection['category_id']);
+            
             if($collection['category_id']) {
-                foreach($collection['category_id'] as $categoryid) {
+                foreach($category_array as $categoryid) {
                     array_push($category, [
                         'id' => $categoryid,
                         'position' => 1,
@@ -713,117 +716,93 @@ class ProductController extends BaseController
             // CATEGORY IDs ARE SYNCED LATER, AFTER SAVE
 
             $p->category_ids = json_encode($category);
-            $p->brand_id = $request->brand_id;
-            $p->publisher_id = $request->publisher_id;
-            $p->isbn = $request->isbn;
-            $p->weight = $request->weight;
+            $p->publisher_id = $collection['publisher_id'];
+            $p->isbn = $collection['isbn'];
+            $p->weight = $collection['weight'];
 
             $empty_array       = [];
             $p->colors         = json_encode($empty_array);
             $p->choice_options = json_encode($empty_array);
             $p->variation      = json_encode($empty_array);
         
-            $p->purchase_price  = $request->purchase_price;
-            $p->published_price = $request->published_price;
-            $p->unit_price      = $request->unit_price;
-            $stock_count      = (integer) $request['current_stock'];
+            $p->purchase_price  = $collection['purchase_price'];
+            $p->published_price = $collection['published_price'];
+            $p->unit_price      = $collection['sale_price'];
+            $stock_count      = (integer) $collection['current_stock'];
             $p->current_stock = abs($stock_count);
-            $p->details       = $request->description;
+            $p->details       = $collection['description'];
             $p->request_status = 1; // status default to 1
-            $p->stock_status = $request->stock_status; // 1 = in stock, 2 = out of stock, 3 = back order
-            $p->meta_title = $request->bangla_name . '-' . $request->name;
-            $p->meta_description = $request->description;
+            $p->stock_status = $collection['stock_status']; // in stock, 2 = out of stock, 3 = back order
+            $p->meta_title = $collection['name_bangla'] . '-' . $collection['name'];
+            $p->meta_description = $collection['description'];
 
-            if($request->hasFile('image')) {
-                $thumbnail = $request->file('image');
-                $filename  = Carbon::now()->toDateString() . "-" . uniqid() . "." . $thumbnail->getClientOriginalExtension();
-                $location1  = storage_path('app/public/product/thumbnail/'. $filename);
-                $location2  = storage_path('app/public/product/meta/'. $filename);
-                Image::make($thumbnail)
-                     ->fit(260, 372)
-                     ->insert(public_path('public/assets/back-end/img/watermark.png'), 'bottom-right', 10, 10)
-                     ->text('www.booksbd.net', 30, 185, function($font) {
-                        $font->file(public_path('public/fonts/Roboto-Black.ttf'));
-                        $font->size(24);
-                        $font->color(array(250, 250, 250, 0.25));
-                        // $font->angle(45);
-                    })->save($location1);
-                Image::make($thumbnail)
-                     ->fit(260, 372)
-                     ->insert(public_path('public/assets/back-end/img/watermark.png'), 'bottom-right', 10, 10)
-                     ->text('www.booksbd.net', 30, 185, function($font) {
-                        $font->file(public_path('public/fonts/Roboto-Black.ttf'));
-                        $font->size(24);
-                        $font->color(array(250, 250, 250, 0.25));
-                        // $font->angle(45);
-                    })->save($location2);
-                // dd($thumbnail);
-                $p->thumbnail = $filename;
-                $p->meta_image = $filename;
-            }
             $p->save();
 
             // ATTACH CATEGORIES PUBLSHER...
-            $p->categories()->sync($collection['category_id'], false);
+            $p->categories()->sync($category_array, false);
         
             // ATTACH AUTHORS WRITER...
-            if($request->writer_id != null) {
-                foreach ($request->writer_id as $key => $value) {
+            if($collection['writer_id'] != null) {
+                $writer_array = explode(',', $collection['writer_id']);
+                foreach ($writer_array as $key => $value) {
                     $p->writers()->attach([$value => ['author_type' => 1]]);
                 }
             }
             
             // ATTACH AUTHORS TRANSLATOR...
-            if($request->translator_id != null) {
-                foreach ($request->translator_id as $key => $value) {
+            if($collection['translator_id'] != null) {
+                $translator_array = explode(',', $collection['translator_id']);
+                foreach ($translator_array as $key => $value) {
                     $p->translators()->attach([$value => ['author_type' => 2]]);
                 }
             }
             
             // ATTACH AUTHORS EDITOR...
-            if($request->editor_id != null) {
-                foreach ($request->editor_id as $key => $value) {
+            if($collection['translator_id'] != null) {
+                $editor_array = explode(',', $collection['translator_id']);
+                foreach ($editor_array as $key => $value) {
                     $p->editors()->attach([$value => ['author_type' => 3]]);
                 }
             }
 
-            Toastr::success(translate('Product added successfully!'));
-            return redirect()->route('admin.product.list', ['in_house']);
-            array_push($data, [
-                'publisher_id' => $collection['publisher_id'],
-                'name_bangla' => $collection['name_bangla'],
-                'name' => $collection['name'],
-                'slug' => Str::slug($collection['name'], '-') . '-' . Str::random(6),
-                'category_ids' => json_encode([['id' => $collection['category_id'], 'position' => 0], ['id' => $collection['sub_category_id'], 'position' => 1], ['id' => $collection['sub_sub_category_id'], 'position' => 2]]),
-                'brand_id' => $collection['brand_id'],
-                'unit' => $collection['unit'],
-                'min_qty' => $collection['min_qty'],
-                'refundable' => $collection['refundable'],
-                'unit_price' => $collection['unit_price'],
-                'purchase_price' => $collection['purchase_price'],
-                'tax' => $collection['tax'],
-                'discount' => $collection['discount'],
-                'discount_type' => $collection['discount_type'],
-                'current_stock' => $collection['current_stock'],
-                'details' => $collection['details'],
-                'video_provider' => 'youtube',
-                'video_url' => $collection['youtube_video_url'],
-                'images' => json_encode(['def.png']),
-                'thumbnail' => 'def.png',
-                'status' => 1,
-                'request_status' => 1,
-                'colors' => json_encode([]),
-                'attributes' => json_encode([]),
-                'choice_options' => json_encode([]),
-                'variation' => json_encode([]),
-                'featured_status' => 1,
-                'added_by' => 'admin',
-                'user_id' => auth('admin')->id(),
-            ]);
+            // array_push($data, [
+            //     'publisher_id' => $collection['publisher_id'],
+            //     'name_bangla' => $collection['name_bangla'],
+            //     'name' => $collection['name'],
+            //     'slug' => Str::slug($collection['name'], '-') . '-' . Str::random(6),
+            //     'category_ids' => json_encode([['id' => $collection['category_id'], 'position' => 0], ['id' => $collection['sub_category_id'], 'position' => 1], ['id' => $collection['sub_sub_category_id'], 'position' => 2]]),
+            //     'brand_id' => $collection['brand_id'],
+            //     'unit' => $collection['unit'],
+            //     'min_qty' => $collection['min_qty'],
+            //     'refundable' => $collection['refundable'],
+            //     'unit_price' => $collection['unit_price'],
+            //     'purchase_price' => $collection['purchase_price'],
+            //     'tax' => $collection['tax'],
+            //     'discount' => $collection['discount'],
+            //     'discount_type' => $collection['discount_type'],
+            //     'current_stock' => $collection['current_stock'],
+            //     'details' => $collection['details'],
+            //     'video_provider' => 'youtube',
+            //     'video_url' => $collection['youtube_video_url'],
+            //     'images' => json_encode(['def.png']),
+            //     'thumbnail' => 'def.png',
+            //     'status' => 1,
+            //     'request_status' => 1,
+            //     'colors' => json_encode([]),
+            //     'attributes' => json_encode([]),
+            //     'choice_options' => json_encode([]),
+            //     'variation' => json_encode([]),
+            //     'featured_status' => 1,
+            //     'added_by' => 'admin',
+            //     'user_id' => auth('admin')->id(),
+            // ]);
         }
-        DB::table('products')->insert($data);
-        Toastr::success(count($data) . ' - Products imported successfully!');
-        return back();
+        // DB::table('products')->insert($data);
+        // Toastr::success(count($data) . ' - Products imported successfully!');
+        // return back();
+
+        Toastr::success(translate('Products imported successfully!'));
+        return redirect()->route('admin.product.list', ['in_house']);
     }
 
     public function bulk_export_data()

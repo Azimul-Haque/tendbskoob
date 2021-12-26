@@ -1420,4 +1420,5 @@
   'Categories' => 'Categories',
   'Author ID' => 'Author ID',
   'Publisher ID' => 'Publisher ID',
+  'Products imported successfully!' => 'Products imported successfully!',
 );
