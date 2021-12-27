@@ -343,7 +343,7 @@
                                 <?php $__currentLoopData = \App\Model\Author::get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $author): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <div class="brand mt-1 for-brand-hover <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : ''); ?>" id="author">
                                         <li style="cursor: pointer;padding: 2px" class="flex-between"
-                                            onclick="location.href='<?php echo e(route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1])); ?>'">
+                                            onclick="location.href='<?php echo e(route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1, 'author_name'=>$author['slug']])); ?>'">
                                             <div>
                                                 <?php echo e($author['name_bangla']); ?>
 
@@ -396,7 +396,7 @@
                                 <?php $__currentLoopData = \App\Model\Publisher::get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $publisher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <div class="brand mt-1 for-brand-hover <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : ''); ?>" id="publisher">
                                         <li style="cursor: pointer;padding: 2px" class="flex-between"
-                                            onclick="location.href='<?php echo e(route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1])); ?>'">
+                                            onclick="location.href='<?php echo e(route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1, 'publisher_name'=>$publisher['slug']])); ?>'">
                                             <div>
                                                 <?php echo e($publisher['name_bangla']); ?>
 
@@ -470,80 +470,7 @@
                     </div>
                 </div>
                 
-                <!-- Categories & Color & Size Sidebar-->
-                <div class="cz-sidebar rounded-lg box-shadow-lg" id="shop-sidebar">
-                    <div class="cz-sidebar-header box-shadow-sm">
-                        <button class="close <?php echo e(Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'); ?>"
-                                type="button" data-dismiss="sidebar" aria-label="Close"><span
-                                class="d-inline-block font-size-xs font-weight-normal align-middle"><?php echo e(\App\CPU\translate('Close sidebar')); ?></span><span
-                                class="d-inline-block align-middle <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'); ?>"
-                                aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="cz-sidebar-body">
-                        <!-- Categories-->
-                        <div class="widget widget-categories mb-4 pb-4 border-bottom">
-                            <h3 class="widget-title" style="font-weight: 700;"><?php echo e(\App\CPU\translate('categories')); ?></h3>
-                            <div class="divider-role"
-                                 style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
-                            <?php ($categories=\App\CPU\CategoryManager::parents()); ?>
-                            <div class="accordion mt-n1" id="shop-categories">
-                                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <div class="card">
-                                        <div class="card-header p-1 flex-between">
-                                            <div>
-                                                <label class="for-hover-lable" style="cursor: pointer"
-                                                       onclick="location.href='<?php echo e(route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])); ?>'">
-                                                    <?php echo e($category['name']); ?>
-
-                                                </label>
-                                            </div>
-                                            <div>
-                                                <strong class="pull-right for-brand-hover" style="cursor: pointer"
-                                                        onclick="$('#collapse-<?php echo e($category['id']); ?>').toggle(400)">
-                                                    <?php echo e($category->childes->count()>0?'+':''); ?>
-
-                                                </strong>
-                                            </div>
-                                        </div>
-                                        <div class="card-body <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'); ?>"
-                                             id="collapse-<?php echo e($category['id']); ?>"
-                                             style="display: none">
-                                            <?php $__currentLoopData = $category->childes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $child): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <div class=" for-hover-lable card-header p-1 flex-between">
-                                                    <div>
-                                                        <label style="cursor: pointer"
-                                                               onclick="location.href='<?php echo e(route('products',['id'=> $child['id'],'data_from'=>'category','page'=>1])); ?>'">
-                                                            <?php echo e($child['name']); ?>
-
-                                                        </label>
-                                                    </div>
-                                                    <div>
-                                                        <strong class="pull-right" style="cursor: pointer"
-                                                                onclick="$('#collapse-<?php echo e($child['id']); ?>').toggle(400)">
-                                                            <?php echo e($child->childes->count()>0?'+':''); ?>
-
-                                                        </strong>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="card-body <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'); ?>"
-                                                    id="collapse-<?php echo e($child['id']); ?>"
-                                                    style="display: none">
-                                                    <?php $__currentLoopData = $child->childes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ch): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <div class="card-header p-1">
-                                                            <label class="for-hover-lable" style="cursor: pointer"
-                                                                   onclick="location.href='<?php echo e(route('products',['id'=> $ch['id'],'data_from'=>'category','page'=>1])); ?>'"><?php echo e($ch['name']); ?></label>
-                                                        </div>
-                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                </div>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                        </div>
-                                    </div>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php ($categories=\App\CPU\CategoryManager::parents()); ?>
             </aside>
 
             
@@ -624,13 +551,17 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- Brand Sidebar-->
+                    
+
+                    <!-- Author Sidebar-->
                     <div class="" id="shop-sidebar" style="margin-bottom: 11px;">
 
                         <div class="">
                             <!-- Filter by Brand-->
                             <div class="widget cz-filter mb-4 pb-4 border-bottom mt-2">
-                                <h3 class="widget-title" style="font-weight: 700;"><?php echo e(\App\CPU\translate('brands')); ?></h3>
+                                <h3 class="widget-title" style="font-weight: 700;"><?php echo e(\App\CPU\translate('Authors')); ?></h3>
                                 <div class="divider-role"
                                      style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
                                 <div class="input-group-overlay input-group-sm mb-2">
@@ -647,7 +578,7 @@
                                 <ul id="lista1" class="widget-list cz-filter-list list-unstyled pt-1"
                                     style="max-height: 12rem;"
                                     data-simplebar data-simplebar-auto-hide="false">
-                                    <?php $__currentLoopData = \App\CPU\BrandManager::get_brands(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $brand): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php $__currentLoopData = \App\Model\Author::get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $brand): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div class="brand mt-4 for-brand-hover" id="brand">
                                             <li style="cursor: pointer;padding: 2px"
                                                 onclick="location.href='<?php echo e(route('products',['id'=> $brand['id'],'data_from'=>'brand','page'=>1])); ?>'">

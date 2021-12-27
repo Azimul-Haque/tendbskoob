@@ -158,7 +158,7 @@ class WebController extends Controller
 
     public function all_categories()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(24);
         return view('web-views.categories', compact('categories'));
     }
 

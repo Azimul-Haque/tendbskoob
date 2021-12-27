@@ -535,7 +535,7 @@
                                     <li style="border-bottom: 1px solid #e3e9ef; display:flex; justify-content:space-between; ">
                                         <div>
                                             <a class="dropdown-item"
-                                               href="<?php echo e(route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1])); ?>">
+                                               href="<?php echo e(route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1, 'author_name'=>$author['slug']])); ?>">
                                                 <?php echo e($author['name_bangla']); ?>
 
                                             </a>
@@ -568,7 +568,7 @@
                                     <li style="border-bottom: 1px solid #e3e9ef; display:flex; justify-content:space-between; ">
                                         <div>
                                             <a class="dropdown-item"
-                                               href="<?php echo e(route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1])); ?>">
+                                               href="<?php echo e(route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1, 'publisher_name'=>$publisher['slug']])); ?>">
                                                 <?php echo e($publisher['name_bangla']); ?>
 
                                             </a>

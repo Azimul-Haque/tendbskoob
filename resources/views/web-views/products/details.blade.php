@@ -218,7 +218,7 @@
                         $autor_html = '';
                         if($product->writers->count() > 0) {
                             for($i = 0; $i < count($product->writers); $i++){
-                                $route = route('products',['id'=> $product->writers[$i]->id,'data_from'=>'author','page'=>1]);
+                                $route = route('products',['id'=> $product->writers[$i]->id,'data_from'=>'author','page'=>1, 'author_name'=>$product->writers[$i]['slug']]);
                                 $autor_html .= '<a class="font-weight-normal text-accent" style="color: #5C7CFF !important;" href="' . $route . '">' . $product->writers[$i]->name_bangla . '</a>';
                                 if($i < (count($product->writers) -1)){
                                     $autor_html .= ", ";
@@ -231,7 +231,7 @@
                                 $autor_html .= ", ";
                             }
                             for($i = 0; $i < count($product->translators); $i++){
-                                $route = route('products',['id'=> $product->translators[$i]->id,'data_from'=>'author','page'=>1]);
+                                $route = route('products',['id'=> $product->translators[$i]->id,'data_from'=>'author','page'=>1, 'author_name'=>$product->translators[$i]['slug']]);
                                 $autor_html .= '<a class="font-weight-normal text-accent" style="color: #5C7CFF !important;" href="' . $route . '">' . $product->translators[$i]->name_bangla . ' (অনুবাদক)</a>';
                                 if($i < (count($product->translators) -1)){
                                     $autor_html .= ", ";
@@ -244,7 +244,7 @@
                                 $autor_html .= ", ";
                             }
                             for($i = 0; $i < count($product->editors); $i++){
-                                $route = route('products',['id'=> $product->editors[$i]->id,'data_from'=>'author','page'=>1]);
+                                $route = route('products',['id'=> $product->editors[$i]->id,'data_from'=>'author','page'=>1, 'author_name'=>$product->editors[$i]['slug']]);
                                 $autor_html .= '<a class="font-weight-normal text-accent" style="color: #5C7CFF !important;" href="' . $route . '">' . $product->editors[$i]->name_bangla . ' (সম্পাদক)</a>';
                                 if($i < (count($product->editors) -1)){
                                     $autor_html .= ", ";
@@ -642,7 +642,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>প্রকাশনী</th>
-                                                    <td><a class="font-weight-normal text-accent" style="color: #5C7CFF !important;" href="{{ route('products',['id'=> $product->publisher_id,'data_from'=>'publisher','page'=>1]) }}">{{ $product->publisher->name_bangla }}</a></td>
+                                                    <td><a class="font-weight-normal text-accent" style="color: #5C7CFF !important;" href="{{ route('products',['id'=> $product->publisher_id,'data_from'=>'publisher','page'=>1, 'publisher_name'=>$product->publisher['slug']]) }}">{{ $product->publisher->name_bangla }}</a></td>
                                                 </tr>
                                                 <tr>
                                                     <th>আইএসবিএন (ISBN)</th>

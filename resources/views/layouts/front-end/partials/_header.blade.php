@@ -526,7 +526,7 @@
                                     <li style="border-bottom: 1px solid #e3e9ef; display:flex; justify-content:space-between; ">
                                         <div>
                                             <a class="dropdown-item"
-                                               href="{{route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1])}}">
+                                               href="{{route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1, 'author_name'=>$author['slug']])}}">
                                                 {{$author['name_bangla']}}
                                             </a>
                                         </div>
@@ -557,7 +557,7 @@
                                     <li style="border-bottom: 1px solid #e3e9ef; display:flex; justify-content:space-between; ">
                                         <div>
                                             <a class="dropdown-item"
-                                               href="{{route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1])}}">
+                                               href="{{route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1, 'publisher_name'=>$publisher['slug']])}}">
                                                 {{$publisher['name_bangla']}}
                                             </a>
                                         </div>

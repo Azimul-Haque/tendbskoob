@@ -389,7 +389,7 @@
                                 @foreach(\App\Model\Author::get() as $author)
                                     <div class="brand mt-1 for-brand-hover {{Session::get('direction') === "rtl" ? 'mr-2' : ''}}" id="author">
                                         <li style="cursor: pointer;padding: 2px" class="flex-between"
-                                            onclick="location.href='{{route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1])}}'">
+                                            onclick="location.href='{{route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1, 'author_name'=>$author['slug']])}}'">
                                             <div>
                                                 {{ $author['name_bangla'] }}
                                             </div>
@@ -440,7 +440,7 @@
                                 @foreach(\App\Model\Publisher::get() as $publisher)
                                     <div class="brand mt-1 for-brand-hover {{Session::get('direction') === "rtl" ? 'mr-2' : ''}}" id="publisher">
                                         <li style="cursor: pointer;padding: 2px" class="flex-between"
-                                            onclick="location.href='{{route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1])}}'">
+                                            onclick="location.href='{{route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1, 'publisher_name'=>$publisher['slug']])}}'">
                                             <div>
                                                 {{ $publisher['name_bangla'] }}
                                             </div>
@@ -510,76 +510,7 @@
                     </div>
                 </div>
                 
-                <!-- Categories & Color & Size Sidebar-->
-                <div class="cz-sidebar rounded-lg box-shadow-lg" id="shop-sidebar">
-                    <div class="cz-sidebar-header box-shadow-sm">
-                        <button class="close {{Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'}}"
-                                type="button" data-dismiss="sidebar" aria-label="Close"><span
-                                class="d-inline-block font-size-xs font-weight-normal align-middle">{{\App\CPU\translate('Close sidebar')}}</span><span
-                                class="d-inline-block align-middle {{Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'}}"
-                                aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="cz-sidebar-body">
-                        <!-- Categories-->
-                        <div class="widget widget-categories mb-4 pb-4 border-bottom">
-                            <h3 class="widget-title" style="font-weight: 700;">{{\App\CPU\translate('categories')}}</h3>
-                            <div class="divider-role"
-                                 style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
-                            @php($categories=\App\CPU\CategoryManager::parents())
-                            <div class="accordion mt-n1" id="shop-categories">
-                                @foreach($categories as $category)
-                                    <div class="card">
-                                        <div class="card-header p-1 flex-between">
-                                            <div>
-                                                <label class="for-hover-lable" style="cursor: pointer"
-                                                       onclick="location.href='{{route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])}}'">
-                                                    {{$category['name']}}
-                                                </label>
-                                            </div>
-                                            <div>
-                                                <strong class="pull-right for-brand-hover" style="cursor: pointer"
-                                                        onclick="$('#collapse-{{$category['id']}}').toggle(400)">
-                                                    {{$category->childes->count()>0?'+':''}}
-                                                </strong>
-                                            </div>
-                                        </div>
-                                        <div class="card-body {{Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'}}"
-                                             id="collapse-{{$category['id']}}"
-                                             style="display: none">
-                                            @foreach($category->childes as $child)
-                                                <div class=" for-hover-lable card-header p-1 flex-between">
-                                                    <div>
-                                                        <label style="cursor: pointer"
-                                                               onclick="location.href='{{route('products',['id'=> $child['id'],'data_from'=>'category','page'=>1])}}'">
-                                                            {{$child['name']}}
-                                                        </label>
-                                                    </div>
-                                                    <div>
-                                                        <strong class="pull-right" style="cursor: pointer"
-                                                                onclick="$('#collapse-{{$child['id']}}').toggle(400)">
-                                                            {{$child->childes->count()>0?'+':''}}
-                                                        </strong>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="card-body {{Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'}}"
-                                                    id="collapse-{{$child['id']}}"
-                                                    style="display: none">
-                                                    @foreach($child->childes as $ch)
-                                                        <div class="card-header p-1">
-                                                            <label class="for-hover-lable" style="cursor: pointer"
-                                                                   onclick="location.href='{{route('products',['id'=> $ch['id'],'data_from'=>'category','page'=>1])}}'">{{$ch['name']}}</label>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @php($categories=\App\CPU\CategoryManager::parents())
             </aside>
 
             {{-- responsive sidebar --}}
@@ -658,8 +589,9 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- Brand Sidebar-->
-                    <div class="" id="shop-sidebar" style="margin-bottom: 11px;">
+                    {{-- <div class="" id="shop-sidebar" style="margin-bottom: 11px;">
 
                         <div class="">
                             <!-- Filter by Brand-->
@@ -690,6 +622,49 @@
 
                                                     <span class="for-count-value"
                                                           style="float: {{Session::get('direction') === "rtl" ? 'left' : 'right'}}">{{ $brand['brand_products_count'] }}</span>
+
+                                                @endif
+                                            </li>
+
+                                        </div>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div> --}}
+
+                    <!-- Author Sidebar-->
+                    <div class="" id="shop-sidebar" style="margin-bottom: 11px;">
+
+                        <div class="">
+                            <!-- Filter by Brand-->
+                            <div class="widget cz-filter mb-4 pb-4 border-bottom mt-2">
+                                <h3 class="widget-title" style="font-weight: 700;">{{\App\CPU\translate('Authors')}}</h3>
+                                <div class="divider-role"
+                                     style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
+                                <div class="input-group-overlay input-group-sm mb-2">
+                                    <input style="background: aliceblue"
+                                           class="cz-filter-search form-control form-control-sm appended-form-control"
+                                           type="text" id="search-author-m">
+                                    <div class="input-group-append-overlay">
+                                        <span style="color: #3498db;"
+                                              class="input-group-text">
+                                            <i class="czi-search"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <ul id="mauthorlist" class="widget-list cz-filter-list list-unstyled pt-1"
+                                    style="max-height: 12rem;"
+                                    data-simplebar data-simplebar-auto-hide="false">
+                                    @foreach(\App\Model\Author::get() as $author)
+                                        <div class="brand mt-4 for-brand-hover" id="author">
+                                            <li style="cursor: pointer;padding: 2px"
+                                                onclick="location.href='{{route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1, 'author_name'=>])}}'">
+                                                {{ $author['name_bangla'] }}
+                                                @if($author->products->count() > 0 )
+
+                                                    <span class="for-count-value"
+                                                          style="float: {{Session::get('direction') === "rtl" ? 'left' : 'right'}}">{{ $author->products->count() }}</span>
 
                                                 @endif
                                             </li>

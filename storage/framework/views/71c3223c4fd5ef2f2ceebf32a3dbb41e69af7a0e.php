@@ -41,7 +41,7 @@
                                 <div class="brand_div d-flex align-items-center justify-content-center"
                                  style="height: 200px">
                                     <img
-                                        onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
+                                        onerror="this.src='<?php echo e(asset('public/assets/front-end/img/category_demo.jpg')); ?>'"
                                         src="<?php echo e(asset("public/images/publisher/" . $publisher->image)); ?>"
                                         alt="<?php echo e($publisher->name_bangla); ?>">
                                 </div>

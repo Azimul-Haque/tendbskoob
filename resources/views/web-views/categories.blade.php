@@ -4,92 +4,68 @@
 
 @push('css_or_js')
     <meta property="og:image" content="{{asset('storage/app/public/company')}}/{{$web_config['web_logo']->value}}"/>
-    <meta property="og:title" content="Categories of {{$web_config['name']->value}} "/>
+    <meta property="og:title" content="Publication of {{$web_config['name']->value}} "/>
     <meta property="og:url" content="{{env('APP_URL')}}">
     <meta property="og:description" content="{!! substr($web_config['about']->value,0,100) !!}">
 
     <meta property="twitter:card" content="{{asset('storage/app/public/company')}}/{{$web_config['web_logo']->value}}"/>
-    <meta property="twitter:title" content="Categories of {{$web_config['name']->value}}"/>
+    <meta property="twitter:title" content="Publication of {{$web_config['name']->value}}"/>
     <meta property="twitter:url" content="{{env('APP_URL')}}">
     <meta property="twitter:description" content="{!! substr($web_config['about']->value,0,100) !!}">
-
     <style>
-        .active{
-            background: {{$web_config['secondary_color']}};
-            color: gray!important;
+        .brand_div {
+            background: #fcfcfc no-repeat padding-box;
+            border: 1px solid #e2f0ff;
+            border-radius: 3px;
+            opacity: 1;
+            padding: 5px;
         }
-        .active-category-text{
-            color: white!important;
-        }
-
-        .side-category-bar{
-            border: 1px solid #0000001f;
-            border-radius: 6px;
-            cursor: pointer;
-            background: white;
-        }
-
     </style>
 @endpush
 
 @section('content')
+
     <!-- Page Content-->
-    <div class="container p-3 rtl" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
+    <div class="container pb-5 mb-2 mb-md-4 rtl" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
         <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-9">
-                <h4>{{\App\CPU\translate('category')}}</h4>
+            <div class="col-md-12 p-3 feature_header">
+                <span>{{\App\CPU\translate('Category')}}</span>
             </div>
         </div>
         <div class="row">
-            <!-- Sidebar-->
-            <div class="col-lg-3 col-md-4">
-                @foreach(\App\CPU\CategoryManager::parents() as $category)
-                    <div class="card-header mb-2 p-2 side-category-bar" onclick="get_categories('{{route('category-ajax',[$category['id']])}}')">
-                        <img src="{{asset("storage/app/public/category/$category->icon")}}" onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" style="width: 18px; height: 18px; margin-right: 5px;">
-                        {{-- <label class="ml-2 category-name-{{$key}}" style="cursor: pointer"> --}}
-                            {{$category['name_bangla']}}
-                        {{-- </label> --}}
-                    </div>
-                @endforeach
-            </div>
             <!-- Content  -->
-            <div class="col-lg-9 col-md-8">
+            <section class="col-lg-12">
                 <!-- Products grid-->
-                <hr>
-                <div class="row" id="ajax-categories">
-                    <label class="col-md-12 text-center mt-5">{{\App\CPU\translate('Select your desire category')}}.</label>
+                <div class="row mx-n2">
+                    @foreach($categories as $category)
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 px-2 pb-4 text-center">
+                            <a href="{{route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])}}" class="">
+                                <div class="brand_div d-flex align-items-center justify-content-center"
+                                 style="height: 200px">
+                                    <img
+                                        onerror="this.src='{{asset('public/assets/front-end/img/category_demo.jpg')}}'"
+                                        src="{{asset("public/images/category/" . $category->image)}}"
+                                        alt="{{$category->name_bangla}}">
+                                </div>
+                            </a>
+                            <small>{{ $category->name_bangla }}</small>
+                        </div>
+                    @endforeach
                 </div>
-                <!-- Pagination-->
-            </div>
+
+                <hr class="my-3">
+                <div class="row mx-n2">
+                    <div class="col-md-12">
+                        <center>
+                            {!! $categories->links() !!}
+                        </center>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 @endsection
 
 @push('script')
-    <script>
-        $(document).ready(function () {
-            $('.card-header').click(function() {
-                $('.card-header').removeClass('active');
-                $(this).addClass('active');
-            });
-
-        });
-        function get_categories(route) {
-            $.get({
-                url: route,
-                dataType: 'json',
-                beforeSend: function () {
-                    $('#loading').show();
-                },
-                success: function (response) {
-                    $('html,body').animate({scrollTop: $("#ajax-categories").offset().top}, 'slow');
-                    $('#ajax-categories').html(response.view);
-                },
-                complete: function () {
-                    $('#loading').hide();
-                },
-            });
-        }
-    </script>
+    <script src="{{asset('public/assets/front-end')}}/vendor/nouislider/distribute/nouislider.min.js"></script>
 @endpush

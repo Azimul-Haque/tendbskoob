@@ -37,11 +37,11 @@
                 <div class="row mx-n2">
                     <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $author): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6 px-2 pb-4 text-center">
-                            <a href="<?php echo e(route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1])); ?>" class="">
+                            <a href="<?php echo e(route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1, 'author_name'=>$author['slug']])); ?>" class="">
                                 <div class="brand_div d-flex align-items-center justify-content-center"
                                  style="height: 200px">
                                     <img
-                                        onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
+                                        onerror="this.src='<?php echo e(asset('public/assets/front-end/img/user_demo.jpg')); ?>'"
                                         src="<?php echo e(asset("public/images/author/" . $author->image)); ?>"
                                         alt="<?php echo e($author->name_bangla); ?>">
                                 </div>
