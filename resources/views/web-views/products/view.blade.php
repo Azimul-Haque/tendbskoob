@@ -198,67 +198,20 @@
 @endpush
 
 @section('content')
-    <!-- Page Title-->
     <div class="container rtl" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-6 col-xs-12">
                 <a class="openbtn-tab mt-5" onclick="openNav()">
                     <div style="font-size: 20px; font-weight: 600; " class="for-tab-display mt-5">
                         <i class="fa fa-filter"></i>
                         {{\App\CPU\translate('filter')}}
                     </div>
-                </a></div>
-            <div class="col-md-9">
-                <div class="row">
-                    <div class="col-md-6">
-                        {{-- if need data from also --}}
-                        {{-- <h1 class="h3 text-dark mb-0 headerTitle text-uppercase">{{\App\CPU\translate('product_by')}} {{$data['data_from']}} ({{ isset($brand_name) ? $brand_name : $data_from}})</h1> --}}
-                        <h1 class="h3 text-dark mb-3 headerTitle text-uppercase">
-                            {{$data['data_from']}} {{\App\CPU\translate('products')}} {{ isset($data_from_name) ? '('.$data_from_name.')' : ''}}
-                            <label>( {{$products->total()}} {{\App\CPU\translate('items found')}} )</label>
-                        </h1>
-                    </div>
-                    <div class="row col-md-6 for-display mx-0">
-
-                        <button class="openbtn text-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}" onclick="openNav()">
-                            <div style="margin-bottom: -30%;">
-                                <i class="fa fa-filter"></i>
-                                {{\App\CPU\translate('filter')}}
-                            </div>
-                        </button>
-
-                        <div class="d-flex flex-wrap mt-5 float-right for-shoting-mobile">
-                            <form id="search-form" action="{{ route('products') }}" method="GET">
-                                <input hidden name="data_from" value="{{$data['data_from']}}">
-                                <div class="form-inline flex-nowrap pb-3 for-mobile">
-                                    <label
-                                        class="opacity-75 text-nowrap {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}} for-shoting"
-                                        for="sorting">
-                                        <span
-                                            class="{{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}">{{\App\CPU\translate('sort_by')}}</span></label>
-                                    <select style="background: white; appearance: auto;"
-                                            class="form-control custom-select" onchange="filter(this.value)">
-                                        <option value="latest">{{\App\CPU\translate('Latest')}}</option>
-                                        <option
-                                            value="low-high">{{\App\CPU\translate('low_high')}} {{\App\CPU\translate('Price')}} </option>
-                                        <option
-                                            value="high-low">{{\App\CPU\translate('hight_low')}} {{\App\CPU\translate('Price')}}</option>
-                                        <option
-                                            value="a-z">{{\App\CPU\translate('a_z')}} {{\App\CPU\translate('Order')}}</option>
-                                        <option
-                                            value="z-a">{{\App\CPU\translate('z_a')}} {{\App\CPU\translate('Order')}}</option>
-                                    </select>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                </a>
             </div>
+            <div class="col-md-9"> </div>
         </div>
     </div>
-
-    <!-- Page Content-->
-    <div class="container pb-5 mb-2 mb-md-4 rtl"
+    <div class="container pb-5 mb-2 mb-md-4 mt-4 rtl"
          style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
         <div class="row">
             <!-- Sidebar-->
@@ -528,7 +481,7 @@
                 <aside class="" style="padding-right: 5%;padding-left: 5%;">
                     <div class="" id="shop-sidebar" style="margin-bottom: -10px;">
                         <div class=" box-shadow-sm">
-
+                            
                         </div>
                         <div class="" style="padding-top: 12px;">
                             <!-- Filter -->
@@ -710,6 +663,102 @@
 
             <!-- Content  -->
             <section class="col-lg-9">
+                @if ($data['data_from'] == 'author')
+                    <div class="row">
+                        <div class="col-md-3">
+                            <center>
+                                <img class="img-fluid rounded-circle" style="padding:10px;"
+                                    onerror="this.src='{{asset('public/assets/front-end/img/user_demo.jpg')}}'"
+                                    src="{{ asset('public/images/author/' . $datasource['image']) }}">
+                            </center>
+                        </div>
+                        <div class="col-md-9 card" style="padding:10px;">
+                            <h4>
+                                {{ $datasource['name_bangla'] }}
+                            </h4>
+                            <p id="datasourcedetail">
+                                {{ \Illuminate\Support\Str::limit($datasource['description'], 300) }}<br/>
+                                @if (strlen($datasource['description']) > 300)
+                                    <span style="cursor: pointer" onclick="datasourcedetail('{{ $datasource['description'] }}')"><big>Read More</big></span>
+                                @endif
+                            </p>
+                        </div>
+                    </div>
+                @elseif($data['data_from'] == 'publisher')
+                    <div class="row">
+                        <div class="col-md-3">
+                            <center>
+                                <img class="img-fluid rounded-circle" style="padding:10px;"
+                                    onerror="this.src='{{asset('public/assets/front-end/img/user_demo.jpg')}}'"
+                                    src="{{ asset('public/images/publisher/' . $datasource['image']) }}">
+                            </center>
+                        </div>
+                        <div class="col-md-9 card" style="padding:10px;">
+                            <h4>
+                                {{ $datasource['name_bangla'] }}
+                            </h4>
+                            <p id="datasourcedetail">
+                                {{ \Illuminate\Support\Str::limit($datasource['description'], 300) }}<br/>
+                                @if (strlen($datasource['description']) > 300)
+                                    <span style="cursor: pointer" onclick="datasourcedetail('{{ $datasource['description'] }}')"><big>Read More</big></span>
+                                @endif
+                            </p>
+                        </div>
+                    </div>
+                @endif
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        {{-- if need data from also --}}
+                        {{-- <h1 class="h3 text-dark mb-0 headerTitle text-uppercase">{{\App\CPU\translate('product_by')}} {{$data['data_from']}} ({{ isset($brand_name) ? $brand_name : $data_from}})</h1> --}}
+                        <h1 class="h3 text-dark mb-3">
+                            @if($data['data_from'] == 'author')
+                                <b>{{ isset($data_from_name) ? $data_from_name : ''}}</b> এর বই সমূহ
+                                <label>( {{$products->total()}} {{\App\CPU\translate('items found')}} )</label>
+                            @elseif($data['data_from'] == 'publisher')
+                                <b>{{ isset($data_from_name) ? $data_from_name : ''}}</b> এর বই সমূহ
+                                <label>( {{$products->total()}} {{\App\CPU\translate('items found')}} )</label>
+                            @elseif($data['data_from'] == 'category')
+                                <b>{{ isset($data_from_name) ? $data_from_name : ''}}</b>
+                                <label>( {{$products->total()}} {{\App\CPU\translate('items found')}} )</label>
+                            @endif
+                                    
+                            {{-- {{$data['data_from']}} {{\App\CPU\translate('products')}}  --}}
+                        </h1>
+                    </div>
+                    <div class="col-md-6 for-display mx-0">
+                        <button class="openbtn text-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}" onclick="openNav()">
+                            <div style="margin-bottom: -30%;">
+                                <i class="fa fa-filter"></i>
+                                {{\App\CPU\translate('filter')}}
+                            </div>
+                        </button>
+        
+                        <div class="d-flex flex-wrap float-right for-shoting-mobile">
+                            <form id="search-form" action="{{ route('products') }}" method="GET">
+                                <input hidden name="data_from" value="{{$data['data_from']}}">
+                                <div class="form-inline flex-nowrap pb-3 for-mobile">
+                                    <label
+                                        class="opacity-75 text-nowrap {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}} for-shoting"
+                                        for="sorting">
+                                        <span
+                                            class="{{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}">{{\App\CPU\translate('sort_by')}}</span></label>
+                                    <select style="background: white; appearance: auto;"
+                                            class="form-control custom-select" onchange="filter(this.value)">
+                                        <option value="latest">{{\App\CPU\translate('Latest')}}</option>
+                                        <option
+                                            value="low-high">{{\App\CPU\translate('low_high')}} {{\App\CPU\translate('Price')}} </option>
+                                        <option
+                                            value="high-low">{{\App\CPU\translate('hight_low')}} {{\App\CPU\translate('Price')}}</option>
+                                        <option
+                                            value="a-z">{{\App\CPU\translate('a_z')}} {{\App\CPU\translate('Order')}}</option>
+                                        <option
+                                            value="z-a">{{\App\CPU\translate('z_a')}} {{\App\CPU\translate('Order')}}</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 @if (count($products) > 0)
                     <div class="row" id="ajax-products">
                         @include('web-views.products._ajax-products',['products'=>$products])
@@ -805,5 +854,9 @@
                 return $(this).text().toLowerCase().trim().indexOf(value) == -1;
             }).hide();
         });
+
+        function datasourcedetail(text) {
+            $('#datasourcedetail').text(text);
+        }
     </script>
 @endpush

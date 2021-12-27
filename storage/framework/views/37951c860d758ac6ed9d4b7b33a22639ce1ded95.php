@@ -196,70 +196,21 @@
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startSection('content'); ?>
-    <!-- Page Title-->
     <div class="container rtl" style="text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-6 col-xs-12">
                 <a class="openbtn-tab mt-5" onclick="openNav()">
                     <div style="font-size: 20px; font-weight: 600; " class="for-tab-display mt-5">
                         <i class="fa fa-filter"></i>
                         <?php echo e(\App\CPU\translate('filter')); ?>
 
                     </div>
-                </a></div>
-            <div class="col-md-9">
-                <div class="row">
-                    <div class="col-md-6">
-                        
-                        
-                        <h1 class="h3 text-dark mb-3 headerTitle text-uppercase">
-                            <?php echo e($data['data_from']); ?> <?php echo e(\App\CPU\translate('products')); ?> <?php echo e(isset($data_from_name) ? '('.$data_from_name.')' : ''); ?>
-
-                            <label>( <?php echo e($products->total()); ?> <?php echo e(\App\CPU\translate('items found')); ?> )</label>
-                        </h1>
-                    </div>
-                    <div class="row col-md-6 for-display mx-0">
-
-                        <button class="openbtn text-<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>" onclick="openNav()">
-                            <div style="margin-bottom: -30%;">
-                                <i class="fa fa-filter"></i>
-                                <?php echo e(\App\CPU\translate('filter')); ?>
-
-                            </div>
-                        </button>
-
-                        <div class="d-flex flex-wrap mt-5 float-right for-shoting-mobile">
-                            <form id="search-form" action="<?php echo e(route('products')); ?>" method="GET">
-                                <input hidden name="data_from" value="<?php echo e($data['data_from']); ?>">
-                                <div class="form-inline flex-nowrap pb-3 for-mobile">
-                                    <label
-                                        class="opacity-75 text-nowrap <?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?> for-shoting"
-                                        for="sorting">
-                                        <span
-                                            class="<?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?>"><?php echo e(\App\CPU\translate('sort_by')); ?></span></label>
-                                    <select style="background: white; appearance: auto;"
-                                            class="form-control custom-select" onchange="filter(this.value)">
-                                        <option value="latest"><?php echo e(\App\CPU\translate('Latest')); ?></option>
-                                        <option
-                                            value="low-high"><?php echo e(\App\CPU\translate('low_high')); ?> <?php echo e(\App\CPU\translate('Price')); ?> </option>
-                                        <option
-                                            value="high-low"><?php echo e(\App\CPU\translate('hight_low')); ?> <?php echo e(\App\CPU\translate('Price')); ?></option>
-                                        <option
-                                            value="a-z"><?php echo e(\App\CPU\translate('a_z')); ?> <?php echo e(\App\CPU\translate('Order')); ?></option>
-                                        <option
-                                            value="z-a"><?php echo e(\App\CPU\translate('z_a')); ?> <?php echo e(\App\CPU\translate('Order')); ?></option>
-                                    </select>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                </a>
             </div>
+            <div class="col-md-9"> </div>
         </div>
     </div>
-
-    <!-- Page Content-->
-    <div class="container pb-5 mb-2 mb-md-4 rtl"
+    <div class="container pb-5 mb-2 mb-md-4 mt-4 rtl"
          style="text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;">
         <div class="row">
             <!-- Sidebar-->
@@ -490,7 +441,7 @@
                 <aside class="" style="padding-right: 5%;padding-left: 5%;">
                     <div class="" id="shop-sidebar" style="margin-bottom: -10px;">
                         <div class=" box-shadow-sm">
-
+                            
                         </div>
                         <div class="" style="padding-top: 12px;">
                             <!-- Filter -->
@@ -679,6 +630,105 @@
 
             <!-- Content  -->
             <section class="col-lg-9">
+                <?php if($data['data_from'] == 'author'): ?>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <center>
+                                <img class="img-fluid rounded-circle" style="padding:10px;"
+                                    onerror="this.src='<?php echo e(asset('public/assets/front-end/img/user_demo.jpg')); ?>'"
+                                    src="<?php echo e(asset('public/images/author/' . $datasource['image'])); ?>">
+                            </center>
+                        </div>
+                        <div class="col-md-9 card" style="padding:10px;">
+                            <h4>
+                                <?php echo e($datasource['name_bangla']); ?>
+
+                            </h4>
+                            <p id="datasourcedetail">
+                                <?php echo e(\Illuminate\Support\Str::limit($datasource['description'], 300)); ?><br/>
+                                <?php if(strlen($datasource['description']) > 300): ?>
+                                    <span style="cursor: pointer" onclick="datasourcedetail('<?php echo e($datasource['description']); ?>')"><big>Read More</big></span>
+                                <?php endif; ?>
+                            </p>
+                        </div>
+                    </div>
+                <?php elseif($data['data_from'] == 'publisher'): ?>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <center>
+                                <img class="img-fluid rounded-circle" style="padding:10px;"
+                                    onerror="this.src='<?php echo e(asset('public/assets/front-end/img/user_demo.jpg')); ?>'"
+                                    src="<?php echo e(asset('public/images/publisher/' . $datasource['image'])); ?>">
+                            </center>
+                        </div>
+                        <div class="col-md-9 card" style="padding:10px;">
+                            <h4>
+                                <?php echo e($datasource['name_bangla']); ?>
+
+                            </h4>
+                            <p id="datasourcedetail">
+                                <?php echo e(\Illuminate\Support\Str::limit($datasource['description'], 300)); ?><br/>
+                                <?php if(strlen($datasource['description']) > 300): ?>
+                                    <span style="cursor: pointer" onclick="datasourcedetail('<?php echo e($datasource['description']); ?>')"><big>Read More</big></span>
+                                <?php endif; ?>
+                            </p>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        
+                        
+                        <h1 class="h3 text-dark mb-3">
+                            <?php if($data['data_from'] == 'author'): ?>
+                                <b><?php echo e(isset($data_from_name) ? $data_from_name : ''); ?></b> এর বই সমূহ
+                                <label>( <?php echo e($products->total()); ?> <?php echo e(\App\CPU\translate('items found')); ?> )</label>
+                            <?php elseif($data['data_from'] == 'publisher'): ?>
+                                <b><?php echo e(isset($data_from_name) ? $data_from_name : ''); ?></b> এর বই সমূহ
+                                <label>( <?php echo e($products->total()); ?> <?php echo e(\App\CPU\translate('items found')); ?> )</label>
+                            <?php elseif($data['data_from'] == 'category'): ?>
+                                <b><?php echo e(isset($data_from_name) ? $data_from_name : ''); ?></b>
+                                <label>( <?php echo e($products->total()); ?> <?php echo e(\App\CPU\translate('items found')); ?> )</label>
+                            <?php endif; ?>
+                                    
+                            
+                        </h1>
+                    </div>
+                    <div class="col-md-6 for-display mx-0">
+                        <button class="openbtn text-<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>" onclick="openNav()">
+                            <div style="margin-bottom: -30%;">
+                                <i class="fa fa-filter"></i>
+                                <?php echo e(\App\CPU\translate('filter')); ?>
+
+                            </div>
+                        </button>
+        
+                        <div class="d-flex flex-wrap float-right for-shoting-mobile">
+                            <form id="search-form" action="<?php echo e(route('products')); ?>" method="GET">
+                                <input hidden name="data_from" value="<?php echo e($data['data_from']); ?>">
+                                <div class="form-inline flex-nowrap pb-3 for-mobile">
+                                    <label
+                                        class="opacity-75 text-nowrap <?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?> for-shoting"
+                                        for="sorting">
+                                        <span
+                                            class="<?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?>"><?php echo e(\App\CPU\translate('sort_by')); ?></span></label>
+                                    <select style="background: white; appearance: auto;"
+                                            class="form-control custom-select" onchange="filter(this.value)">
+                                        <option value="latest"><?php echo e(\App\CPU\translate('Latest')); ?></option>
+                                        <option
+                                            value="low-high"><?php echo e(\App\CPU\translate('low_high')); ?> <?php echo e(\App\CPU\translate('Price')); ?> </option>
+                                        <option
+                                            value="high-low"><?php echo e(\App\CPU\translate('hight_low')); ?> <?php echo e(\App\CPU\translate('Price')); ?></option>
+                                        <option
+                                            value="a-z"><?php echo e(\App\CPU\translate('a_z')); ?> <?php echo e(\App\CPU\translate('Order')); ?></option>
+                                        <option
+                                            value="z-a"><?php echo e(\App\CPU\translate('z_a')); ?> <?php echo e(\App\CPU\translate('Order')); ?></option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <?php if(count($products) > 0): ?>
                     <div class="row" id="ajax-products">
                         <?php echo $__env->make('web-views.products._ajax-products',['products'=>$products], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
@@ -774,6 +824,10 @@
                 return $(this).text().toLowerCase().trim().indexOf(value) == -1;
             }).hide();
         });
+
+        function datasourcedetail(text) {
+            $('#datasourcedetail').text(text);
+        }
     </script>
 <?php $__env->stopPush(); ?>
 

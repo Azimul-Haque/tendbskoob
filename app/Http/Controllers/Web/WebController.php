@@ -566,6 +566,7 @@ class WebController extends Controller
 
         $products = $fetched->paginate(20)->appends($data);
 
+        $datasource = collect();
         if ($request->ajax()) {
             return response()->json([
                 'view' => view('web-views.products._ajax-products', compact('products'))->render()
@@ -573,18 +574,22 @@ class WebController extends Controller
         }
         if ($request['data_from'] == 'category') {
             $data['data_from_name'] = Category::find((int)$request['id'])->name_bangla;
+            $datasource = Category::find((int)$request['id']);
         }
         if ($request['data_from'] == 'brand') {
             $data['data_from_name'] = Brand::find((int)$request['id'])->name_bangla;
+            $datasource = Brand::find((int)$request['id']);
         }
         if ($request['data_from'] == 'author') {
             $data['data_from_name'] = Author::find((int)$request['id'])->name_bangla;
+            $datasource = Author::find((int)$request['id']);
         }
         if ($request['data_from'] == 'publisher') {
             $data['data_from_name'] = Publisher::find((int)$request['id'])->name_bangla;
+            $datasource = Publisher::find((int)$request['id']);
         }
 
-        return view('web-views.products.view', compact('products', 'data'), $data);
+        return view('web-views.products.view', compact('products', 'data', 'datasource'), $data);
     }
 
     public function viewWishlist()
