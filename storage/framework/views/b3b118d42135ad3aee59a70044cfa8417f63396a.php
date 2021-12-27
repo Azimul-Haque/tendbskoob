@@ -8,10 +8,10 @@
     }
 </style>
 <ul class="list-group list-group-flush">
-    <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+    <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <li class="list-group-item" onclick="$('.search_form').submit()">
-            <a href="javascript:" onmouseover="$('.search-bar-input-mobile').val('<?php echo e($i['name']); ?>');$('.search-bar-input').val('<?php echo e($i['name']); ?>');">
-                <?php echo e($i['name']); ?>
+            <a href="javascript:" onmouseover="$('.search-bar-input-mobile').val('<?php echo e($product['name']); ?>');$('.search-bar-input').val('<?php echo e($product['name']); ?>');">
+                <?php echo e($product['name_bangla']); ?>
 
             </a>
         </li>

@@ -106,8 +106,18 @@ class ProductManager
         $paginator = Product::active()->with(['rating'])->where(function ($q) use ($key) {
             foreach ($key as $value) {
                 $q->orWhere('name', 'like', "%{$value}%");
+                $q->orWhere('name_bangla', 'like', "%{$value}%");
             }
         })->paginate($limit, ['*'], 'page', $offset);
+        
+        // dd($paginator);
+
+        // ->with(['writers' => function($q) use ($key){
+        //     foreach ($key as $value) {
+        //         $q->orWhere('name', 'like', "%{$value}%");
+        //         $q->orWhere('name_bangla', 'like', "%{$value}%");
+        //     }
+        // }])
 
         return [
             'total_size' => $paginator->total(),

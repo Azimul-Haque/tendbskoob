@@ -8,10 +8,10 @@
     }
 </style>
 <ul class="list-group list-group-flush">
-    @foreach($products as $i)
+    @foreach($products as $product)
         <li class="list-group-item" onclick="$('.search_form').submit()">
-            <a href="javascript:" onmouseover="$('.search-bar-input-mobile').val('{{$i['name']}}');$('.search-bar-input').val('{{$i['name']}}');">
-                {{$i['name']}}
+            <a href="javascript:" onmouseover="$('.search-bar-input-mobile').val('{{$product['name']}}');$('.search-bar-input').val('{{$product['name']}}');">
+                {{$product['name_bangla']}}
             </a>
         </li>
     @endforeach

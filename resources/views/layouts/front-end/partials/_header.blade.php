@@ -202,9 +202,10 @@
                      style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}}">
                     <form action="{{route('products')}}" type="submit" class="search_form">
                         <input class="form-control appended-form-control search-bar-input" type="text"
+                               id="globalsearch-m"
                                autocomplete="off"
                                placeholder="{{\App\CPU\translate('search')}}"
-                               name="name">
+                               name="name" required>
                         <button class="input-group-append-overlay search_button" type="submit"
                                 style="border-radius: {{Session::get('direction') === "rtl" ? '7px 0px 0px 7px; right: unset; left: 0' : '0px 7px 7px 0px; left: unset; right: 0'}};">
                                 <span class="input-group-text" style="font-size: 20px;">
@@ -302,8 +303,8 @@
                     <div class="input-group-overlay d-md-none my-3">
                         <form action="{{route('products')}}" type="submit" class="search_form">
                             <input class="form-control appended-form-control search-bar-input-mobile" type="text"
-                                   autocomplete="off"
-                                   placeholder="{{\App\CPU\translate('search')}}" name="name">
+                                   autocomplete="off" id="globalsearch"
+                                   placeholder="{{\App\CPU\translate('search')}}" name="name" required>
                             <input name="data_from" value="search" hidden>
                             <input name="page" value="1" hidden>
                             <button class="input-group-append-overlay search_button" type="submit"
