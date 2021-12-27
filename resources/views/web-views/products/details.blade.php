@@ -14,7 +14,6 @@
         $bn_book_writer_for_title = '';
         $en_book_writer_for_title = '';
     }
-    
 @endphp
 
 @section('title',$product['name_bangla'] . ':' . $bn_book_writer_for_title . ' - ' . $product['name'] . ':' . $en_book_writer_for_title . ' | Booksbd.net')
@@ -201,23 +200,79 @@
         <!-- General info tab-->
         <div class="row" style="direction: ltr">
             <!-- Product gallery-->
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-4 col-md-4">
                 <div class="d-flex align-items-center justify-content-center">
-                    <img class="img-responsive"
+                    <img class="img-responsive" style="max-height: 320px; width: auto;"
                             onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"
                             src="{{ \App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail'] }}"
                             data-zoom="{{ \App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail'] }}"
                             alt="Product image" width="">
-                    <div class="cz-image-zoom-pane"></div>
+                    {{-- <div class="cz-image-zoom-pane"></div> --}}
                 </div>
             </div>
             <!-- Product details-->
-            <div class="col-lg-6 col-md-6 mt-md-0 mt-sm-3" style="direction: {{ Session::get('direction') }}">
+            <div class="col-lg-8 col-md-8 mt-md-0 mt-sm-3" style="direction: {{ Session::get('direction') }}">
                 <div class="details">
-                    <h1 class="h3 mb-2">{{$product->name}}</h1>
+                    <h1 class="h3 mb-2">{{$product->name_bangla}}</h1>
+                    @php
+                        $autor_html = '';
+                        if($product->writers->count() > 0) {
+                            for($i = 0; $i < count($product->writers); $i++){
+                                $route = route('products',['id'=> $product->writers[$i]->id,'data_from'=>'author','page'=>1]);
+                                $autor_html .= '<a class="font-weight-normal text-accent" style="color: #5C7CFF !important;" href="' . $route . '">' . $product->writers[$i]->name_bangla . '</a>';
+                                if($i < (count($product->writers) -1)){
+                                    $autor_html .= ", ";
+                                }
+                            }
+                        }    
+
+                        if($product->translators->count() > 0) {
+                            if($product->writers->count() > 0) {
+                                $autor_html .= ", ";
+                            }
+                            for($i = 0; $i < count($product->translators); $i++){
+                                $route = route('products',['id'=> $product->translators[$i]->id,'data_from'=>'author','page'=>1]);
+                                $autor_html .= '<a class="font-weight-normal text-accent" style="color: #5C7CFF !important;" href="' . $route . '">' . $product->translators[$i]->name_bangla . ' (অনুবাদক)</a>';
+                                if($i < (count($product->translators) -1)){
+                                    $autor_html .= ", ";
+                                }
+                            }
+                        }
+
+                        if($product->editors->count() > 0) {
+                            if($product->writers->count() > 0 || $product->translators->count() > 0) {
+                                $autor_html .= ", ";
+                            }
+                            for($i = 0; $i < count($product->editors); $i++){
+                                $route = route('products',['id'=> $product->editors[$i]->id,'data_from'=>'author','page'=>1]);
+                                $autor_html .= '<a class="font-weight-normal text-accent" style="color: #5C7CFF !important;" href="' . $route . '">' . $product->editors[$i]->name_bangla . ' (সম্পাদক)</a>';
+                                if($i < (count($product->editors) -1)){
+                                    $autor_html .= ", ";
+                                }
+                            }
+                        }
+                    @endphp
+                    {!! $autor_html !!}<br/>
+
+                    <span>
+                        Category:
+                        @php
+                            $category_html = '';
+                            if($product->categories->count() > 0) {
+                                for($i = 0; $i < count($product->categories); $i++){
+                                    $route = route('products',['id'=> $product->categories[$i]->id,'data_from'=>'category','page'=>1]);
+                                    $category_html .= '<a class="font-weight-normal text-accent" style="color: #5C7CFF !important;" href="' . $route . '">' . $product->categories[$i]->name_bangla . '</a>';
+                                    if($i < (count($product->categories) -1)){
+                                        $category_html .= ", ";
+                                    }
+                                }
+                            }
+                        @endphp
+                        {!! $category_html !!}
+                    </span>
                     <div class="d-flex align-items-center mb-2 pro">
-                        <span
-                            class="d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'ml-md-2 ml-sm-0 pl-2' : 'mr-md-2 mr-sm-0 pr-2'}}">{{$overallRating[0]}}</span>
+                        {{-- <span
+                            class="d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'ml-md-2 ml-sm-0 pl-2' : 'mr-md-2 mr-sm-0 pr-2'}}">{{$overallRating[0]}}</span> --}}
                         <div class="star-rating">
                             @for($inc=0;$inc<5;$inc++)
                                 @if($inc<$overallRating[0])
@@ -227,39 +282,41 @@
                                 @endif
                             @endfor
                         </div>
-                        <span
+                        {{-- <span
                             class="font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}}">{{$overallRating[1]}} {{\App\CPU\translate('Reviews')}}</span>
                         <span style="width: 0px;height: 10px;border: 0.5px solid #707070; margin-top: 6px"></span>
                         <span
                             class="font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}}">{{$countOrder}} {{\App\CPU\translate('orders')}}   </span>
                         <span style="width: 0px;height: 10px;border: 0.5px solid #707070; margin-top: 6px">    </span>
                         <span
-                            class=" font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-0 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-0 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}}">  {{$countWishlist}} {{\App\CPU\translate('wish')}} </span>
+                            class=" font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-0 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-0 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}}">  {{$countWishlist}} {{\App\CPU\translate('wish')}} </span> --}}
 
                     </div>
                     <div class="mb-3">
-                        <span
-                            class="h3 font-weight-normal text-accent {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}">
-                            {{\App\CPU\Helpers::get_price_range($product) }}
-                        </span>
-                        @if($product->discount > 0)
+                        @if($product->published_price > $product->unit_price)
                             <strike style="color: {{$web_config['secondary_color']}};">
-                                {{\App\CPU\Helpers::currency_converter($product->unit_price)}}
+                                ৳ {{ number_format($product->published_price, 0) }} 
                             </strike>
+                        @endif
+                        <span class="h3 font-weight-normal text-accent {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}">
+                            ৳ {{ number_format($product->unit_price, 0) }}
+                        </span>
+                        @if($product->published_price > $product->unit_price)
+                            You save ৳ {{ $product->published_price - $product->unit_price }} ({{ ceil(100 * (($product->published_price - $product->unit_price)/$product->published_price)) }}%)
                         @endif
                     </div>
 
-                    @if($product->discount > 0)
+                    {{-- @if($product->discount > 0)
                         <div class="mb-3">
                             <strong>{{\App\CPU\translate('discount')}} : </strong>
                             <strong id="set-discount-amount"></strong>
                         </div>
-                    @endif
+                    @endif --}}
 
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <strong>{{\App\CPU\translate('tax')}} : </strong>
                         <strong id="set-tax-amount"></strong>
-                    </div>
+                    </div> --}}
                     <form id="add-to-cart-form" class="mb-2">
                         @csrf
                         <input type="hidden" name="id" value="{{ $product->id }}">
@@ -405,7 +462,7 @@
 
     {{--seller section--}}
     @if($product->added_by=='seller')
-        <div class="container mt-4 rtl" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
+        {{-- <div class="container mt-4 rtl" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
             <div class="row seller_details d-flex align-items-center" id="sellerOption">
                 <div class="col-md-6">
                     <div class="seller_shop">
@@ -487,9 +544,9 @@
                 <a href="{{route('chat-with-seller')}}" class="btn btn-primary" id="go_to_chatbox_btn">
                     {{\App\CPU\translate('go_to')}} {{\App\CPU\translate('chatbox')}} </a>
             </div>
-        </div>
+        </div> --}}
     @else
-        <div class="container rtl mt-3" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
+        {{-- <div class="container rtl mt-3" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
             <div class="row seller_details d-flex align-items-center" id="sellerOption">
                 <div class="col-md-6">
                     <div class="seller_shop">
@@ -536,7 +593,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     @endif
 
     {{--overview--}}
@@ -572,7 +629,29 @@
                                         </div>
                                     @endif
 
-                                    <div class="col-lg-12 col-md-12">
+                                    <div class="col-lg-5 col-md-5">
+                                        <table class="table table-hover table-bordered table-nowrap table-align-middle card-table">
+                                            <tbody>
+                                                <tr>
+                                                    <th>বই</th>
+                                                    <td>{{ $product->name_bangla }}<br/> {{ $product->name }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>লেখক</th>
+                                                    <td>{!! $autor_html !!}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>প্রকাশনী</th>
+                                                    <td><a class="font-weight-normal text-accent" style="color: #5C7CFF !important;" href="{{ route('products',['id'=> $product->publisher_id,'data_from'=>'publisher','page'=>1]) }}">{{ $product->publisher->name_bangla }}</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>আইএসবিএন (ISBN)</th>
+                                                    <td>{{ $product->isbn }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
                                         {!! $product['details'] !!}
                                     </div>
                                 </div>

@@ -12,7 +12,6 @@
         $bn_book_writer_for_title = '';
         $en_book_writer_for_title = '';
     }
-    
 ?>
 
 <?php $__env->startSection('title',$product['name_bangla'] . ':' . $bn_book_writer_for_title . ' - ' . $product['name'] . ':' . $en_book_writer_for_title . ' | Booksbd.net'); ?>
@@ -71,23 +70,79 @@
         <!-- General info tab-->
         <div class="row" style="direction: ltr">
             <!-- Product gallery-->
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-4 col-md-4">
                 <div class="d-flex align-items-center justify-content-center">
-                    <img class="img-responsive"
+                    <img class="img-responsive" style="max-height: 320px; width: auto;"
                             onerror="this.src='<?php echo e(asset('public/assets/front-end/img/book_demo.jpg')); ?>'"
                             src="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($product['thumbnail']); ?>"
                             data-zoom="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($product['thumbnail']); ?>"
                             alt="Product image" width="">
-                    <div class="cz-image-zoom-pane"></div>
+                    
                 </div>
             </div>
             <!-- Product details-->
-            <div class="col-lg-6 col-md-6 mt-md-0 mt-sm-3" style="direction: <?php echo e(Session::get('direction')); ?>">
+            <div class="col-lg-8 col-md-8 mt-md-0 mt-sm-3" style="direction: <?php echo e(Session::get('direction')); ?>">
                 <div class="details">
-                    <h1 class="h3 mb-2"><?php echo e($product->name); ?></h1>
+                    <h1 class="h3 mb-2"><?php echo e($product->name_bangla); ?></h1>
+                    <?php
+                        $autor_html = '';
+                        if($product->writers->count() > 0) {
+                            for($i = 0; $i < count($product->writers); $i++){
+                                $route = route('products',['id'=> $product->writers[$i]->id,'data_from'=>'author','page'=>1]);
+                                $autor_html .= '<a class="font-weight-normal text-accent" style="color: #5C7CFF !important;" href="' . $route . '">' . $product->writers[$i]->name_bangla . '</a>';
+                                if($i < (count($product->writers) -1)){
+                                    $autor_html .= ", ";
+                                }
+                            }
+                        }    
+
+                        if($product->translators->count() > 0) {
+                            if($product->writers->count() > 0) {
+                                $autor_html .= ", ";
+                            }
+                            for($i = 0; $i < count($product->translators); $i++){
+                                $route = route('products',['id'=> $product->translators[$i]->id,'data_from'=>'author','page'=>1]);
+                                $autor_html .= '<a class="font-weight-normal text-accent" style="color: #5C7CFF !important;" href="' . $route . '">' . $product->translators[$i]->name_bangla . ' (অনুবাদক)</a>';
+                                if($i < (count($product->translators) -1)){
+                                    $autor_html .= ", ";
+                                }
+                            }
+                        }
+
+                        if($product->editors->count() > 0) {
+                            if($product->writers->count() > 0 || $product->translators->count() > 0) {
+                                $autor_html .= ", ";
+                            }
+                            for($i = 0; $i < count($product->editors); $i++){
+                                $route = route('products',['id'=> $product->editors[$i]->id,'data_from'=>'author','page'=>1]);
+                                $autor_html .= '<a class="font-weight-normal text-accent" style="color: #5C7CFF !important;" href="' . $route . '">' . $product->editors[$i]->name_bangla . ' (সম্পাদক)</a>';
+                                if($i < (count($product->editors) -1)){
+                                    $autor_html .= ", ";
+                                }
+                            }
+                        }
+                    ?>
+                    <?php echo $autor_html; ?><br/>
+
+                    <span>
+                        Category:
+                        <?php
+                            $category_html = '';
+                            if($product->categories->count() > 0) {
+                                for($i = 0; $i < count($product->categories); $i++){
+                                    $route = route('products',['id'=> $product->categories[$i]->id,'data_from'=>'category','page'=>1]);
+                                    $category_html .= '<a class="font-weight-normal text-accent" style="color: #5C7CFF !important;" href="' . $route . '">' . $product->categories[$i]->name_bangla . '</a>';
+                                    if($i < (count($product->categories) -1)){
+                                        $category_html .= ", ";
+                                    }
+                                }
+                            }
+                        ?>
+                        <?php echo $category_html; ?>
+
+                    </span>
                     <div class="d-flex align-items-center mb-2 pro">
-                        <span
-                            class="d-inline-block font-size-sm text-body align-middle mt-1 <?php echo e(Session::get('direction') === "rtl" ? 'ml-md-2 ml-sm-0 pl-2' : 'mr-md-2 mr-sm-0 pr-2'); ?>"><?php echo e($overallRating[0]); ?></span>
+                        
                         <div class="star-rating">
                             <?php for($inc=0;$inc<5;$inc++): ?>
                                 <?php if($inc<$overallRating[0]): ?>
@@ -97,41 +152,27 @@
                                 <?php endif; ?>
                             <?php endfor; ?>
                         </div>
-                        <span
-                            class="font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 <?php echo e(Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'); ?>"><?php echo e($overallRating[1]); ?> <?php echo e(\App\CPU\translate('Reviews')); ?></span>
-                        <span style="width: 0px;height: 10px;border: 0.5px solid #707070; margin-top: 6px"></span>
-                        <span
-                            class="font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 <?php echo e(Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'); ?>"><?php echo e($countOrder); ?> <?php echo e(\App\CPU\translate('orders')); ?>   </span>
-                        <span style="width: 0px;height: 10px;border: 0.5px solid #707070; margin-top: 6px">    </span>
-                        <span
-                            class=" font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 <?php echo e(Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-0 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-0 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'); ?>">  <?php echo e($countWishlist); ?> <?php echo e(\App\CPU\translate('wish')); ?> </span>
+                        
 
                     </div>
                     <div class="mb-3">
-                        <span
-                            class="h3 font-weight-normal text-accent <?php echo e(Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'); ?>">
-                            <?php echo e(\App\CPU\Helpers::get_price_range($product)); ?>
+                        <?php if($product->published_price > $product->unit_price): ?>
+                            <strike style="color: <?php echo e($web_config['secondary_color']); ?>;">
+                                ৳ <?php echo e(number_format($product->published_price, 0)); ?> 
+                            </strike>
+                        <?php endif; ?>
+                        <span class="h3 font-weight-normal text-accent <?php echo e(Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'); ?>">
+                            ৳ <?php echo e(number_format($product->unit_price, 0)); ?>
 
                         </span>
-                        <?php if($product->discount > 0): ?>
-                            <strike style="color: <?php echo e($web_config['secondary_color']); ?>;">
-                                <?php echo e(\App\CPU\Helpers::currency_converter($product->unit_price)); ?>
-
-                            </strike>
+                        <?php if($product->published_price > $product->unit_price): ?>
+                            You save ৳ <?php echo e($product->published_price - $product->unit_price); ?> (<?php echo e(ceil(100 * (($product->published_price - $product->unit_price)/$product->published_price))); ?>%)
                         <?php endif; ?>
                     </div>
 
-                    <?php if($product->discount > 0): ?>
-                        <div class="mb-3">
-                            <strong><?php echo e(\App\CPU\translate('discount')); ?> : </strong>
-                            <strong id="set-discount-amount"></strong>
-                        </div>
-                    <?php endif; ?>
+                    
 
-                    <div class="mb-3">
-                        <strong><?php echo e(\App\CPU\translate('tax')); ?> : </strong>
-                        <strong id="set-tax-amount"></strong>
-                    </div>
+                    
                     <form id="add-to-cart-form" class="mb-2">
                         <?php echo csrf_field(); ?>
                         <input type="hidden" name="id" value="<?php echo e($product->id); ?>">
@@ -278,143 +319,9 @@
 
     
     <?php if($product->added_by=='seller'): ?>
-        <div class="container mt-4 rtl" style="text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;">
-            <div class="row seller_details d-flex align-items-center" id="sellerOption">
-                <div class="col-md-6">
-                    <div class="seller_shop">
-                        <div class="shop_image d-flex justify-content-center align-items-center">
-                            <a href="#" class="d-flex justify-content-center">
-                                <img style="height: 65px; width: 65px; border-radius: 50%"
-                                     src="<?php echo e(asset('storage/app/public/shop')); ?>/<?php echo e($product->seller->shop->image); ?>"
-                                     onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
-                                     alt="">
-                            </a>
-                        </div>
-                        <div
-                            class="shop-name-<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?> d-flex justify-content-center align-items-center">
-                            <div>
-                                <a href="#" class="d-flex align-items-center">
-                                    <div
-                                        class="title"><?php echo e($product->seller->shop->name); ?></div>
-                                </a>
-                                <div class="review d-flex align-items-center">
-                                    <div class="">
-                                        <span
-                                            class="d-inline-block font-size-sm text-body align-middle mt-1 <?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?>"><?php echo e(\App\CPU\translate('Seller')); ?> <?php echo e(\App\CPU\translate('Info')); ?> </span>
-                                        <span
-                                            class="d-inline-block font-size-sm text-body align-middle mt-1 <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'); ?>"></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 p-md-0 pt-sm-3">
-                    <div class="seller_contact">
-                        <div
-                            class="d-flex align-items-center <?php echo e(Session::get('direction') === "rtl" ? 'pl-4' : 'pr-4'); ?>">
-                            <a href="<?php echo e(route('shopView',[$product->seller->id])); ?>">
-                                <button class="btn btn-secondary">
-                                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                                    <?php echo e(\App\CPU\translate('Visit')); ?>
-
-                                </button>
-                            </a>
-                        </div>
-
-                        <?php if(auth('customer')->id() == ''): ?>
-                            <div class="d-flex align-items-center">
-                                <a href="<?php echo e(route('customer.auth.login')); ?>">
-                                    <button class="btn btn-primary">
-                                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                                        <?php echo e(\App\CPU\translate('Contact')); ?> <?php echo e(\App\CPU\translate('Seller')); ?>
-
-                                    </button>
-                                </a>
-                            </div>
-                        <?php else: ?>
-                            <div class="d-flex align-items-center" id="contact-seller">
-                                <button class="btn btn-primary">
-                                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                                    <?php echo e(\App\CPU\translate('Contact')); ?> <?php echo e(\App\CPU\translate('Seller')); ?>
-
-                                </button>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </div>
-            <div class="row msg-option" id="msg-option">
-                <form action="">
-                    <input type="text" class="seller_id" hidden seller-id="<?php echo e($product->seller->id); ?>">
-                    <textarea shop-id="<?php echo e($product->seller->shop->id); ?>" class="chatInputBox"
-                              id="chatInputBox" rows="5"> </textarea>
-
-                    <button class="btn btn-secondary" style="color: white;"
-                            id="cancelBtn"><?php echo e(\App\CPU\translate('cancel')); ?>
-
-                    </button>
-                    <button class="btn btn-primary" style="color: white;"
-                            id="sendBtn"><?php echo e(\App\CPU\translate('send')); ?></button>
-                </form>
-            </div>
-            <div class="go-to-chatbox" id="go_to_chatbox">
-                <a href="<?php echo e(route('chat-with-seller')); ?>" class="btn btn-primary" id="go_to_chatbox_btn">
-                    <?php echo e(\App\CPU\translate('go_to')); ?> <?php echo e(\App\CPU\translate('chatbox')); ?> </a>
-            </div>
-        </div>
+        
     <?php else: ?>
-        <div class="container rtl mt-3" style="text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;">
-            <div class="row seller_details d-flex align-items-center" id="sellerOption">
-                <div class="col-md-6">
-                    <div class="seller_shop">
-                        <div class="shop_image d-flex justify-content-center align-items-center">
-                            <a href="<?php echo e(route('shopView',[0])); ?>" class="d-flex justify-content-center">
-                                <img style="height: 65px;width: 65px; border-radius: 50%"
-                                     src="<?php echo e(asset("storage/app/public/company")); ?>/<?php echo e($web_config['fav_icon']->value); ?>"
-                                     onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
-                                     alt="">
-                            </a>
-                        </div>
-                        <div
-                            class="shop-name-<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?> d-flex justify-content-center align-items-center">
-                            <div>
-                                <a href="#" class="d-flex align-items-center">
-                                    <div
-                                        class="title"><?php echo e($web_config['name']->value); ?></div>
-                                </a>
-                                <div class="review d-flex align-items-center">
-                                    <div class="">
-                                        <span
-                                            class="d-inline-block font-size-sm text-body align-middle mt-1 <?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?>"><?php echo e(\App\CPU\translate('web_admin')); ?></span>
-                                        <span
-                                            class="d-inline-block font-size-sm text-body align-middle mt-1 <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'); ?>"></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 p-md-0 pt-sm-3">
-                    <div class="seller_contact">
-
-                        <div
-                            class="d-flex align-items-center <?php echo e(Session::get('direction') === "rtl" ? 'pl-4' : 'pr-4'); ?>">
-                            <a href="<?php echo e(route('shopView',[0])); ?>">
-                                <button class="btn btn-secondary">
-                                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                                    <?php echo e(\App\CPU\translate('Visit')); ?>
-
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     <?php endif; ?>
 
     
@@ -452,7 +359,29 @@
                                         </div>
                                     <?php endif; ?>
 
-                                    <div class="col-lg-12 col-md-12">
+                                    <div class="col-lg-5 col-md-5">
+                                        <table class="table table-hover table-bordered table-nowrap table-align-middle card-table">
+                                            <tbody>
+                                                <tr>
+                                                    <th>বই</th>
+                                                    <td><?php echo e($product->name_bangla); ?><br/> <?php echo e($product->name); ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>লেখক</th>
+                                                    <td><?php echo $autor_html; ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>প্রকাশনী</th>
+                                                    <td><a class="font-weight-normal text-accent" style="color: #5C7CFF !important;" href="<?php echo e(route('products',['id'=> $product->publisher_id,'data_from'=>'publisher','page'=>1])); ?>"><?php echo e($product->publisher->name_bangla); ?></a></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>আইএসবিএন (ISBN)</th>
+                                                    <td><?php echo e($product->isbn); ?></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7">
                                         <?php echo $product['details']; ?>
 
                                     </div>
