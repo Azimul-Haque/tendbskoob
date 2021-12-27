@@ -214,6 +214,7 @@
          style="text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;">
         <div class="row">
             <!-- Sidebar-->
+            
             <aside
                 class="col-lg-3 hidden-xs col-md-3 col-sm-4 SearchParameters <?php echo e(Session::get('direction') === "rtl" ? 'pl-0' : 'pr-0'); ?>"
                 id="SearchParameters">
@@ -309,7 +310,8 @@
                 </div>
                 <!-- Brand Sidebar-->
                 
-                    <!-- Author Sidebar-->
+                
+                <!-- Author Sidebar-->
                 <div class="cz-sidebar rounded-lg box-shadow-lg" id="shop-sidebar" style="margin-bottom: 11px;">
                     <div class="cz-sidebar-header box-shadow-sm">
                         <button class="close <?php echo e(Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'); ?>"
@@ -319,15 +321,15 @@
                                 aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="cz-sidebar-body">
-                        <!-- Filter by Brand-->
+                        <!-- Filter by Author-->
                         <div class="widget cz-filter mb-4 pb-6 border-bottom mt-2">
                             <h3 class="widget-title" style="font-weight: 700;"><?php echo e(\App\CPU\translate('Authors')); ?></h3>
                             <div class="divider-role"
                                  style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
                             <div class="input-group-overlay input-group-sm mb-2">
-                                <input style="background: aliceblue" placeholder="Search brand"
+                                <input style="background: aliceblue" placeholder="Search Author"
                                        class="cz-filter-search form-control form-control-sm appended-form-control"
-                                       type="text" id="search-brand">
+                                       type="text" id="search-author">
                                 <div class="input-group-append-overlay">
                                     <span style="color: #3498db;"
                                           class="input-group-text">
@@ -335,11 +337,11 @@
                                     </span>
                                 </div>
                             </div>
-                            <ul id="lista1" class="widget-list cz-filter-list list-unstyled pt-1"
-                                style="max-height: 12rem;"
+                            <ul id="authorlist" class="widget-list cz-filter-list list-unstyled pt-1"
+                                style="height: 300px;"
                                 data-simplebar data-simplebar-auto-hide="false">
                                 <?php $__currentLoopData = \App\Model\Author::get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $author): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <div class="brand mt-4 for-brand-hover <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : ''); ?>" id="author">
+                                    <div class="brand mt-1 for-brand-hover <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : ''); ?>" id="author">
                                         <li style="cursor: pointer;padding: 2px" class="flex-between"
                                             onclick="location.href='<?php echo e(route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1])); ?>'">
                                             <div>
@@ -361,6 +363,113 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Publisher Sidebar-->
+                <div class="cz-sidebar rounded-lg box-shadow-lg" id="shop-sidebar" style="margin-bottom: 11px;">
+                    <div class="cz-sidebar-header box-shadow-sm">
+                        <button class="close <?php echo e(Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'); ?>"
+                                type="button" data-dismiss="sidebar" aria-label="Close"><span
+                                class="d-inline-block font-size-xs font-weight-normal align-middle"><?php echo e(\App\CPU\translate('Dashboard')); ?><?php echo e(\App\CPU\translate('Close sidebar')); ?></span><span
+                                class="d-inline-block align-middle <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'); ?>"
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="cz-sidebar-body">
+                        <!-- Filter by Publisher-->
+                        <div class="widget cz-filter mb-4 pb-6 border-bottom mt-2">
+                            <h3 class="widget-title" style="font-weight: 700;"><?php echo e(\App\CPU\translate('Publications')); ?></h3>
+                            <div class="divider-role"
+                                 style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
+                            <div class="input-group-overlay input-group-sm mb-2">
+                                <input style="background: aliceblue" placeholder="Search Publication"
+                                       class="cz-filter-search form-control form-control-sm appended-form-control"
+                                       type="text" id="search-publisher">
+                                <div class="input-group-append-overlay">
+                                    <span style="color: #3498db;"
+                                          class="input-group-text">
+                                        <i class="czi-search"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <ul id="publisherlist" class="widget-list cz-filter-list list-unstyled pt-1"
+                                style="height: 300px;"
+                                data-simplebar data-simplebar-auto-hide="false">
+                                <?php $__currentLoopData = \App\Model\Publisher::get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $publisher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <div class="brand mt-1 for-brand-hover <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : ''); ?>" id="publisher">
+                                        <li style="cursor: pointer;padding: 2px" class="flex-between"
+                                            onclick="location.href='<?php echo e(route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1])); ?>'">
+                                            <div>
+                                                <?php echo e($publisher['name_bangla']); ?>
+
+                                            </div>
+                                            <?php if($publisher->products->count() > 0 ): ?>
+                                                <div>
+                                                    <span class="count-value">
+                                                    <?php echo e($publisher->products->count()); ?>
+
+                                                    </span>
+                                                </div>
+                                            <?php endif; ?>
+                                        </li>
+                                    </div>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category Sidebar-->
+                <div class="cz-sidebar rounded-lg box-shadow-lg" id="shop-sidebar" style="margin-bottom: 11px;">
+                    <div class="cz-sidebar-header box-shadow-sm">
+                        <button class="close <?php echo e(Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'); ?>"
+                                type="button" data-dismiss="sidebar" aria-label="Close"><span
+                                class="d-inline-block font-size-xs font-weight-normal align-middle"><?php echo e(\App\CPU\translate('Dashboard')); ?><?php echo e(\App\CPU\translate('Close sidebar')); ?></span><span
+                                class="d-inline-block align-middle <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'); ?>"
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="cz-sidebar-body">
+                        <!-- Filter by Category-->
+                        <div class="widget cz-filter mb-4 pb-6 border-bottom mt-2">
+                            <h3 class="widget-title" style="font-weight: 700;"><?php echo e(\App\CPU\translate('Categories')); ?></h3>
+                            <div class="divider-role"
+                                 style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
+                            <div class="input-group-overlay input-group-sm mb-2">
+                                <input style="background: aliceblue" placeholder="Search Publication"
+                                       class="cz-filter-search form-control form-control-sm appended-form-control"
+                                       type="text" id="search-category">
+                                <div class="input-group-append-overlay">
+                                    <span style="color: #3498db;"
+                                          class="input-group-text">
+                                        <i class="czi-search"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <ul id="categorylist" class="widget-list cz-filter-list list-unstyled pt-1"
+                                style="height: 300px;"
+                                data-simplebar data-simplebar-auto-hide="false">
+                                <?php $__currentLoopData = \App\Model\Category::get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <div class="brand mt-1 for-brand-hover <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : ''); ?>" id="publisher">
+                                        <li style="cursor: pointer;padding: 2px" class="flex-between"
+                                            onclick="location.href='<?php echo e(route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])); ?>'">
+                                            <div>
+                                                <?php echo e($category['name_bangla']); ?>
+
+                                            </div>
+                                            <?php if($category->products->count() > 0 ): ?>
+                                                <div>
+                                                    <span class="count-value">
+                                                    <?php echo e($category->products->count()); ?>
+
+                                                    </span>
+                                                </div>
+                                            <?php endif; ?>
+                                        </li>
+                                    </div>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- Categories & Color & Size Sidebar-->
                 <div class="cz-sidebar rounded-lg box-shadow-lg" id="shop-sidebar">
                     <div class="cz-sidebar-header box-shadow-sm">
@@ -436,6 +545,8 @@
                     </div>
                 </div>
             </aside>
+
+            
             <div id="mySidepanel" class="sidepanel">
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
                 <aside class="" style="padding-right: 5%;padding-left: 5%;">
@@ -689,6 +800,10 @@
                             <?php elseif($data['data_from'] == 'category'): ?>
                                 <b><?php echo e(isset($data_from_name) ? $data_from_name : ''); ?></b>
                                 <label>( <?php echo e($products->total()); ?> <?php echo e(\App\CPU\translate('items found')); ?> )</label>
+                            <?php else: ?>
+                                <?php echo e(strtoupper($data['data_from'])); ?> <?php echo e(\App\CPU\translate('products')); ?>
+
+                                <label>( <?php echo e($products->total()); ?> <?php echo e(\App\CPU\translate('items found')); ?> )</label>
                             <?php endif; ?>
                                     
                             
@@ -818,9 +933,24 @@
                 return $(this).text().toLowerCase().trim().indexOf(value) == -1;
             }).hide();
         });
+        
         $("#search-author").on("keyup", function () {
             var value = this.value.toLowerCase().trim();
-            $("#lista1 div>li").show().filter(function () {
+            $("#authorlist div>li").show().filter(function () {
+                return $(this).text().toLowerCase().trim().indexOf(value) == -1;
+            }).hide();
+        });
+
+        $("#search-publisher").on("keyup", function () {
+            var value = this.value.toLowerCase().trim();
+            $("#publisherlist div>li").show().filter(function () {
+                return $(this).text().toLowerCase().trim().indexOf(value) == -1;
+            }).hide();
+        });
+
+        $("#search-category").on("keyup", function () {
+            var value = this.value.toLowerCase().trim();
+            $("#categorylist div>li").show().filter(function () {
                 return $(this).text().toLowerCase().trim().indexOf(value) == -1;
             }).hide();
         });

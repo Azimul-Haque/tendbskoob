@@ -1427,4 +1427,5 @@
   'নীড়পাতা' => '���ীড়পাতা',
   'All Authors Page' => 'All Authors Page',
   'All Pulication Page' => 'All Pulication Page',
+  'top-rated' => 'Top-rated',
 );
