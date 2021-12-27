@@ -357,6 +357,8 @@
                     </div>
                 </div>
                 <!-- Brand Sidebar-->
+                
+                    <!-- Author Sidebar-->
                 <div class="cz-sidebar rounded-lg box-shadow-lg" id="shop-sidebar" style="margin-bottom: 11px;">
                     <div class="cz-sidebar-header box-shadow-sm">
                         <button class="close <?php echo e(Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'); ?>"
@@ -367,8 +369,8 @@
                     </div>
                     <div class="cz-sidebar-body">
                         <!-- Filter by Brand-->
-                        <div class="widget cz-filter mb-4 pb-4 border-bottom mt-2">
-                            <h3 class="widget-title" style="font-weight: 700;"><?php echo e(\App\CPU\translate('brands')); ?></h3>
+                        <div class="widget cz-filter mb-4 pb-6 border-bottom mt-2">
+                            <h3 class="widget-title" style="font-weight: 700;"><?php echo e(\App\CPU\translate('Authors')); ?></h3>
                             <div class="divider-role"
                                  style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
                             <div class="input-group-overlay input-group-sm mb-2">
@@ -385,18 +387,18 @@
                             <ul id="lista1" class="widget-list cz-filter-list list-unstyled pt-1"
                                 style="max-height: 12rem;"
                                 data-simplebar data-simplebar-auto-hide="false">
-                                <?php $__currentLoopData = \App\CPU\BrandManager::get_brands(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $brand): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <div class="brand mt-4 for-brand-hover <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : ''); ?>" id="brand">
+                                <?php $__currentLoopData = \App\Model\Author::get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $author): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <div class="brand mt-4 for-brand-hover <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : ''); ?>" id="author">
                                         <li style="cursor: pointer;padding: 2px" class="flex-between"
-                                            onclick="location.href='<?php echo e(route('products',['id'=> $brand['id'],'data_from'=>'brand','page'=>1])); ?>'">
+                                            onclick="location.href='<?php echo e(route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1])); ?>'">
                                             <div>
-                                                <?php echo e($brand['name']); ?>
+                                                <?php echo e($author['name_bangla']); ?>
 
                                             </div>
-                                            <?php if($brand['brand_products_count'] > 0 ): ?>
+                                            <?php if($author->products->count() > 0 ): ?>
                                                 <div>
                                                     <span class="count-value">
-                                                    <?php echo e($brand['brand_products_count']); ?>
+                                                    <?php echo e($author->products->count()); ?>
 
                                                     </span>
                                                 </div>
@@ -761,6 +763,12 @@
         });
 
         $("#search-brand").on("keyup", function () {
+            var value = this.value.toLowerCase().trim();
+            $("#lista1 div>li").show().filter(function () {
+                return $(this).text().toLowerCase().trim().indexOf(value) == -1;
+            }).hide();
+        });
+        $("#search-author").on("keyup", function () {
             var value = this.value.toLowerCase().trim();
             $("#lista1 div>li").show().filter(function () {
                 return $(this).text().toLowerCase().trim().indexOf(value) == -1;
