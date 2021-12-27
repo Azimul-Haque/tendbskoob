@@ -37,7 +37,7 @@
                 <div class="row mx-n2">
                     <?php $__currentLoopData = $publishers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $publisher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6 px-2 pb-4 text-center">
-                            <a href="<?php echo e(route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1])); ?>" class="">
+                            <a href="<?php echo e(route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1, 'publisher_name'=>$publisher['slug']])); ?>" class="">
                                 <div class="brand_div d-flex align-items-center justify-content-center"
                                  style="height: 200px">
                                     <img

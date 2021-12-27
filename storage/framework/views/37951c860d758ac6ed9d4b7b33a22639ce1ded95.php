@@ -1,4 +1,14 @@
-<?php $__env->startSection('title',ucfirst($data['data_from']).' products'); ?>
+<?php
+    $titleforthispage = strtoupper($data['data_from']).' products';
+
+    if($data['data_from'] == 'author' || $data['data_from'] == 'publisher' || $data['data_from'] == 'category'){
+        $titleforthispage = $datasource['name'] . ' Books - ' . $datasource['name_bangla'] . ' এর বই | Booksbd.net';
+    } else {
+        $titleforthispage = strtoupper($data['data_from']) .' products';
+    }
+?>
+
+<?php $__env->startSection('title', $titleforthispage); ?>
 
 <?php $__env->startPush('css_or_js'); ?>
     <meta property="og:image" content="<?php echo e(asset('storage/app/public/company')); ?>/<?php echo e($web_config['web_logo']); ?>"/>
@@ -433,7 +443,7 @@
                             <div class="divider-role"
                                  style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
                             <div class="input-group-overlay input-group-sm mb-2">
-                                <input style="background: aliceblue" placeholder="Search Publication"
+                                <input style="background: aliceblue" placeholder="Search Category"
                                        class="cz-filter-search form-control form-control-sm appended-form-control"
                                        type="text" id="search-category">
                                 <div class="input-group-append-overlay">
@@ -469,8 +479,6 @@
                         </div>
                     </div>
                 </div>
-                
-                <?php ($categories=\App\CPU\CategoryManager::parents()); ?>
             </aside>
 
             
@@ -557,7 +565,6 @@
 
                     <!-- Author Sidebar-->
                     <div class="" id="shop-sidebar" style="margin-bottom: 11px;">
-
                         <div class="">
                             <!-- Filter by Brand-->
                             <div class="widget cz-filter mb-4 pb-4 border-bottom mt-2">
@@ -566,8 +573,8 @@
                                      style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
                                 <div class="input-group-overlay input-group-sm mb-2">
                                     <input style="background: aliceblue"
-                                           class="cz-filter-search form-control form-control-sm appended-form-control"
-                                           type="text" id="search-brand-m">
+                                           class="cz-filter-search form-control form-control-sm appended-form-control" placeholder="Search Author"
+                                           type="text" id="search-author-m">
                                     <div class="input-group-append-overlay">
                                         <span style="color: #3498db;"
                                               class="input-group-text">
@@ -575,19 +582,59 @@
                                         </span>
                                     </div>
                                 </div>
-                                <ul id="lista1" class="widget-list cz-filter-list list-unstyled pt-1"
-                                    style="max-height: 12rem;"
+                                <ul id="mauthorlist" class="widget-list cz-filter-list list-unstyled pt-1"
+                                    style="height: 250px;"
                                     data-simplebar data-simplebar-auto-hide="false">
-                                    <?php $__currentLoopData = \App\Model\Author::get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $brand): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <div class="brand mt-4 for-brand-hover" id="brand">
+                                    <?php $__currentLoopData = \App\Model\Author::get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $author): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <div class="brand mt-1 for-brand-hover" id="author">
                                             <li style="cursor: pointer;padding: 2px"
-                                                onclick="location.href='<?php echo e(route('products',['id'=> $brand['id'],'data_from'=>'brand','page'=>1])); ?>'">
-                                                <?php echo e($brand['name']); ?>
+                                                onclick="location.href='<?php echo e(route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1, 'author_name'=>$author['slug']])); ?>'">
+                                                <?php echo e($author['name_bangla']); ?>
 
-                                                <?php if($brand['brand_products_count'] > 0 ): ?>
-
+                                                <?php if($author->products->count() > 0 ): ?>
                                                     <span class="for-count-value"
-                                                          style="float: <?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>"><?php echo e($brand['brand_products_count']); ?></span>
+                                                          style="float: <?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>"><?php echo e($author->products->count()); ?></span>
+
+                                                <?php endif; ?>
+                                            </li>
+                                        </div>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Publisher Sidebar-->
+                    <div class="" id="shop-sidebar" style="margin-bottom: 11px;">
+                        <div class="">
+                            <!-- Filter by Brand-->
+                            <div class="widget cz-filter mb-4 pb-4 border-bottom mt-2">
+                                <h3 class="widget-title" style="font-weight: 700;"><?php echo e(\App\CPU\translate('Publications')); ?></h3>
+                                <div class="divider-role"
+                                     style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
+                                <div class="input-group-overlay input-group-sm mb-2">
+                                    <input style="background: aliceblue"
+                                           class="cz-filter-search form-control form-control-sm appended-form-control" placeholder="Search Publisher"
+                                           type="text" id="search-publisher-m">
+                                    <div class="input-group-append-overlay">
+                                        <span style="color: #3498db;"
+                                              class="input-group-text">
+                                            <i class="czi-search"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <ul id="mpublisherlist" class="widget-list cz-filter-list list-unstyled pt-1"
+                                    style="height: 250px;"
+                                    data-simplebar data-simplebar-auto-hide="false">
+                                    <?php $__currentLoopData = \App\Model\Publisher::get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $publisher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <div class="brand mt-1 for-brand-hover" id="publisher">
+                                            <li style="cursor: pointer;padding: 2px"
+                                                onclick="location.href='<?php echo e(route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1, 'publisher_name'=>$publisher['slug']])); ?>'">
+                                                <?php echo e($publisher['name_bangla']); ?>
+
+                                                <?php if($publisher->products->count() > 0 ): ?>
+                                                    <span class="for-count-value"
+                                                          style="float: <?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>"><?php echo e($publisher->products->count()); ?></span>
 
                                                 <?php endif; ?>
                                             </li>
@@ -598,72 +645,44 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Categories & Color & Size Sidebar (mobile) -->
-                    <div class="" id="shop-sidebar">
+
+                    <!-- Category Sidebar-->
+                    <div class="" id="shop-sidebar" style="margin-bottom: 11px;">
                         <div class="">
-                            <!-- Categories-->
-                            <div class="widget widget-categories mb-4 pb-4 border-bottom">
-                                <h3 class="widget-title"
-                                    style="font-weight: 700;"><?php echo e(\App\CPU\translate('categories')); ?></h3>
+                            <!-- Filter by Brand-->
+                            <div class="widget cz-filter mb-4 pb-4 border-bottom mt-2">
+                                <h3 class="widget-title" style="font-weight: 700;"><?php echo e(\App\CPU\translate('Categories')); ?></h3>
                                 <div class="divider-role"
                                      style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
-                                <div class="accordion mt-n1" id="shop-categories">
-                                    <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <div class="card">
-                                            <div class="card-header p-1 flex-between">
-                                                <div>
-                                                    <label class="for-hover-lable" style="cursor: pointer"
-                                                           onclick="location.href='<?php echo e(route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])); ?>'">
-                                                        <?php echo e($category['name']); ?>
+                                <div class="input-group-overlay input-group-sm mb-2">
+                                    <input style="background: aliceblue"
+                                           class="cz-filter-search form-control form-control-sm appended-form-control" placeholder="Search Category"
+                                           type="text" id="search-category-m">
+                                    <div class="input-group-append-overlay">
+                                        <span style="color: #3498db;"
+                                              class="input-group-text">
+                                            <i class="czi-search"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <ul id="mcategorylist" class="widget-list cz-filter-list list-unstyled pt-1"
+                                    style="height: 250px;"
+                                    data-simplebar data-simplebar-auto-hide="false">
+                                    <?php $__currentLoopData = \App\Model\Category::get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <div class="brand mt-1 for-brand-hover" id="category">
+                                            <li style="cursor: pointer;padding: 2px"
+                                                onclick="location.href='<?php echo e(route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])); ?>'">
+                                                <?php echo e($category['name_bangla']); ?>
 
-                                                    </label>
-                                                </div>
-                                                <div>
-                                                    <strong class="pull-right for-brand-hover" style="cursor: pointer"
-                                                            onclick="$('#collapsem-<?php echo e($category['id']); ?>').toggle(300)">
-                                                        <?php echo e($category->childes->count()>0?'+':''); ?>
+                                                <?php if($category->products->count() > 0 ): ?>
+                                                    <span class="for-count-value"
+                                                          style="float: <?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>"><?php echo e($category->products->count()); ?></span>
 
-                                                    </strong>
-                                                </div>
-                                            </div>
-                                            <div
-                                                class="card-body <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'); ?>"
-                                                id="collapsem-<?php echo e($category['id']); ?>"
-                                                style="display: none">
-                                                <?php $__currentLoopData = $category->childes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $child): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <div class="card-header p-1 flex-between">
-                                                        <div>
-                                                            <label class="for-hover-lable" style="cursor: pointer"
-                                                                   onclick="location.href='<?php echo e(route('products',['id'=> $child['id'],'data_from'=>'category','page'=>1])); ?>'">
-                                                                <?php echo e($child['name']); ?>
-
-                                                            </label>
-                                                        </div>
-                                                        <div>
-                                                            <strong class="pull-right for-brand-hover"
-                                                                    style="cursor: pointer"
-                                                                    onclick="$('#collapsem-<?php echo e($child['id']); ?>').toggle(300)">
-                                                                <?php echo e($child->childes->count()>0?'+':''); ?>
-
-                                                            </strong>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="card-body <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'); ?>"
-                                                        id="collapsem-<?php echo e($child['id']); ?>"
-                                                        style="display: none">
-                                                        <?php $__currentLoopData = $child->childes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ch): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                            <div class="card-header p-1">
-                                                                <label class="for-hover-lable" style="cursor: pointer"
-                                                                       onclick="location.href='<?php echo e(route('products',['id'=> $ch['id'],'data_from'=>'category','page'=>1])); ?>'"><?php echo e($ch['name']); ?></label>
-                                                            </div>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                    </div>
-                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                            </div>
+                                                <?php endif; ?>
+                                            </li>
                                         </div>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </div>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -792,11 +811,13 @@
 <?php $__env->startPush('script'); ?>
     <script>
         function openNav() {
-            document.getElementById("mySidepanel").style.width = "50%";
+            document.getElementById("mySidepanel").style.width = "80%";
+            document.getElementById("mySidepanel").style.height = "100%";
         }
 
         function closeNav() {
             document.getElementById("mySidepanel").style.width = "0";
+            document.getElementById("mySidepanel").style.height = "0";
         }
 
         function filter(value) {
@@ -871,6 +892,12 @@
                 return $(this).text().toLowerCase().trim().indexOf(value) == -1;
             }).hide();
         });
+        $("#search-author-m").on("keyup", function () {
+            var value = this.value.toLowerCase().trim();
+            $("#mauthorlist div>li").show().filter(function () {
+                return $(this).text().toLowerCase().trim().indexOf(value) == -1;
+            }).hide();
+        });
 
         $("#search-publisher").on("keyup", function () {
             var value = this.value.toLowerCase().trim();
@@ -878,10 +905,22 @@
                 return $(this).text().toLowerCase().trim().indexOf(value) == -1;
             }).hide();
         });
+        $("#search-publisher-m").on("keyup", function () {
+            var value = this.value.toLowerCase().trim();
+            $("#mpublisherlist div>li").show().filter(function () {
+                return $(this).text().toLowerCase().trim().indexOf(value) == -1;
+            }).hide();
+        });
 
         $("#search-category").on("keyup", function () {
             var value = this.value.toLowerCase().trim();
             $("#categorylist div>li").show().filter(function () {
+                return $(this).text().toLowerCase().trim().indexOf(value) == -1;
+            }).hide();
+        });
+        $("#search-category-m").on("keyup", function () {
+            var value = this.value.toLowerCase().trim();
+            $("#mcategorylist div>li").show().filter(function () {
                 return $(this).text().toLowerCase().trim().indexOf(value) == -1;
             }).hide();
         });
