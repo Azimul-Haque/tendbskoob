@@ -32,7 +32,12 @@
                         </span>
                     </div>
                     <div class="col-2">
-                        ৳ {{ number_format($product->unit_price, 0) }}
+                        ৳ {{ number_format($product->unit_price, 0) }}<br/>
+                        @if($product->published_price > $product->unit_price)
+                            <strike style="font-size: 12px!important;color: grey!important;">
+                                ৳ {{ number_format($product->published_price, 0) }}
+                            </strike><br>
+                        @endif
                     </div>
                 </div>
             </a>

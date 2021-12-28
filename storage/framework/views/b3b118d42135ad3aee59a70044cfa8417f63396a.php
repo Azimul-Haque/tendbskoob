@@ -35,8 +35,13 @@
                         </span>
                     </div>
                     <div class="col-2">
-                        ৳ <?php echo e(number_format($product->unit_price, 0)); ?>
+                        ৳ <?php echo e(number_format($product->unit_price, 0)); ?><br/>
+                        <?php if($product->published_price > $product->unit_price): ?>
+                            <strike style="font-size: 12px!important;color: grey!important;">
+                                ৳ <?php echo e(number_format($product->published_price, 0)); ?>
 
+                            </strike><br>
+                        <?php endif; ?>
                     </div>
                 </div>
             </a>
