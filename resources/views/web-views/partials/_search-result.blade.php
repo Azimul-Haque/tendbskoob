@@ -10,7 +10,9 @@
 <ul class="list-group list-group-flush">
     @foreach($products as $product)
         <li class="list-group-item" onclick="$('.search_form').submit()" style="padding: .3rem 0rem!important;">
-            <a href="{{ route('product', $product->slug)}} " onmouseover="$('.search-bar-input-mobile').val('{{$product['name']}}');$('.search-bar-input').val('{{$product['name_bangla']}}');">
+            <a href="{{ route('product', $product->slug)}} " 
+                {{-- onmouseover="$('.search-bar-input-mobile').val('{{$product['name']}}');$('.search-bar-input').val('{{$product['name_bangla']}}');" --}}
+                >
                 <div class="row">
                     <div class="col-1">
                         <img src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail']}}"
