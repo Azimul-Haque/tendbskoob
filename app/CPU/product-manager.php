@@ -2,8 +2,10 @@
 
 namespace App\CPU;
 
+use App\Model\Author;
 use App\Model\OrderDetail;
 use App\Model\Product;
+use App\Model\Publisher;
 use App\Model\Review;
 use App\Model\ShippingMethod;
 use App\Model\Translation;
@@ -103,27 +105,44 @@ class ProductManager
     public static function search_products($name, $limit = 10, $offset = 1)
     {
         $key = explode(' ', $name);
-        $paginator = Product::active()->with(['rating'])->where(function ($q) use ($key) {
-            foreach ($key as $value) {
-                $q->orWhere('name', 'like', "%{$value}%");
-                $q->orWhere('name_bangla', 'like', "%{$value}%");
-            }
-        })->paginate($limit, ['*'], 'page', $offset);
         
-        // dd($paginator);
+        $products = Product::active()->with(['rating'])->where(function ($q) use ($key) {
+            foreach ($key as $value) {
+                $q->orWhere('name', 'like', '%' . $value . '%');
+                $q->orWhere('name_bangla', 'like', '%' . $value . '%');
+            }
+        })->get();
+        
+        $publishers = Publisher::where(function ($q) use ($key) {
+            foreach ($key as $value) {
+                $q->orWhere('name', 'like', '%' . $value . '%');
+                $q->orWhere('name_bangla', 'like', '%' . $value . '%');
+            }
+        })->get();
+        
+        foreach($publishers as $publisher) {
+            $products = $products->merge($publisher->products);
+        }
 
-        // ->with(['writers' => function($q) use ($key){
-        //     foreach ($key as $value) {
-        //         $q->orWhere('name', 'like', "%{$value}%");
-        //         $q->orWhere('name_bangla', 'like', "%{$value}%");
-        //     }
-        // }])
+        $authors = Author::where(function ($q) use ($key) {
+            foreach ($key as $value) {
+                $q->orWhere('name', 'like', '%' . $value . '%');
+                $q->orWhere('name_bangla', 'like', '%' . $value . '%');
+            }
+        })->get();
+        
+        foreach ($authors as $author) {
+            $products = $products->merge($author->products);
+        }
+        $products = $products->unique();
+        // dd($authors);
+        // dd($products);
 
         return [
-            'total_size' => $paginator->total(),
+            'total_size' => $products->count(),
             'limit' => (integer)$limit,
             'offset' => (integer)$offset,
-            'products' => $paginator->items()
+            'products' => $products
         ];
     }
 

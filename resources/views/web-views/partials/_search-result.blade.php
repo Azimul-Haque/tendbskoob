@@ -9,9 +9,30 @@
 </style>
 <ul class="list-group list-group-flush">
     @foreach($products as $product)
-        <li class="list-group-item" onclick="$('.search_form').submit()">
-            <a href="javascript:" onmouseover="$('.search-bar-input-mobile').val('{{$product['name']}}');$('.search-bar-input').val('{{$product['name']}}');">
-                {{$product['name_bangla']}}
+        <li class="list-group-item" onclick="$('.search_form').submit()" style="padding: .3rem 0rem!important;">
+            <a href="{{ route('product', $product->slug)}} " onmouseover="$('.search-bar-input-mobile').val('{{$product['name']}}');$('.search-bar-input').val('{{$product['name_bangla']}}');">
+                <div class="row">
+                    <div class="col-1">
+                        <img src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail']}}"
+                         onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"
+                         style="">
+                    </div>
+                    <div class="col-9">
+                        {{$product['name_bangla']}}<br/>
+                        <span style="color:grey;">
+                            @if ($product->writers->count() > 0)
+                                {{$product->writers[0]->name_bangla}}
+                            @elseif($product->translators->count() > 0)
+                                {{$product->translators[0]->name_bangla}}
+                            @elseif($product->editors->count() > 0)
+                                {{$product->editors[0]->name_bangla}}
+                            @endif
+                        </span>
+                    </div>
+                    <div class="col-2">
+                        ৳ {{ number_format($product->unit_price, 0) }}
+                    </div>
+                </div>
             </a>
         </li>
     @endforeach
