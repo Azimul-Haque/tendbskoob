@@ -396,7 +396,7 @@
                             <ul id="authorlist" class="widget-list cz-filter-list list-unstyled pt-1"
                                 style="height: 300px;"
                                 data-simplebar data-simplebar-auto-hide="false">
-                                @foreach(\App\Model\Author::get() as $author)
+                                @foreach($authors as $author)
                                     <div class="brand mt-1 for-brand-hover {{Session::get('direction') === "rtl" ? 'mr-2' : ''}}" id="author">
                                         <li style="cursor: pointer;padding: 2px" class="flex-between"
                                             onclick="location.href='{{route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1, 'author_name'=>$author['slug']])}}'">
@@ -447,7 +447,7 @@
                             <ul id="publisherlist" class="widget-list cz-filter-list list-unstyled pt-1"
                                 style="height: 300px;"
                                 data-simplebar data-simplebar-auto-hide="false">
-                                @foreach(\App\Model\Publisher::get() as $publisher)
+                                @foreach($publishers as $publisher)
                                     <div class="brand mt-1 for-brand-hover {{Session::get('direction') === "rtl" ? 'mr-2' : ''}}" id="publisher">
                                         <li style="cursor: pointer;padding: 2px" class="flex-between"
                                             onclick="location.href='{{route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1, 'publisher_name'=>$publisher['slug']])}}'">
@@ -498,7 +498,7 @@
                             <ul id="categorylist" class="widget-list cz-filter-list list-unstyled pt-1"
                                 style="height: 300px;"
                                 data-simplebar data-simplebar-auto-hide="false">
-                                @foreach(\App\Model\Category::get() as $category)
+                                @foreach($categories as $category)
                                     <div class="brand mt-1 for-brand-hover {{Session::get('direction') === "rtl" ? 'mr-2' : ''}}" id="publisher">
                                         <li style="cursor: pointer;padding: 2px" class="flex-between"
                                             onclick="location.href='{{route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])}}'">
@@ -663,7 +663,7 @@
                                 <ul id="mauthorlist" class="widget-list cz-filter-list list-unstyled pt-1"
                                     style="height: 250px;"
                                     data-simplebar data-simplebar-auto-hide="false">
-                                    @foreach(\App\Model\Author::get() as $author)
+                                    @foreach($authors as $author)
                                         <div class="brand mt-1 for-brand-hover" id="author">
                                             <li style="cursor: pointer;padding: 2px"
                                                 onclick="location.href='{{route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1, 'author_name'=>$author['slug']])}}'">
@@ -703,7 +703,7 @@
                                 <ul id="mpublisherlist" class="widget-list cz-filter-list list-unstyled pt-1"
                                     style="height: 250px;"
                                     data-simplebar data-simplebar-auto-hide="false">
-                                    @foreach(\App\Model\Publisher::get() as $publisher)
+                                    @foreach($publishers as $publisher)
                                         <div class="brand mt-1 for-brand-hover" id="publisher">
                                             <li style="cursor: pointer;padding: 2px"
                                                 onclick="location.href='{{route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1, 'publisher_name'=>$publisher['slug']])}}'">
@@ -744,7 +744,7 @@
                                 <ul id="mcategorylist" class="widget-list cz-filter-list list-unstyled pt-1"
                                     style="height: 250px;"
                                     data-simplebar data-simplebar-auto-hide="false">
-                                    @foreach(\App\Model\Category::get() as $category)
+                                    @foreach($categories as $category)
                                         <div class="brand mt-1 for-brand-hover" id="category">
                                             <li style="cursor: pointer;padding: 2px"
                                                 onclick="location.href='{{route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])}}'">

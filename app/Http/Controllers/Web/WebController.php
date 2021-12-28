@@ -589,7 +589,11 @@ class WebController extends Controller
             $datasource = Publisher::find((int)$request['id']);
         }
 
-        return view('web-views.products.view', compact('products', 'data', 'datasource'), $data);
+        $authors = Author::get();
+        $publishers = Publisher::get();
+        $categories = Category::get();
+
+        return view('web-views.products.view', compact('products', 'data', 'datasource', 'authors', 'publishers', 'categories'), $data);
     }
 
     public function viewWishlist()
