@@ -135,6 +135,7 @@ class ProductManager
             $products = $products->merge($author->products);
         }
         $products = $products->unique();
+        $products = $products->take(25);
         // dd($authors);
         // dd($products);
 
