@@ -321,7 +321,7 @@
                         @csrf
                         <input type="hidden" name="id" value="{{ $product->id }}">
                         <div class="position-relative {{Session::get('direction') === "rtl" ? 'ml-n4' : 'mr-n4'}} mb-3">
-                            @if (count(json_decode($product->colors)) > 0)
+                            @if ($product->colors && count(json_decode($product->colors)) > 0)
                                 <div class="flex-start">
                                     <div class="product-description-label mt-2">{{\App\CPU\translate('color')}}:
                                     </div>
@@ -347,13 +347,14 @@
                             @endif
                             @php
                                 $qty = 0;
-                                if(!empty($product->variation)){
-                                foreach (json_decode($product->variation) as $key => $variation) {
-                                        $qty += $variation->qty;
-                                    }
-                                }
+                                // if(!empty($product->variation)){
+                                // foreach (json_decode($product->variation) as $key => $variation) {
+                                //         $qty += $variation->qty;
+                                //     }
+                                // }
                             @endphp
                         </div>
+                        @if ($product->choice_options)
                         @foreach (json_decode($product->choice_options) as $key => $choice)
                             <div class="row flex-start mx-0">
                                 <div
@@ -378,7 +379,8 @@
                                     </ul>
                                 </div>
                             </div>
-                    @endforeach
+                        @endforeach
+                        @endif
 
                     <!-- Quantity + Add to cart -->
                         <div class="row no-gutters">
