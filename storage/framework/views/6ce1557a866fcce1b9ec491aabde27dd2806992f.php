@@ -177,7 +177,7 @@
                         <?php echo csrf_field(); ?>
                         <input type="hidden" name="id" value="<?php echo e($product->id); ?>">
                         <div class="position-relative <?php echo e(Session::get('direction') === "rtl" ? 'ml-n4' : 'mr-n4'); ?> mb-3">
-                            <?php if(count(json_decode($product->colors)) > 0): ?>
+                            <?php if($product->colors && count(json_decode($product->colors)) > 0): ?>
                                 <div class="flex-start">
                                     <div class="product-description-label mt-2"><?php echo e(\App\CPU\translate('color')); ?>:
                                     </div>
@@ -203,13 +203,14 @@
                             <?php endif; ?>
                             <?php
                                 $qty = 0;
-                                if(!empty($product->variation)){
-                                foreach (json_decode($product->variation) as $key => $variation) {
-                                        $qty += $variation->qty;
-                                    }
-                                }
+                                // if(!empty($product->variation)){
+                                // foreach (json_decode($product->variation) as $key => $variation) {
+                                //         $qty += $variation->qty;
+                                //     }
+                                // }
                             ?>
                         </div>
+                        <?php if($product->choice_options): ?>
                         <?php $__currentLoopData = json_decode($product->choice_options); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $choice): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="row flex-start mx-0">
                                 <div
@@ -235,7 +236,8 @@
                                     </ul>
                                 </div>
                             </div>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php endif; ?>
 
                     <!-- Quantity + Add to cart -->
                         <div class="row no-gutters">

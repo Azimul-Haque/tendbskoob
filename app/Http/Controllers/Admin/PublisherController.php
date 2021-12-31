@@ -125,6 +125,7 @@ class PublisherController extends BaseController
             $publisher->image = $filename;
             // $publisher->image = ImageManager::upload('publisher/', 'png', $request->file('image'));
         }
+        $publisher->description = $request->description;
         $publisher->save();
 
         Toastr::success('Publisher updated successfully!');

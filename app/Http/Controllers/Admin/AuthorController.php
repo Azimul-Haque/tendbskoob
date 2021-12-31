@@ -126,6 +126,7 @@ class AuthorController extends BaseController
             $author->image = $filename;
             // $author->image = ImageManager::upload('author/', 'png', $request->file('image'));
         }
+        $author->description = $request->description;
         $author->save();
 
         Toastr::success('Author updated successfully!');
