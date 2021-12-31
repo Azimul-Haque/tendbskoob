@@ -33,7 +33,7 @@ class AuthorController extends BaseController
 {
     public function index(Request $request)
     {
-        
+        $query_param = [];
         $search  = $request['search'];
 
         if($request->has('search'))
@@ -45,10 +45,11 @@ class AuthorController extends BaseController
                     $q->orWhere('name_bangla', 'like', "%{$value}%");
                 }
             })->paginate(12);
+            $query_param = ['search' => $request['search']];
         }else{
             $authors = Author::paginate(12);
         }
-
+        $authors->appends($query_param);
         $totalauthors = Author::get()->count();
         // dd($totalauthors);
 

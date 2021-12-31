@@ -33,7 +33,7 @@ class PublisherController extends BaseController
 {
     public function index(Request $request)
     {
-        
+        $query_param = [];
         $search  = $request['search'];
 
         if($request->has('search'))
@@ -45,10 +45,12 @@ class PublisherController extends BaseController
                     $q->orWhere('name_bangla', 'like', "%{$value}%");
                 }
             })->paginate(12);
+            $query_param = ['search' => $request['search']];
         }else{
             $publishers = Publisher::paginate(12);
         }
 
+        $publishers->appends($query_param);
         $totalpublishers = Publisher::get()->count();
 
         return view('admin-views.publisher.index')

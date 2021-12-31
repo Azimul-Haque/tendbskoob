@@ -136,8 +136,7 @@
                                                 <i class="tio-search"></i>
                                             </div>
                                         </div>
-                                        <input id="" type="search" name="search" class="form-control"
-                                            placeholder="" value="<?php echo e($search); ?>" required>
+                                        <input id="" type="search" name="search" class="form-control" placeholder="" value="<?php echo e($search); ?>" required>
                                         <button type="submit" class="btn btn-primary"><?php echo e(\App\CPU\translate('search')); ?></button>
                                     </div>
                                 </form>

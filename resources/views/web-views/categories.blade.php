@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                             <input id="" type="search" name="search" class="form-control"
-                                placeholder="" value="{{ isset($search_param) ? $search_param : '' }}" required>
+                                placeholder="বিষয় সার্চ করুন" value="{{ isset($search_param) ? $search_param : '' }}" required>
                             <button type="submit" class="btn btn-primary">{{\App\CPU\translate('search')}}</button>
                         </div>
                     </form>
