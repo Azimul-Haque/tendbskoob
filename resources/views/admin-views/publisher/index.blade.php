@@ -138,8 +138,7 @@
                                                 <i class="tio-search"></i>
                                             </div>
                                         </div>
-                                        <input id="" type="search" name="search" class="form-control"
-                                            placeholder="" value="{{ $search }}" required>
+                                        <input id="" type="search" name="search" class="form-control" placeholder="" value="{{ $search }}" required>
                                         <button type="submit" class="btn btn-primary">{{\App\CPU\translate('search')}}</button>
                                     </div>
                                 </form>

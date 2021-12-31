@@ -32,7 +32,7 @@
                 <span style="margin-right: 15px;">{{\App\CPU\translate('Author')}}</span> 
             </div>
             <div class="col-md-6 p-3 feature_header">
-                <div style="">
+                <div>
                     <!-- Search -->
                     <form action="{{ url()->current() }}" method="GET">
                         <div class="input-group input-group-merge input-group-flush">
@@ -43,7 +43,7 @@
                                 </div>
                             </div>
                             <input id="" type="search" name="search" class="form-control"
-                                placeholder="" value="{{ isset($search) ? $search : '' }}" required>
+                                placeholder="" value="{{ isset($search_param) ? $search_param : '' }}" required>
                             <button type="submit" class="btn btn-primary">{{\App\CPU\translate('search')}}</button>
                         </div>
                     </form>

@@ -156,10 +156,23 @@ class WebController extends Controller
         return view('web-views.sellers', compact('sellers'));
     }
 
-    public function all_categories()
+    public function all_categories(Request $request)
     {
-        $categories = Category::paginate(24);
-        return view('web-views.categories', compact('categories'));
+        $search_param = '';
+        if($request->search) {
+            $key = explode(' ', $request['search']);
+            $categories = Category::where(function ($q) use ($key) {
+                foreach ($key as $value) {
+                    $q->orWhere('name', 'like', "%{$value}%");
+                    $q->orWhere('name_bangla', 'like', "%{$value}%");
+                }
+            })->paginate(24);
+            $search_param = $request->search;
+        } else {
+            $categories = Category::paginate(24);
+        }
+        
+        return view('web-views.categories', compact('categories', 'search_param'));
     }
 
     public function categories_by_category($id)
@@ -176,16 +189,42 @@ class WebController extends Controller
         return view('web-views.brands', compact('brands'));
     }
 
-    public function all_authors()
+    public function all_authors(Request $request)
     {
-        $authors = Author::paginate(24);
-        return view('web-views.authors', compact('authors'));
+        $search_param = '';
+        if($request->search) {
+            $key = explode(' ', $request['search']);
+            $authors = Author::where(function ($q) use ($key) {
+                foreach ($key as $value) {
+                    $q->orWhere('name', 'like', "%{$value}%");
+                    $q->orWhere('name_bangla', 'like', "%{$value}%");
+                }
+            })->paginate(24);
+            $search_param = $request->search;
+        } else {
+            $authors = Author::paginate(24);
+        }
+        
+        return view('web-views.authors', compact('authors', 'search_param'));
     }
 
-    public function all_publishers()
+    public function all_publishers(Request $request)
     {
-        $publishers = Publisher::paginate(24);
-        return view('web-views.publishers', compact('publishers'));
+        $search_param = '';
+        if($request->search) {
+            $key = explode(' ', $request['search']);
+            $publishers = Publisher::where(function ($q) use ($key) {
+                foreach ($key as $value) {
+                    $q->orWhere('name', 'like', "%{$value}%");
+                    $q->orWhere('name_bangla', 'like', "%{$value}%");
+                }
+            })->paginate(24);
+            $search_param = $request->search;
+        } else {
+            $publishers = Publisher::paginate(24);
+        }
+        
+        return view('web-views.publishers', compact('publishers', 'search_param'));
     }
 
     public function all_sellers()

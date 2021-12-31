@@ -30,7 +30,7 @@
                 <span style="margin-right: 15px;"><?php echo e(\App\CPU\translate('Author')); ?></span> 
             </div>
             <div class="col-md-6 p-3 feature_header">
-                <div style="">
+                <div>
                     <!-- Search -->
                     <form action="<?php echo e(url()->current()); ?>" method="GET">
                         <div class="input-group input-group-merge input-group-flush">
@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                             <input id="" type="search" name="search" class="form-control"
-                                placeholder="" value="<?php echo e(isset($search) ? $search : ''); ?>" required>
+                                placeholder="" value="<?php echo e(isset($search_param) ? $search_param : ''); ?>" required>
                             <button type="submit" class="btn btn-primary"><?php echo e(\App\CPU\translate('search')); ?></button>
                         </div>
                     </form>
