@@ -125,7 +125,7 @@
                     <div class="card-header">
                         <div class="flex-between justify-content-between align-items-center flex-grow-1">
                             <div>
-                                <h5><?php echo e(\App\CPU\translate('author_table')); ?> <span style="color: red;">(<?php echo e($totalauthors); ?>)</span></h5>
+                                <h5><?php echo e(\App\CPU\translate('author_table')); ?> <span style="color: red;">(<?php echo e($authors->total()); ?>)</span></h5>
                             </div>
                             <div style="width: 30vw">
                                 <!-- Search -->
