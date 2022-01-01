@@ -224,7 +224,545 @@
     <div class="container pb-5 mb-2 mb-md-4 mt-4 rtl"
          style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
         <div class="row">
-            
+            <!-- Sidebar-->
+            {{-- normal sidebar --}}
+            <aside
+                class="col-lg-3 hidden-xs col-md-3 col-sm-4 SearchParameters {{Session::get('direction') === "rtl" ? 'pl-0' : 'pr-0'}}"
+                id="SearchParameters">
+                <!--Price Sidebar-->
+                <div class="cz-sidebar rounded-lg box-shadow-lg" id="shop-sidebar" style="margin-bottom: -10px;">
+                    <div class="cz-sidebar-header box-shadow-sm">
+                        <button class="close {{Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'}}"
+                                type="button" data-dismiss="sidebar" aria-label="Close"><span
+                                class="d-inline-block font-size-xs font-weight-normal align-middle">{{\App\CPU\translate('Dashboard')}}Close sidebar</span><span
+                                class="d-inline-block align-middle {{Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'}}"
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="cz-sidebar-body pb-0" style="padding-top: 12px;">
+                        <!-- Filter by price-->
+                        <div class="widget cz-filter mb-4 pb-4 mt-2">
+                            <h3 class="widget-title" style="font-weight: 700;">{{\App\CPU\translate('filter')}}</h3>
+                            <div class="divider-role"
+                                 style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
+                            <div
+                                class="form-inline flex-nowrap {{Session::get('direction') === "rtl" ? 'ml-sm-4' : 'mr-sm-4'}} pb-3 for-mobile"
+                                style="width: 100%">
+                                <label class="opacity-75 text-nowrap for-shoting" for="sorting"
+                                       style="width: 100%; padding-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}: 0">
+                                    <select style="background: whitesmoke; appearance: auto;width: 100%"
+                                            class="form-control custom-select" id="searchByFilterValue">
+                                        <option selected disabled>{{\App\CPU\translate('Choose')}}</option>
+                                        <option
+                                            value="{{route('products',['id'=> $data['id'],'data_from'=>'best-selling','page'=>1])}}">{{\App\CPU\translate('best_selling_product')}}</option>
+                                        <option
+                                            value="{{route('products',['id'=> $data['id'],'data_from'=>'top-rated','page'=>1])}}">{{\App\CPU\translate('top_rated')}}</option>
+                                        <option
+                                            value="{{route('products',['id'=> $data['id'],'data_from'=>'most-favorite','page'=>1])}}">{{\App\CPU\translate('most_favorite')}}</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Price Sidebar-->
+                <div class="cz-sidebar rounded-lg box-shadow-lg" id="shop-sidebar" style="margin-bottom: -10px;">
+                    <div class="cz-sidebar-header box-shadow-sm">
+                        <button class="close {{Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'}}"
+                                type="button" data-dismiss="sidebar" aria-label="Close">
+                            <span
+                                class="d-inline-block font-size-xs font-weight-normal align-middle">{{\App\CPU\translate('Dashboard')}}{{\App\CPU\translate('Close sidebar')}}</span>
+                            <span
+                                class="d-inline-block align-middle {{Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'}}"
+                                aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="cz-sidebar-body pb-0" style="padding-top: 12px;">
+                        <!-- Filter by price-->
+                        <div class="widget cz-filter mb-4 pb-4 mt-2">
+                            <h3 class="widget-title" style="font-weight: 700;">{{\App\CPU\translate('Price')}}</h3>
+                            <div class="divider-role"
+                                 style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
+                            <div class="input-group-overlay input-group-sm mb-1">
+                                <input style="background: aliceblue;"
+                                       class="cz-filter-search form-control form-control-sm appended-form-control"
+                                       type="number" value="0" min="0" max="1000000" id="min_price">
+                                <div class="input-group-append-overlay">
+                                    <span style="color: #3498db;" class="input-group-text">
+                                        {{\App\CPU\currency_symbol()}}
+                                    </span>
+                                </div>
+                            </div>
+                            <div>
+                                <p style="text-align: center;margin-bottom: 1px;">{{\App\CPU\translate('to')}}</p>
+                            </div>
+                            <div class="input-group-overlay input-group-sm mb-2">
+                                <input style="background: aliceblue;" value="100" min="100" max="1000000"
+                                       class="cz-filter-search form-control form-control-sm appended-form-control"
+                                       type="number" id="max_price">
+                                <div class="input-group-append-overlay">
+                                    <span style="color: #3498db;" class="input-group-text">
+                                        {{\App\CPU\currency_symbol()}}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="input-group-overlay input-group-sm mb-2">
+                                <button class="btn btn-primary btn-block"
+                                        onclick="searchByPrice()">
+                                    <span>{{\App\CPU\translate('search')}}</span>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Brand Sidebar-->
+                {{-- <div class="cz-sidebar rounded-lg box-shadow-lg" id="shop-sidebar" style="margin-bottom: 11px;">
+                    <div class="cz-sidebar-header box-shadow-sm">
+                        <button class="close {{Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'}}"
+                                type="button" data-dismiss="sidebar" aria-label="Close"><span
+                                class="d-inline-block font-size-xs font-weight-normal align-middle">{{\App\CPU\translate('Dashboard')}}{{\App\CPU\translate('Close sidebar')}}</span><span
+                                class="d-inline-block align-middle {{Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'}}"
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="cz-sidebar-body">
+                        <!-- Filter by Brand-->
+                        <div class="widget cz-filter mb-4 pb-4 border-bottom mt-2">
+                            <h3 class="widget-title" style="font-weight: 700;">{{\App\CPU\translate('brands')}}</h3>
+                            <div class="divider-role"
+                                 style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
+                            <div class="input-group-overlay input-group-sm mb-2">
+                                <input style="background: aliceblue" placeholder="Search brand"
+                                       class="cz-filter-search form-control form-control-sm appended-form-control"
+                                       type="text" id="search-brand">
+                                <div class="input-group-append-overlay">
+                                    <span style="color: #3498db;"
+                                          class="input-group-text">
+                                        <i class="czi-search"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <ul id="lista1" class="widget-list cz-filter-list list-unstyled pt-1"
+                                style="max-height: 12rem;"
+                                data-simplebar data-simplebar-auto-hide="false">
+                                @foreach(\App\CPU\BrandManager::get_brands() as $brand)
+                                    <div class="brand mt-4 for-brand-hover {{Session::get('direction') === "rtl" ? 'mr-2' : ''}}" id="brand">
+                                        <li style="cursor: pointer;padding: 2px" class="flex-between"
+                                            onclick="location.href='{{route('products',['id'=> $brand['id'],'data_from'=>'brand','page'=>1])}}'">
+                                            <div>
+                                                {{ $brand['name'] }}
+                                            </div>
+                                            @if($brand['brand_products_count'] > 0 )
+                                                <div>
+                                                    <span class="count-value">
+                                                    {{ $brand['brand_products_count'] }}
+                                                    </span>
+                                                </div>
+                                            @endif
+                                        </li>
+                                    </div>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div> --}}
+                
+                <!-- Author Sidebar-->
+                <div class="cz-sidebar rounded-lg box-shadow-lg" id="shop-sidebar" style="margin-bottom: 11px;">
+                    <div class="cz-sidebar-header box-shadow-sm">
+                        <button class="close {{Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'}}"
+                                type="button" data-dismiss="sidebar" aria-label="Close"><span
+                                class="d-inline-block font-size-xs font-weight-normal align-middle">{{\App\CPU\translate('Dashboard')}}{{\App\CPU\translate('Close sidebar')}}</span><span
+                                class="d-inline-block align-middle {{Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'}}"
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="cz-sidebar-body">
+                        <!-- Filter by Author-->
+                        <div class="widget cz-filter mb-4 pb-6 border-bottom mt-2">
+                            <h3 class="widget-title" style="font-weight: 700;">{{\App\CPU\translate('Authors')}}</h3>
+                            <div class="divider-role"
+                                 style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
+                            <div class="input-group-overlay input-group-sm mb-2">
+                                <input style="background: aliceblue" placeholder="Search Author"
+                                       class="cz-filter-search form-control form-control-sm appended-form-control"
+                                       type="text" id="search-author">
+                                <div class="input-group-append-overlay">
+                                    <span style="color: #3498db;"
+                                          class="input-group-text">
+                                        <i class="czi-search"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <ul id="authorlist" class="widget-list cz-filter-list list-unstyled pt-1"
+                                style="height: 300px;"
+                                data-simplebar data-simplebar-auto-hide="false">
+                                @foreach($authors as $author)
+                                    <div class="brand mt-1 for-brand-hover {{Session::get('direction') === "rtl" ? 'mr-2' : ''}}" id="author">
+                                        <li style="cursor: pointer;padding: 2px" class="flex-between"
+                                            onclick="location.href='{{route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1, 'author_name'=>$author['slug']])}}'">
+                                            <div>
+                                                {{ $author['name_bangla'] }}
+                                            </div>
+                                            @if($author->products->count() > 0 )
+                                                <div>
+                                                    <span class="count-value">
+                                                    {{ $author->products->count() }}
+                                                    </span>
+                                                </div>
+                                            @endif
+                                        </li>
+                                    </div>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Publisher Sidebar-->
+                <div class="cz-sidebar rounded-lg box-shadow-lg" id="shop-sidebar" style="margin-bottom: 11px;">
+                    <div class="cz-sidebar-header box-shadow-sm">
+                        <button class="close {{Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'}}"
+                                type="button" data-dismiss="sidebar" aria-label="Close"><span
+                                class="d-inline-block font-size-xs font-weight-normal align-middle">{{\App\CPU\translate('Dashboard')}}{{\App\CPU\translate('Close sidebar')}}</span><span
+                                class="d-inline-block align-middle {{Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'}}"
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="cz-sidebar-body">
+                        <!-- Filter by Publisher-->
+                        <div class="widget cz-filter mb-4 pb-6 border-bottom mt-2">
+                            <h3 class="widget-title" style="font-weight: 700;">{{\App\CPU\translate('Publications')}}</h3>
+                            <div class="divider-role"
+                                 style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
+                            <div class="input-group-overlay input-group-sm mb-2">
+                                <input style="background: aliceblue" placeholder="Search Publication"
+                                       class="cz-filter-search form-control form-control-sm appended-form-control"
+                                       type="text" id="search-publisher">
+                                <div class="input-group-append-overlay">
+                                    <span style="color: #3498db;"
+                                          class="input-group-text">
+                                        <i class="czi-search"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <ul id="publisherlist" class="widget-list cz-filter-list list-unstyled pt-1"
+                                style="height: 300px;"
+                                data-simplebar data-simplebar-auto-hide="false">
+                                @foreach($publishers as $publisher)
+                                    <div class="brand mt-1 for-brand-hover {{Session::get('direction') === "rtl" ? 'mr-2' : ''}}" id="publisher">
+                                        <li style="cursor: pointer;padding: 2px" class="flex-between"
+                                            onclick="location.href='{{route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1, 'publisher_name'=>$publisher['slug']])}}'">
+                                            <div>
+                                                {{ $publisher['name_bangla'] }}
+                                            </div>
+                                            @if($publisher->products->count() > 0 )
+                                                <div>
+                                                    <span class="count-value">
+                                                    {{ $publisher->products->count() }}
+                                                    </span>
+                                                </div>
+                                            @endif
+                                        </li>
+                                    </div>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category Sidebar-->
+                <div class="cz-sidebar rounded-lg box-shadow-lg" id="shop-sidebar" style="margin-bottom: 11px;">
+                    <div class="cz-sidebar-header box-shadow-sm">
+                        <button class="close {{Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'}}"
+                                type="button" data-dismiss="sidebar" aria-label="Close"><span
+                                class="d-inline-block font-size-xs font-weight-normal align-middle">{{\App\CPU\translate('Dashboard')}}{{\App\CPU\translate('Close sidebar')}}</span><span
+                                class="d-inline-block align-middle {{Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'}}"
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="cz-sidebar-body">
+                        <!-- Filter by Category-->
+                        <div class="widget cz-filter mb-4 pb-6 border-bottom mt-2">
+                            <h3 class="widget-title" style="font-weight: 700;">{{\App\CPU\translate('Categories')}}</h3>
+                            <div class="divider-role"
+                                 style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
+                            <div class="input-group-overlay input-group-sm mb-2">
+                                <input style="background: aliceblue" placeholder="Search Category"
+                                       class="cz-filter-search form-control form-control-sm appended-form-control"
+                                       type="text" id="search-category">
+                                <div class="input-group-append-overlay">
+                                    <span style="color: #3498db;"
+                                          class="input-group-text">
+                                        <i class="czi-search"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <ul id="categorylist" class="widget-list cz-filter-list list-unstyled pt-1"
+                                style="height: 300px;"
+                                data-simplebar data-simplebar-auto-hide="false">
+                                @foreach($categories as $category)
+                                    <div class="brand mt-1 for-brand-hover {{Session::get('direction') === "rtl" ? 'mr-2' : ''}}" id="publisher">
+                                        <li style="cursor: pointer;padding: 2px" class="flex-between"
+                                            onclick="location.href='{{route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])}}'">
+                                            <div>
+                                                {{ $category['name_bangla'] }}
+                                            </div>
+                                            @if($category->products->count() > 0 )
+                                                <div>
+                                                    <span class="count-value">
+                                                    {{ $category->products->count() }}
+                                                    </span>
+                                                </div>
+                                            @endif
+                                        </li>
+                                    </div>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            {{-- responsive sidebar --}}
+            <div id="mySidepanel" class="sidepanel">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+                <aside class="" style="padding-right: 5%;padding-left: 5%;">
+                    <div class="" id="shop-sidebar" style="margin-bottom: -10px;">
+                        <div class=" box-shadow-sm">
+                            
+                        </div>
+                        <div class="" style="padding-top: 12px;">
+                            <!-- Filter -->
+                            <div class="widget cz-filter">
+                                <h3 class="widget-title" style="font-weight: 700;">{{\App\CPU\translate('filter')}}</h3>
+                                <div class="" style="width: 100%">
+                                    <label class="opacity-75 text-nowrap for-shoting" for="sorting"
+                                           style="width: 100%; padding-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}: 0">
+                                        <select style="background: whitesmoke; appearance: auto;width: 100%"
+                                                class="form-control custom-select" id="searchByFilterValue">
+                                            <option selected disabled>{{\App\CPU\translate('Choose')}}</option>
+                                            <option
+                                                value="{{route('products',['id'=> $data['id'],'data_from'=>'best-selling','page'=>1])}}">{{\App\CPU\translate('best_selling_product')}}</option>
+                                            <option
+                                                value="{{route('products',['id'=> $data['id'],'data_from'=>'top-rated','page'=>1])}}">{{\App\CPU\translate('top_rated')}}</option>
+                                            <option
+                                                value="{{route('products',['id'=> $data['id'],'data_from'=>'most-favorite','page'=>1])}}">{{\App\CPU\translate('most_favorite')}}</option>
+                                        </select>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Price Sidebar-->
+                    <div class="" id="shop-sidebar" style="margin-bottom: -10px;">
+                        <div class=" box-shadow-sm">
+
+                        </div>
+                        <div class="" style="padding-top: 12px;">
+                            <!-- Filter by price-->
+                            <div class="widget cz-filter mb-4 pb-4 mt-2">
+                                <h3 class="widget-title" style="font-weight: 700;">{{\App\CPU\translate('Price')}}</h3>
+                                <div class="divider-role"
+                                     style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
+                                <div class="input-group-overlay input-group-sm mb-1">
+                                    <input style="background: aliceblue;"
+                                           class="cz-filter-search form-control form-control-sm appended-form-control"
+                                           type="number" value="0" min="0" max="1000000" id="min_price">
+                                    <div class="input-group-append-overlay">
+                                    <span style="color: #3498db;" class="input-group-text">
+                                        {{\App\CPU\currency_symbol()}}
+                                    </span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p style="text-align: center;margin-bottom: 1px;">{{\App\CPU\translate('to')}}</p>
+                                </div>
+                                <div class="input-group-overlay input-group-sm mb-2">
+                                    <input style="background: aliceblue;" value="100" min="100" max="1000000"
+                                           class="cz-filter-search form-control form-control-sm appended-form-control"
+                                           type="number" id="max_price">
+                                    <div class="input-group-append-overlay">
+                                        <span style="color: #3498db;" class="input-group-text">
+                                            {{\App\CPU\currency_symbol()}}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="input-group-overlay input-group-sm mb-2">
+                                    <button class="btn btn-primary btn-block"
+                                            onclick="searchByPrice()">
+                                        <span>{{\App\CPU\translate('search')}}</span>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Brand Sidebar-->
+                    {{-- <div class="" id="shop-sidebar" style="margin-bottom: 11px;">
+
+                        <div class="">
+                            <!-- Filter by Brand-->
+                            <div class="widget cz-filter mb-4 pb-4 border-bottom mt-2">
+                                <h3 class="widget-title" style="font-weight: 700;">{{\App\CPU\translate('brands')}}</h3>
+                                <div class="divider-role"
+                                     style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
+                                <div class="input-group-overlay input-group-sm mb-2">
+                                    <input style="background: aliceblue"
+                                           class="cz-filter-search form-control form-control-sm appended-form-control"
+                                           type="text" id="search-brand-m">
+                                    <div class="input-group-append-overlay">
+                                        <span style="color: #3498db;"
+                                              class="input-group-text">
+                                            <i class="czi-search"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <ul id="lista1" class="widget-list cz-filter-list list-unstyled pt-1"
+                                    style="max-height: 12rem;"
+                                    data-simplebar data-simplebar-auto-hide="false">
+                                    @foreach(\App\CPU\BrandManager::get_brands() as $brand)
+                                        <div class="brand mt-4 for-brand-hover" id="brand">
+                                            <li style="cursor: pointer;padding: 2px"
+                                                onclick="location.href='{{route('products',['id'=> $brand['id'],'data_from'=>'brand','page'=>1])}}'">
+                                                {{ $brand['name'] }}
+                                                @if($brand['brand_products_count'] > 0 )
+
+                                                    <span class="for-count-value"
+                                                          style="float: {{Session::get('direction') === "rtl" ? 'left' : 'right'}}">{{ $brand['brand_products_count'] }}</span>
+
+                                                @endif
+                                            </li>
+
+                                        </div>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div> --}}
+
+                    <!-- Author Sidebar-->
+                    <div class="" id="shop-sidebar" style="margin-bottom: 11px;">
+                        <div class="">
+                            <!-- Filter by Brand-->
+                            <div class="widget cz-filter mb-4 pb-4 border-bottom mt-2">
+                                <h3 class="widget-title" style="font-weight: 700;">{{\App\CPU\translate('Authors')}}</h3>
+                                <div class="divider-role"
+                                     style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
+                                <div class="input-group-overlay input-group-sm mb-2">
+                                    <input style="background: aliceblue"
+                                           class="cz-filter-search form-control form-control-sm appended-form-control" placeholder="Search Author"
+                                           type="text" id="search-author-m">
+                                    <div class="input-group-append-overlay">
+                                        <span style="color: #3498db;"
+                                              class="input-group-text">
+                                            <i class="czi-search"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <ul id="mauthorlist" class="widget-list cz-filter-list list-unstyled pt-1"
+                                    style="height: 250px;"
+                                    data-simplebar data-simplebar-auto-hide="false">
+                                    @foreach($authors as $author)
+                                        <div class="brand mt-1 for-brand-hover" id="author">
+                                            <li style="cursor: pointer;padding: 2px"
+                                                onclick="location.href='{{route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1, 'author_name'=>$author['slug']])}}'">
+                                                {{ $author['name_bangla'] }}
+                                                @if($author->products->count() > 0 )
+                                                    <span class="for-count-value"
+                                                          style="float: {{Session::get('direction') === "rtl" ? 'left' : 'right'}}">{{ $author->products->count() }}</span>
+
+                                                @endif
+                                            </li>
+                                        </div>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Publisher Sidebar-->
+                    <div class="" id="shop-sidebar" style="margin-bottom: 11px;">
+                        <div class="">
+                            <!-- Filter by Brand-->
+                            <div class="widget cz-filter mb-4 pb-4 border-bottom mt-2">
+                                <h3 class="widget-title" style="font-weight: 700;">{{\App\CPU\translate('Publications')}}</h3>
+                                <div class="divider-role"
+                                     style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
+                                <div class="input-group-overlay input-group-sm mb-2">
+                                    <input style="background: aliceblue"
+                                           class="cz-filter-search form-control form-control-sm appended-form-control" placeholder="Search Publisher"
+                                           type="text" id="search-publisher-m">
+                                    <div class="input-group-append-overlay">
+                                        <span style="color: #3498db;"
+                                              class="input-group-text">
+                                            <i class="czi-search"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <ul id="mpublisherlist" class="widget-list cz-filter-list list-unstyled pt-1"
+                                    style="height: 250px;"
+                                    data-simplebar data-simplebar-auto-hide="false">
+                                    @foreach($publishers as $publisher)
+                                        <div class="brand mt-1 for-brand-hover" id="publisher">
+                                            <li style="cursor: pointer;padding: 2px"
+                                                onclick="location.href='{{route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1, 'publisher_name'=>$publisher['slug']])}}'">
+                                                {{ $publisher['name_bangla'] }}
+                                                @if($publisher->products->count() > 0 )
+                                                    <span class="for-count-value"
+                                                          style="float: {{Session::get('direction') === "rtl" ? 'left' : 'right'}}">{{ $publisher->products->count() }}</span>
+
+                                                @endif
+                                            </li>
+
+                                        </div>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category Sidebar-->
+                    <div class="" id="shop-sidebar" style="margin-bottom: 11px;">
+                        <div class="">
+                            <!-- Filter by Brand-->
+                            <div class="widget cz-filter mb-4 pb-4 border-bottom mt-2">
+                                <h3 class="widget-title" style="font-weight: 700;">{{\App\CPU\translate('Categories')}}</h3>
+                                <div class="divider-role"
+                                     style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
+                                <div class="input-group-overlay input-group-sm mb-2">
+                                    <input style="background: aliceblue"
+                                           class="cz-filter-search form-control form-control-sm appended-form-control" placeholder="Search Category"
+                                           type="text" id="search-category-m">
+                                    <div class="input-group-append-overlay">
+                                        <span style="color: #3498db;"
+                                              class="input-group-text">
+                                            <i class="czi-search"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <ul id="mcategorylist" class="widget-list cz-filter-list list-unstyled pt-1"
+                                    style="height: 250px;"
+                                    data-simplebar data-simplebar-auto-hide="false">
+                                    @foreach($categories as $category)
+                                        <div class="brand mt-1 for-brand-hover" id="category">
+                                            <li style="cursor: pointer;padding: 2px"
+                                                onclick="location.href='{{route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])}}'">
+                                                {{ $category['name_bangla'] }}
+                                                @if($category->products->count() > 0 )
+                                                    <span class="for-count-value"
+                                                          style="float: {{Session::get('direction') === "rtl" ? 'left' : 'right'}}">{{ $category->products->count() }}</span>
+
+                                                @endif
+                                            </li>
+                                        </div>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
 
             <!-- Content  -->
             <section class="col-lg-9">
