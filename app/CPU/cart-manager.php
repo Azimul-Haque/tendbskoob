@@ -171,11 +171,12 @@ class CartManager
         $user = Helpers::get_customer($request);
         $product = Product::find($request->id);
 
+        // dd($request->all());
         //check the color enabled or disabled for the product
-        if ($request->has('color')) {
-            $str = Color::where('code', $request['color'])->first()->name;
-            $variations['color'] = $str;
-        }
+        // if ($request->has('color')) {
+        //     $str = Color::where('code', $request['color'])->first()->name;
+        //     $variations['color'] = $str;
+        // }
 
         //Gets all the choice values of customer choice option and generate a string like Black-S-Cotton
         $choices = [];

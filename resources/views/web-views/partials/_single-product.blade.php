@@ -89,7 +89,7 @@
                 </a>
             @endif --}}
             <form>
-                <button type="button" class="btn btn-primary btn-sm btn-block mb-2" onclick="addToCart2($product->id)">
+                <button type="button" class="btn btn-primary btn-sm btn-block mb-2" onclick="addToCart2({{ $product->id }})">
                     <i class="fa fa-cart-plus mr-2"></i>
                     <span class="string-limit">{{\App\CPU\translate('add_to_cart')}}</span>
                 </button>

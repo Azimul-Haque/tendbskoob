@@ -854,7 +854,9 @@
                 url: '{{ route('cart.add') }}',
                 method: 'POST',
                 data: {
-                    id: id
+                    _token: $('meta[name="_token"]').attr('content'),
+                    id: id,
+                    quantity: 1,
                 },
                 success: function (response) {
                     console.log(response);
