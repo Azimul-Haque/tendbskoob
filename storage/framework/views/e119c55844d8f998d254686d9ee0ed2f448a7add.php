@@ -59,6 +59,7 @@
                             <tr>
                                 <th><?php echo e(\App\CPU\translate('SL#')); ?></th>
                                 <th><?php echo e(\App\CPU\translate('Book Name')); ?></th>
+                                <th><?php echo e(\App\CPU\translate('Publication')); ?></th>
                                 <th>Price</th>
                                 <th><?php echo e(\App\CPU\translate('featured')); ?></th>
                                 <th><?php echo e(\App\CPU\translate('Active')); ?> <?php echo e(\App\CPU\translate('status')); ?></th>
@@ -73,10 +74,14 @@
                                     <th scope="row"><?php echo e($pro->firstItem()+$k); ?></th>
                                     <td>
                                         <a href="<?php echo e(route('admin.product.view',[$p['id']])); ?>">
-                                            <?php echo e(\Illuminate\Support\Str::limit($p['name_bangla'],20)); ?><br/>
+                                            <?php echo e(\Illuminate\Support\Str::limit($p['name_bangla'],25)); ?><br/>
                                             <?php echo e(\Illuminate\Support\Str::limit($p['name'],20)); ?>
 
                                         </a>
+                                    </td>
+                                    <td>
+                                        <?php echo e($p->publisher->name_bangla); ?>
+
                                     </td>
                                     <td>
                                         <small>

@@ -61,6 +61,7 @@
                             <tr>
                                 <th>{{\App\CPU\translate('SL#')}}</th>
                                 <th>{{\App\CPU\translate('Book Name')}}</th>
+                                <th>{{\App\CPU\translate('Publication')}}</th>
                                 <th>Price</th>
                                 <th>{{\App\CPU\translate('featured')}}</th>
                                 <th>{{\App\CPU\translate('Active')}} {{\App\CPU\translate('status')}}</th>
@@ -75,9 +76,12 @@
                                     <th scope="row">{{$pro->firstItem()+$k}}</th>
                                     <td>
                                         <a href="{{route('admin.product.view',[$p['id']])}}">
-                                            {{\Illuminate\Support\Str::limit($p['name_bangla'],20)}}<br/>
+                                            {{\Illuminate\Support\Str::limit($p['name_bangla'],25)}}<br/>
                                             {{\Illuminate\Support\Str::limit($p['name'],20)}}
                                         </a>
+                                    </td>
+                                    <td>
+                                        {{ $p->publisher->name_bangla }}
                                     </td>
                                     <td>
                                         <small>
