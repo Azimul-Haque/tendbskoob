@@ -1428,4 +1428,8 @@
   'All Authors Page' => 'All Authors Page',
   'All Pulication Page' => 'All Pulication Page',
   'top-rated' => 'Top-rated',
+  'paytabs' => 'Paytabs',
+  'profile_id' => 'Profile id',
+  'server_key' => 'Server key',
+  'base_url_by_region' => 'Base url by region',
 );
