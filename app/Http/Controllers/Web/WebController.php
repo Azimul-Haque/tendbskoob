@@ -484,6 +484,8 @@ class WebController extends Controller
 
         $porduct_data = Product::active()->with(['reviews']);
 
+        $query = '';
+
         // dd($porduct_data->get());
         if ($request['data_from'] == 'category') {
             $products = $porduct_data->get();
@@ -506,12 +508,8 @@ class WebController extends Controller
             $author = Author::find($request['id']);
             $products = $porduct_data->get();
             $product_ids = [];
-            foreach ($products as $product) {
-                foreach ($author->products as $authorproduct) {
-                    if ($product['id'] == $authorproduct['id']) {
-                        array_push($product_ids, $product['id']);
-                    }
-                }
+            foreach ($author->products as $authorproduct) {
+                array_push($product_ids, $authorproduct['id']);
             }
             $query = $porduct_data->whereIn('id', $product_ids);
         }
@@ -568,11 +566,41 @@ class WebController extends Controller
 
         if ($request['data_from'] == 'search') {
             $key = explode(' ', $request['name']);
-            $query = $porduct_data->where(function ($q) use ($key) {
+            $products = Product::active()->with(['reviews'])->where(function ($q) use ($key) {
                 foreach ($key as $value) {
-                    $q->orWhere('name', 'like', "%{$value}%");
+                    $q->orWhere('name', 'like', '%' . $value . '%');
+                    $q->orWhere('name_bangla', 'like', '%' . $value . '%');
                 }
             });
+            
+            $product_ids = [];
+            $authors = Author::where(function ($q) use ($key) {
+                foreach ($key as $value) {
+                    $q->orWhere('name', 'like', '%' . $value . '%');
+                    $q->orWhere('name_bangla', 'like', '%' . $value . '%');
+                }
+            })->get();
+            
+            foreach ($authors as $author) {
+                foreach ($author->products as $authorproduct) {
+                    array_push($product_ids, $authorproduct['id']);
+                }
+            }
+
+            $publishers = Publisher::where(function ($q) use ($key) {
+                foreach ($key as $value) {
+                    $q->orWhere('name', 'like', '%' . $value . '%');
+                    $q->orWhere('name_bangla', 'like', '%' . $value . '%');
+                }
+            })->get();
+
+            foreach ($publishers as $publisher) {
+                foreach ($publisher->products as $publisherproduct) {
+                    array_push($product_ids, $publisherproduct['id']);
+                }
+            }
+
+            $query = $porduct_data->whereIn('id', $product_ids);
         }
 
         if ($request['sort_by'] == 'latest') {
@@ -603,8 +631,6 @@ class WebController extends Controller
             'max_price' => $request['max_price'],
         ];
 
-        $products = $fetched->paginate(20)->appends($data);
-
         $datasource = collect();
         if ($request->ajax()) {
             return response()->json([
@@ -628,11 +654,15 @@ class WebController extends Controller
             $datasource = Publisher::find((int)$request['id']);
         }
 
+        $products = $fetched->paginate(20)->appends($data);
         $authors = Author::get();
         $publishers = Publisher::get();
         $categories = Category::get();
 
+        // dd($products);
         return view('web-views.products.view', compact('products', 'data', 'datasource', 'authors', 'publishers', 'categories'), $data);
+
+        
     }
 
     public function viewWishlist()

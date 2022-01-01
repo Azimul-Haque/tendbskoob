@@ -276,7 +276,11 @@ class ProductController extends BaseController
         // $p->video_provider = 'youtube';
         // $p->video_url = $request->video_link;
         $p->request_status = 1; // status default to 1
-        $p->stock_status = $request->stock_status; // 1 = in stock, 2 = out of stock, 3 = back order
+        if($p->current_stock > 0) {
+            $p->stock_status = $request->stock_status; // 1 = in stock, 2 = out of stock, 3 = back order
+        } else {
+            $p->stock_status = 2; // 1 = in stock, 2 = out of stock, 3 = back order
+        }
         $p->meta_title = $request->bangla_name . '-' . $request->name;
         $p->meta_description = $request->description;
         // $p->meta_image = ImageManager::upload('product/meta/', 'png', $request->image);
@@ -553,7 +557,11 @@ class ProductController extends BaseController
         $p->details       = $request->description;
 
         $p->request_status = 1; // status default to 1
-        $p->stock_status = $request->stock_status; // 1 = in stock, 2 = out of stock, 3 = back order
+        if($p->current_stock > 0) {
+            $p->stock_status = $request->stock_status; // 1 = in stock, 2 = out of stock, 3 = back order
+        } else {
+            $p->stock_status = 2; // 1 = in stock, 2 = out of stock, 3 = back order
+        }
         $p->meta_title = $request->bangla_name . '-' . $request->name;
         $p->meta_description = $request->description;
 
@@ -731,8 +739,12 @@ class ProductController extends BaseController
             $stock_count         = (integer) $collection['current_stock'];
             $p->current_stock    = abs($stock_count);
             $p->details          = $collection['description'];
-            $p->request_status   = 1;                                                       // status default to 1
-            $p->stock_status     = $collection['stock_status'];                             // in stock, 2 = out of stock, 3 = back order
+            $p->request_status   = 1; // status default to 1
+            if($p->current_stock > 0) {
+                $p->stock_status = $collection['stock_status']; // 1 = in stock, 2 = out of stock, 3 = back order
+            } else {
+                $p->stock_status = 2; // 1 = in stock, 2 = out of stock, 3 = back order
+            }                             // in stock, 2 = out of stock, 3 = back order
             $p->meta_title       = $collection['name_bangla'] . '-' . $collection['name'];
             $p->meta_description = $collection['description'];
 

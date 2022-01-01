@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                             <input id="" type="search" name="search" class="form-control"
-                                placeholder="" value="<?php echo e(isset($search_param) ? $search_param : ''); ?>" required>
+                                placeholder="প্রকাশনী সার্চ করুন" value="<?php echo e(isset($search_param) ? $search_param : ''); ?>" required>
                             <button type="submit" class="btn btn-primary"><?php echo e(\App\CPU\translate('search')); ?></button>
                         </div>
                     </form>
