@@ -179,15 +179,15 @@ class CartManager
 
         //Gets all the choice values of customer choice option and generate a string like Black-S-Cotton
         $choices = [];
-        foreach (json_decode($product->choice_options) as $key => $choice) {
-            $choices[$choice->name] = $request[$choice->name];
-            $variations[$choice->title] = $request[$choice->name];
-            if ($str != null) {
-                $str .= '-' . str_replace(' ', '', $request[$choice->name]);
-            } else {
-                $str .= str_replace(' ', '', $request[$choice->name]);
-            }
-        }
+        // foreach (json_decode($product->choice_options) as $key => $choice) {
+        //     $choices[$choice->name] = $request[$choice->name];
+        //     $variations[$choice->title] = $request[$choice->name];
+        //     if ($str != null) {
+        //         $str .= '-' . str_replace(' ', '', $request[$choice->name]);
+        //     } else {
+        //         $str .= str_replace(' ', '', $request[$choice->name]);
+        //     }
+        // }
 
         if ($user == 'offline') {
             if (session()->has('offline_cart')) {

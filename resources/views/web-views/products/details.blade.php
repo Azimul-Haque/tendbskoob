@@ -48,8 +48,8 @@
     <meta property="og:url" content="{{route('product',[$product->slug])}}">
 
     @if($product['meta_description']!=null)
-        <meta property="twitter:description" content="{!! $product['meta_description'] !!}">
-        <meta property="og:description" content="{!! $product['meta_description'] !!}">
+        <meta property="twitter:description" content="{{ $product['meta_description'] }}">
+        <meta property="og:description" content="{{ $product['meta_description'] }}">
     @else
         <meta property="og:description"
               content="@foreach(explode(' ',$product['name']) as $keyword) {{$keyword.' , '}} @endforeach">
@@ -198,22 +198,24 @@
     <!-- Page Content-->
     <div class="container mt-4 rtl" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
         <!-- General info tab-->
-        <div class="row" style="direction: ltr">
+        <div class="row" style="direction: ltr; border: 1px solid #e2f0ff; border-radius: 0px; background: white; box-shadow: 1px 1px 6px #00000014;">
             <!-- Product gallery-->
-            <div class="col-lg-4 col-md-4">
-                <div class="d-flex align-items-center justify-content-center">
-                    <img class="img-responsive" style="max-height: 320px; width: auto;"
-                            onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"
-                            src="{{ \App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail'] }}"
-                            data-zoom="{{ \App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail'] }}"
-                            alt="Product image" width="">
+            <div class="col-lg-3 col-md-3" style="padding: 16px;">
+                <div class="d-flex align-items-center">
+                    <div style="border: 1px solid lightgrey; padding: 20px;">
+                        <img class="img-responsive" style="max-height: 320px; width: auto;"
+                        onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"
+                        src="{{ \App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail'] }}"
+                        data-zoom="{{ \App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail'] }}"
+                        alt="Product image" width="">
+                    </div>
                     {{-- <div class="cz-image-zoom-pane"></div> --}}
                 </div>
             </div>
             <!-- Product details-->
-            <div class="col-lg-8 col-md-8 mt-md-0 mt-sm-3" style="direction: {{ Session::get('direction') }}">
-                <div class="details">
-                    <h1 class="h3 mb-2">{{$product->name_bangla}}</h1>
+            <div class="col-lg-6 col-md-6 mt-md-0 mt-sm-3" style="direction: {{ Session::get('direction') }}; padding: 16px;">
+                <div class="">
+                    <h1 class="h3 mb-2" style="font-size: 22px;">{{$product->name_bangla}}</h1>
                     @php
                         $autor_html = '';
                         if($product->writers->count() > 0) {
@@ -254,7 +256,7 @@
                     @endphp
                     {!! $autor_html !!}<br/>
 
-                    <span>
+                    <div class="mb-2 mt-2">
                         Category:
                         @php
                             $category_html = '';
@@ -269,7 +271,7 @@
                             }
                         @endphp
                         {!! $category_html !!}
-                    </span>
+                    </div>
                     <div class="d-flex align-items-center mb-2 pro">
                         {{-- <span
                             class="d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'ml-md-2 ml-sm-0 pl-2' : 'mr-md-2 mr-sm-0 pr-2'}}">{{$overallRating[0]}}</span> --}}
@@ -282,9 +284,9 @@
                                 @endif
                             @endfor
                         </div>
-                        {{-- <span
+                        <span
                             class="font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}}">{{$overallRating[1]}} {{\App\CPU\translate('Reviews')}}</span>
-                        <span style="width: 0px;height: 10px;border: 0.5px solid #707070; margin-top: 6px"></span>
+                        {{-- <span style="width: 0px;height: 10px;border: 0.5px solid #707070; margin-top: 6px"></span>
                         <span
                             class="font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}}">{{$countOrder}} {{\App\CPU\translate('orders')}}   </span>
                         <span style="width: 0px;height: 10px;border: 0.5px solid #707070; margin-top: 6px">    </span>
@@ -292,7 +294,7 @@
                             class=" font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 {{Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-0 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-0 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'}}">  {{$countWishlist}} {{\App\CPU\translate('wish')}} </span> --}}
 
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-4 mt-4">
                         @if($product->published_price > $product->unit_price)
                             <strike style="color: {{$web_config['secondary_color']}};">
                                 ৳ {{ number_format($product->published_price, 0) }} 
@@ -302,7 +304,7 @@
                             ৳ {{ number_format($product->unit_price, 0) }}
                         </span>
                         @if($product->published_price > $product->unit_price)
-                            You save ৳ {{ $product->published_price - $product->unit_price }} ({{ ceil(100 * (($product->published_price - $product->unit_price)/$product->published_price)) }}%)
+                            <small>You save ৳ {{ $product->published_price - $product->unit_price }} ({{ ceil(100 * (($product->published_price - $product->unit_price)/$product->published_price)) }}%)</small>
                         @endif
                     </div>
 
@@ -354,7 +356,7 @@
                                 // }
                             @endphp
                         </div>
-                        @if ($product->choice_options)
+                        {{-- @if ($product->choice_options)
                         @foreach (json_decode($product->choice_options) as $key => $choice)
                             <div class="row flex-start mx-0">
                                 <div
@@ -380,7 +382,7 @@
                                 </div>
                             </div>
                         @endforeach
-                        @endif
+                        @endif --}}
 
                     <!-- Quantity + Add to cart -->
                         <div class="row no-gutters">
@@ -430,19 +432,22 @@
                             </div>
                         </div>
 
-                        <div class="d-flex justify-content-between mt-2">
-                            <button
+                        <div class="d-flex
+                        {{-- justify-content-between --}}
+                        mt-2">
+                            {{-- <button
                                 class="btn btn-secondary element-center btn-gap-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}"
                                 onclick="buy_now()"
                                 type="button"
                                 style="width:37%; height: 45px">
                                 <span class="string-limit">{{\App\CPU\translate('buy_now')}}</span>
-                            </button>
+                            </button> --}}
                             <button
                                 class="btn btn-primary element-center btn-gap-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}"
                                 onclick="addToCart()"
                                 type="button"
-                                style="width:37%; height: 45px">
+                                style="width:37%; height: 45px; margin-right: 10px;">
+                                <i class="fa fa-cart-plus mr-2"></i>
                                 <span class="string-limit">{{\App\CPU\translate('add_to_cart')}}</span>
                             </button>
                             <button type="button" onclick="addWishlist('{{$product['id']}}')"
@@ -458,6 +463,9 @@
                     <div style="text-align:{{Session::get('direction') === "rtl" ? 'right' : 'left'}};"
                          class="sharethis-inline-share-buttons"></div>
                 </div>
+            </div>
+            <div class="col-lg-3 col-md-3" style="background: #F6F6F6;">
+
             </div>
         </div>
     </div>

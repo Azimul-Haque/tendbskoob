@@ -47,7 +47,7 @@ Route::group(['namespace' => 'Web','middleware'=>['maintenance_mode']], function
     Route::get('terms', 'WebController@termsandCondition')->name('terms');
     Route::get('privacy-policy', 'WebController@privacy_policy')->name('privacy-policy');
 
-    Route::get('/product/{slug}', 'WebController@product')->name('product');
+    Route::get('/book/{slug}', 'WebController@product')->name('product');
     Route::get('products', 'WebController@products')->name('products');
     Route::get('orderDetails', 'WebController@orderdetails')->name('orderdetails');
 

@@ -653,9 +653,9 @@
     <div class="row">
         <div class="col-12" style="width:85%;position: fixed;z-index: 9999;display: flex;align-items: center;justify-content: center;">
             <div id="loading" style="display: none">
-                /* <img width="200"
-                     src="{{asset('storage/app/public/company')}}/{{\App\CPU\Helpers::get_business_settings('loader_gif')}}"
-                     onerror="this.src='{{asset('public/assets/front-end/img/loader.gif')}}'"> */
+                <!--
+                <img width="200" src="{{asset('storage/app/public/company')}}/{{\App\CPU\Helpers::get_business_settings('loader_gif')}}" onerror="this.src='{{asset('public/assets/front-end/img/loader.gif')}}'">
+                -->
             </div>
         </div>
     </div>
@@ -810,6 +810,51 @@
                 data: $('#' + form_id).serializeArray(),
                 beforeSend: function () {
                     $('#loading').show();
+                },
+                success: function (response) {
+                    console.log(response);
+                    if (response.status == 1) {
+                        updateNavCart();
+                        toastr.success(response.message, {
+                            CloseButton: true,
+                            ProgressBar: true
+                        });
+                        $('.call-when-done').click();
+                        return false;
+                    } else if (response.status == 0) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Cart',
+                            text: response.message
+                        });
+                        return false;
+                    }
+                },
+                complete: function () {
+                    $('#loading').hide();
+                }
+            });
+        } else {
+            Swal.fire({
+                type: 'info',
+                title: 'Cart',
+                text: '{{\App\CPU\translate('please_choose_all_the_options')}}'
+            });
+        }
+    }
+
+    function addToCart2(id) {
+        if (checkAddToCartValidity()) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            $.post({
+                url: '{{ route('cart.add') }}',
+                method: 'POST',
+                data: {
+                    id: id
                 },
                 success: function (response) {
                     console.log(response);

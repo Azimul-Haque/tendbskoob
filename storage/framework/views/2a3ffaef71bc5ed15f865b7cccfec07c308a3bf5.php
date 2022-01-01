@@ -96,24 +96,44 @@
                                 <a href="<?php echo e(route('product',$product->slug)); ?>">
                                     <img
                                         src="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($product['thumbnail']); ?>"
-                                        width="100">
+                                        onerror="this.src='<?php echo e(asset('public/assets/front-end/img/book_demo.jpg')); ?>'"
+                                        style="height: 120px; width: auto;">
                                 </a>
                             </div>
-                            <div class="wishlist_product_desc col-md-4 mt-4">
+                            <div class="wishlist_product_desc col-md-8 mt-3">
                                 <span class="font-name">
-                                    <a href="<?php echo e(route('product',$product['slug'])); ?>"><?php echo e($product['name']); ?></a>
+                                    <a href="<?php echo e(route('product',$product['slug'])); ?>"><big><?php echo e($product['name_bangla']); ?></big></a>
                                 </span>
                                 <br>
-                                <span
-                                    class="sellerName"> <?php echo e(\App\CPU\translate('Brand')); ?> :<?php echo e($product->brand?$product->brand['name']:''); ?> </span>
-                                <?php ($tax = ($product->tax_type == 'percent' ? $product->unit_price + ($product->unit_price * $product->tax) / 100 : $product->unit_price + $product->tax)); ?>
-                                <div class="">
-                                <span
-                                    class="font-weight-bold amount"><?php echo e(App\CPU\Helpers::currency_converter($tax)); ?></span>
+                                <span class="sellerName" style="color: #5C7CFF !important;"">
+                                    <?php if($product->writers->count() > 0): ?>
+                                        <?php echo e($product->writers[0]->name_bangla); ?>
+
+                                    <?php elseif($product->translators->count() > 0): ?>
+                                        <?php echo e($product->translators[0]->name_bangla); ?>
+
+                                    <?php elseif($product->editors->count() > 0): ?>
+                                        <?php echo e($product->editors[0]->name_bangla); ?>
+
+                                    <?php endif; ?>
+                                </span>
+                                <div class="mt-2">
+                                    <?php if($product->published_price > $product->unit_price): ?>
+                                        <strike style="color: <?php echo e($web_config['secondary_color']); ?>;">
+                                            ৳ <?php echo e(number_format($product->published_price, 0)); ?> 
+                                        </strike>
+                                    <?php endif; ?>
+                                    <span class="h3 font-weight-normal text-accent <?php echo e(Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'); ?>">
+                                        ৳ <?php echo e(number_format($product->unit_price, 0)); ?>
+
+                                    </span>
+                                    <?php if($product->published_price > $product->unit_price): ?>
+                                        <small>You save ৳ <?php echo e($product->published_price - $product->unit_price); ?> (<?php echo e(ceil(100 * (($product->published_price - $product->unit_price)/$product->published_price))); ?>%)</small>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <div
-                                class="wishlist_product_btn col-md-6 col-lg-6 col-sm-6 mt-5 float-right bodytr font-weight-bold"
+                                class="wishlist_product_btn col-md-2 col-lg-2 col-sm-2 mt-5 float-right bodytr font-weight-bold"
                                 style="color: #92C6FF;">
 
                                 <a href="javascript:" class="wishlist_product_icon ml-2 pull-right mr-3">

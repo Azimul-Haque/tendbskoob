@@ -96,24 +96,40 @@
                                 <a href="{{route('product',$product->slug)}}">
                                     <img
                                         src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail']}}"
-                                        width="100">
+                                        onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"
+                                        style="height: 120px; width: auto;">
                                 </a>
                             </div>
-                            <div class="wishlist_product_desc col-md-4 mt-4">
+                            <div class="wishlist_product_desc col-md-8 mt-3">
                                 <span class="font-name">
-                                    <a href="{{route('product',$product['slug'])}}">{{$product['name']}}</a>
+                                    <a href="{{route('product',$product['slug'])}}"><big>{{$product['name_bangla']}}</big></a>
                                 </span>
                                 <br>
-                                <span
-                                    class="sellerName"> {{\App\CPU\translate('Brand')}} :{{$product->brand?$product->brand['name']:''}} </span>
-                                @php($tax = ($product->tax_type == 'percent' ? $product->unit_price + ($product->unit_price * $product->tax) / 100 : $product->unit_price + $product->tax))
-                                <div class="">
-                                <span
-                                    class="font-weight-bold amount">{{App\CPU\Helpers::currency_converter($tax)}}</span>
+                                <span class="sellerName" style="color: #5C7CFF !important;"">
+                                    @if ($product->writers->count() > 0)
+                                        {{$product->writers[0]->name_bangla}}
+                                    @elseif($product->translators->count() > 0)
+                                        {{$product->translators[0]->name_bangla}}
+                                    @elseif($product->editors->count() > 0)
+                                        {{$product->editors[0]->name_bangla}}
+                                    @endif
+                                </span>
+                                <div class="mt-2">
+                                    @if($product->published_price > $product->unit_price)
+                                        <strike style="color: {{$web_config['secondary_color']}};">
+                                            ৳ {{ number_format($product->published_price, 0) }} 
+                                        </strike>
+                                    @endif
+                                    <span class="h3 font-weight-normal text-accent {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}">
+                                        ৳ {{ number_format($product->unit_price, 0) }}
+                                    </span>
+                                    @if($product->published_price > $product->unit_price)
+                                        <small>You save ৳ {{ $product->published_price - $product->unit_price }} ({{ ceil(100 * (($product->published_price - $product->unit_price)/$product->published_price)) }}%)</small>
+                                    @endif
                                 </div>
                             </div>
                             <div
-                                class="wishlist_product_btn col-md-6 col-lg-6 col-sm-6 mt-5 float-right bodytr font-weight-bold"
+                                class="wishlist_product_btn col-md-2 col-lg-2 col-sm-2 mt-5 float-right bodytr font-weight-bold"
                                 style="color: #92C6FF;">
 
                                 <a href="javascript:" class="wishlist_product_icon ml-2 pull-right mr-3">
