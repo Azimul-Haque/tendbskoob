@@ -110,7 +110,8 @@
 
 <header class="box-shadow-sm rtl">
     <!-- Topbar-->
-    <div class="topbar">
+    <!--
+        <div class="topbar">
         <div class="container ">
             <div>
                 <?php ( $local = \App\CPU\Helpers::default_lang()); ?>
@@ -178,6 +179,7 @@
             </div>
         </div>
     </div>
+    -->
 
 
     <div class="navbar-sticky bg-light mobile-head">
