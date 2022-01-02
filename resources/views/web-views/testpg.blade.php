@@ -61,7 +61,7 @@
             type: "POST",
             url: 'https://sandbox.shurjopayment.com/api/verification',
             data: {
-                order_id: 'RIFAT61d1eb6729c6f',
+                order_id: 'RIFAT61d1e6f6459f9',
             },
             success: function (data3) {
                 console.log(data3);
