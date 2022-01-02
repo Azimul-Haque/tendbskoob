@@ -38,6 +38,7 @@ class ShurjoPayController extends Controller
         );
 
         $txnId = $client->generateTxnId();
+        dd($txnId);
         $client->makePayment();
     }
 
