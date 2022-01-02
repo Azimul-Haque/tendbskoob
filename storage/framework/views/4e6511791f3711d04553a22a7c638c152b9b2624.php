@@ -70,20 +70,13 @@
 
     <div class="card-body card-body-hidden" style="padding-bottom: 5px!important;">
         <div class="text-center">
-            <?php if(Request::is('product/*')): ?>
-                <a class="btn btn-primary btn-sm btn-block mb-2" href="<?php echo e(route('product',$product->slug)); ?>">
-                    <i class="czi-forward align-middle <?php echo e(Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'); ?>"></i>
-                    <?php echo e(\App\CPU\translate('View')); ?>
-
-                </a>
-            <?php else: ?>
-                <a class="btn btn-primary btn-sm btn-block mb-2" href="javascript:"
-                   onclick="quickView('<?php echo e($product->id); ?>')">
-                    <i class="czi-eye align-middle <?php echo e(Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'); ?>"></i>
-                    <?php echo e(\App\CPU\translate('Quick')); ?>   <?php echo e(\App\CPU\translate('View')); ?>
-
-                </a>
-            <?php endif; ?>
+            
+            <form>
+                <button type="button" class="btn btn-primary btn-sm btn-block mb-2" onclick="addToCart2(<?php echo e($product->id); ?>)">
+                    <i class="fa fa-cart-plus mr-2"></i>
+                    <span class="string-limit"><?php echo e(\App\CPU\translate('add_to_cart')); ?></span>
+                </button>
+            </form>
         </div>
     </div>
 </div>

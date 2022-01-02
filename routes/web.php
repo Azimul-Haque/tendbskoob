@@ -146,6 +146,12 @@ Route::group(['prefix' => 'coupon', 'as' => 'coupon.', 'namespace' => 'Web'], fu
 });
 //check done
 
+// Shurjo Pay Start
+Route::get('pay-shurjo-pay-test', 'ShurjoPayController@paytest')->name('pay-shurjo-pay-test');
+Route::post('pay-shurjo-pay', 'ShurjoPayController@pay')->name('pay-shurjo-pay');
+Route::get('success-or-failure', 'ShurjoPayController@successOrFailure')->name('success-or-failure');
+// Shurjo Pay END
+
 // SSLCOMMERZ Start
 /*Route::get('/example1', 'SslCommerzPaymentController@exampleEasyCheckout');
 Route::get('/example2', 'SslCommerzPaymentController@exampleHostedCheckout');*/

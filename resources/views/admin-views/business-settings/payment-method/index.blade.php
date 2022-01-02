@@ -93,6 +93,65 @@
             <div class="col-md-6 mt-4">
                 <div class="card">
                     <div class="card-body" style="padding: 20px">
+                        <h5 class="text-center">{{\App\CPU\translate('ShurjoPay')}}</h5>
+                        @php($config=\App\CPU\Helpers::get_business_settings('shurjo_pay'))
+                        <form
+                            action="{{route('admin.business-settings.payment-method.update',['shurjo_pay'])}}"
+                            method="post">
+                            @csrf
+                            @if(isset($config))
+                                <div class="form-group mb-2">
+                                    <label class="control-label">{{\App\CPU\translate('shurjo_pay')}}</label>
+                                </div>
+                                <div class="form-group mb-2 mt-2">
+                                    <input type="radio" name="status" value="1" {{$config['status']==1?'checked':''}}>
+                                    <label style="padding-left: 10px">{{\App\CPU\translate('Active')}}</label>
+                                    <br>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <input type="radio" name="status" value="0" {{$config['status']==0?'checked':''}}>
+                                    <label style="padding-left: 10px">{{\App\CPU\translate('Inactive')}}</label>
+                                    <br>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label
+                                        style="padding-left: 10px">{{\App\CPU\translate('Shurjopay Server URL')}}</label><br>
+                                    <input type="text" class="form-control" name="shurjopay_server_url"
+                                           value="{{env('APP_MODE')=='demo'?'':$config['shurjopay_server_url']}}">
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label
+                                        style="padding-left: 10px">{{\App\CPU\translate('Merchant Key Prefix')}}</label><br>
+                                    <input type="text" class="form-control" name="merchant_key_prefix"
+                                           value="{{env('APP_MODE')=='demo'?'':$config['merchant_key_prefix']}}">
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label
+                                        style="padding-left: 10px">{{\App\CPU\translate('Merchant Username')}}</label><br>
+                                    <input type="text" class="form-control" name="merchant_username"
+                                           value="{{env('APP_MODE')=='demo'?'':$config['merchant_username']}}">
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label
+                                        style="padding-left: 10px">{{\App\CPU\translate('Merchant Password')}}</label><br>
+                                    <input type="password" class="form-control" name="merchant_password"
+                                           value="{{env('APP_MODE')=='demo'?'':$config['merchant_password']}}">
+                                </div>
+                                <button type="{{env('APP_MODE')!='demo'?'submit':'button'}}"
+                                        onclick="{{env('APP_MODE')!='demo'?'':'call_demo()'}}"
+                                        class="btn btn-primary mb-2">{{\App\CPU\translate('save')}}</button>
+                            @else
+                                <button type="submit"
+                                        class="btn btn-primary mb-2">{{\App\CPU\translate('Configure')}}</button>
+                            @endif
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mt-4">
+                <div class="card">
+                    <div class="card-body" style="padding: 20px">
                         <h5 class="text-center">{{\App\CPU\translate('SSLCOMMERZ')}}</h5>
                         @php($config=\App\CPU\Helpers::get_business_settings('ssl_commerz_payment'))
                         <form

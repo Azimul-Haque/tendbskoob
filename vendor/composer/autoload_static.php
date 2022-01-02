@@ -33,9 +33,9 @@ class ComposerStaticInite8a0c1a3fb1931510385107b63457fe6
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
         'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
-        '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         '9cdd7b9056abc3081735233ba9dd9c7f' => __DIR__ . '/..' . '/facade/flare-client-php/src/helpers.php',
         'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
@@ -118,6 +118,7 @@ class ComposerStaticInite8a0c1a3fb1931510385107b63457fe6
             'Symfony\\Bridge\\PsrHttpMessage\\' => 30,
             'Svg\\' => 4,
             'Stripe\\' => 7,
+            'Sowren\\ShurjoPay\\' => 17,
             'Sabberworm\\CSS\\' => 15,
         ),
         'R' => 
@@ -405,6 +406,10 @@ class ComposerStaticInite8a0c1a3fb1931510385107b63457fe6
         'Stripe\\' => 
         array (
             0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
+        ),
+        'Sowren\\ShurjoPay\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sowrensen/laravel-shurjopay/src',
         ),
         'Sabberworm\\CSS\\' => 
         array (
@@ -2355,6 +2360,7 @@ class ComposerStaticInite8a0c1a3fb1931510385107b63457fe6
         'Faker\\Provider\\nl_BE\\Payment' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/nl_BE/Payment.php',
         'Faker\\Provider\\nl_BE\\Person' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/nl_BE/Person.php',
         'Faker\\Provider\\nl_BE\\PhoneNumber' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/nl_BE/PhoneNumber.php',
+        'Faker\\Provider\\nl_BE\\Text' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/nl_BE/Text.php',
         'Faker\\Provider\\nl_NL\\Address' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/nl_NL/Address.php',
         'Faker\\Provider\\nl_NL\\Color' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/nl_NL/Color.php',
         'Faker\\Provider\\nl_NL\\Company' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Provider/nl_NL/Company.php',
@@ -7022,6 +7028,9 @@ class ComposerStaticInite8a0c1a3fb1931510385107b63457fe6
         'SebastianBergmann\\Type\\VoidType' => __DIR__ . '/..' . '/sebastian/type/src/VoidType.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
         'SellerTableSeeder' => __DIR__ . '/../..' . '/database/seeds/SellerTableSeeder.php',
+        'Sowren\\ShurjoPay\\Http\\Controllers\\ShurjoPayController' => __DIR__ . '/..' . '/sowrensen/laravel-shurjopay/src/Http/Controllers/ShurjoPayController.php',
+        'Sowren\\ShurjoPay\\ShurjoPayService' => __DIR__ . '/..' . '/sowrensen/laravel-shurjopay/src/ShurjoPayService.php',
+        'Sowren\\ShurjoPay\\ShurjoPayServiceProvider' => __DIR__ . '/..' . '/sowrensen/laravel-shurjopay/src/ShurjoPayServiceProvider.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'Stripe\\Account' => __DIR__ . '/..' . '/stripe/stripe-php/lib/Account.php',
         'Stripe\\AccountLink' => __DIR__ . '/..' . '/stripe/stripe-php/lib/AccountLink.php',

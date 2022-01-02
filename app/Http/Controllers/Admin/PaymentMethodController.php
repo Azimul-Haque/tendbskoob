@@ -48,6 +48,48 @@ class PaymentMethodController extends Controller
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
+        } elseif ($name == 'shurjo_pay') {
+            $payment = BusinessSetting::where('type', 'shurjo_pay')->first();
+            if (isset($payment) == false) {
+                DB::table('business_settings')->insert([
+                    'type' => 'shurjo_pay',
+                    'value' => json_encode([
+                        'status' => 1,
+                        'shurjopay_server_url' => '',
+                        'merchant_username' => '',
+                        'merchant_password' => '',
+                        'merchant_key_prefix' => '',
+                    ]),
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
+            } else {
+                if (Currency::where(['code' => 'BDT'])->first() == false) {
+                    Toastr::error('Please add BDT currency before enable this gateway.');
+                    return back();
+                }
+                if ($request['status'] == 1) {
+                    $request->validate([
+                        'shurjopay_server_url' => 'required',
+                        'merchant_username' => 'required',
+                        'merchant_password' => 'required',
+                        'merchant_key_prefix' => 'required'
+                    ]);
+                }
+                DB::table('business_settings')->where(['type' => 'shurjo_pay'])->update([
+                    'type' => 'shurjo_pay',
+                    'value' => json_encode([
+                        'status' => $request['status'],
+                        'shurjopay_server_url' => $request['shurjopay_server_url'],
+                        'merchant_username' => $request['merchant_username'],
+                        'merchant_password' => $request['merchant_password'],
+                        'merchant_key_prefix' => $request['merchant_key_prefix'],
+                    ]),
+                    'updated_at' => now()
+                ]);
+                Toastr::success('Configured successfully.');
+                return redirect()->route('admin.business-settings.payment-method.index');
+            }
         } elseif ($name == 'ssl_commerz_payment') {
             $payment = BusinessSetting::where('type', 'ssl_commerz_payment')->first();
             if (isset($payment) == false) {
