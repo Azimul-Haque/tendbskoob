@@ -869,6 +869,7 @@ class ComposerStaticInite8a0c1a3fb1931510385107b63457fe6
         'App\\Http\\Controllers\\Seller\\WithdrawController' => __DIR__ . '/../..' . '/app/Http/Controllers/Seller/WithdrawController.php',
         'App\\Http\\Controllers\\SenangPayController' => __DIR__ . '/../..' . '/app/Http/Controllers/SenangPayController.php',
         'App\\Http\\Controllers\\SharedController' => __DIR__ . '/../..' . '/app/Http/Controllers/SharedController.php',
+        'App\\Http\\Controllers\\ShurjoPayController' => __DIR__ . '/../..' . '/app/Http/Controllers/ShurjoPayController.php',
         'App\\Http\\Controllers\\SslCommerzPaymentController' => __DIR__ . '/../..' . '/app/Http/Controllers/SslCommerzPaymentController.php',
         'App\\Http\\Controllers\\StripePaymentController' => __DIR__ . '/../..' . '/app/Http/Controllers/StripePaymentController.php',
         'App\\Http\\Controllers\\UpdateController' => __DIR__ . '/../..' . '/app/Http/Controllers/UpdateController.php',

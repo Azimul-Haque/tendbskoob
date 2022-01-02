@@ -17,6 +17,8 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use smukhidev\ShurjopayLaravelPackage\ShurjopayService as ShurjopayLaravelPackageShurjopayService;
+
 use function App\CPU\convert_price;
 
 use Sowren\ShurjoPay\ShurjoPayService;
@@ -38,7 +40,16 @@ class ShurjoPayController extends Controller
         );
 
         $txnId = $client->generateTxnId();
-        // dd($txnId);
+        // $data= [
+        //     'amount'=>10, // Your order total amount
+        //     'custom1'=>'Rifat', // Custom data like User Name
+        //     'custom2'=>'test@rifat.com', // Custom data like User Email
+        //     'custom3'=>'017854545445', // Custom data like User Phone Number
+        //     'custom4'=>'22B Baker Street', // Custom data like user address
+        //     'is_emi'=>0 //0 No EMI 1 EMI active
+        // ];
+        // $shurjopay_service->sendPayment($data, $success_route);
+        // dd($client->makePayment());
         $client->makePayment();
     }
 

@@ -109,6 +109,7 @@ return array(
     'App\\Http\\Controllers\\Seller\\WithdrawController' => $baseDir . '/app/Http/Controllers/Seller/WithdrawController.php',
     'App\\Http\\Controllers\\SenangPayController' => $baseDir . '/app/Http/Controllers/SenangPayController.php',
     'App\\Http\\Controllers\\SharedController' => $baseDir . '/app/Http/Controllers/SharedController.php',
+    'App\\Http\\Controllers\\ShurjoPayController' => $baseDir . '/app/Http/Controllers/ShurjoPayController.php',
     'App\\Http\\Controllers\\SslCommerzPaymentController' => $baseDir . '/app/Http/Controllers/SslCommerzPaymentController.php',
     'App\\Http\\Controllers\\StripePaymentController' => $baseDir . '/app/Http/Controllers/StripePaymentController.php',
     'App\\Http\\Controllers\\UpdateController' => $baseDir . '/app/Http/Controllers/UpdateController.php',
