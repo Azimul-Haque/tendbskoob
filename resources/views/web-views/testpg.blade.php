@@ -39,8 +39,8 @@
                         store_id: data1.store_id,
                         prefix: 'RIFAT',
                         currency: 'BDT',
-                        return_url: location.host + '/shurjopay/verify',
-                        cancel_url: location.host + '/shurjopay/test',
+                        return_url: window.location.protocol + '//' + location.host + '/shurjopay/verify',
+                        cancel_url: window.location.protocol + '//' +location.host + '/shurjopay/test',
                         amount: 10,
                         order_id: 'RIFAT' + Math.floor((Math.random() * 1000000) + 1),
                         client_ip: '127.0.0.1',
@@ -62,17 +62,33 @@
         });
     }
     function testVerify() {
+        var _token = '';
         $.ajax({
             type: "POST",
-            url: 'https://sandbox.shurjopayment.com/api/verification',
+            url: 'https://sandbox.shurjopayment.com/api/get_token',
             data: {
-                token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc2FuZGJveC5zaHVyam9wYXltZW50LmNvbVwvYXBpXC9sb2dpbiIsImlhdCI6MTY0MTE1MDMxMCwiZXhwIjoxNjQxMTUzOTEwLCJuYmYiOjE2NDExNTAzMTAsImp0aSI6ImFGTTY5MHE1M2FJZmtrc0giLCJzdWIiOjEsInBydiI6IjgwNWYzOWVlZmNjNjhhZmQ5ODI1YjQxMjI3ZGFkMGEwNzZjNDk3OTMifQ.Ed_FTWANdHXn5UnGp6Rkox7JsWi48sZaN4FC4f7PXl8',
-                order_id: 'RIFAT61d1f53496966',
+                username: 'sp_sandbox',
+                password: 'pyyk97hu&6u6',
             },
-            success: function (data3) {
-                console.log(data3);
-                $('#result').text(data3);
+            success: function (data1) {
+                console.log(data1);
+                _token = data1.token;
+                console.log(_token);
             }
         });
+        setTimeout(function (){
+            $.ajax({
+                type: "POST",
+                url: 'https://sandbox.shurjopayment.com/api/verification',
+                data: {
+                    token: _token,
+                    order_id: 'RIFAT61d207b758323',
+                },
+                success: function (data3) {
+                    console.log(data3);
+                    $('#result').text(data3);
+                }
+            });
+        }, 2000);
     }
 </script>
