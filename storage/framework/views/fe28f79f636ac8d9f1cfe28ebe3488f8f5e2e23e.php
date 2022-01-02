@@ -91,6 +91,65 @@
             <div class="col-md-6 mt-4">
                 <div class="card">
                     <div class="card-body" style="padding: 20px">
+                        <h5 class="text-center"><?php echo e(\App\CPU\translate('ShurjoPay')); ?></h5>
+                        <?php ($config=\App\CPU\Helpers::get_business_settings('shurjo_pay')); ?>
+                        <form
+                            action="<?php echo e(route('admin.business-settings.payment-method.update',['shurjo_pay'])); ?>"
+                            method="post">
+                            <?php echo csrf_field(); ?>
+                            <?php if(isset($config)): ?>
+                                <div class="form-group mb-2">
+                                    <label class="control-label"><?php echo e(\App\CPU\translate('shurjo_pay')); ?></label>
+                                </div>
+                                <div class="form-group mb-2 mt-2">
+                                    <input type="radio" name="status" value="1" <?php echo e($config['status']==1?'checked':''); ?>>
+                                    <label style="padding-left: 10px"><?php echo e(\App\CPU\translate('Active')); ?></label>
+                                    <br>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <input type="radio" name="status" value="0" <?php echo e($config['status']==0?'checked':''); ?>>
+                                    <label style="padding-left: 10px"><?php echo e(\App\CPU\translate('Inactive')); ?></label>
+                                    <br>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label
+                                        style="padding-left: 10px"><?php echo e(\App\CPU\translate('Shurjopay Server URL')); ?></label><br>
+                                    <input type="text" class="form-control" name="shurjopay_server_url"
+                                           value="<?php echo e(env('APP_MODE')=='demo'?'':$config['shurjopay_server_url']); ?>">
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label
+                                        style="padding-left: 10px"><?php echo e(\App\CPU\translate('Merchant Key Prefix')); ?></label><br>
+                                    <input type="text" class="form-control" name="merchant_key_prefix"
+                                           value="<?php echo e(env('APP_MODE')=='demo'?'':$config['merchant_key_prefix']); ?>">
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label
+                                        style="padding-left: 10px"><?php echo e(\App\CPU\translate('Merchant Username')); ?></label><br>
+                                    <input type="text" class="form-control" name="merchant_username"
+                                           value="<?php echo e(env('APP_MODE')=='demo'?'':$config['merchant_username']); ?>">
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label
+                                        style="padding-left: 10px"><?php echo e(\App\CPU\translate('Merchant Password')); ?></label><br>
+                                    <input type="password" class="form-control" name="merchant_password"
+                                           value="<?php echo e(env('APP_MODE')=='demo'?'':$config['merchant_password']); ?>">
+                                </div>
+                                <button type="<?php echo e(env('APP_MODE')!='demo'?'submit':'button'); ?>"
+                                        onclick="<?php echo e(env('APP_MODE')!='demo'?'':'call_demo()'); ?>"
+                                        class="btn btn-primary mb-2"><?php echo e(\App\CPU\translate('save')); ?></button>
+                            <?php else: ?>
+                                <button type="submit"
+                                        class="btn btn-primary mb-2"><?php echo e(\App\CPU\translate('Configure')); ?></button>
+                            <?php endif; ?>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mt-4">
+                <div class="card">
+                    <div class="card-body" style="padding: 20px">
                         <h5 class="text-center"><?php echo e(\App\CPU\translate('SSLCOMMERZ')); ?></h5>
                         <?php ($config=\App\CPU\Helpers::get_business_settings('ssl_commerz_payment')); ?>
                         <form

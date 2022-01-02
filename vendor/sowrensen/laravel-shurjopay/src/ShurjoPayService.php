@@ -108,7 +108,7 @@ class ShurjoPayService
         string $merchantUsername = null,
         string $merchantPassword = null,
         string $merchantKeyPrefix = null,
-        bool $useCurl = false,
+        bool $useCurl = true,
         string $responseHandler = null
     ) {
         $this->amount = $amount;
@@ -171,6 +171,7 @@ class ShurjoPayService
             '<returnURL>'.$this->returnUrl().'</returnURL></shurjoPay>';
 
         $this->xmlData = $this->useCurl ? 'spdata='.$default : $default;
+        // dd($this->xmlData);
     }
 
     /**
@@ -192,9 +193,10 @@ class ShurjoPayService
      */
     private function requestUrl()
     {
-        return Str::endsWith($this->serverUrl, '/')
-            ? $this->serverUrl.'sp-data.php'
-            : $this->serverUrl.'/sp-data.php';
+        // return Str::endsWith($this->serverUrl, '/')
+        //     ? $this->serverUrl.'sp-data.php'
+        //     : $this->serverUrl.'/sp-data.php';
+        return $this->serverUrl;
     }
 
     /**

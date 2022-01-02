@@ -27,6 +27,11 @@ class ShurjoPayController extends Controller
 {
 
     public function paytest() {
+        return view('web-views.testpg');
+    }
+
+    public function pay(Request $request)
+    {
         $config = Helpers::get_business_settings('shurjo_pay');
         // dd($config);
 
@@ -50,11 +55,8 @@ class ShurjoPayController extends Controller
         // ];
         // $shurjopay_service->sendPayment($data, $success_route);
         // dd($client->makePayment());
+        // dd($client);
         $client->makePayment();
-    }
-
-    public function pay(Request $request)
-    {
 
         // $currency_model = Helpers::get_business_settings('currency_model');
         // if ($currency_model == 'multi_currency') {
