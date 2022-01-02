@@ -67,7 +67,7 @@
             url: 'https://sandbox.shurjopayment.com/api/verification',
             data: {
                 token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc2FuZGJveC5zaHVyam9wYXltZW50LmNvbVwvYXBpXC9sb2dpbiIsImlhdCI6MTY0MTE1MDMxMCwiZXhwIjoxNjQxMTUzOTEwLCJuYmYiOjE2NDExNTAzMTAsImp0aSI6ImFGTTY5MHE1M2FJZmtrc0giLCJzdWIiOjEsInBydiI6IjgwNWYzOWVlZmNjNjhhZmQ5ODI1YjQxMjI3ZGFkMGEwNzZjNDk3OTMifQ.Ed_FTWANdHXn5UnGp6Rkox7JsWi48sZaN4FC4f7PXl8',
-                order_id: 'NOK61d1c007ccfc5',
+                order_id: 'RIFAT61d1f53496966',
             },
             success: function (data3) {
                 console.log(data3);
