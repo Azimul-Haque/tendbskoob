@@ -57,70 +57,33 @@ class ShurjoPayController extends Controller
         // dd($client->makePayment());
         // dd($client);
         $client->makePayment();
-
-        // $currency_model = Helpers::get_business_settings('currency_model');
-        // if ($currency_model == 'multi_currency') {
-        //     $currency_code = 'BDT';
-        // } else {
-        //     $default = BusinessSetting::where(['type' => 'system_default_currency'])->first()->value;
-        //     $currency_code = Currency::find($default)->code;
-        // }
-
-        // $discount = session()->has('coupon_discount') ? session('coupon_discount') : 0;
-        // $value = CartManager::cart_grand_total() - $discount;
-        // $user = Helpers::get_customer();
-
-        // $post_data = array();
-        // $post_data['total_amount'] = Convert::usdTobdt($value);
-        // $post_data['currency'] = $currency_code;
-        // $post_data['tran_id'] = OrderManager::gen_unique_id(); // tran_id must be unique
-
-        // # CUSTOMER INFORMATION
-        // $post_data['cus_name'] = $user->f_name . ' ' . $user->l_name;
-        // $post_data['cus_email'] = $user->email;
-        // $post_data['cus_add1'] = $user->street_address == null ? 'address' : $user->user()->street_address;
-        // $post_data['cus_add2'] = "";
-        // $post_data['cus_city'] = "";
-        // $post_data['cus_state'] = "";
-        // $post_data['cus_postcode'] = "";
-        // $post_data['cus_country'] = "";
-        // $post_data['cus_phone'] = $user->phone;
-        // $post_data['cus_fax'] = "";
-
-        // # SHIPMENT INFORMATION
-        // $post_data['ship_name'] = "Shipping";
-        // $post_data['ship_add1'] = "address 1";
-        // $post_data['ship_add2'] = "address 2";
-        // $post_data['ship_city'] = "City";
-        // $post_data['ship_state'] = "State";
-        // $post_data['ship_postcode'] = "ZIP";
-        // $post_data['ship_phone'] = "";
-        // $post_data['ship_country'] = "Country";
-
-        // $post_data['shipping_method'] = "NO";
-        // $post_data['product_name'] = "Computer";
-        // $post_data['product_category'] = "Goods";
-        // $post_data['product_profile'] = "physical-goods";
-
-        // # OPTIONAL PARAMETERS
-        // $post_data['value_a'] = "ref001";
-        // $post_data['value_b'] = "ref002";
-        // $post_data['value_c'] = "ref003";
-        // $post_data['value_d'] = "ref004";
-
-        // try {
-        //     $sslc = new SslCommerzNotification();
-        //     $payment_options = $sslc->makePayment($post_data, 'hosted');
-        //     if (!is_array($payment_options)) {
-        //         Toastr::error('Gateway is not supported your currency.');
-        //         return back();
-        //     }
-        // } catch (\Exception $exception) {
-        //     Toastr::error('Misconfiguration or data is missing!');
-        //     return back();
-        // }
     }
 
+    public function verifyShurjoPay(Request $request)
+    {
+        // dd($request->order_id);
+
+        $verifyurl = 'https://sandbox.shurjopayment.com/api/verification';
+        // Live: https://engine.shurjopayment.com/api/verification
+        // Sandbox : https://sandbox.shurjopayment.com/api/verification
+
+
+        $data = array(
+            'order_id' => $request->order_id,
+        );
+        // initialize send status
+        $ch = curl_init(); // Initialize cURL
+        curl_setopt($ch, CURLOPT_URL, $verifyurl);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // this is important
+        $paymentresult = curl_exec($ch);
+        curl_close ($ch);
+        
+        dd($paymentresult);
+    }
+    
     public function successOrFailure(Request $request)
     {
         // $tran_id = $request->input('tran_id');

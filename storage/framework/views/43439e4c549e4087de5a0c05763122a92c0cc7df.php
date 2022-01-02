@@ -6,9 +6,8 @@
     <!-- General info tab-->
     <div class="row">
         <div class="col-lg-6 col-md-6" style="background: #F6F6F6;">
-            <form>
-                <button type="button" class="btn btn-success" onclick="getSPToken()">Submit</button>
-            </form>
+            <button type="button" class="btn btn-success" onclick="getSPToken()">Submit</button>
+            <button type="button" class="btn btn-primary" onclick="testVerify()">Test Verify</button><br/>
             <span id="result"></span>
         </div>
     </div>
@@ -35,8 +34,8 @@
                         store_id: data1.store_id,
                         prefix: 'RIFAT',
                         currency: 'BDT',
-                        return_url: 'http://localhost:8000/pay-shurjo-pay-test',
-                        cancel_url: 'http://localhost:8000/pay-shurjo-pay-test',
+                        return_url: 'http://localhost:8000/shurjopay/verify',
+                        cancel_url: 'http://localhost:8000/shurjopay/test',
                         amount: 10,
                         order_id: 'RIFAT' + Math.floor((Math.random() * 1000000) + 1),
                         client_ip: '127.0.0.1',
@@ -49,9 +48,24 @@
                     },
                     success: function (data2) {
                         console.log(data2);
-                        $('#result').text(JSON.stringify(data2));
+                        $('#result').text('Redirecting...');
+                        var url = data2.checkout_url;
+                        $(location).attr('href', url);
                     }
                 });
+            }
+        });
+    }
+    function testVerify() {
+        $.ajax({
+            type: "POST",
+            url: 'https://sandbox.shurjopayment.com/api/verification',
+            data: {
+                order_id: 'RIFAT61d1eb6729c6f',
+            },
+            success: function (data3) {
+                console.log(data3);
+                $('#result').text(JSON.stringify(data3));
             }
         });
     }
