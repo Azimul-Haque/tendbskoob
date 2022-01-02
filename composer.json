@@ -32,7 +32,6 @@
         "paypal/rest-api-sdk-php": "^1.14",
         "rap2hpoutre/fast-excel": "^3.0",
         "razorpay/razorpay": "^2.5",
-        "sowrensen/laravel-shurjopay": "^1.1",
         "stripe/stripe-php": "^7.77",
         "symfony/translation": "*",
         "twilio/sdk": "^6.28",
