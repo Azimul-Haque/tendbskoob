@@ -70,7 +70,7 @@ class ShurjoPayController extends Controller
         $paymentresult = curl_exec($ch);
         curl_close ($ch);
         
-        dd(json_decode($paymentresult));
+        dd($paymentresult);
         dd(json_decode($paymentresult)[0]->sp_code);
     }
     
