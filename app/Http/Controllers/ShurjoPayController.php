@@ -30,7 +30,7 @@ class ShurjoPayController extends Controller
 
         $client = new ShurjoPayService(
             10, 
-            route('shurjopay.response'),
+            route('success-or-failure'),
             $config['shurjopay_server_url'], 
             $config['merchant_username'], 
             $config['merchant_password'], 
