@@ -50,6 +50,20 @@
                             </div>
                         <?php endif; ?>
 
+                        <?php ($config=\App\CPU\Helpers::get_business_settings('shurjo_pay')); ?>
+                        <?php if($config['status']): ?>
+                            <div class="col-md-6 mb-4" style="cursor: pointer">
+                                <div class="card">
+                                    <div class="card-body" style="height: 100px">
+                                        <button class="btn btn-block" type="submit">
+                                            <img width="150"
+                                                 src="<?php echo e(asset('public/assets/front-end/img/shurjopay.png')); ?>"/>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+
                         <?php ($config=\App\CPU\Helpers::get_business_settings('ssl_commerz_payment')); ?>
                         <?php if($config['status']): ?>
                             <div class="col-md-6 mb-4" style="cursor: pointer">

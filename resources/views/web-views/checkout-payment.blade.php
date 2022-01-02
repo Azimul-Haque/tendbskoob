@@ -52,6 +52,23 @@
                             </div>
                         @endif
 
+                        @php($config=\App\CPU\Helpers::get_business_settings('shurjo_pay'))
+                        @if($config['status'])
+                            <div class="col-md-6 mb-4" style="cursor: pointer">
+                                <div class="card">
+                                    <div class="card-body" style="height: 100px">
+                                        <form action="{{ url('/pay-ssl') }}" method="POST" class="needs-validation">
+                                            <input type="hidden" value="{{ csrf_token() }}" name="_token"/>
+                                            <button class="btn btn-block" type="submit">
+                                                <img width="150"
+                                                     src="{{asset('public/assets/front-end/img/shurjopay.png')}}"/>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
                         @php($config=\App\CPU\Helpers::get_business_settings('ssl_commerz_payment'))
                         @if($config['status'])
                             <div class="col-md-6 mb-4" style="cursor: pointer">
