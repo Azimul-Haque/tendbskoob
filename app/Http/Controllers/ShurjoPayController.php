@@ -20,6 +20,7 @@ use Illuminate\Support\Str;
 use smukhidev\ShurjopayLaravelPackage\ShurjopayService as ShurjopayLaravelPackageShurjopayService;
 
 use function App\CPU\convert_price;
+use function GuzzleHttp\json_decode;
 
 use Sowren\ShurjoPay\ShurjoPayService;
 
@@ -69,6 +70,7 @@ class ShurjoPayController extends Controller
 
 
         $data = array(
+            'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc2FuZGJveC5zaHVyam9wYXltZW50LmNvbVwvYXBpXC9sb2dpbiIsImlhdCI6MTY0MTE1MDMxMCwiZXhwIjoxNjQxMTUzOTEwLCJuYmYiOjE2NDExNTAzMTAsImp0aSI6ImFGTTY5MHE1M2FJZmtrc0giLCJzdWIiOjEsInBydiI6IjgwNWYzOWVlZmNjNjhhZmQ5ODI1YjQxMjI3ZGFkMGEwNzZjNDk3OTMifQ.Ed_FTWANdHXn5UnGp6Rkox7JsWi48sZaN4FC4f7PXl8',
             'order_id' => $request->order_id,
         );
         // initialize send status
@@ -81,7 +83,7 @@ class ShurjoPayController extends Controller
         $paymentresult = curl_exec($ch);
         curl_close ($ch);
         
-        dd($paymentresult);
+        dd(json_decode($paymentresult)[0]->sp_code);
     }
     
     public function successOrFailure(Request $request)
