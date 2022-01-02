@@ -8,7 +8,11 @@
         <div class="col-lg-6 col-md-6" style="background: #F6F6F6;">
             <button type="button" class="btn btn-success" onclick="getSPToken()">Submit</button>
             <button type="button" class="btn btn-primary" onclick="testVerify()">Test Verify</button><br/>
-            <span id="result"></span>
+            <span id="result"></span><br/>
+            <form action="https://sandbox.shurjopayment.com/api/verification" method="POST">
+                <input type="text" value="">
+                <input type="submit" value="Submit 2">
+            </form>
         </div>
     </div>
 </div>
@@ -61,7 +65,7 @@
             type: "POST",
             url: 'https://sandbox.shurjopayment.com/api/verification',
             data: {
-                order_id: 'RIFAT61d1e6f6459f9',
+                order_id: 'NOK61d1c007ccfc5',
             },
             success: function (data3) {
                 console.log(data3);
