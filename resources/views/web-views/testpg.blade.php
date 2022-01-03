@@ -9,11 +9,12 @@
             <button type="button" class="btn btn-success" onclick="getSPToken()">Submit</button>
             <button type="button" class="btn btn-primary" onclick="testVerify()">Test Verify</button><br/>
             <span id="result"></span><br/>
-            {{-- <form action="https://sandbox.shurjopayment.com/api/verification" method="POST">
-                <input type="text" name="token" value="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc2FuZGJveC5zaHVyam9wYXltZW50LmNvbVwvYXBpXC9sb2dpbiIsImlhdCI6MTY0MTE1MDMxMCwiZXhwIjoxNjQxMTUzOTEwLCJuYmYiOjE2NDExNTAzMTAsImp0aSI6ImFGTTY5MHE1M2FJZmtrc0giLCJzdWIiOjEsInBydiI6IjgwNWYzOWVlZmNjNjhhZmQ5ODI1YjQxMjI3ZGFkMGEwNzZjNDk3OTMifQ.Ed_FTWANdHXn5UnGp6Rkox7JsWi48sZaN4FC4f7PXl8">
-                <input type="text" name="order_id" value="NOK61d1c007ccfc5">
+            <form action="{{ route('pay-shurjo-pay') }}" method="POST">
+                @csrf
+                {{-- <input type="text" name="token" value="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc2FuZGJveC5zaHVyam9wYXltZW50LmNvbVwvYXBpXC9sb2dpbiIsImlhdCI6MTY0MTE1MDMxMCwiZXhwIjoxNjQxMTUzOTEwLCJuYmYiOjE2NDExNTAzMTAsImp0aSI6ImFGTTY5MHE1M2FJZmtrc0giLCJzdWIiOjEsInBydiI6IjgwNWYzOWVlZmNjNjhhZmQ5ODI1YjQxMjI3ZGFkMGEwNzZjNDk3OTMifQ.Ed_FTWANdHXn5UnGp6Rkox7JsWi48sZaN4FC4f7PXl8">
+                <input type="text" name="order_id" value="NOK61d1c007ccfc5"> --}}
                 <input type="submit" value="Submit 2">
-            </form> --}}
+            </form>
         </div>
     </div>
 </div>

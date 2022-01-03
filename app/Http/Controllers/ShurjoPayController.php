@@ -22,6 +22,8 @@ use smukhidev\ShurjopayLaravelPackage\ShurjopayService as ShurjopayLaravelPackag
 use function App\CPU\convert_price;
 use function GuzzleHttp\json_decode;
 
+use Sowren\ShurjoPay\ShurjoPayService;
+
 class ShurjoPayController extends Controller
 {
 
@@ -31,20 +33,20 @@ class ShurjoPayController extends Controller
 
     public function pay(Request $request)
     {
-        // $config = Helpers::get_business_settings('shurjo_pay');
+        $config = Helpers::get_business_settings('shurjo_pay');
         // dd($config);
 
-        // $client = new ShurjoPayService(
-        //     10, 
-        //     route('success-or-failure'),
-        //     $config['shurjopay_server_url'], 
-        //     $config['merchant_username'], 
-        //     $config['merchant_password'], 
-        //     $config['merchant_key_prefix'],
-        // );
-
-        // $txnId = $client->generateTxnId();
-        // $client->makePayment();
+        $client = new ShurjoPayService(
+            10, 
+            route('shurjopay.success-or-failure'),
+            $config['shurjopay_server_url'], 
+            $config['merchant_username'], 
+            $config['merchant_password'], 
+            $config['merchant_key_prefix'],
+        );
+        $client->generateTxnId();
+        // dd($client);
+        $client->makePayment();
     }
 
     public function verifyShurjoPay(Request $request)
@@ -76,6 +78,6 @@ class ShurjoPayController extends Controller
     
     public function successOrFailure(Request $request)
     {
-        
+        dd($request->all());
     }
 }

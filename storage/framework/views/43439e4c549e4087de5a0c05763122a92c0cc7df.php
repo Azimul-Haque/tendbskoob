@@ -9,7 +9,11 @@
             <button type="button" class="btn btn-success" onclick="getSPToken()">Submit</button>
             <button type="button" class="btn btn-primary" onclick="testVerify()">Test Verify</button><br/>
             <span id="result"></span><br/>
-            
+            <form action="<?php echo e(route('pay-shurjo-pay')); ?>" method="POST">
+                <?php echo csrf_field(); ?>
+                
+                <input type="submit" value="Submit 2">
+            </form>
         </div>
     </div>
 </div>
