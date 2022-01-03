@@ -49,33 +49,6 @@ class ShurjoPayController extends Controller
         $client->makePayment();
     }
 
-    public function verifyShurjoPay(Request $request)
-    {
-        // dd($request->order_id);
-
-        $verifyurl = 'https://sandbox.shurjopayment.com/api/verification';
-        // Live: https://engine.shurjopayment.com/api/verification
-        // Sandbox : https://sandbox.shurjopayment.com/api/verification
-
-
-        $data = array(
-            'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc2FuZGJveC5zaHVyam9wYXltZW50LmNvbVwvYXBpXC9sb2dpbiIsImlhdCI6MTY0MTE1MDMxMCwiZXhwIjoxNjQxMTUzOTEwLCJuYmYiOjE2NDExNTAzMTAsImp0aSI6ImFGTTY5MHE1M2FJZmtrc0giLCJzdWIiOjEsInBydiI6IjgwNWYzOWVlZmNjNjhhZmQ5ODI1YjQxMjI3ZGFkMGEwNzZjNDk3OTMifQ.Ed_FTWANdHXn5UnGp6Rkox7JsWi48sZaN4FC4f7PXl8',
-            'order_id' => $request->order_id,
-        );
-        // initialize send status
-        $ch = curl_init(); // Initialize cURL
-        curl_setopt($ch, CURLOPT_URL, $verifyurl);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // this is important
-        $paymentresult = curl_exec($ch);
-        curl_close ($ch);
-        
-        dd($paymentresult);
-        dd(json_decode($paymentresult)[0]->sp_code);
-    }
-    
     public function response(Request $request)
     {
         try {
@@ -120,4 +93,31 @@ class ShurjoPayController extends Controller
     {
         dd($request->all());
     }
+
+    // public function verifyShurjoPay(Request $request)
+    // {
+    //     // dd($request->order_id);
+
+    //     $verifyurl = 'https://sandbox.shurjopayment.com/api/verification';
+    //     // Live: https://engine.shurjopayment.com/api/verification
+    //     // Sandbox : https://sandbox.shurjopayment.com/api/verification
+
+
+    //     $data = array(
+    //         'token' => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvc2FuZGJveC5zaHVyam9wYXltZW50LmNvbVwvYXBpXC9sb2dpbiIsImlhdCI6MTY0MTE1MDMxMCwiZXhwIjoxNjQxMTUzOTEwLCJuYmYiOjE2NDExNTAzMTAsImp0aSI6ImFGTTY5MHE1M2FJZmtrc0giLCJzdWIiOjEsInBydiI6IjgwNWYzOWVlZmNjNjhhZmQ5ODI1YjQxMjI3ZGFkMGEwNzZjNDk3OTMifQ.Ed_FTWANdHXn5UnGp6Rkox7JsWi48sZaN4FC4f7PXl8',
+    //         'order_id' => $request->order_id,
+    //     );
+    //     // initialize send status
+    //     $ch = curl_init(); // Initialize cURL
+    //     curl_setopt($ch, CURLOPT_URL, $verifyurl);
+    //     curl_setopt($ch, CURLOPT_POST, 1);
+    //     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    //     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // this is important
+    //     $paymentresult = curl_exec($ch);
+    //     curl_close ($ch);
+        
+    //     dd($paymentresult);
+    //     dd(json_decode($paymentresult)[0]->sp_code);
+    // }
 }
