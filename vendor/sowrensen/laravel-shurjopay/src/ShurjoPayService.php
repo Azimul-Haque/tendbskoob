@@ -56,6 +56,13 @@ class ShurjoPayService
     protected $merchantKeyPrefix;
 
     /**
+     * Custom data by user.
+     *
+     * @var string
+     */
+    protected $custom1;
+
+    /**
      * Requesting IP address.
      *
      * @var string
@@ -83,6 +90,8 @@ class ShurjoPayService
      */
     protected $responseHandler;
 
+   
+
     /**
      * XML data required by ShurjoPay.
      *
@@ -98,6 +107,7 @@ class ShurjoPayService
      * @param  string|null  $merchantUsername  Merchant username provided by ShurjoPay
      * @param  string|null  $merchantPassword  Merchant password provided by ShurjoPay
      * @param  string|null  $merchantKeyPrefix  Merchant key prefix provided by ShurjoPay
+     * @param  string|null  $custom1  Custom ShurjoPay Data Passed
      * @param  bool  $useCurl  If false, cURL will be used instead of Guzzle
      * @param  string|null  $responseHandler  Custom ShurjoPay response handler URL
      */
@@ -108,6 +118,7 @@ class ShurjoPayService
         string $merchantUsername = null,
         string $merchantPassword = null,
         string $merchantKeyPrefix = null,
+        string $custom1 = null,
         bool $useCurl = true, // this is important
         string $responseHandler = null
     ) {
@@ -117,6 +128,7 @@ class ShurjoPayService
         $this->merchantUsername = $merchantUsername ?? config('shurjopay.merchant_username');
         $this->merchantPassword = $merchantPassword ?? config('shurjopay.merchant_password');
         $this->merchantKeyPrefix = $merchantKeyPrefix ?? config('shurjopay.merchant_key_prefix');
+        $this->custom1 = $custom1;
         $this->clientIp = Request::ip();
         $this->useCurl = $useCurl;
         $this->responseHandler = $responseHandler;
@@ -168,6 +180,7 @@ class ShurjoPayService
             '<uniqID>'.$this->txnId.'</uniqID>'.
             '<totalAmount>'.$this->amount.'</totalAmount>'.
             '<paymentOption>shurjopay</paymentOption>'.
+            '<custom1>'.$this->custom1.'</custom1>'.
             '<returnURL>'.$this->returnUrl().'</returnURL></shurjoPay>';
 
         $this->xmlData = $this->useCurl ? 'spdata='.$default : $default;

@@ -43,9 +43,10 @@ class ShurjoPayController extends Controller
             $config['merchant_username'], 
             $config['merchant_password'], 
             $config['merchant_key_prefix'],
+            'Custom Data 1',
         );
         $client->generateTxnId();
-        // dd($client);
+        dd($client);
         $client->makePayment();
     }
 
