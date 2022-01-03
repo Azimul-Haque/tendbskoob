@@ -54,13 +54,14 @@ class ShurjoPayController extends Controller
     {
         try {
             $data = ShurjoPayService::decryptResponse($request->spdata);
-            dd($data);
+            // dd($data);
             $txnId = $data->txID;
             $bankTxnId = $data->bankTxID;
             $amount = $data->txnAmount;
             $bankStatus = $data->bankTxStatus;
             $resCode = $data->spCode;
             $resCodeDescription = $data->spCodeDes;
+            $custom1 = $data->custom1;
             $paymentOption = $data->paymentOption;
             $status = "";
             $res = [];
@@ -82,7 +83,7 @@ class ShurjoPayController extends Controller
                 "?status={$status}&msg={$res['message']}".
                 "&tx_id={$txnId}&bank_tx_id={$bankTxnId}".
                 "&amount={$amount}&bank_status={$bankStatus}&sp_code={$resCode}".
-                "&sp_code_des={$resCodeDescription}&sp_payment_option={$paymentOption}";
+                "&sp_code_des={$resCodeDescription}&sp_payment_option={$paymentOption}&custom1={$custom1}";
 
             return redirect($redirectUrl);
 
