@@ -150,8 +150,8 @@ Route::group(['prefix' => 'coupon', 'as' => 'coupon.', 'namespace' => 'Web'], fu
 Route::get('shurjopay/test', 'ShurjoPayController@paytest')->name('pay-shurjo-pay-test');
 Route::post('shurjopay/pay', 'ShurjoPayController@pay')->name('pay-shurjo-pay');
 Route::get('shurjopay/verify', 'ShurjoPayController@verifyShurjoPay')->name('shurjopay.verify');
+Route::post('shurjopay/response', 'ShurjoPayController@response')->name('shurjopay.response');
 Route::get('shurjopay/success-or-failure', 'ShurjoPayController@successOrFailure')->name('shurjopay.success-or-failure');
-Route::post('/response', 'Sowren\Shurjopay\ShurjopayController@response')->name('shurjopay.response');
 // Shurjo Pay END
 
 // SSLCOMMERZ Start
