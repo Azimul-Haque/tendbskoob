@@ -46,7 +46,7 @@ class ShurjoPayController extends Controller
             'Custom Data 1',
         );
         $client->generateTxnId();
-        dd($client);
+        // dd($client);
         $client->makePayment();
     }
 
