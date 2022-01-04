@@ -54,6 +54,7 @@ class UserProfileController extends Controller
         }
 
         $userDetails = [
+            'name' => $request->f_name . ' ' . $request->l_name,
             'f_name' => $request->f_name,
             'l_name' => $request->l_name,
             'phone' => $request->phone,

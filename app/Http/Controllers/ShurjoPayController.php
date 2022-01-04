@@ -31,10 +31,10 @@ class ShurjoPayController extends Controller
         return view('web-views.testpg');
     }
 
-    public function pay(Request $request)
+    public function payTestPost(Request $request)
     {
         $config = Helpers::get_business_settings('shurjo_pay');
-        // dd($config);
+        // dd($request->all());
 
         $client = new ShurjoPayService(
             10, 
@@ -43,7 +43,26 @@ class ShurjoPayController extends Controller
             $config['merchant_username'], 
             $config['merchant_password'], 
             $config['merchant_key_prefix'],
-            'Custom Data 1',
+            'Custom 1 Data',
+        );
+        $client->generateTxnId();
+        // dd($client);
+        $client->makePayment();
+    }
+    
+    public function pay(Request $request)
+    {
+        $config = Helpers::get_business_settings('shurjo_pay');
+        // dd($request->all());
+
+        $client = new ShurjoPayService(
+            $request->amount, 
+            route('shurjopay.success-or-failure'),
+            $config['shurjopay_server_url'], 
+            $config['merchant_username'], 
+            $config['merchant_password'], 
+            $config['merchant_key_prefix'],
+            $request->custom1,
         );
         $client->generateTxnId();
         // dd($client);
@@ -86,13 +105,34 @@ class ShurjoPayController extends Controller
                 "&sp_code_des={$resCodeDescription}&sp_payment_option={$paymentOption}&custom1={$custom1}";
 
             if($resCode == 000) {
+                // save the cart
+                // save the cart
+                $unique_id = OrderManager::gen_unique_id();
+                $order_ids = [];
+                foreach (CartManager::get_cart_group_ids() as $group_id) {
+                    $data = [
+                        'payment_method' => 'sslcommerz',
+                        'order_status' => 'confirmed',
+                        'payment_status' => 'paid',
+                        'transaction_ref' => $txnId,
+                        'order_group_id' => $unique_id,
+                        'cart_group_id' => $group_id
+                    ];
+                    $order_id = OrderManager::generate_order($data);
+                    array_push($order_ids, $order_id);
+                }
+                CartManager::cart_clean();
+
                 Toastr::success('Payment process is Successful!');
+                return view('web-views.checkout-complete');
             } elseif($resCode == 001) {
                 Toastr::info('Payment process is Canceled!');
+                return redirect()->route('home');
             } else {
                 Toastr::error('Payment process is Failed!');
+                return redirect()->route('home');
             }
-            return redirect($redirectUrl);
+            // return redirect($redirectUrl);
 
         } catch (\Exception $exception) {
             throw $exception;

@@ -49,14 +49,18 @@
                                 </div>
                             </div>
                         <?php endif; ?>
-
+                        
+                        <?php ($coupon_discount = session()->has('coupon_discount') ? session('coupon_discount') : 0); ?>
+                        <?php ($amount = \App\CPU\CartManager::cart_grand_total() - $coupon_discount); ?>
                         <?php ($config=\App\CPU\Helpers::get_business_settings('shurjo_pay')); ?>
                         <?php if($config['status']): ?>
                             <div class="col-md-6 mb-4" style="cursor: pointer">
                                 <div class="card">
                                     <div class="card-body" style="height: 100px">
-                                        <form action="<?php echo e(url('/pay-ssl')); ?>" method="POST" class="needs-validation">
+                                        <form action="<?php echo e(route('pay-shurjo-pay')); ?>" method="POST" class="needs-validation">
                                             <input type="hidden" value="<?php echo e(csrf_token()); ?>" name="_token"/>
+                                            <input type="hidden" value="<?php echo e($amount); ?>" name="amount"/>
+                                            <input type="hidden" value="<?php echo e(auth('customer')->user()->get(['id', 'name', 'email', 'phone'])); ?>" name="custom1"/>
                                             <button class="btn btn-block" type="submit">
                                                 <img width="150"
                                                      src="<?php echo e(asset('public/assets/front-end/img/shurjopay.png')); ?>"/>

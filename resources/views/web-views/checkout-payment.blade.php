@@ -51,7 +51,9 @@
                                 </div>
                             </div>
                         @endif
-
+                        
+                        @php($coupon_discount = session()->has('coupon_discount') ? session('coupon_discount') : 0)
+                        @php($amount = \App\CPU\CartManager::cart_grand_total() - $coupon_discount)
                         @php($config=\App\CPU\Helpers::get_business_settings('shurjo_pay'))
                         @if($config['status'])
                             <div class="col-md-6 mb-4" style="cursor: pointer">
@@ -59,6 +61,8 @@
                                     <div class="card-body" style="height: 100px">
                                         <form action="{{ route('pay-shurjo-pay') }}" method="POST" class="needs-validation">
                                             <input type="hidden" value="{{ csrf_token() }}" name="_token"/>
+                                            <input type="hidden" value="{{ $amount }}" name="amount"/>
+                                            <input type="hidden" value="{{ auth('customer')->user()->get(['id', 'name', 'email', 'phone']) }}" name="custom1"/>
                                             <button class="btn btn-block" type="submit">
                                                 <img width="150"
                                                      src="{{asset('public/assets/front-end/img/shurjopay.png')}}"/>
