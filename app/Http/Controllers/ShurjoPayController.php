@@ -55,7 +55,7 @@ class ShurjoPayController extends Controller
     {
         try {
             $data = ShurjoPayService::decryptResponse($request->spdata);
-            dd($data);
+            // dd($data);
             $txnId = $data->txID;
             $bankTxnId = $data->bankTxID;
             $amount = $data->txnAmount;
@@ -86,6 +86,13 @@ class ShurjoPayController extends Controller
                 "&amount={$amount}&bank_status={$bankStatus}&sp_code={$resCode}".
                 "&sp_code_des={$resCodeDescription}&sp_payment_option={$paymentOption}&custom1={$custom1}";
 
+            if($resCode == 000) {
+                Toastr::success('Payment process is Successful!');
+            } elseif($resCode == 001) {
+                Toastr::info('Payment process is Canceled!');
+            } else {
+                Toastr::error('Payment process is Failed!');
+            }
             return redirect($redirectUrl);
 
         } catch (\Exception $exception) {
