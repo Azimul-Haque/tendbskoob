@@ -39,6 +39,7 @@ class ShurjoPayController extends Controller
         $client = new ShurjoPayService(
             10, 
             route('shurjopay.success-or-failure'),
+            route('shurjopay.cancel'),
             $config['shurjopay_server_url'], 
             $config['merchant_username'], 
             $config['merchant_password'], 
@@ -95,6 +96,12 @@ class ShurjoPayController extends Controller
     public function successOrFailure(Request $request)
     {
         dd($request->all());
+    }
+
+    public function cancel(Request $request)
+    {
+        Toastr::error('Payment process canceled!');
+        return redirect()->route('customer.checkout-payment');
     }
 
     // public function verifyShurjoPay(Request $request)

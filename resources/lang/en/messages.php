@@ -1447,4 +1447,5 @@
   'Merchant Key Prefix' => 'Merchant Key Prefix',
   'Merchant Username' => 'Merchant Username',
   'Merchant Password' => 'Merchant Password',
+  'sorry_stock_is_limited' => 'Sorry stock is limited',
 );

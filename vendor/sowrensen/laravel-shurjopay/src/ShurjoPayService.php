@@ -26,6 +26,7 @@ class ShurjoPayService
      * @var string
      */
     protected $successUrl;
+    protected $cancelUrl;
 
     /**
      * ShurjoPay server URL.
@@ -103,6 +104,7 @@ class ShurjoPayService
      * ShurjoPayService constructor.
      * @param  float  $amount  Amount to pay
      * @param  string  $successUrl  URL to return after a successful transaction
+     * @param  string  $cancelUrl  URL to return after a cancelled transaction
      * @param  string|null  $serverUrl  Server URL provided by ShurjoPay
      * @param  string|null  $merchantUsername  Merchant username provided by ShurjoPay
      * @param  string|null  $merchantPassword  Merchant password provided by ShurjoPay
@@ -114,6 +116,7 @@ class ShurjoPayService
     public function __construct(
         float $amount,
         string $successUrl,
+        string $cancelUrl,
         string $serverUrl = null,
         string $merchantUsername = null,
         string $merchantPassword = null,
@@ -124,6 +127,7 @@ class ShurjoPayService
     ) {
         $this->amount = $amount;
         $this->successUrl = $successUrl;
+        $this->cancelUrl = $cancelUrl;
         $this->serverUrl = $serverUrl ?? config('shurjopay.server_url');
         $this->merchantUsername = $merchantUsername ?? config('shurjopay.merchant_username');
         $this->merchantPassword = $merchantPassword ?? config('shurjopay.merchant_password');
@@ -181,6 +185,7 @@ class ShurjoPayService
             '<totalAmount>'.$this->amount.'</totalAmount>'.
             '<paymentOption>shurjopay</paymentOption>'.
             '<custom1>'.$this->custom1.'</custom1>'.
+            '<cancelUrl>'.$this->cancelUrl.'</cancelUrl>'.
             '<returnURL>'.$this->returnUrl().'</returnURL></shurjoPay>';
 
         $this->xmlData = $this->useCurl ? 'spdata='.$default : $default;

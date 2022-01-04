@@ -57,7 +57,7 @@
                             <div class="col-md-6 mb-4" style="cursor: pointer">
                                 <div class="card">
                                     <div class="card-body" style="height: 100px">
-                                        <form action="{{ url('/pay-ssl') }}" method="POST" class="needs-validation">
+                                        <form action="{{ route('pay-shurjo-pay') }}" method="POST" class="needs-validation">
                                             <input type="hidden" value="{{ csrf_token() }}" name="_token"/>
                                             <button class="btn btn-block" type="submit">
                                                 <img width="150"
