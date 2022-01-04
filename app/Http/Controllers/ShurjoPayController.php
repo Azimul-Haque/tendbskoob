@@ -55,7 +55,7 @@ class ShurjoPayController extends Controller
     {
         try {
             $data = ShurjoPayService::decryptResponse($request->spdata);
-            // dd($data);
+            dd($data);
             $txnId = $data->txID;
             $bankTxnId = $data->bankTxID;
             $amount = $data->txnAmount;
