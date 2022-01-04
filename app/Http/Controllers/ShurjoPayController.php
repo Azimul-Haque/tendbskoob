@@ -102,16 +102,15 @@ class ShurjoPayController extends Controller
 
     public function successOrFailure(Request $request)
     {
-        Toastr::error('Payment process canceled!');
-        return redirect()->route('home');
         // dd($request->all());
+        return redirect()->route('home');
     }
 
-    public function cancel(Request $request)
-    {
-        Toastr::error('Payment process canceled!');
-        return redirect()->route('home');
-    }
+    // public function cancel(Request $request)
+    // {
+    //     Toastr::error('Payment process canceled!');
+    //     return redirect()->route('home');
+    // }
 
     // public function verifyShurjoPay(Request $request)
     // {
