@@ -6,7 +6,6 @@ use App\CPU\CartManager;
 use App\CPU\Convert;
 use App\CPU\Helpers;
 use App\CPU\OrderManager;
-use App\Library\sslcommerz\SslCommerzNotification;
 use App\Model\BusinessSetting;
 use App\Model\Cart;
 use App\Model\Currency;
@@ -25,31 +24,7 @@ use function GuzzleHttp\json_decode;
 use Sowren\ShurjoPay\ShurjoPayService;
 
 class ShurjoPayController extends Controller
-{
-
-    public function paytest() {
-        return view('web-views.testpg');
-    }
-
-    public function payTestPost(Request $request)
-    {
-        $config = Helpers::get_business_settings('shurjo_pay');
-        // dd($request->all());
-
-        $client = new ShurjoPayService(
-            10, 
-            route('shurjopay.success-or-failure'),
-            $config['shurjopay_server_url'], 
-            $config['merchant_username'], 
-            $config['merchant_password'], 
-            $config['merchant_key_prefix'],
-            'Custom 1 Data',
-        );
-        $client->generateTxnId();
-        // dd($client);
-        $client->makePayment();
-    }
-    
+{   
     public function pay(Request $request)
     {
         $config = Helpers::get_business_settings('shurjo_pay');
@@ -111,7 +86,7 @@ class ShurjoPayController extends Controller
                 $order_ids = [];
                 foreach (CartManager::get_cart_group_ids() as $group_id) {
                     $data = [
-                        'payment_method' => 'sslcommerz',
+                        'payment_method' => 'ShurjoPay',
                         'order_status' => 'confirmed',
                         'payment_status' => 'paid',
                         'transaction_ref' => $txnId,
@@ -149,6 +124,29 @@ class ShurjoPayController extends Controller
             Toastr::error('Payment process is Failed!');
         }
         return redirect()->route('home');
+    }
+
+    public function paytest() {
+        return view('web-views.testpg');
+    }
+
+    public function payTestPost(Request $request)
+    {
+        $config = Helpers::get_business_settings('shurjo_pay');
+        // dd($request->all());
+
+        $client = new ShurjoPayService(
+            5, 
+            route('shurjopay.success-or-failure'),
+            $config['shurjopay_server_url'], 
+            $config['merchant_username'], 
+            $config['merchant_password'], 
+            $config['merchant_key_prefix'],
+            'Custom 1 Data',
+        );
+        $client->generateTxnId();
+        // dd($client);
+        $client->makePayment();
     }
 
     // public function cancel(Request $request)

@@ -225,9 +225,6 @@
                                     <div class="col col-md-1 align-self-center">
                                         <p>Q</p>
                                     </div>
-                                    <div class="col col-md-1 align-self-center  p-0 product-name">
-                                        <p> <?php echo e(\App\CPU\translate('TAX')); ?></p>
-                                    </div>
                                     <div class="col col-md-2 align-self-center  p-0 product-name">
                                         <p> <?php echo e(\App\CPU\translate('Discount')); ?></p>
                                     </div>
@@ -242,7 +239,6 @@
                         <?php ($total=0); ?>
                         <?php ($shipping=0); ?>
                         <?php ($discount=0); ?>
-                        <?php ($tax=0); ?>
                         <?php $__currentLoopData = $order->details; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$detail): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                             <?php if($detail->product): ?>
@@ -321,8 +317,9 @@
                                         <div class="row">
                                             <div class="col-md-4 mb-3 mb-md-0 product-name">
                                                 <p>
-                                                    <?php echo e(substr($detail->product['name'],0,30)); ?><?php echo e(strlen($detail->product['name'])>10?'...':''); ?></p>
-                                                <strong><u><?php echo e(\App\CPU\translate('Variation')); ?> : </u></strong>
+                                                    <?php echo e(substr($detail->product['name_bangla'],0,30)); ?><?php echo e(strlen($detail->product['name_bangla'])>10?'...':''); ?></p>
+                                                <strong><u>লেখক : <?php echo e($detail->product->publisher->name_bangla); ?></u></strong>
+                                                <strong><u>প্রকাশনী : <?php echo e($detail->product->publisher->name_bangla); ?></u></strong>
 
                                                 <div class="font-size-sm text-body">
 
@@ -338,10 +335,6 @@
 
                                                 <h5><?php echo e($detail->qty); ?></h5>
                                             </div>
-                                            <div class="col col-md-1 align-self-center  p-0 product-name">
-
-                                                <h5><?php echo e(\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($detail['tax']))); ?></h5>
-                                            </div>
                                             <div class="col col-md-2 align-self-center  p-0 product-name">
 
                                                 <h5>
@@ -349,7 +342,7 @@
                                             </div>
 
                                             <div class="col col-md-2 align-self-center text-right  ">
-                                                <?php ($subtotal=$detail['price']*$detail->qty+$detail['tax']-$detail['discount']); ?>
+                                                <?php ($subtotal=$detail['price']*$detail->qty+-$detail['discount']); ?>
 
                                                 <h5 style="font-size: 12px"><?php echo e(\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($subtotal))); ?></h5>
                                             </div>
@@ -359,7 +352,6 @@
                                 
 
                                 <?php ($discount+=$detail['discount']); ?>
-                                <?php ($tax+=$detail['tax']); ?>
                                 <?php ($total+=$subtotal); ?>
                             <!-- End Media -->
                                 <hr>
