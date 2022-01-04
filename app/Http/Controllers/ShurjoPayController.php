@@ -101,7 +101,13 @@ class ShurjoPayController extends Controller
 
     public function successOrFailure(Request $request)
     {
-        // dd($request->all());
+        if($request->sp_code == 000) {
+            Toastr::success('Payment process is Successful!');
+        } elseif($request->sp_code == 001) {
+            Toastr::info('Payment process is Canceled!');
+        } else {
+            Toastr::error('Payment process is Failed!');
+        }
         return redirect()->route('home');
     }
 
