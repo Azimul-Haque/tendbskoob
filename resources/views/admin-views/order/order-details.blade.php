@@ -295,8 +295,23 @@
                                         <div class="row">
                                             <div class="col-md-4 mb-3 mb-md-0 product-name">
                                                 <p>
-                                                    {{substr($detail->product['name_bangla'],0,30)}}{{strlen($detail->product['name_bangla'])>10?'...':''}}</p>
-                                                <strong><u>লেখক : {{ $detail->product->publisher->name_bangla }}</u></strong>
+                                                    {{-- {{substr($detail->product['name_bangla'],0,30)}}{{strlen($detail->product['name_bangla'])>10?'...':''}}</p> --}}
+                                                    <a href="{{ route('product', $detail->product->slug) }}" target="_blank">
+                                                        {{ $detail->product['name_bangla'] }}
+                                                    </a>
+                                                </p>
+                                                <strong>
+                                                    <u>
+                                                    লেখক :
+                                                    @if ($detail->product->writers->count() > 0)
+                                                        {{$detail->product->writers[0]->name_bangla}}
+                                                    @elseif($detail->product->translators->count() > 0)
+                                                        {{$detail->product->translators[0]->name_bangla}}
+                                                    @elseif($detail->product->editors->count() > 0)
+                                                        {{$detail->product->editors[0]->name_bangla}}
+                                                    @endif
+                                                    </u>
+                                                </strong><br/>
                                                 <strong><u>প্রকাশনী : {{ $detail->product->publisher->name_bangla }}</u></strong>
 
                                                 <div class="font-size-sm text-body">

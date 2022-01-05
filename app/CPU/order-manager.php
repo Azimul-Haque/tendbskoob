@@ -285,7 +285,12 @@ class OrderManager
         $order_id = DB::table('orders')->insertGetId($or);
 
         foreach (CartManager::get_cart($data['cart_group_id']) as $c) {
-            $product = Product::where(['id' => $c['product_id']])->first();
+            $product = Product::where(['id' => $c['product_id']])
+                              ->with('publisher')
+                              ->with('writers')
+                              ->with('translators')
+                              ->with('editors')
+                              ->first();
             $or_d = [
                 'order_id' => $order_id,
                 'product_id' => $c['product_id'],

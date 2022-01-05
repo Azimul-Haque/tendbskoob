@@ -277,12 +277,23 @@
                                                      alt="VR Collection" width="60">
                                             </td>
                                             <td width="80%" class="for-glaxy-name" style="vertical-align:middle">
-                                                <a href="<?php echo e(route('product',[$product['slug']])); ?>">
-                                                    <?php echo e(isset($product['name']) ? $product['name'] : ''); ?>
+                                                <a href="<?php echo e(route('product',[$product['slug']])); ?>" style="color: #5C7CFF !important;">
+                                                    <?php echo e(isset($product['name_bangla']) ? $product['name_bangla'] : ''); ?>
 
-                                                </a><br>
-                                                <span><?php echo e(\App\CPU\translate('variant')); ?> : </span>
-                                                <?php echo e($detail->variant); ?>
+                                                </a><br/>
+                                                লেখক :
+                                                <?php if(count($product['writers']) > 0): ?>
+                                                    <?php echo e($product['writers'][0]['name_bangla']); ?>
+
+                                                <?php elseif(count($product['translators']) > 0): ?>
+                                                    <?php echo e($product['translators'][0]['name_bangla']); ?>
+
+                                                <?php elseif(count($product['editors']) > 0): ?>
+                                                    <?php echo e($product['editors'][0]['name_bangla']); ?>
+
+                                                <?php endif; ?>
+                                                <br/>
+                                                প্রকাশনীঃ <?php echo e(isset($product['publisher']['name_bangla']) ? $product['publisher']['name_bangla'] : ''); ?>
 
                                             </td>
                                         </div>

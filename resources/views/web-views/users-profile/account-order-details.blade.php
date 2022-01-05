@@ -274,11 +274,19 @@
                                                      alt="VR Collection" width="60">
                                             </td>
                                             <td width="80%" class="for-glaxy-name" style="vertical-align:middle">
-                                                <a href="{{route('product',[$product['slug']])}}">
-                                                    {{isset($product['name']) ? $product['name'] : ''}}
-                                                </a><br>
-                                                <span>{{\App\CPU\translate('variant')}} : </span>
-                                                {{$detail->variant}}
+                                                <a href="{{route('product',[$product['slug']])}}" style="color: #5C7CFF !important;">
+                                                    {{isset($product['name_bangla']) ? $product['name_bangla'] : ''}}
+                                                </a><br/>
+                                                লেখক :
+                                                @if (count($product['writers']) > 0)
+                                                    {{ $product['writers'][0]['name_bangla'] }}
+                                                @elseif(count($product['translators']) > 0)
+                                                    {{ $product['translators'][0]['name_bangla'] }}
+                                                @elseif(count($product['editors']) > 0)
+                                                    {{ $product['editors'][0]['name_bangla'] }}
+                                                @endif
+                                                <br/>
+                                                প্রকাশনীঃ {{ isset($product['publisher']['name_bangla']) ? $product['publisher']['name_bangla'] : '' }}
                                             </td>
                                         </div>
                                         <div class="col-md-6">

@@ -14,11 +14,11 @@
             @foreach($cart as $group_key=>$group)
                 @foreach($group as $cart_key=>$cartItem)
                     @if($cart_key==0)
-                        @if($cartItem->seller_is=='admin')
+                        {{-- @if($cartItem->seller_is=='admin')
                             {{\App\CPU\Helpers::get_business_settings('company_name')}}
                         @else
                             {{\App\Model\Shop::where(['seller_id'=>$cartItem['seller_id']])->first()->name}}
-                        @endif
+                        @endif --}}
                     @endif
                     <div class="cart_item mb-2">
                         <div class="row">
@@ -37,7 +37,8 @@
                                     <div class="media-body d-flex justify-content-center align-items-center">
                                         <div class="cart_product">
                                             <div class="product-title">
-                                                <a href="{{route('product',$cartItem['slug'])}}">{{$cartItem['name']}}</a>
+                                                <a href="{{route('product',$cartItem['slug'])}}">{{$cartItem['name_bangla']}}</a><br/>
+                                                <small>{{$cartItem['author']}}</small>
                                             </div>
                                             <div
                                                 class=" text-accent">{{ \App\CPU\Helpers::currency_converter($cartItem['price']-$cartItem['discount']) }}</div>

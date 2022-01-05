@@ -35,7 +35,7 @@
                                 </a>
                                 <div class="media-body">
                                     <h6 class="widget-product-title">
-                                        <a href="{{route('product',$cartItem['slug'])}}">{{$cartItem['name']}}</a></h6>
+                                        <a href="{{route('product',$cartItem['slug'])}}">{{$cartItem['name_bangla']}}</a></h6>
                                     @foreach(json_decode($cartItem['variations'],true) as $key =>$variation)
                                         <span style="font-size: 14px">{{$key}} : {{$variation}}</span><br>
                                     @endforeach

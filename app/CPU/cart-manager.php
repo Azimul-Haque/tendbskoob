@@ -17,28 +17,30 @@ class CartManager
     {
         $user = Helpers::get_customer();
         if (session()->has('offline_cart')) {
-            $cart = session('offline_cart');
+            $cart    = session('offline_cart');
             $storage = [];
             foreach ($cart as $item) {
                 $db_cart = Cart::where(['customer_id' => $user->id, 'seller_id' => $item['seller_id'], 'seller_is' => $item['seller_is']])->first();
                 $storage[] = [
-                    'customer_id' => $user->id,
+                    'customer_id'   => $user->id,
                     'cart_group_id' => isset($db_cart) ? $db_cart['cart_group_id'] : str_replace('offline', $user->id, $item['cart_group_id']),
-                    'product_id' => $item['product_id'],
-                    'color' => $item['color'],
-                    'choices' => $item['choices'],
-                    'variations' => $item['variations'],
-                    'variant' => $item['variant'],
-                    'quantity' => $item['quantity'],
-                    'price' => $item['price'],
-                    'tax' => $item['tax'],
-                    'discount' => $item['discount'],
-                    'slug' => $item['slug'],
-                    'name' => $item['name'],
-                    'thumbnail' => $item['thumbnail'],
-                    'seller_id' => $item['seller_id'],
-                    'seller_is' => $item['seller_is'],
-                    'shop_info' => $item['shop_info'],
+                    'product_id'    => $item['product_id'],
+                    'color'         => $item['color'],
+                    'choices'       => $item['choices'],
+                    'variations'    => $item['variations'],
+                    'variant'       => $item['variant'],
+                    'quantity'      => $item['quantity'],
+                    'price'         => $item['price'],
+                    'tax'           => $item['tax'],
+                    'discount'      => $item['discount'],
+                    'slug'          => $item['slug'],
+                    'name'          => $item['name'],
+                    'name_bangla'   => $item['name_bangla'],
+                    'thumbnail'     => $item['thumbnail'],
+                    'publisher_id'  => $item['[publisher_id'],
+                    'seller_id'  => $item['seller_id'],
+                    'seller_is'  => $item['seller_is'],
+                    'shop_info'  => $item['shop_info'],
                     'created_at' => now(),
                     'updated_at' => now(),
                 ];
@@ -279,6 +281,17 @@ class CartManager
         $cart['tax'] = $tax;
         $cart['slug'] = $product->slug;
         $cart['name'] = $product->name;
+        $cart['name_bangla'] = $product->name_bangla;
+        $cart['author'] = '';
+        if ($product->writers->count() > 0) {
+            $cart['author'] = $product->writers[0]->name_bangla;
+        }  elseif($product->translators->count() > 0) {
+            $cart['author'] = $product->translators[0]->name_bangla;
+        } elseif($product->editors->count() > 0) {
+            $cart['author'] = $product->editors[0]->name_bangla;
+        }
+        
+        $cart['publisher_id'] = $product->publisher_id;
         $cart['discount'] = Helpers::get_product_discount($product, $price);
         /*$data['shipping_cost'] = $shipping_cost;*/
         $cart['thumbnail'] = $product->thumbnail;
