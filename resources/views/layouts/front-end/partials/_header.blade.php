@@ -514,6 +514,10 @@
                                         @endif
                                     </li>
                                 @endforeach
+                                <a class="dropdown-item" href="{{route('categories')}}"
+                                style="{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 29%">
+                                    {{\App\CPU\translate('view_more')}}
+                                </a>
                             </ul>
                         </li>
                     </ul>

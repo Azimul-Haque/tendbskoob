@@ -60,7 +60,7 @@
                             <a href="<?php echo e(route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1, 'author_name'=>$author['slug']])); ?>" class="">
                                 <div class="brand_div d-flex align-items-center justify-content-center"
                                  style="height: 200px">
-                                    <?php if($author->image && file_exists(public_path('/images/author/' . $author->image))): ?>
+                                    <?php if($author->image && file_exists(public_path('/public/images/author/' . $author->image))): ?>
                                         <img src="<?php echo e(asset("public/images/author/" . $author->image)); ?>" alt="<?php echo e($author->name); ?>" onerror="this.src='<?php echo e(asset('public/assets/front-end/img/user_demo.jpg')); ?>'" alt="<?php echo e($author->name_bangla); ?>">
                                     <?php else: ?>
                                         <img src="<?php echo e(asset('public/assets/front-end/img/user_demo.jpg')); ?>" alt="<?php echo e($author->name_bangla); ?>">

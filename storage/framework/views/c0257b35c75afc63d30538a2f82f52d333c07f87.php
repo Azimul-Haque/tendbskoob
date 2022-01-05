@@ -523,6 +523,11 @@
                                         <?php endif; ?>
                                     </li>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                <a class="dropdown-item" href="<?php echo e(route('categories')); ?>"
+                                style="<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>: 29%">
+                                    <?php echo e(\App\CPU\translate('view_more')); ?>
+
+                                </a>
                             </ul>
                         </li>
                     </ul>

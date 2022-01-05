@@ -59,14 +59,11 @@
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6 px-2 pb-4 text-center">
                             <a href="<?php echo e(route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])); ?>" class="">
                                 <div class="brand_div d-flex align-items-center justify-content-center"
-                                 style="height: 200px">
-                                    <img
-                                        onerror="this.src='<?php echo e(asset('public/assets/front-end/img/category_demo.jpg')); ?>'"
-                                        src="<?php echo e(asset("public/images/category/" . $category->image)); ?>"
-                                        alt="<?php echo e($category->name_bangla); ?>">
+                                 style="height: 120px; background-image: url(<?php echo e(asset("public/assets/front-end/img/category_back.jpg")); ?>); background-color: #cccccc; background-repeat: no-repeat; background-size: 100%;">
+                                    
+                                    <b><?php echo e($category->name_bangla); ?></b>
                                 </div>
                             </a>
-                            <small><?php echo e($category->name_bangla); ?></small>
                         </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>

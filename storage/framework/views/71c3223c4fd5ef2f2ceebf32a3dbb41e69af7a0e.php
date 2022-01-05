@@ -60,10 +60,11 @@
                             <a href="<?php echo e(route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1, 'publisher_name'=>$publisher['slug']])); ?>" class="">
                                 <div class="brand_div d-flex align-items-center justify-content-center"
                                  style="height: 200px">
-                                    <img
-                                        onerror="this.src='<?php echo e(asset('public/assets/front-end/img/category_demo.jpg')); ?>'"
-                                        src="<?php echo e(asset("public/images/publisher/" . $publisher->image)); ?>"
-                                        alt="<?php echo e($publisher->name_bangla); ?>">
+                                    <?php if($publisher->image && file_exists(public_path('/public/images/publisher/' . $publisher->image))): ?>
+                                        <img src="<?php echo e(asset("public/images/publisher/" . $publisher->image)); ?>" alt="<?php echo e($publisher->name); ?>" onerror="this.src='<?php echo e(asset('public/assets/front-end/img/category_demo.jpg')); ?>'" alt="<?php echo e($publisher->name_bangla); ?>">
+                                    <?php else: ?>
+                                        <img src="<?php echo e(asset('public/assets/front-end/img/category_demo.jpg')); ?>" alt="<?php echo e($publisher->name_bangla); ?>">
+                                    <?php endif; ?>
                                 </div>
                             </a>
                             <small><?php echo e($publisher->name_bangla); ?></small>

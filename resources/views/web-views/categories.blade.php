@@ -61,14 +61,15 @@
                         <div class="col-lg-2 col-md-3 col-sm-4 col-6 px-2 pb-4 text-center">
                             <a href="{{route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])}}" class="">
                                 <div class="brand_div d-flex align-items-center justify-content-center"
-                                 style="height: 200px">
-                                    <img
-                                        onerror="this.src='{{asset('public/assets/front-end/img/category_demo.jpg')}}'"
-                                        src="{{asset("public/images/category/" . $category->image)}}"
-                                        alt="{{$category->name_bangla}}">
+                                 style="height: 120px; background-image: url({{ asset("public/assets/front-end/img/category_back.jpg") }}); background-color: #cccccc; background-repeat: no-repeat; background-size: 100%;">
+                                    {{-- @if ($category->image && file_exists(public_path('/public/images/category/' . $category->image)))
+                                        <img src="{{asset("public/images/category/" . $category->image)}}" alt="{{$category->name}}" onerror="this.src='{{asset('public/assets/front-end/img/category_demo.jpg')}}'" alt="{{$category->name_bangla}}">
+                                    @else
+                                        <img src="{{asset('public/assets/front-end/img/category_demo.jpg')}}" alt="{{$category->name_bangla}}">
+                                    @endif --}}
+                                    <b>{{ $category->name_bangla }}</b>
                                 </div>
                             </a>
-                            <small>{{ $category->name_bangla }}</small>
                         </div>
                     @endforeach
                 </div>
