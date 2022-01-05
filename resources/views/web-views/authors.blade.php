@@ -62,10 +62,11 @@
                             <a href="{{route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1, 'author_name'=>$author['slug']])}}" class="">
                                 <div class="brand_div d-flex align-items-center justify-content-center"
                                  style="height: 200px">
-                                    <img
-                                        onerror="this.src='{{asset('public/assets/front-end/img/user_demo.jpg')}}'"
-                                        src="{{asset("public/images/author/" . $author->image)}}"
-                                        alt="{{$author->name_bangla}}">
+                                    @if ($author->image && file_exists(public_path('/public/images/author/' . $author->image)))
+                                        <img src="{{asset("public/images/author/" . $author->image)}}" alt="{{$author->name}}" onerror="this.src='{{asset('public/assets/front-end/img/user_demo.jpg')}}'" alt="{{$author->name_bangla}}">
+                                    @else
+                                        <img src="{{asset('public/assets/front-end/img/user_demo.jpg')}}" alt="{{$author->name_bangla}}">
+                                    @endif
                                 </div>
                             </a>
                             <small>{{ $author->name_bangla }}</small>

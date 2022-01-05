@@ -352,11 +352,12 @@
                                                    <?php if ($category->childes->count() > 0) echo "data-toggle='dropdown'"?> href="javascript:"
                                                    onclick="location.href='<?php echo e(route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])); ?>'">
                                                     <div>
-                                                        <img
+                                                        <!-- <img
                                                             src="<?php echo e(asset("storage/app/public/category/$category->icon")); ?>"
                                                             onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
-                                                            style="width: 18px; height: 18px; ">
-                                                        <span
+                                                            style="width: 18px; height: 18px; "> -->
+                                                        <i class="fa fa-ticket"></i>
+                                                            <span
                                                             class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>"><?php echo e($category['name_bangla']); ?></span>
                                                     </div>
                                                     <?php if($category->childes->count() > 0): ?>
@@ -416,9 +417,10 @@
                                                <?php if ($category->childes->count() > 0) echo "data-toggle='dropdown'"?> href="javascript:"
                                                onclick="location.href='<?php echo e(route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])); ?>'">
                                                 <div>
-                                                    <img src="<?php echo e(asset("storage/app/public/category/$category->icon")); ?>"
+                                                    <!-- <img src="<?php echo e(asset("storage/app/public/category/$category->icon")); ?>"
                                                          onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
-                                                         style="width: 18px; height: 18px; ">
+                                                         style="width: 18px; height: 18px; "> -->
+                                                    <i class="fa fa-ticket"></i>
                                                     <span
                                                         class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>"><?php echo e($category['name_bangla']); ?></span>
                                                 </div>
@@ -487,9 +489,10 @@
                                     <li class="dropdown">
                                         <a class="dropdown-item <?php if ($category->childes->count() > 0) echo "dropdown-toggle"?> "
                                            <?php if ($category->childes->count() > 0) echo "data-toggle='dropdown'"?> href="<?php echo e(route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])); ?>">
-                                            <img src="<?php echo e(asset("public/images/category/" . $category->icon)); ?>"
+                                            <!-- <img src="<?php echo e(asset("public/images/category/" . $category->icon)); ?>"
                                                  onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
-                                                 style="width: 18px; height: 18px; ">
+                                                 style="width: 18px; height: 18px; "> -->
+                                            <i class="fa fa-ticket"></i>
                                             <span
                                                 class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>"><?php echo e($category['name_bangla']); ?></span>
                                         </a>
