@@ -73,7 +73,8 @@
                                 <tr>
                                     <th scope="row"><?php echo e($pro->firstItem()+$k); ?></th>
                                     <td>
-                                        <a href="<?php echo e(route('admin.product.view',[$p['id']])); ?>">
+                                        <a href="<?php echo e(route('admin.product.view',[$p['id']])); ?>"
+                                        title="<?php echo e($p['name_bangla']); ?>&#10;<?php echo e($p['name']); ?>">
                                             <?php echo e(\Illuminate\Support\Str::limit($p['name_bangla'],25)); ?><br/>
                                             <?php echo e(\Illuminate\Support\Str::limit($p['name'],20)); ?>
 

@@ -75,7 +75,8 @@
                                 <tr>
                                     <th scope="row">{{$pro->firstItem()+$k}}</th>
                                     <td>
-                                        <a href="{{route('admin.product.view',[$p['id']])}}">
+                                        <a href="{{route('admin.product.view',[$p['id']])}}"
+                                        title="{{ $p['name_bangla'] }}&#10;{{ $p['name'] }}">
                                             {{\Illuminate\Support\Str::limit($p['name_bangla'],25)}}<br/>
                                             {{\Illuminate\Support\Str::limit($p['name'],20)}}
                                         </a>

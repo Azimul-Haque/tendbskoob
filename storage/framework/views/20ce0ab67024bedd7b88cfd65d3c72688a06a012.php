@@ -530,8 +530,6 @@
                         <a href="<?php echo e(route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1])); ?>">
                             <div class="brand_div d-flex align-items-center justify-content-center"
                                  style="height:100px">
-                                
-
                                 <?php if($author->image): ?>
                                     <img src="<?php echo e(asset("public/images/author/" . $author->image)); ?>" alt="<?php echo e($author->name); ?>" onerror="this.src='<?php echo e(asset('public/assets/front-end/img/user_demo.jpg')); ?>'">
                                 <?php else: ?>
