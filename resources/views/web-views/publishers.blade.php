@@ -62,10 +62,11 @@
                             <a href="{{route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1, 'publisher_name'=>$publisher['slug']])}}" class="">
                                 <div class="brand_div d-flex align-items-center justify-content-center"
                                  style="height: 200px">
-                                    <img
-                                        onerror="this.src='{{asset('public/assets/front-end/img/category_demo.jpg')}}'"
-                                        src="{{asset("public/images/publisher/" . $publisher->image)}}"
-                                        alt="{{$publisher->name_bangla}}">
+                                    @if ($publisher->image && file_exists(public_path('/public/images/publisher/' . $publisher->image)))
+                                        <img src="{{asset("public/images/publisher/" . $publisher->image)}}" alt="{{$publisher->name}}" onerror="this.src='{{asset('public/assets/front-end/img/category_demo.jpg')}}'" alt="{{$publisher->name_bangla}}">
+                                    @else
+                                        <img src="{{asset('public/assets/front-end/img/category_demo.jpg')}}" alt="{{$publisher->name_bangla}}">
+                                    @endif
                                 </div>
                             </a>
                             <small>{{ $publisher->name_bangla }}</small>
