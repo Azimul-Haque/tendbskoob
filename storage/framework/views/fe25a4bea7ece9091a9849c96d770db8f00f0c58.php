@@ -143,7 +143,19 @@
                                 <thead class="thead-light">
                                 <tr>
                                     <th style="width: 100px"><?php echo e(\App\CPU\translate('category')); ?> <?php echo e(\App\CPU\translate('ID')); ?></th>
-                                    <th><?php echo e(\App\CPU\translate('name')); ?></th>
+                                    <th>
+                                        <?php if($orderby && $orderby == 'asc'): ?>
+                                            <a href="<?php echo e(request()->fullUrlWithQuery(['orderby' => 'desc'])); ?>" style="font-weight: 900!important;">
+                                                <i class="fa fa-sort-alpha-asc"></i> <?php echo e(\App\CPU\translate('name (ASC)')); ?>
+
+                                            </a>
+                                        <?php else: ?>
+                                            <a href="<?php echo e(request()->fullUrlWithQuery(['orderby' => 'asc'])); ?>" style="font-weight: 900!important;">
+                                                <i class="fa fa-sort-alpha-desc"></i> <?php echo e(\App\CPU\translate('name (DESC)')); ?>
+
+                                            </a>
+                                        <?php endif; ?>
+                                    </th>
                                     <th><?php echo e(\App\CPU\translate('slug')); ?></th>
                                     <th><?php echo e(\App\CPU\translate('icon')); ?></th>
                                     <th><?php echo e(\App\CPU\translate('home_status')); ?></th>
@@ -217,7 +229,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('script'); ?>
-
+    <script src="https://use.fontawesome.com/112ed7653e.js"></script>
     <script>
         // $(".lang_link").click(function (e) {
         //     e.preventDefault();

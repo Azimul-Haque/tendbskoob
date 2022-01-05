@@ -144,7 +144,17 @@
                                 <thead class="thead-light">
                                 <tr>
                                     <th style="width: 100px">{{ \App\CPU\translate('category')}} {{ \App\CPU\translate('ID')}}</th>
-                                    <th>{{ \App\CPU\translate('name')}}</th>
+                                    <th>
+                                        @if ($orderby && $orderby == 'asc')
+                                            <a href="{{ request()->fullUrlWithQuery(['orderby' => 'desc']) }}" style="font-weight: 900!important;">
+                                                <i class="fa fa-sort-alpha-asc"></i> {{ \App\CPU\translate('name (ASC)')}}
+                                            </a>
+                                        @else
+                                            <a href="{{ request()->fullUrlWithQuery(['orderby' => 'asc']) }}" style="font-weight: 900!important;">
+                                                <i class="fa fa-sort-alpha-desc"></i> {{ \App\CPU\translate('name (DESC)')}}
+                                            </a>
+                                        @endif
+                                    </th>
                                     <th>{{ \App\CPU\translate('slug')}}</th>
                                     <th>{{ \App\CPU\translate('icon')}}</th>
                                     <th>{{ \App\CPU\translate('home_status')}}</th>
@@ -212,7 +222,7 @@
 @endsection
 
 @push('script')
-
+    <script src="https://use.fontawesome.com/112ed7653e.js"></script>
     <script>
         // $(".lang_link").click(function (e) {
         //     e.preventDefault();

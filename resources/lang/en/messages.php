@@ -1448,4 +1448,7 @@
   'Merchant Username' => 'Merchant Username',
   'Merchant Password' => 'Merchant Password',
   'sorry_stock_is_limited' => 'Sorry stock is limited',
+  'name ASC' => 'Name ASC',
+  'name (DESC)' => 'Name (DESC)',
+  'name (ASC)' => 'Name (ASC)',
 );

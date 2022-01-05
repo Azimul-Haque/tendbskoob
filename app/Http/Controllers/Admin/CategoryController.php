@@ -22,6 +22,8 @@ class CategoryController extends Controller
     {
         $query_param = [];
         $search = $request['search'];
+        $orderby = $request['orderby'] ? $request['orderby'] : 'asc';
+        // dd($orderby);
         if($request->has('search'))
         {
             $key = explode(' ', $request['search']);
@@ -30,14 +32,14 @@ class CategoryController extends Controller
                     $q->orWhere('name', 'like', "%{$value}%");
                     $q->orWhere('name_bangla', 'like', "%{$value}%");
                 }
-            });
-            $query_param = ['search' => $request['search']];
+            })->orderBy('name_bangla', $orderby);
+            $query_param = ['search' => $request['search'], 'orderby' => $orderby];
         }else{
-            $categories = Category::where(['position' => 0]);
+            $categories = Category::where(['position' => 0])->orderBy('name_bangla', $orderby);
         }
 
         $categories = $categories->latest()->paginate(Helpers::pagination_limit())->appends($query_param);
-        return view('admin-views.category.view', compact('categories','search'));
+        return view('admin-views.category.view', compact('categories','search', 'orderby'));
     }
 
     public function store(Request $request)
