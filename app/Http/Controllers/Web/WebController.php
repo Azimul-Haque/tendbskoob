@@ -499,7 +499,7 @@ class WebController extends Controller
             }
             $query = $porduct_data->whereIn('id', $product_ids);
         }
-
+        
         if ($request['data_from'] == 'brand') {
             $query = $porduct_data->where('brand_id', $request['id']);
         }
