@@ -35,6 +35,8 @@ class PublisherController extends BaseController
     {
         $query_param = [];
         $search  = $request['search'];
+        $orderby = $request['orderby'] ? $request['orderby'] : 'asc';
+        // dd($orderby);
 
         if($request->has('search'))
         {
@@ -44,10 +46,10 @@ class PublisherController extends BaseController
                     $q->orWhere('name', 'like', "%{$value}%");
                     $q->orWhere('name_bangla', 'like', "%{$value}%");
                 }
-            })->paginate(12);
+            })->orderBy('name_bangla', $orderby)->paginate(12);
             $query_param = ['search' => $request['search']];
         }else{
-            $publishers = Publisher::paginate(12);
+            $publishers = Publisher::orderBy('name_bangla', $orderby)->paginate(12);
         }
 
         $publishers->appends($query_param);
@@ -56,7 +58,8 @@ class PublisherController extends BaseController
         return view('admin-views.publisher.index')
                         ->withPublishers($publishers)
                         ->withTotalpublishers($totalpublishers)
-                        ->withSearch($search);
+                        ->withSearch($search)
+                        ->withOrderby($orderby);
     }
 
     public function store(Request $request)

@@ -379,6 +379,9 @@ class ProductController extends BaseController
     {
         $query_param = [];
         $search = $request['search'];
+        $orderby = $request['orderby'] ? $request['orderby'] : 'asc';
+        // dd($orderby);
+
         if ($type == 'in_house') {
             $pro = Product::where(['added_by' => 'admin']);
         } else {
@@ -395,10 +398,15 @@ class ProductController extends BaseController
             });
             $query_param = ['search' => $request['search']];
         }
-
         $request_status = $request['status'];
-        $pro = $pro->orderBy('id', 'DESC')->paginate(Helpers::pagination_limit())->appends(['status' => $request['status']])->appends($query_param);
-        return view('admin-views.product.list', compact('pro', 'search', 'request_status'));
+        $pro = $pro->paginate(Helpers::pagination_limit())->appends(['status' => $request['status']])->appends($query_param);
+
+        if($orderby == 'asc') {
+            $pro->sortBy('publisher.name_bangla');
+        } else {
+            $pro->sortByDesc('publisher.name_bangla');
+        }
+        return view('admin-views.product.list', compact('pro', 'search', 'request_status', 'orderby'));
     }
 
     public function status_update(Request $request)

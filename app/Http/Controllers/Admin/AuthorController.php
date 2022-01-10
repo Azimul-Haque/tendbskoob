@@ -35,6 +35,8 @@ class AuthorController extends BaseController
     {
         $query_param = [];
         $search  = $request['search'];
+        $orderby = $request['orderby'] ? $request['orderby'] : 'asc';
+        // dd($orderby);
 
         if($request->has('search'))
         {
@@ -44,10 +46,11 @@ class AuthorController extends BaseController
                     $q->orWhere('name', 'like', "%{$value}%");
                     $q->orWhere('name_bangla', 'like', "%{$value}%");
                 }
-            })->paginate(12);
+            })->orderBy('name_bangla', $orderby)
+              ->paginate(12);
             $query_param = ['search' => $request['search']];
         }else{
-            $authors = Author::paginate(12);
+            $authors = Author::orderBy('name_bangla', $orderby)->paginate(12);
         }
         $authors->appends($query_param);
         $totalauthors = Author::get()->count();
@@ -56,7 +59,8 @@ class AuthorController extends BaseController
         return view('admin-views.author.index')
                         ->withAuthors($authors)
                         ->withTotalauthors($totalauthors)
-                        ->withSearch($search);
+                        ->withSearch($search)
+                        ->withOrderby($orderby);
     }
 
     public function store(Request $request)

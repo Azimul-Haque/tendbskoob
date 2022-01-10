@@ -310,7 +310,7 @@ class WebController extends Controller
             $order_id = OrderManager::generate_order($data);
             array_push($order_ids, $order_id);
         }
-
+        // dd($request->all());
         CartManager::cart_clean();
 
         return view('web-views.checkout-complete');

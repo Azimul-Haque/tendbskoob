@@ -152,7 +152,19 @@
                                 <thead class="thead-light">
                                 <tr>
                                     <th><?php echo e(\App\CPU\translate('Author ID')); ?></th>
-                                    <th><?php echo e(\App\CPU\translate('name')); ?></th>
+                                    <th>
+                                        <?php if($orderby && $orderby == 'asc'): ?>
+                                            <a href="<?php echo e(request()->fullUrlWithQuery(['orderby' => 'desc'])); ?>" style="font-weight: 900!important;">
+                                                <i class="fa fa-sort-alpha-asc"></i> <?php echo e(\App\CPU\translate('name (ASC)')); ?>
+
+                                            </a>
+                                        <?php else: ?>
+                                            <a href="<?php echo e(request()->fullUrlWithQuery(['orderby' => 'asc'])); ?>" style="font-weight: 900!important;">
+                                                <i class="fa fa-sort-alpha-desc"></i> <?php echo e(\App\CPU\translate('name (DESC)')); ?>
+
+                                            </a>
+                                        <?php endif; ?>
+                                    </th>
                                     <th><?php echo e(\App\CPU\translate('slug')); ?></th>
                                     <th><?php echo e(\App\CPU\translate('image')); ?></th>
                                     <th class="text-center" style="width:15%;"><?php echo e(\App\CPU\translate('action')); ?></th>
@@ -206,10 +218,8 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('script'); ?>
-
+    <script src="https://use.fontawesome.com/112ed7653e.js"></script>
     <script>
-        
-
         $(document).ready(function () {
             $('#dataTable').DataTable();
         });

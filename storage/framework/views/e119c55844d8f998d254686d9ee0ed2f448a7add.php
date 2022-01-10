@@ -59,7 +59,19 @@
                             <tr>
                                 <th><?php echo e(\App\CPU\translate('SL#')); ?></th>
                                 <th><?php echo e(\App\CPU\translate('Book Name')); ?></th>
-                                <th><?php echo e(\App\CPU\translate('Publication')); ?></th>
+                                <th>
+                                    <?php if($orderby && $orderby == 'asc'): ?>
+                                        <a href="<?php echo e(request()->fullUrlWithQuery(['orderby' => 'desc'])); ?>" style="font-weight: 900!important;">
+                                            <i class="fa fa-sort-alpha-asc"></i> <?php echo e(\App\CPU\translate('Publication (ASC)')); ?>
+
+                                        </a>
+                                    <?php else: ?>
+                                        <a href="<?php echo e(request()->fullUrlWithQuery(['orderby' => 'asc'])); ?>" style="font-weight: 900!important;">
+                                            <i class="fa fa-sort-alpha-desc"></i> <?php echo e(\App\CPU\translate('Publication (DESC)')); ?>
+
+                                        </a>
+                                    <?php endif; ?>
+                                </th>
                                 <th>Price</th>
                                 <th><?php echo e(\App\CPU\translate('featured')); ?></th>
                                 <th><?php echo e(\App\CPU\translate('Active')); ?> <?php echo e(\App\CPU\translate('status')); ?></th>
@@ -69,78 +81,154 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <?php $__currentLoopData = $pro; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <tr>
-                                    <th scope="row"><?php echo e($pro->firstItem()+$k); ?></th>
-                                    <td>
-                                        <a href="<?php echo e(route('admin.product.view',[$p['id']])); ?>"
-                                        title="<?php echo e($p['name_bangla']); ?>&#10;<?php echo e($p['name']); ?>">
-                                            <?php echo e(\Illuminate\Support\Str::limit($p['name_bangla'],25)); ?><br/>
-                                            <?php echo e(\Illuminate\Support\Str::limit($p['name'],20)); ?>
+                            <?php if($orderby && $orderby == 'asc'): ?>
+                                <?php $__currentLoopData = $pro->sortBy('publisher.name_bangla'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <tr>
+                                        <th scope="row"><?php echo e($pro->firstItem()+$k); ?></th>
+                                        <td>
+                                            <a href="<?php echo e(route('admin.product.view',[$p['id']])); ?>"
+                                            title="<?php echo e($p['name_bangla']); ?>&#10;<?php echo e($p['name']); ?>">
+                                                <?php echo e(\Illuminate\Support\Str::limit($p['name_bangla'],25)); ?><br/>
+                                                <?php echo e(\Illuminate\Support\Str::limit($p['name'],20)); ?>
 
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <?php echo e($p->publisher->name_bangla); ?>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <?php echo e($p->publisher->name_bangla); ?>
 
-                                    </td>
-                                    <td>
-                                        <small>
-                                            <?php echo e(\App\CPU\translate('purchase')); ?>: 
-                                            <b><?php echo e(\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['purchase_price']))); ?></b>
-                                        </small><br/>
-                                        <small>
-                                            <?php echo e(\App\CPU\translate('published')); ?>: 
-                                            <b><?php echo e(\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['published_price']))); ?></b>
-                                        </small><br/>
-                                        <small>
-                                            <?php echo e(\App\CPU\translate('sale')); ?>: 
-                                            <b><?php echo e(\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['unit_price']))); ?></b>
-                                        </small>
-                                    </td>
-                                    <td>
-                                        <label class="switch">
-                                            <input type="checkbox"
-                                                   onclick="featured_status('<?php echo e($p['id']); ?>')" <?php echo e($p->featured == 1?'checked':''); ?>>
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <label class="switch switch-status">
-                                            <input type="checkbox" class="status"
-                                                   id="<?php echo e($p['id']); ?>" <?php echo e($p->status == 1?'checked':''); ?>>
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <?php echo e($p->current_stock); ?>
+                                        </td>
+                                        <td>
+                                            <small>
+                                                <?php echo e(\App\CPU\translate('purchase')); ?>: 
+                                                <b><?php echo e(\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['purchase_price']))); ?></b>
+                                            </small><br/>
+                                            <small>
+                                                <?php echo e(\App\CPU\translate('published')); ?>: 
+                                                <b><?php echo e(\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['published_price']))); ?></b>
+                                            </small><br/>
+                                            <small>
+                                                <?php echo e(\App\CPU\translate('sale')); ?>: 
+                                                <b><?php echo e(\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['unit_price']))); ?></b>
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox"
+                                                    onclick="featured_status('<?php echo e($p['id']); ?>')" <?php echo e($p->featured == 1?'checked':''); ?>>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label class="switch switch-status">
+                                                <input type="checkbox" class="status"
+                                                    id="<?php echo e($p['id']); ?>" <?php echo e($p->status == 1?'checked':''); ?>>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <?php echo e($p->current_stock); ?>
 
-                                    </td>
-                                    <td>
-                                        <select id="stock_status<?php echo e($p['id']); ?>" onchange="stock_status('<?php echo e($p['id']); ?>')" class="form-control" style="width: 140px;">
-                                            <option value="1" <?php echo e($p->stock_status == 1?'selected':''); ?>>In Stock</option>
-                                            <option value="2" <?php echo e($p->stock_status == 2?'selected':''); ?>>Out of Stock</option>
-                                            <option value="3" <?php echo e($p->stock_status == 3?'selected':''); ?>>Back Order</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-primary btn-sm"
-                                           href="<?php echo e(route('admin.product.edit',[$p['id']])); ?>">
-                                            <i class="tio-edit"></i> <?php echo e(\App\CPU\translate('Edit')); ?>
+                                        </td>
+                                        <td>
+                                            <select id="stock_status<?php echo e($p['id']); ?>" onchange="stock_status('<?php echo e($p['id']); ?>')" class="form-control" style="width: 140px;">
+                                                <option value="1" <?php echo e($p->stock_status == 1?'selected':''); ?>>In Stock</option>
+                                                <option value="2" <?php echo e($p->stock_status == 2?'selected':''); ?>>Out of Stock</option>
+                                                <option value="3" <?php echo e($p->stock_status == 3?'selected':''); ?>>Back Order</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-primary btn-sm"
+                                            href="<?php echo e(route('admin.product.edit',[$p['id']])); ?>">
+                                                <i class="tio-edit"></i> <?php echo e(\App\CPU\translate('Edit')); ?>
 
-                                        </a>
-                                        <a class="btn btn-danger btn-sm" href="javascript:"
-                                           onclick="form_alert('product-<?php echo e($p['id']); ?>','Want to delete this item ?')">
-                                            <i class="tio-add-to-trash"></i> <?php echo e(\App\CPU\translate('Delete')); ?>
+                                            </a>
+                                            <a class="btn btn-danger btn-sm" href="javascript:"
+                                            onclick="form_alert('product-<?php echo e($p['id']); ?>','Want to delete this item ?')">
+                                                <i class="tio-add-to-trash"></i> <?php echo e(\App\CPU\translate('Delete')); ?>
 
-                                        </a>
-                                        <form action="<?php echo e(route('admin.product.delete',[$p['id']])); ?>"
-                                              method="post" id="product-<?php echo e($p['id']); ?>">
-                                            <?php echo csrf_field(); ?> <?php echo method_field('delete'); ?>
-                                        </form>
-                                    </td>
-                                </tr>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </a>
+                                            <form action="<?php echo e(route('admin.product.delete',[$p['id']])); ?>"
+                                                method="post" id="product-<?php echo e($p['id']); ?>">
+                                                <?php echo csrf_field(); ?> <?php echo method_field('delete'); ?>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php else: ?>
+                                <?php $__currentLoopData = $pro->sortByDesc('publisher.name_bangla'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <tr>
+                                        <th scope="row"><?php echo e($pro->firstItem()+$k); ?></th>
+                                        <td>
+                                            <a href="<?php echo e(route('admin.product.view',[$p['id']])); ?>"
+                                            title="<?php echo e($p['name_bangla']); ?>&#10;<?php echo e($p['name']); ?>">
+                                                <?php echo e(\Illuminate\Support\Str::limit($p['name_bangla'],25)); ?><br/>
+                                                <?php echo e(\Illuminate\Support\Str::limit($p['name'],20)); ?>
+
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <?php echo e($p->publisher->name_bangla); ?>
+
+                                        </td>
+                                        <td>
+                                            <small>
+                                                <?php echo e(\App\CPU\translate('purchase')); ?>: 
+                                                <b><?php echo e(\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['purchase_price']))); ?></b>
+                                            </small><br/>
+                                            <small>
+                                                <?php echo e(\App\CPU\translate('published')); ?>: 
+                                                <b><?php echo e(\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['published_price']))); ?></b>
+                                            </small><br/>
+                                            <small>
+                                                <?php echo e(\App\CPU\translate('sale')); ?>: 
+                                                <b><?php echo e(\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['unit_price']))); ?></b>
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <label class="switch">
+                                                <input type="checkbox"
+                                                    onclick="featured_status('<?php echo e($p['id']); ?>')" <?php echo e($p->featured == 1?'checked':''); ?>>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label class="switch switch-status">
+                                                <input type="checkbox" class="status"
+                                                    id="<?php echo e($p['id']); ?>" <?php echo e($p->status == 1?'checked':''); ?>>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <?php echo e($p->current_stock); ?>
+
+                                        </td>
+                                        <td>
+                                            <select id="stock_status<?php echo e($p['id']); ?>" onchange="stock_status('<?php echo e($p['id']); ?>')" class="form-control" style="width: 140px;">
+                                                <option value="1" <?php echo e($p->stock_status == 1?'selected':''); ?>>In Stock</option>
+                                                <option value="2" <?php echo e($p->stock_status == 2?'selected':''); ?>>Out of Stock</option>
+                                                <option value="3" <?php echo e($p->stock_status == 3?'selected':''); ?>>Back Order</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-primary btn-sm"
+                                            href="<?php echo e(route('admin.product.edit',[$p['id']])); ?>">
+                                                <i class="tio-edit"></i> <?php echo e(\App\CPU\translate('Edit')); ?>
+
+                                            </a>
+                                            <a class="btn btn-danger btn-sm" href="javascript:"
+                                            onclick="form_alert('product-<?php echo e($p['id']); ?>','Want to delete this item ?')">
+                                                <i class="tio-add-to-trash"></i> <?php echo e(\App\CPU\translate('Delete')); ?>
+
+                                            </a>
+                                            <form action="<?php echo e(route('admin.product.delete',[$p['id']])); ?>"
+                                                method="post" id="product-<?php echo e($p['id']); ?>">
+                                                <?php echo csrf_field(); ?> <?php echo method_field('delete'); ?>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endif; ?>
+                            
                             </tbody>
                         </table>
                     </div>
@@ -162,6 +250,7 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('script'); ?>
+    <script src="https://use.fontawesome.com/112ed7653e.js"></script>
     <!-- Page level plugins -->
     <script src="<?php echo e(asset('public/assets/back-end')); ?>/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="<?php echo e(asset('public/assets/back-end')); ?>/vendor/datatables/dataTables.bootstrap4.min.js"></script>

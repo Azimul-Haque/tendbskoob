@@ -154,7 +154,17 @@
                                 <thead class="thead-light">
                                 <tr>
                                     <th>{{ \App\CPU\translate('Author ID')}}</th>
-                                    <th>{{ \App\CPU\translate('name')}}</th>
+                                    <th>
+                                        @if ($orderby && $orderby == 'asc')
+                                            <a href="{{ request()->fullUrlWithQuery(['orderby' => 'desc']) }}" style="font-weight: 900!important;">
+                                                <i class="fa fa-sort-alpha-asc"></i> {{ \App\CPU\translate('name (ASC)')}}
+                                            </a>
+                                        @else
+                                            <a href="{{ request()->fullUrlWithQuery(['orderby' => 'asc']) }}" style="font-weight: 900!important;">
+                                                <i class="fa fa-sort-alpha-desc"></i> {{ \App\CPU\translate('name (DESC)')}}
+                                            </a>
+                                        @endif
+                                    </th>
                                     <th>{{ \App\CPU\translate('slug')}}</th>
                                     <th>{{ \App\CPU\translate('image')}}</th>
                                     <th class="text-center" style="width:15%;">{{ \App\CPU\translate('action')}}</th>
@@ -205,10 +215,8 @@
 @endsection
 
 @push('script')
-
+    <script src="https://use.fontawesome.com/112ed7653e.js"></script>
     <script>
-        
-
         $(document).ready(function () {
             $('#dataTable').DataTable();
         });

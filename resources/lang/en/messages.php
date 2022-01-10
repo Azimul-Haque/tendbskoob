@@ -1451,4 +1451,7 @@
   'name ASC' => 'Name ASC',
   'name (DESC)' => 'Name (DESC)',
   'name (ASC)' => 'Name (ASC)',
+  'incomplete_info' => 'Incomplete info',
+  'Publication (ASC)' => 'Publication (ASC)',
+  'Publication (DESC)' => 'Publication (DESC)',
 );
