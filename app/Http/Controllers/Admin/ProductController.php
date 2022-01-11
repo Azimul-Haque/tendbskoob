@@ -99,9 +99,9 @@ class ProductController extends BaseController
             // 'images' => 'required',
             'image'          => 'required',
             // 'tax'            => 'required|min:0',
-            'purchase_price'  => 'required|numeric|min:1',
-            'published_price' => 'required|numeric|min:1',
-            'unit_price'      => 'required|numeric|min:1',
+            // 'purchase_price'  => 'required|numeric|min:1',
+            // 'published_price' => 'required|numeric|min:1',
+            // 'unit_price'      => 'required|numeric|min:1',
             'current_stock'   => 'required|numeric',
         ], [
             'publisher_id.required'    => 'Publication is required!',
@@ -177,7 +177,7 @@ class ProductController extends BaseController
         $p->publisher_id = $request->publisher_id;
         // $p->unit = $request->unit;
         $p->isbn = $request->isbn;
-        $p->weight = $request->weight;
+        $p->weight = $request->weight ? $request->weight : 0;
 
 
         // if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
@@ -260,9 +260,9 @@ class ProductController extends BaseController
         $p->variation      = json_encode($empty_array);
         // $p->unit_price = BackEndHelper::currency_to_usd($request->unit_price);
         
-        $p->purchase_price  = $request->purchase_price;
-        $p->published_price = $request->published_price;
-        $p->unit_price      = $request->unit_price;
+        $p->purchase_price  = $request->purchase_price ? $request->purchase_price : 0;
+        $p->published_price = $request->published_price ? $request->published_price : 0;
+        $p->unit_price      = $request->unit_price ? $request->unit_price : 0;
         // $p->tax = $request->tax_type == 'flat' ? BackEndHelper::currency_to_usd($request->tax) : $request->tax;
         // $p->tax_type = $request->tax_type;
         // $p->discount = $request->discount_type == 'flat' ? BackEndHelper::currency_to_usd($request->discount) : $request->discount;
@@ -275,6 +275,9 @@ class ProductController extends BaseController
 
         // $p->video_provider = 'youtube';
         // $p->video_url = $request->video_link;
+        if(auth('admin')->user()->role->name != 'Master Admin' && auth('admin')->user()->role->name != 'Admin') {
+            $p->status = 0;
+        }
         $p->request_status = 1; // status default to 1
         if($p->current_stock > 0) {
             $p->stock_status = $request->stock_status; // 1 = in stock, 2 = out of stock, 3 = back order
@@ -551,7 +554,7 @@ class ProductController extends BaseController
         $p->publisher_id = $request->publisher_id;
         // $p->unit = $request->unit;
         $p->isbn = $request->isbn;
-        $p->weight = $request->weight;
+        $p->weight = $request->weight ? $request->weight : 0;
 
         if ($validator->errors()->count() > 0) {
             return response()->json(['errors' => Helpers::error_processor($validator)]);
@@ -734,7 +737,7 @@ class ProductController extends BaseController
             $p->category_ids = json_encode($category);
             $p->publisher_id = $collection['publisher_id'];
             $p->isbn         = $collection['isbn'];
-            $p->weight       = $collection['weight'];
+            $p->weight       = $collection['weight'] ? $collection['weight'] : 0;
 
             $empty_array       = [];
             $p->colors         = json_encode($empty_array);
