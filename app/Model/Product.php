@@ -82,6 +82,8 @@ class Product extends Model
       return $this->belongsToMany(Category::class); // , 3 = editor
     }
 
+       
+
     public function scopeStatus($query)
     {
         return $query->where('featured_status', 1);

@@ -391,6 +391,10 @@ class ProductController extends BaseController
             $pro = Product::where(['added_by' => 'seller'])->where('request_status', $request->status);
         }
 
+        if(auth('admin')->user()->role->name != 'Master Admin' && auth('admin')->user()->role->name != 'Admin') {
+            $pro = $pro->where('user_id', auth('admin')->user()->id);
+        }
+
         if ($request->has('search')) {
             $key = explode(' ', $request['search']);
             $pro = $pro->where(function ($q) use ($key) {
@@ -496,9 +500,9 @@ class ProductController extends BaseController
             'name'         => 'required',
             'name_bangla'  => 'required',
             'category_id'  => 'required',
-            'purchase_price'  => 'required|numeric|min:1',
-            'published_price' => 'required|numeric|min:1',
-            'unit_price'      => 'required|numeric|min:1',
+            // 'purchase_price'  => 'required|numeric|min:1',
+            // 'published_price' => 'required|numeric|min:1',
+            // 'unit_price'      => 'required|numeric|min:1',
             'current_stock'   => 'required|numeric',
         ], [
             'publisher_id.required'    => 'Publication is required!',
@@ -560,9 +564,9 @@ class ProductController extends BaseController
             return response()->json(['errors' => Helpers::error_processor($validator)]);
         }
         
-        $p->purchase_price  = $request->purchase_price;
-        $p->published_price = $request->published_price;
-        $p->unit_price      = $request->unit_price;
+        $p->purchase_price  = $request->purchase_price ? $request->purchase_price : $p->purchase_price;
+        $p->published_price = $request->published_price ? $request->published_price : $p->published_price;
+        $p->unit_price      = $request->unit_price ? $request->unit_price : $p->unit_price;
         $stock_count      = (integer) $request['current_stock'];
         $p->current_stock = abs($stock_count);
         $p->details       = $request->description;

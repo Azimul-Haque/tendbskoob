@@ -73,8 +73,12 @@
                                     @endif
                                 </th>
                                 <th>Price</th>
-                                <th>{{\App\CPU\translate('featured')}}</th>
-                                <th>{{\App\CPU\translate('Active')}} {{\App\CPU\translate('status')}}</th>
+                                @if(auth('admin')->user()->role->name != 'Master Admin' && auth('admin')->user()->role->name != 'Admin')
+                                    
+                                @else
+                                    <th>{{\App\CPU\translate('featured')}}</th>
+                                    <th>{{\App\CPU\translate('Active')}} {{\App\CPU\translate('status')}}</th>
+                                @endif
                                 <th>Stocks</th>
                                 <th>Stock Status</th>
                                 <th style="width: 5px" class="text-center">{{\App\CPU\translate('Action')}}</th>
@@ -109,20 +113,25 @@
                                                 <b>{{\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['unit_price']))}}</b>
                                             </small>
                                         </td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox"
-                                                    onclick="featured_status('{{$p['id']}}')" {{$p->featured == 1?'checked':''}}>
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label class="switch switch-status">
-                                                <input type="checkbox" class="status"
-                                                    id="{{$p['id']}}" {{$p->status == 1?'checked':''}}>
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
+                                        @if(auth('admin')->user()->role->name != 'Master Admin' && auth('admin')->user()->role->name != 'Admin')
+                                    
+                                        @else
+                                            <td>
+                                                <label class="switch">
+                                                    <input type="checkbox"
+                                                        onclick="featured_status('{{$p['id']}}')" {{$p->featured == 1?'checked':''}}>
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label class="switch switch-status">
+                                                    <input type="checkbox" class="status"
+                                                        id="{{$p['id']}}" {{$p->status == 1?'checked':''}}>
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </td>
+                                        @endif
+                                        
                                         <td>
                                             {{ $p->current_stock }}
                                         </td>

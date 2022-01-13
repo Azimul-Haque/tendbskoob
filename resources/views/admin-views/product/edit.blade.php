@@ -319,37 +319,39 @@
                                                placeholder="{{\App\CPU\translate('ISBN Number')}}"
                                                name="isbn" value="{{ $product->isbn }}" class="form-control">
                                     </div>
-                                    <div class="col-md-6">
+                                    @if (auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin')
                                         <label
                                             class="control-label">{{\App\CPU\translate('Book Weight (KG)')}}</label>
                                         <input type="number" min="0" step="0.01"
-                                               placeholder="{{\App\CPU\translate('Book Weight')}}"
-                                               value="{{ $product->weight }}" name="weight" class="form-control">
-                                    </div>
+                                            placeholder="{{\App\CPU\translate('Book Weight')}}"
+                                            value="{{ $product->weight }}" name="weight" class="form-control">
+                                    @endif
                                 </div>
                                 <div class="row pt-4">
-                                    <div class="col-md-4">
-                                        <label
-                                            class="control-label">{{\App\CPU\translate('Purchase Price')}} (৳)</label>
-                                        <input type="number" min="0" step="0.01"
-                                               placeholder="{{\App\CPU\translate('Purchase Price')}}"
-                                               value="{{ $product->purchase_price }}"
-                                               name="purchase_price" class="form-control" required>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="control-label">{{\App\CPU\translate('Published Price')}} (৳)</label>
-                                        <input type="number" min="0" step="0.01"
-                                               placeholder="{{\App\CPU\translate('Published Price')}}"
-                                               name="published_price" value="{{ $product->published_price }}" class="form-control"
-                                               required>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="control-label">{{\App\CPU\translate('Sale Price')}} (৳)</label>
-                                        <input type="number" min="0" step="0.01"
-                                               placeholder="{{\App\CPU\translate('Sale Price')}}"
-                                               name="unit_price" value="{{ $product->unit_price }}" class="form-control"
-                                               required>
-                                    </div>
+                                    @if (auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin')
+                                        <div class="col-md-4">
+                                            <label
+                                                class="control-label">{{\App\CPU\translate('Purchase Price')}} (৳)</label>
+                                            <input type="number" min="0" step="0.01"
+                                                placeholder="{{\App\CPU\translate('Purchase Price')}}"
+                                                value="{{ $product->purchase_price }}"
+                                                name="purchase_price" class="form-control" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="control-label">{{\App\CPU\translate('Published Price')}} (৳)</label>
+                                            <input type="number" min="0" step="0.01"
+                                                placeholder="{{\App\CPU\translate('Published Price')}}"
+                                                name="published_price" value="{{ $product->published_price }}" class="form-control"
+                                                required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="control-label">{{\App\CPU\translate('Sale Price')}} (৳)</label>
+                                            <input type="number" min="0" step="0.01"
+                                                placeholder="{{\App\CPU\translate('Sale Price')}}"
+                                                name="unit_price" value="{{ $product->published_price }}" class="form-control"
+                                                required>
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="row pt-4">
                                     {{-- <div class="col-md-5">

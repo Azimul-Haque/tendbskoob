@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', \App\CPU\translate('Product Edit')); ?>
+<?php $__env->startSection('title', \App\CPU\translate('Product Add')); ?>
 
 <?php $__env->startPush('css_or_js'); ?>
     <link href="<?php echo e(asset('public/assets/back-end/css/tags-input.min.css')); ?>" rel="stylesheet">
@@ -15,14 +15,14 @@
                 <li class="breadcrumb-item" aria-current="page"><a
                         href="<?php echo e(route('admin.product.list', 'in_house')); ?>"><?php echo e(\App\CPU\translate('Product')); ?></a>
                 </li>
-                <li class="breadcrumb-item"><?php echo e(\App\CPU\translate('Edit')); ?> <?php echo e(\App\CPU\translate('Book')); ?> </li>
+                <li class="breadcrumb-item"><?php echo e(\App\CPU\translate('Add')); ?> <?php echo e(\App\CPU\translate('New')); ?> <?php echo e(\App\CPU\translate('Book')); ?></li>
             </ol>
         </nav>
 
         <!-- Content Row -->
         <div class="row">
             <div class="col-md-12">
-                <form class="product-form" action="<?php echo e(route('admin.product.update', $product->id)); ?>" method="POST"
+                <form class="product-form" action="<?php echo e(route('admin.product.store')); ?>" method="POST"
                       style="text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;"
                       enctype="multipart/form-data"
                       id="product_form">
@@ -31,7 +31,7 @@
 
                     <div class="card">
                         <div class="card-header">
-                            <h4>Edit Book</h4>
+                            <h4>Add New Book</h4>
                         </div>
 
                         <div class="card-body">
@@ -41,7 +41,7 @@
                                     class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id" id="publisher_id" required>
                                     <option value="<?php echo e(old('publisher_id')); ?>" selected disabled>Select Publication</option>
                                     <?php $__currentLoopData = $publishers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $publisher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <option value="<?php echo e($publisher['id']); ?>" <?php if($product->publisher_id == $publisher['id']): ?> selected="" <?php endif; ?>>
+                                        <option value="<?php echo e($publisher['id']); ?>" <?php echo e(old('name_bangla')==$publisher['id']? 'selected': ''); ?>>
                                             <?php echo e($publisher['name_bangla']); ?> (<?php echo e($publisher['name']); ?>)
                                         </option>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -51,76 +51,52 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label class="input-label" for="name_bangla"><?php echo e(\App\CPU\translate('Book Name (Bangla)')); ?> *</label>
-                                        <input type="text" name="name_bangla" id="name_bangla" value="<?php echo e($product->name_bangla); ?>" class="form-control" placeholder="Book Name in Bangla" required>
+                                        <input type="text" name="name_bangla" id="name_bangla" class="form-control" placeholder="Book Name in Bangla" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="input-label" for="name"><?php echo e(\App\CPU\translate('Book Name (English)')); ?> *</label>
-                                        <input type="text" name="name" id="name" value="<?php echo e($product->name); ?>" class="form-control" placeholder="Book Name" required>
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="Book Name" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <?php
-                                        $writer_id_array = [];
-                                        foreach ($product->writers as $writer) {
-                                            $writer_id_array[] = $writer->id;
-                                        }
-                                    ?>
                                     <label for="name"><?php echo e(\App\CPU\translate('Writer')); ?></label>
                                     <select
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
                                         name="writer_id[]" id="writer_id" multiple>
                                         <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $writer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($writer['id']); ?>" imagename="<?php echo e($writer->image != '' ? $writer->image : 0); ?>" <?php if(in_array($writer->id, $writer_id_array)): ?> selected="" <?php endif; ?>>
+                                            <option value="<?php echo e($writer['id']); ?>" imagename="<?php echo e($writer->image != '' ? $writer->image : 0); ?>" <?php echo e(old('name_bangla')==$writer['id']? 'selected': ''); ?>>
                                                 <?php echo e($writer['name_bangla']); ?> (<?php echo e($writer['name']); ?>)
                                             </option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select><br/><br/>
                                     
-                                    <?php
-                                        $translator_id_array = [];
-                                        foreach ($product->translators as $translator) {
-                                            $translator_id_array[] = $translator->id;
-                                        }
-                                    ?>
                                     <label for="name"><?php echo e(\App\CPU\translate('Translator')); ?></label>
                                     <select
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
                                         name="translator_id[]" id="translator_id" multiple>
                                         <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $translator): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($translator['id']); ?>" imagename="<?php echo e($translator->image != '' ? $translator->image : 0); ?>" <?php if(in_array($translator->id, $translator_id_array)): ?> selected="" <?php endif; ?>>
+                                            <option value="<?php echo e($translator['id']); ?>" imagename="<?php echo e($translator->image != '' ? $translator->image : 0); ?>" <?php echo e(old('name_bangla')==$translator['id']? 'selected': ''); ?>>
                                                 <?php echo e($translator['name_bangla']); ?> (<?php echo e($translator['name']); ?>)
                                             </option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select><br/><br/>
 
-                                    <?php
-                                        $editors_id_array = [];
-                                        foreach ($product->editors as $editor) {
-                                            $editors_id_array[] = $editor->id;
-                                        }
-                                    ?>
                                     <label for="name"><?php echo e(\App\CPU\translate('Editor')); ?></label>
                                     <select
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control" name="editor_id[]" id="editor_id" multiple>
                                         <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $editor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($editor['id']); ?>" imagename="<?php echo e($editor->image != '' ? $editor->image : 0); ?>" <?php if(in_array($editor->id, $editors_id_array)): ?> selected="" <?php endif; ?>>
+                                            <option value="<?php echo e($editor['id']); ?>" imagename="<?php echo e($editor->image != '' ? $editor->image : 0); ?>" <?php echo e(old('name_bangla')==$editor['id']? 'selected': ''); ?>>
                                                 <?php echo e($editor['name_bangla']); ?> (<?php echo e($editor['name']); ?>)
                                             </option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select><br/><br/>
 
-                                    <?php
-                                        $category_id_array = [];
-                                        foreach ($product->categories as $category) {
-                                            $category_id_array[] = $category->id;
-                                        }
-                                    ?>
                                     <label for="name"><?php echo e(\App\CPU\translate('Category')); ?> *</label>
                                     <select class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control" name="category_id[]" id="category_id" multiple required>
                                         <?php $__currentLoopData = $cat; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($c['id']); ?>" <?php if(in_array($c->id, $category_id_array)): ?> selected="" <?php endif; ?>>
+                                            <option value="<?php echo e($c['id']); ?>" <?php echo e(old('name_bangla')==$c['id']? 'selected': ''); ?>>
                                                 <?php echo e($c['name_bangla']); ?> (<?php echo e($c['name']); ?>)
                                             </option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -140,7 +116,7 @@
                             </div><br/>
                             <div class="form-group">
                                 <label class="input-label" for="description"><?php echo e(\App\CPU\translate('description (Optional)')); ?></label>
-                                <textarea name="description" class="editor textarea" id="textarea" cols="30" rows="10"><?php echo e($product->details); ?></textarea>
+                                <textarea name="description" class="editor textarea" id="textarea" cols="30" rows="10"><?php echo e(old('description')); ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -160,15 +136,17 @@
                                         <label class="control-label"><?php echo e(\App\CPU\translate('ISBN Number')); ?></label>
                                         <input type="text"
                                                placeholder="<?php echo e(\App\CPU\translate('ISBN Number')); ?>"
-                                               name="isbn" value="<?php echo e($product->isbn); ?>" class="form-control">
+                                               name="isbn" value="<?php echo e(old('isbn')); ?>" class="form-control">
                                     </div>
-                                    <?php if(auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin'): ?>
-                                        <label
-                                            class="control-label"><?php echo e(\App\CPU\translate('Book Weight (KG)')); ?></label>
-                                        <input type="number" min="0" step="0.01"
-                                            placeholder="<?php echo e(\App\CPU\translate('Book Weight')); ?>"
-                                            value="<?php echo e($product->weight); ?>" name="weight" class="form-control">
-                                    <?php endif; ?>
+                                    <div class="col-md-6">
+                                        <?php if(auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin'): ?>
+                                            <label
+                                                class="control-label"><?php echo e(\App\CPU\translate('Book Weight (KG)')); ?></label>
+                                            <input type="number" min="0" step="0.01"
+                                                placeholder="<?php echo e(\App\CPU\translate('Book Weight')); ?>"
+                                                value="<?php echo e(old('weight')); ?>" name="weight" class="form-control">
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                                 <div class="row pt-4">
                                     <?php if(auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin'): ?>
@@ -177,21 +155,21 @@
                                                 class="control-label"><?php echo e(\App\CPU\translate('Purchase Price')); ?> (৳)</label>
                                             <input type="number" min="0" step="0.01"
                                                 placeholder="<?php echo e(\App\CPU\translate('Purchase Price')); ?>"
-                                                value="<?php echo e($product->purchase_price); ?>"
+                                                value="<?php echo e(old('purchase_price')); ?>"
                                                 name="purchase_price" class="form-control" required>
                                         </div>
                                         <div class="col-md-4">
                                             <label class="control-label"><?php echo e(\App\CPU\translate('Published Price')); ?> (৳)</label>
                                             <input type="number" min="0" step="0.01"
                                                 placeholder="<?php echo e(\App\CPU\translate('Published Price')); ?>"
-                                                name="published_price" value="<?php echo e($product->published_price); ?>" class="form-control"
+                                                name="published_price" value="<?php echo e(old('published_price')); ?>" class="form-control"
                                                 required>
                                         </div>
                                         <div class="col-md-4">
                                             <label class="control-label"><?php echo e(\App\CPU\translate('Sale Price')); ?> (৳)</label>
                                             <input type="number" min="0" step="0.01"
                                                 placeholder="<?php echo e(\App\CPU\translate('Sale Price')); ?>"
-                                                name="unit_price" value="<?php echo e($product->published_price); ?>" class="form-control"
+                                                name="unit_price" value="<?php echo e(old('unit_price')); ?>" class="form-control"
                                                 required>
                                         </div>
                                     <?php endif; ?>
@@ -201,18 +179,20 @@
                                     <div class="col-md-6" id="quantity">
                                         <label
                                             class="control-label"><?php echo e(\App\CPU\translate('total')); ?> <?php echo e(\App\CPU\translate('Quantity')); ?></label>
-                                        <input type="number" min="0" step="1" placeholder="<?php echo e(\App\CPU\translate('Quantity')); ?>" name="current_stock" value="<?php echo e($product->current_stock); ?>" class="form-control" required>
+                                        <input type="number" min="0" value="0" step="1"
+                                               placeholder="<?php echo e(\App\CPU\translate('Quantity')); ?>"
+                                               name="current_stock" class="form-control" required>
                                     </div>
                                     <div class="col-md-6 pt-6">
                                         <center>
                                             <label class="radio-inline" style="margin-right: 10px;">
-                                                <input type="radio" name="stock_status" value="1" <?php if($product->stock_status == 1): ?> checked <?php endif; ?>> In Stock 
+                                                <input type="radio" name="stock_status" value="1" checked> In Stock 
                                             </label>
                                             <label class="radio-inline" style="margin-right: 10px;">
-                                                <input type="radio" name="stock_status" value="2" <?php if($product->stock_status == 2): ?> checked <?php endif; ?>> Out of Stock 
+                                                <input type="radio" name="stock_status" value="2"> Out of Stock 
                                             </label>
                                             <label class="radio-inline">
-                                                <input type="radio" name="stock_status" value="3" <?php if($product->stock_status == 3): ?> checked <?php endif; ?>> Back Order 
+                                                <input type="radio" name="stock_status" value="3"> Back Order 
                                             </label>
                                         </center>
                                     </div>
@@ -239,16 +219,6 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('script'); ?>
-    <?php
-        $thumbnail = asset('public/assets/back-end/img/book_demo.jpg');
-        if($product->thumbnail != null) {
-            // if(file_exists(\App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product->thumbnail)) {
-            //     $thumbnail = \App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product->thumbnail;
-            // }
-            $thumbnail = \App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product->thumbnail;
-        }
-        // echo \App\CPU\ProductManager::product_image_path('thumbnail') . '/' . $product['thumbnail'];
-    ?>
     <script src="<?php echo e(asset('public/assets/back-end')); ?>/js/tags-input.min.js"></script>
     <script src="<?php echo e(asset('public/assets/back-end/js/spartan-multi-image-picker.js')); ?>"></script>
     <script>
@@ -287,7 +257,6 @@
                 }
             });
 
-            
             $("#thumbnail").spartanMultiImagePicker({
                 fieldName: 'image',
                 maxCount: 1,
@@ -295,7 +264,7 @@
                 groupClassName: 'col-12',
                 maxFileSize: '',
                 placeholderImage: {
-                    image: '<?php echo e($thumbnail); ?>',
+                    image: '<?php echo e(asset('public/assets/back-end/img/book_demo.jpg')); ?>',
                     width: '100%',
                 },
                 dropFileLabel: "Drop Here",
@@ -541,7 +510,7 @@
                     }
                 });
                 $.post({
-                    url: '<?php echo e(route('admin.product.update', $product->id)); ?>',
+                    url: '<?php echo e(route('admin.product.store')); ?>',
                     data: formData,
                     contentType: false,
                     processData: false,
@@ -586,4 +555,4 @@
     
 <?php $__env->stopPush(); ?>
 
-<?php echo $__env->make('layouts.back-end.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\booksbd\resources\views/admin-views/product/edit.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.back-end.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\booksbd\resources\views/admin-views/product/add-new.blade.php ENDPATH**/ ?>
