@@ -46,8 +46,8 @@
     <meta property="og:url" content="<?php echo e(route('product',[$product->slug])); ?>">
 
     <?php if($product['meta_description']!=null): ?>
-        <meta property="twitter:description" content="<?php echo $product['meta_description']; ?>">
-        <meta property="og:description" content="<?php echo $product['meta_description']; ?>">
+        <meta property="twitter:description" content="<?php echo e($product['meta_description']); ?>">
+        <meta property="og:description" content="<?php echo e($product['meta_description']); ?>">
     <?php else: ?>
         <meta property="og:description"
               content="<?php $__currentLoopData = explode(' ',$product['name']); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $keyword): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <?php echo e($keyword.' , '); ?> <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>">
@@ -68,22 +68,24 @@
     <!-- Page Content-->
     <div class="container mt-4 rtl" style="text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;">
         <!-- General info tab-->
-        <div class="row" style="direction: ltr">
+        <div class="row" style="direction: ltr; border: 1px solid #e2f0ff; border-radius: 0px; background: white; box-shadow: 1px 1px 6px #00000014;">
             <!-- Product gallery-->
-            <div class="col-lg-4 col-md-4">
-                <div class="d-flex align-items-center justify-content-center">
-                    <img class="img-responsive" style="max-height: 320px; width: auto;"
-                            onerror="this.src='<?php echo e(asset('public/assets/front-end/img/book_demo.jpg')); ?>'"
-                            src="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($product['thumbnail']); ?>"
-                            data-zoom="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($product['thumbnail']); ?>"
-                            alt="Product image" width="">
+            <div class="col-lg-3 col-md-3" style="padding: 16px;">
+                <div class="d-flex align-items-center">
+                    <div style="border: 1px solid lightgrey; padding: 20px;">
+                        <img class="img-responsive" style="max-height: 320px; width: auto;"
+                        onerror="this.src='<?php echo e(asset('public/assets/front-end/img/book_demo.jpg')); ?>'"
+                        src="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($product['thumbnail']); ?>"
+                        data-zoom="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($product['thumbnail']); ?>"
+                        alt="Product image" width="">
+                    </div>
                     
                 </div>
             </div>
             <!-- Product details-->
-            <div class="col-lg-8 col-md-8 mt-md-0 mt-sm-3" style="direction: <?php echo e(Session::get('direction')); ?>">
-                <div class="details">
-                    <h1 class="h3 mb-2"><?php echo e($product->name_bangla); ?></h1>
+            <div class="col-lg-6 col-md-6 mt-md-0 mt-sm-3" style="direction: <?php echo e(Session::get('direction')); ?>; padding: 16px;">
+                <div class="">
+                    <h1 class="h3 mb-2" style="font-size: 22px;"><?php echo e($product->name_bangla); ?></h1>
                     <?php
                         $autor_html = '';
                         if($product->writers->count() > 0) {
@@ -124,7 +126,7 @@
                     ?>
                     <?php echo $autor_html; ?><br/>
 
-                    <span>
+                    <div class="mb-2 mt-2">
                         Category:
                         <?php
                             $category_html = '';
@@ -140,7 +142,7 @@
                         ?>
                         <?php echo $category_html; ?>
 
-                    </span>
+                    </div>
                     <div class="d-flex align-items-center mb-2 pro">
                         
                         <div class="star-rating">
@@ -152,10 +154,12 @@
                                 <?php endif; ?>
                             <?php endfor; ?>
                         </div>
+                        <span
+                            class="font-for-tab d-inline-block font-size-sm text-body align-middle mt-1 <?php echo e(Session::get('direction') === "rtl" ? 'mr-1 ml-md-2 ml-1 pr-md-2 pr-sm-1 pl-md-2 pl-sm-1' : 'ml-1 mr-md-2 mr-1 pl-md-2 pl-sm-1 pr-md-2 pr-sm-1'); ?>"><?php echo e($overallRating[1]); ?> <?php echo e(\App\CPU\translate('Reviews')); ?></span>
                         
 
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-4 mt-4">
                         <?php if($product->published_price > $product->unit_price): ?>
                             <strike style="color: <?php echo e($web_config['secondary_color']); ?>;">
                                 ৳ <?php echo e(number_format($product->published_price, 0)); ?> 
@@ -166,7 +170,7 @@
 
                         </span>
                         <?php if($product->published_price > $product->unit_price): ?>
-                            You save ৳ <?php echo e($product->published_price - $product->unit_price); ?> (<?php echo e(ceil(100 * (($product->published_price - $product->unit_price)/$product->published_price))); ?>%)
+                            <small>You save ৳ <?php echo e($product->published_price - $product->unit_price); ?> (<?php echo e(ceil(100 * (($product->published_price - $product->unit_price)/$product->published_price))); ?>%)</small>
                         <?php endif; ?>
                     </div>
 
@@ -210,34 +214,7 @@
                                 // }
                             ?>
                         </div>
-                        <?php if($product->choice_options): ?>
-                        <?php $__currentLoopData = json_decode($product->choice_options); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $choice): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <div class="row flex-start mx-0">
-                                <div
-                                    class="product-description-label mt-2 <?php echo e(Session::get('direction') === "rtl" ? 'pl-2' : 'pr-2'); ?>"><?php echo e($choice->title); ?>
-
-                                    :
-                                </div>
-                                <div>
-                                    <ul class="list-inline checkbox-alphanumeric checkbox-alphanumeric--style-1 mb-2 mx-1 flex-start"
-                                        style="padding-<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>: 0;">
-                                        <?php $__currentLoopData = $choice->options; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $option): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <div>
-                                                <li class="for-mobile-capacity">
-                                                    <input type="radio"
-                                                           id="<?php echo e($choice->name); ?>-<?php echo e($option); ?>"
-                                                           name="<?php echo e($choice->name); ?>" value="<?php echo e($option); ?>"
-                                                           <?php if($key == 0): ?> checked <?php endif; ?> >
-                                                    <label style="font-size: .6em"
-                                                           for="<?php echo e($choice->name); ?>-<?php echo e($option); ?>"><?php echo e($option); ?></label>
-                                                </li>
-                                            </div>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    </ul>
-                                </div>
-                            </div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        <?php endif; ?>
+                        
 
                     <!-- Quantity + Add to cart -->
                         <div class="row no-gutters">
@@ -287,19 +264,16 @@
                             </div>
                         </div>
 
-                        <div class="d-flex justify-content-between mt-2">
-                            <button
-                                class="btn btn-secondary element-center btn-gap-<?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>"
-                                onclick="buy_now()"
-                                type="button"
-                                style="width:37%; height: 45px">
-                                <span class="string-limit"><?php echo e(\App\CPU\translate('buy_now')); ?></span>
-                            </button>
+                        <div class="d-flex
+                        
+                        mt-2">
+                            
                             <button
                                 class="btn btn-primary element-center btn-gap-<?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>"
                                 onclick="addToCart()"
                                 type="button"
-                                style="width:37%; height: 45px">
+                                style="width:37%; height: 45px; margin-right: 10px;">
+                                <i class="fa fa-cart-plus mr-2"></i>
                                 <span class="string-limit"><?php echo e(\App\CPU\translate('add_to_cart')); ?></span>
                             </button>
                             <button type="button" onclick="addWishlist('<?php echo e($product['id']); ?>')"
@@ -315,6 +289,9 @@
                     <div style="text-align:<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;"
                          class="sharethis-inline-share-buttons"></div>
                 </div>
+            </div>
+            <div class="col-lg-3 col-md-3" style="background: #F6F6F6;">
+
             </div>
         </div>
     </div>

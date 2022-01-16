@@ -37,7 +37,7 @@
                                 </a>
                                 <div class="media-body">
                                     <h6 class="widget-product-title">
-                                        <a href="<?php echo e(route('product',$cartItem['slug'])); ?>"><?php echo e($cartItem['name']); ?></a></h6>
+                                        <a href="<?php echo e(route('product',$cartItem['slug'])); ?>"><?php echo e($cartItem['name_bangla']); ?></a></h6>
                                     <?php $__currentLoopData = json_decode($cartItem['variations'],true); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key =>$variation): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <span style="font-size: 14px"><?php echo e($key); ?> : <?php echo e($variation); ?></span><br>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

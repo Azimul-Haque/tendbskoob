@@ -637,6 +637,15 @@
             border-top-right-radius: 0px;
         }
     </style>
+    <style type="text/css">
+        @font-face {
+          font-family: hindsiliguri;
+          src: url(<?php echo e(asset('fonts/HindSiliguri-Regular.woff')); ?>);
+        }
+        body, h1, h2, h3, h4, h5, h6, p, a, span, li, td, div, big, small, i, b {
+            font-family: hindsiliguri;
+        }
+    </style>
 </head>
 <!-- Body-->
 <body class="toolbar-enabled">

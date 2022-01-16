@@ -488,10 +488,16 @@
                 <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="category_div" style="height: 132px; width: 100%;">
                         <a href="<?php echo e(route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])); ?>">
-                            <img style="vertical-align: middle; padding: 16%;height: 100px"
-                                 src="<?php echo e(asset("storage/app/public/category/" . $category->icon)); ?>"
+                            <?php if($category['icon']): ?>
+                                <img style="vertical-align: middle; padding: 16%;height: 100px"
+                                src="<?php echo e(asset('public/images/category/' . $category['icon'])); ?>"
                                  onerror="this.src='<?php echo e(asset('public/assets/front-end/img/category_demo.jpg')); ?>'"
                                  alt="<?php echo e($category->name_bangla); ?>">
+                            <?php else: ?>
+                                <img style="vertical-align: middle; padding: 16%;height: 100px"
+                                src="<?php echo e(asset('public/assets/front-end/img/category_demo.jpg')); ?>"
+                                alt="<?php echo e($category->name_bangla); ?>">
+                            <?php endif; ?>
                             <p class="text-center small" style="margin-top: -10px"><?php echo e(\Illuminate\Support\Str::limit($category->name_bangla, 17)); ?></p>
                         </a>
                     </div>
@@ -524,7 +530,11 @@
                         <a href="<?php echo e(route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1])); ?>">
                             <div class="brand_div d-flex align-items-center justify-content-center"
                                  style="height:100px">
-                                <img src="<?php echo e(asset("public/images/author/" . $author->image)); ?>" alt="<?php echo e($author->name); ?>" onerror="this.src='<?php echo e(asset('public/assets/front-end/img/user_demo.jpg')); ?>'">
+                                <?php if($author->image): ?>
+                                    <img src="<?php echo e(asset("public/images/author/" . $author->image)); ?>" alt="<?php echo e($author->name); ?>" onerror="this.src='<?php echo e(asset('public/assets/front-end/img/user_demo.jpg')); ?>'">
+                                <?php else: ?>
+                                    <img src="<?php echo e(asset('public/assets/front-end/img/user_demo.jpg')); ?>">
+                                <?php endif; ?>
                             </div>
                         </a>
                         <small><?php echo e($author->name_bangla); ?></small>

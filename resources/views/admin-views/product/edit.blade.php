@@ -319,13 +319,15 @@
                                                placeholder="{{\App\CPU\translate('ISBN Number')}}"
                                                name="isbn" value="{{ $product->isbn }}" class="form-control">
                                     </div>
-                                    @if (auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin')
-                                        <label
-                                            class="control-label">{{\App\CPU\translate('Book Weight (KG)')}}</label>
-                                        <input type="number" min="0" step="0.01"
-                                            placeholder="{{\App\CPU\translate('Book Weight')}}"
-                                            value="{{ $product->weight }}" name="weight" class="form-control">
-                                    @endif
+                                    <div class="col-md-6">
+                                        @if (auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin')
+                                            <label
+                                                class="control-label">{{\App\CPU\translate('Book Weight (KG)')}}</label>
+                                            <input type="number" min="0" step="0.01"
+                                                placeholder="{{\App\CPU\translate('Book Weight')}}"
+                                                value="{{ $product->weight }}" name="weight" class="form-control">
+                                        @endif
+                                    </div>
                                 </div>
                                 <div class="row pt-4">
                                     @if (auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin')

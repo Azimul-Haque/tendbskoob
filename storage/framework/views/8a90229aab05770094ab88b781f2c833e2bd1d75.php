@@ -162,13 +162,15 @@
                                                placeholder="<?php echo e(\App\CPU\translate('ISBN Number')); ?>"
                                                name="isbn" value="<?php echo e($product->isbn); ?>" class="form-control">
                                     </div>
-                                    <?php if(auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin'): ?>
-                                        <label
-                                            class="control-label"><?php echo e(\App\CPU\translate('Book Weight (KG)')); ?></label>
-                                        <input type="number" min="0" step="0.01"
-                                            placeholder="<?php echo e(\App\CPU\translate('Book Weight')); ?>"
-                                            value="<?php echo e($product->weight); ?>" name="weight" class="form-control">
-                                    <?php endif; ?>
+                                    <div class="col-md-6">
+                                        <?php if(auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin'): ?>
+                                            <label
+                                                class="control-label"><?php echo e(\App\CPU\translate('Book Weight (KG)')); ?></label>
+                                            <input type="number" min="0" step="0.01"
+                                                placeholder="<?php echo e(\App\CPU\translate('Book Weight')); ?>"
+                                                value="<?php echo e($product->weight); ?>" name="weight" class="form-control">
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
                                 <div class="row pt-4">
                                     <?php if(auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin'): ?>
