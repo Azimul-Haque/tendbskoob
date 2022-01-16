@@ -657,7 +657,7 @@ class WebController extends Controller
             $datasource = Publisher::find((int)$request['id']);
         }
 
-        $products = $fetched->paginate(20)->appends($data);
+        $products = $fetched->paginate(60)->appends($data);
         $authors = Author::get();
         $publishers = Publisher::get();
         $categories = Category::get();

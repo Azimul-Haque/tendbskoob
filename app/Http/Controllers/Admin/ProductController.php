@@ -300,20 +300,20 @@ class ProductController extends BaseController
                 $location2  = storage_path('app/public/product/meta/'. $filename);
                 Image::make($thumbnail)
                      ->fit(260, 372)
-                     ->insert(public_path('public/assets/back-end/img/watermark.png'), 'bottom-right', 10, 10)
-                     ->text('www.booksbd.net', 30, 185, function($font) {
+                    //  ->insert(public_path('public/assets/back-end/img/watermark.png'), 'bottom-right', 10, 10)
+                     ->text('www.booksbd.net', 20, 185, function($font) {
                         $font->file(public_path('public/fonts/Roboto-Black.ttf'));
-                        $font->size(24);
-                        $font->color(array(250, 250, 250, 0.25));
+                        $font->size(26);
+                        $font->color(array(250, 250, 250, 0.30));
                         // $font->angle(45);
                     })->save($location1);
                 Image::make($thumbnail)
                      ->fit(260, 372)
-                     ->insert(public_path('public/assets/back-end/img/watermark.png'), 'bottom-right', 10, 10)
-                     ->text('www.booksbd.net', 30, 185, function($font) {
+                    //  ->insert(public_path('public/assets/back-end/img/watermark.png'), 'bottom-right', 10, 10)
+                     ->text('www.booksbd.net', 20, 185, function($font) {
                         $font->file(public_path('public/fonts/Roboto-Black.ttf'));
-                        $font->size(24);
-                        $font->color(array(250, 250, 250, 0.25));
+                        $font->size(26);
+                        $font->color(array(250, 250, 250, 0.30));
                         // $font->angle(45);
                     })->save($location2);
                 // dd($thumbnail);
@@ -600,20 +600,20 @@ class ProductController extends BaseController
                 $location2  = storage_path('app/public/product/meta/'. $filename);
                 Image::make($thumbnail)
                      ->fit(260, 372)
-                     ->insert(public_path('public/assets/back-end/img/watermark.png'), 'bottom-right', 10, 10)
-                     ->text('www.booksbd.net', 30, 185, function($font) {
+                    //  ->insert(public_path('public/assets/back-end/img/watermark.png'), 'bottom-right', 10, 10)
+                     ->text('www.booksbd.net', 20, 185, function($font) {
                         $font->file(public_path('public/fonts/Roboto-Black.ttf'));
-                        $font->size(24);
-                        $font->color(array(250, 250, 250, 0.25));
+                        $font->size(26);
+                        $font->color(array(250, 250, 250, 0.30));
                         // $font->angle(45);
                     })->save($location1);
                 Image::make($thumbnail)
                      ->fit(260, 372)
-                     ->insert(public_path('public/assets/back-end/img/watermark.png'), 'bottom-right', 10, 10)
-                     ->text('www.booksbd.net', 30, 185, function($font) {
+                    //  ->insert(public_path('public/assets/back-end/img/watermark.png'), 'bottom-right', 10, 10)
+                     ->text('www.booksbd.net', 20, 185, function($font) {
                         $font->file(public_path('public/fonts/Roboto-Black.ttf'));
-                        $font->size(24);
-                        $font->color(array(250, 250, 250, 0.25));
+                        $font->size(26);
+                        $font->color(array(250, 250, 250, 0.30));
                         // $font->angle(45);
                     })->save($location2);
                 // dd($thumbnail);
