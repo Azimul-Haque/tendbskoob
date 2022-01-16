@@ -280,7 +280,8 @@
         }
 
         .product-title {
-            font-family: 'Roboto', sans-serif !important;
+            /* font-family: 'Roboto', sans-serif !important; */
+            font-family: hindsiliguri !important;
             font-weight: 400 !important;
             font-size: 22px !important;
             color: #000000 !important;
@@ -464,7 +465,8 @@
         }
 
         .text-accent {
-            font-family: 'Roboto', sans-serif;
+            /* font-family: 'Roboto', sans-serif; */
+            font-family: hindsiliguri !important;
             font-weight: 700;
             font-size: 18px;
             color: {{$web_config['primary_color']}};
