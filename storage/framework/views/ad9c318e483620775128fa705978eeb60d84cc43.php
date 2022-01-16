@@ -706,14 +706,15 @@
 
                             </h4>
                             <script>
-                                var description = "<?php echo $datasource['description']; ?>";
+                                var description = "<?php echo e($datasource['description']); ?>";
                             </script>
                             <p id="datasourcedetail">
                                 <?php echo e(\Illuminate\Support\Str::limit($datasource['description'], 300)); ?><br/>
                                 <?php if(strlen($datasource['description']) > 300): ?>
-                                    <span style="cursor: pointer" onclick='datasourcedetail("<?php echo e($datasource['description']); ?>")'><big>Read More</big></span>
+                                    <span style="cursor: pointer" onclick='datasourcedetail()'><big>Read More</big></span>
                                 <?php endif; ?>
                             </p>
+                            <p style="display: none;" id="datasourcedetail2"><?php echo e($datasource['description']); ?></p>
                         </div>
                     </div>
                 <?php elseif($data['data_from'] == 'publisher'): ?>
@@ -929,7 +930,9 @@
         });
 
         function datasourcedetail(text) {
-            $('#datasourcedetail').text(text);
+            $('#datasourcedetail').hide();
+            $('#datasourcedetail2').css('display', 'block');
+            
         }
     </script>
 <?php $__env->stopPush(); ?>

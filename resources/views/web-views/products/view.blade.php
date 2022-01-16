@@ -780,14 +780,15 @@
                                 {{ $datasource['name_bangla'] }}
                             </h4>
                             <script>
-                                var description = "{!! $datasource['description'] !!}";
+                                var description = "{{ $datasource['description'] }}";
                             </script>
                             <p id="datasourcedetail">
                                 {{ \Illuminate\Support\Str::limit($datasource['description'], 300) }}<br/>
                                 @if (strlen($datasource['description']) > 300)
-                                    <span style="cursor: pointer" onclick='datasourcedetail("{{ $datasource['description'] }}")'><big>Read More</big></span>
+                                    <span style="cursor: pointer" onclick='datasourcedetail()'><big>Read More</big></span>
                                 @endif
                             </p>
+                            <p style="display: none;" id="datasourcedetail2">{{ $datasource['description'] }}</p>
                         </div>
                     </div>
                 @elseif($data['data_from'] == 'publisher')
@@ -1000,7 +1001,9 @@
         });
 
         function datasourcedetail(text) {
-            $('#datasourcedetail').text(text);
+            $('#datasourcedetail').hide();
+            $('#datasourcedetail2').css('display', 'block');
+            
         }
     </script>
 @endpush
