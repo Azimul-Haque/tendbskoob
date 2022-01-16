@@ -166,10 +166,10 @@ class WebController extends Controller
                     $q->orWhere('name', 'like', "%{$value}%");
                     $q->orWhere('name_bangla', 'like', "%{$value}%");
                 }
-            })->paginate(60);
+            })->paginate(40);
             $search_param = $request->search;
         } else {
-            $categories = Category::paginate(60);
+            $categories = Category::paginate(40);
         }
         
         return view('web-views.categories', compact('categories', 'search_param'));
@@ -199,10 +199,10 @@ class WebController extends Controller
                     $q->orWhere('name', 'like', "%{$value}%");
                     $q->orWhere('name_bangla', 'like', "%{$value}%");
                 }
-            })->paginate(60);
+            })->paginate(40);
             $search_param = $request->search;
         } else {
-            $authors = Author::paginate(60);
+            $authors = Author::paginate(40);
         }
         
         return view('web-views.authors', compact('authors', 'search_param'));
@@ -218,10 +218,10 @@ class WebController extends Controller
                     $q->orWhere('name', 'like', "%{$value}%");
                     $q->orWhere('name_bangla', 'like', "%{$value}%");
                 }
-            })->paginate(60);
+            })->paginate(40);
             $search_param = $request->search;
         } else {
-            $publishers = Publisher::paginate(60);
+            $publishers = Publisher::paginate(40);
         }
         
         return view('web-views.publishers', compact('publishers', 'search_param'));
