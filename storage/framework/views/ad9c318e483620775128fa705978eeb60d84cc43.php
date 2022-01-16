@@ -711,7 +711,7 @@
                             <p id="datasourcedetail">
                                 <?php echo e(\Illuminate\Support\Str::limit($datasource['description'], 300)); ?><br/>
                                 <?php if(strlen($datasource['description']) > 300): ?>
-                                    <span style="cursor: pointer" onclick='datasourcedetail(description)'><big>Read More</big></span>
+                                    <span style="cursor: pointer" onclick='datasourcedetail("<?php echo e($datasource['description']); ?>")'><big>Read More</big></span>
                                 <?php endif; ?>
                             </p>
                         </div>
