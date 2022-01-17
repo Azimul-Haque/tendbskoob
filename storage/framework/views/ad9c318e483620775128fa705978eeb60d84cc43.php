@@ -321,164 +321,171 @@
                 <!-- Brand Sidebar-->
                 
                 
-                <!-- Author Sidebar-->
-                <div class="cz-sidebar rounded-lg box-shadow-lg" id="shop-sidebar" style="margin-bottom: 11px;">
-                    <div class="cz-sidebar-header box-shadow-sm">
-                        <button class="close <?php echo e(Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'); ?>"
-                                type="button" data-dismiss="sidebar" aria-label="Close"><span
-                                class="d-inline-block font-size-xs font-weight-normal align-middle"><?php echo e(\App\CPU\translate('Dashboard')); ?><?php echo e(\App\CPU\translate('Close sidebar')); ?></span><span
-                                class="d-inline-block align-middle <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'); ?>"
-                                aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="cz-sidebar-body">
-                        <!-- Filter by Author-->
-                        <div class="widget cz-filter mb-4 pb-6 border-bottom mt-2">
-                            <h3 class="widget-title" style="font-weight: 700;"><?php echo e(\App\CPU\translate('Authors')); ?></h3>
-                            <div class="divider-role"
-                                 style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
-                            <div class="input-group-overlay input-group-sm mb-2">
-                                <input style="background: aliceblue" placeholder="Search Author"
-                                       class="cz-filter-search form-control form-control-sm appended-form-control"
-                                       type="text" id="search-author">
-                                <div class="input-group-append-overlay">
-                                    <span style="color: #3498db;"
-                                          class="input-group-text">
-                                        <i class="czi-search"></i>
-                                    </span>
-                                </div>
-                            </div>
-                            <ul id="authorlist" class="widget-list cz-filter-list list-unstyled pt-1"
-                                style="height: 300px;"
-                                data-simplebar data-simplebar-auto-hide="false">
-                                <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $author): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <div class="brand mt-1 for-brand-hover <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : ''); ?>" id="author">
-                                        <li style="cursor: pointer;padding: 2px" class="flex-between"
-                                            onclick="location.href='<?php echo e(route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1, 'author_name'=>$author['slug']])); ?>'">
-                                            <div>
-                                                <?php echo e($author['name_bangla']); ?>
-
-                                            </div>
-                                            <?php if($author->products->count() > 0 ): ?>
-                                                <div>
-                                                    <span class="count-value">
-                                                    <?php echo e($author->products->count()); ?>
-
-                                                    </span>
-                                                </div>
-                                            <?php endif; ?>
-                                        </li>
+                <?php if($data['data_from'] != 'author'): ?>
+                    <!-- Author Sidebar-->
+                    <div class="cz-sidebar rounded-lg box-shadow-lg" id="shop-sidebar" style="margin-bottom: 11px;">
+                        <div class="cz-sidebar-header box-shadow-sm">
+                            <button class="close <?php echo e(Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'); ?>"
+                                    type="button" data-dismiss="sidebar" aria-label="Close"><span
+                                    class="d-inline-block font-size-xs font-weight-normal align-middle"><?php echo e(\App\CPU\translate('Dashboard')); ?><?php echo e(\App\CPU\translate('Close sidebar')); ?></span><span
+                                    class="d-inline-block align-middle <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'); ?>"
+                                    aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="cz-sidebar-body">
+                            <!-- Filter by Author-->
+                            <div class="widget cz-filter mb-4 pb-6 border-bottom mt-2">
+                                <h3 class="widget-title" style="font-weight: 700;"><?php echo e(\App\CPU\translate('Authors')); ?></h3>
+                                <div class="divider-role"
+                                    style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
+                                <div class="input-group-overlay input-group-sm mb-2">
+                                    <input style="background: aliceblue" placeholder="Search Author"
+                                        class="cz-filter-search form-control form-control-sm appended-form-control"
+                                        type="text" id="search-author">
+                                    <div class="input-group-append-overlay">
+                                        <span style="color: #3498db;"
+                                            class="input-group-text">
+                                            <i class="czi-search"></i>
+                                        </span>
                                     </div>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </ul>
+                                </div>
+                                <ul id="authorlist" class="widget-list cz-filter-list list-unstyled pt-1"
+                                    style="height: 300px;"
+                                    data-simplebar data-simplebar-auto-hide="false">
+                                    <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $author): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <div class="brand mt-1 for-brand-hover <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : ''); ?>" id="author">
+                                            <li style="cursor: pointer;padding: 2px" class="flex-between"
+                                                onclick="location.href='<?php echo e(route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1, 'author_name'=>$author['slug']])); ?>'">
+                                                <div>
+                                                    <?php echo e($author['name_bangla']); ?>
+
+                                                </div>
+                                                <?php if($author->products->count() > 0 ): ?>
+                                                    <div>
+                                                        <span class="count-value">
+                                                        <?php echo e($author->products->count()); ?>
+
+                                                        </span>
+                                                    </div>
+                                                <?php endif; ?>
+                                            </li>
+                                        </div>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php endif; ?>
                 
-                <!-- Publisher Sidebar-->
-                <div class="cz-sidebar rounded-lg box-shadow-lg" id="shop-sidebar" style="margin-bottom: 11px;">
-                    <div class="cz-sidebar-header box-shadow-sm">
-                        <button class="close <?php echo e(Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'); ?>"
-                                type="button" data-dismiss="sidebar" aria-label="Close"><span
-                                class="d-inline-block font-size-xs font-weight-normal align-middle"><?php echo e(\App\CPU\translate('Dashboard')); ?><?php echo e(\App\CPU\translate('Close sidebar')); ?></span><span
-                                class="d-inline-block align-middle <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'); ?>"
-                                aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="cz-sidebar-body">
-                        <!-- Filter by Publisher-->
-                        <div class="widget cz-filter mb-4 pb-6 border-bottom mt-2">
-                            <h3 class="widget-title" style="font-weight: 700;"><?php echo e(\App\CPU\translate('Publications')); ?></h3>
-                            <div class="divider-role"
-                                 style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
-                            <div class="input-group-overlay input-group-sm mb-2">
-                                <input style="background: aliceblue" placeholder="Search Publication"
-                                       class="cz-filter-search form-control form-control-sm appended-form-control"
-                                       type="text" id="search-publisher">
-                                <div class="input-group-append-overlay">
-                                    <span style="color: #3498db;"
-                                          class="input-group-text">
-                                        <i class="czi-search"></i>
-                                    </span>
-                                </div>
-                            </div>
-                            <ul id="publisherlist" class="widget-list cz-filter-list list-unstyled pt-1"
-                                style="height: 300px;"
-                                data-simplebar data-simplebar-auto-hide="false">
-                                <?php $__currentLoopData = $publishers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $publisher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <div class="brand mt-1 for-brand-hover <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : ''); ?>" id="publisher">
-                                        <li style="cursor: pointer;padding: 2px" class="flex-between"
-                                            onclick="location.href='<?php echo e(route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1, 'publisher_name'=>$publisher['slug']])); ?>'">
-                                            <div>
-                                                <?php echo e($publisher['name_bangla']); ?>
-
-                                            </div>
-                                            <?php if($publisher->products->count() > 0 ): ?>
-                                                <div>
-                                                    <span class="count-value">
-                                                    <?php echo e($publisher->products->count()); ?>
-
-                                                    </span>
-                                                </div>
-                                            <?php endif; ?>
-                                        </li>
+                <?php if($data['data_from'] != 'publisher'): ?>
+                    <!-- Publisher Sidebar-->
+                    <div class="cz-sidebar rounded-lg box-shadow-lg" id="shop-sidebar" style="margin-bottom: 11px;">
+                        <div class="cz-sidebar-header box-shadow-sm">
+                            <button class="close <?php echo e(Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'); ?>"
+                                    type="button" data-dismiss="sidebar" aria-label="Close"><span
+                                    class="d-inline-block font-size-xs font-weight-normal align-middle"><?php echo e(\App\CPU\translate('Dashboard')); ?><?php echo e(\App\CPU\translate('Close sidebar')); ?></span><span
+                                    class="d-inline-block align-middle <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'); ?>"
+                                    aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="cz-sidebar-body">
+                            <!-- Filter by Publisher-->
+                            <div class="widget cz-filter mb-4 pb-6 border-bottom mt-2">
+                                <h3 class="widget-title" style="font-weight: 700;"><?php echo e(\App\CPU\translate('Publications')); ?></h3>
+                                <div class="divider-role"
+                                    style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
+                                <div class="input-group-overlay input-group-sm mb-2">
+                                    <input style="background: aliceblue" placeholder="Search Publication"
+                                        class="cz-filter-search form-control form-control-sm appended-form-control"
+                                        type="text" id="search-publisher">
+                                    <div class="input-group-append-overlay">
+                                        <span style="color: #3498db;"
+                                            class="input-group-text">
+                                            <i class="czi-search"></i>
+                                        </span>
                                     </div>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </ul>
+                                </div>
+                                <ul id="publisherlist" class="widget-list cz-filter-list list-unstyled pt-1"
+                                    style="height: 300px;"
+                                    data-simplebar data-simplebar-auto-hide="false">
+                                    <?php $__currentLoopData = $publishers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $publisher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <div class="brand mt-1 for-brand-hover <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : ''); ?>" id="publisher">
+                                            <li style="cursor: pointer;padding: 2px" class="flex-between"
+                                                onclick="location.href='<?php echo e(route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1, 'publisher_name'=>$publisher['slug']])); ?>'">
+                                                <div>
+                                                    <?php echo e($publisher['name_bangla']); ?>
+
+                                                </div>
+                                                <?php if($publisher->products->count() > 0 ): ?>
+                                                    <div>
+                                                        <span class="count-value">
+                                                        <?php echo e($publisher->products->count()); ?>
+
+                                                        </span>
+                                                    </div>
+                                                <?php endif; ?>
+                                            </li>
+                                        </div>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php endif; ?>
 
-                <!-- Category Sidebar-->
-                <div class="cz-sidebar rounded-lg box-shadow-lg" id="shop-sidebar" style="margin-bottom: 11px;">
-                    <div class="cz-sidebar-header box-shadow-sm">
-                        <button class="close <?php echo e(Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'); ?>"
-                                type="button" data-dismiss="sidebar" aria-label="Close"><span
-                                class="d-inline-block font-size-xs font-weight-normal align-middle"><?php echo e(\App\CPU\translate('Dashboard')); ?><?php echo e(\App\CPU\translate('Close sidebar')); ?></span><span
-                                class="d-inline-block align-middle <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'); ?>"
-                                aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="cz-sidebar-body">
-                        <!-- Filter by Category-->
-                        <div class="widget cz-filter mb-4 pb-6 border-bottom mt-2">
-                            <h3 class="widget-title" style="font-weight: 700;"><?php echo e(\App\CPU\translate('Categories')); ?></h3>
-                            <div class="divider-role"
-                                 style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
-                            <div class="input-group-overlay input-group-sm mb-2">
-                                <input style="background: aliceblue" placeholder="Search Category"
-                                       class="cz-filter-search form-control form-control-sm appended-form-control"
-                                       type="text" id="search-category">
-                                <div class="input-group-append-overlay">
-                                    <span style="color: #3498db;"
-                                          class="input-group-text">
-                                        <i class="czi-search"></i>
-                                    </span>
-                                </div>
-                            </div>
-                            <ul id="categorylist" class="widget-list cz-filter-list list-unstyled pt-1"
-                                style="height: 300px;"
-                                data-simplebar data-simplebar-auto-hide="false">
-                                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <div class="brand mt-1 for-brand-hover <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : ''); ?>" id="publisher">
-                                        <li style="cursor: pointer;padding: 2px" class="flex-between"
-                                            onclick="location.href='<?php echo e(route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])); ?>'">
-                                            <div>
-                                                <?php echo e($category['name_bangla']); ?>
-
-                                            </div>
-                                            <?php if($category->products->count() > 0 ): ?>
-                                                <div>
-                                                    <span class="count-value">
-                                                    <?php echo e($category->products->count()); ?>
-
-                                                    </span>
-                                                </div>
-                                            <?php endif; ?>
-                                        </li>
+                <?php if($data['data_from'] != 'category'): ?>
+                    <!-- Category Sidebar-->
+                    <div class="cz-sidebar rounded-lg box-shadow-lg" id="shop-sidebar" style="margin-bottom: 11px;">
+                        <div class="cz-sidebar-header box-shadow-sm">
+                            <button class="close <?php echo e(Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'); ?>"
+                                    type="button" data-dismiss="sidebar" aria-label="Close"><span
+                                    class="d-inline-block font-size-xs font-weight-normal align-middle"><?php echo e(\App\CPU\translate('Dashboard')); ?><?php echo e(\App\CPU\translate('Close sidebar')); ?></span><span
+                                    class="d-inline-block align-middle <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'); ?>"
+                                    aria-hidden="true">&times;</span></button>
+                        </div>
+                        
+                        <div class="cz-sidebar-body">
+                            <!-- Filter by Category-->
+                            <div class="widget cz-filter mb-4 pb-6 border-bottom mt-2">
+                                <h3 class="widget-title" style="font-weight: 700;"><?php echo e(\App\CPU\translate('Categories')); ?></h3>
+                                <div class="divider-role"
+                                    style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
+                                <div class="input-group-overlay input-group-sm mb-2">
+                                    <input style="background: aliceblue" placeholder="Search Category"
+                                        class="cz-filter-search form-control form-control-sm appended-form-control"
+                                        type="text" id="search-category">
+                                    <div class="input-group-append-overlay">
+                                        <span style="color: #3498db;"
+                                            class="input-group-text">
+                                            <i class="czi-search"></i>
+                                        </span>
                                     </div>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </ul>
+                                </div>
+                                <ul id="categorylist" class="widget-list cz-filter-list list-unstyled pt-1"
+                                    style="height: 300px;"
+                                    data-simplebar data-simplebar-auto-hide="false">
+                                    <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <div class="brand mt-1 for-brand-hover <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : ''); ?>" id="publisher">
+                                            <li style="cursor: pointer;padding: 2px" class="flex-between"
+                                                onclick="location.href='<?php echo e(route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])); ?>'">
+                                                <div>
+                                                    <?php echo e($category['name_bangla']); ?>
+
+                                                </div>
+                                                <?php if($category->products->count() > 0 ): ?>
+                                                    <div>
+                                                        <span class="count-value">
+                                                        <?php echo e($category->products->count()); ?>
+
+                                                        </span>
+                                                    </div>
+                                                <?php endif; ?>
+                                            </li>
+                                        </div>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <?php endif; ?>
             </aside>
 
             
@@ -563,6 +570,7 @@
                     <!-- Brand Sidebar-->
                     
 
+                    <?php if($data['data_from'] != 'author'): ?>
                     <!-- Author Sidebar-->
                     <div class="" id="shop-sidebar" style="margin-bottom: 11px;">
                         <div class="">
@@ -603,7 +611,9 @@
                             </div>
                         </div>
                     </div>
+                    <?php endif; ?>
 
+                    <?php if($data['data_from'] != 'publisher'): ?>
                     <!-- Publisher Sidebar-->
                     <div class="" id="shop-sidebar" style="margin-bottom: 11px;">
                         <div class="">
@@ -645,7 +655,9 @@
                             </div>
                         </div>
                     </div>
+                    <?php endif; ?>
 
+                    <?php if($data['data_from'] != 'category'): ?>
                     <!-- Category Sidebar-->
                     <div class="" id="shop-sidebar" style="margin-bottom: 11px;">
                         <div class="">
@@ -686,6 +698,7 @@
                             </div>
                         </div>
                     </div>
+                    <?php endif; ?>
                 </aside>
             </div>
 

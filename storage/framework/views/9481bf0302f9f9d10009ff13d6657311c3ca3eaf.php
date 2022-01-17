@@ -21,7 +21,7 @@
     }
 
     .sidebarL h3:hover + .divider-role {
-        border-bottom: 3px solid {{$web_config['secondary_color']}}    !important;
+        border-bottom: 3px solid <?php echo e($web_config['secondary_color']); ?>    !important;
         transition: .2s ease-in-out;
     }
 
@@ -59,54 +59,35 @@
             <!-- Filter by price-->
             <div class="sidebarL">
                 <h3 class="widget-title btnF" style="font-weight: 700;">
-                    <a class="{{Request::is('account-order*') || Request::is('account-order-details*') ? 'active-menu' :''}}" href="{{route('account-oder') }} ">{{\App\CPU\translate('my_order')}}</a>
+                    <a class="<?php echo e(Request::is('account-order*') || Request::is('account-order-details*') ? 'active-menu' :''); ?>" href="<?php echo e(route('account-oder')); ?> "><?php echo e(\App\CPU\translate('my_order')); ?></a>
                 </h3>
                 <div class="divider-role"
                      style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;">
                 </div>
             </div>
         </div>
-        {{-- <div class="pb-0">
-            <!-- Filter by price-->
-            <div class="sidebarL">
-                <h3 class="widget-title btnF" style="font-weight: 700;">
-                    <a class="{{Request::is('track-order*')?'active-menu':''}}" href="{{route('track-order.index') }} ">{{\App\CPU\translate('track_your_order')}}</a>
-                </h3>
-                <div class="divider-role"
-                     style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;">
-                </div>
-            </div>
-        </div> --}}
+        
         <div class="pb-0">
             <!-- Filter by price-->
             <div class="sidebarL">
                 <h3 class="widget-title btnF " style="font-weight: 700;">
-                    <a class="{{Request::is('wishlists*')?'active-menu':''}}" href="{{route('wishlists')}}"> {{\App\CPU\translate('wish_list')}}  </a></h3>
+                    <a class="<?php echo e(Request::is('wishlists*')?'active-menu':''); ?>" href="<?php echo e(route('wishlists')); ?>"> <?php echo e(\App\CPU\translate('wish_list')); ?>  </a></h3>
                 <div class="divider-role"
                      style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;">
                 </div>
             </div>
         </div>
 
-        {{--to do--}}
-        {{-- <div class="pb-0">
-            <!-- Filter by price-->
-            <div class="sidebarL">
-                <h3 class="widget-title btnF" style="font-weight: 700;">
-                    <a class="{{Request::is('chat*')?'active-menu':''}}" href="{{route('chat-with-seller')}}">{{\App\CPU\translate('chat_with_seller')}}</a>
-                </h3>
-                <div class="divider-role"
-                     style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;">
-                </div>
-            </div>
-        </div> --}}
+        
+        
 
         <div class="pb-0">
             <!-- Filter by price-->
             <div class=" sidebarL">
                 <h3 class="widget-title btnF" style="font-weight: 700;">
-                    <a class="{{Request::is('user-account*')?'active-menu':''}}" href="{{route('user-account')}}">
-                        {{\App\CPU\translate('profile_info')}}
+                    <a class="<?php echo e(Request::is('user-account*')?'active-menu':''); ?>" href="<?php echo e(route('user-account')); ?>">
+                        <?php echo e(\App\CPU\translate('profile_info')); ?>
+
                     </a>
                 </h3>
                 <div class="divider-role"
@@ -118,8 +99,8 @@
             <!-- Filter by price-->
             <div class=" sidebarL">
                 <h3 class="widget-title btnF" style="font-weight: 700;">
-                    <a class="{{Request::is('account-address*')?'active-menu':''}}"
-                       href="{{ route('account-address') }}">{{\App\CPU\translate('address')}} </a>
+                    <a class="<?php echo e(Request::is('account-address*')?'active-menu':''); ?>"
+                       href="<?php echo e(route('account-address')); ?>"><?php echo e(\App\CPU\translate('address')); ?> </a>
                 </h3>
                 <div class="divider-role"
                      style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;">
@@ -130,26 +111,14 @@
             <!-- Filter by price-->
             <div class=" sidebarL">
                 <h3 class="widget-title btnF" style="font-weight: 700;">
-                    <a class="{{(Request::is('account-ticket*') || Request::is('support-ticket*'))?'active-menu':''}}"
-                       href="{{ route('account-tickets') }}">{{\App\CPU\translate('support_ticket')}}</a></h3>
+                    <a class="<?php echo e((Request::is('account-ticket*') || Request::is('support-ticket*'))?'active-menu':''); ?>"
+                       href="<?php echo e(route('account-tickets')); ?>"><?php echo e(\App\CPU\translate('support_ticket')); ?></a></h3>
                 <div class="divider-role"
                      style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;">
                 </div>
             </div>
         </div>
-        {{--<div class="pb-0" style="padding-top: 12px;">
-            <!-- Filter by price-->
-            <div class="sidebarL ">
-                <h3 class="widget-title btnF" style="font-weight: 700;">
-                    <a class="{{Request::is('account-transaction*')?'active-menu':''}}"
-                       href="{{ route('account-transaction') }}">
-                       {{\App\CPU\translate('tansction_history')}}
-                    </a>
-                </h3>
-                <div class="divider-role"
-                     style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;"></div>
-            </div>
-        </div>--}}
+        
     </div>
 </div>
 
@@ -170,3 +139,4 @@
 
 
 
+<?php /**PATH C:\xampp\htdocs\booksbd\resources\views/web-views/partials/_profile-aside.blade.php ENDPATH**/ ?>

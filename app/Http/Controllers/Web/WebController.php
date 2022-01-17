@@ -486,6 +486,10 @@ class WebController extends Controller
 
         $query = '';
 
+        $authors = Author::get();
+        $publishers = Publisher::get();
+        $categories = Category::get();
+
         // dd($porduct_data->get());
         if ($request['data_from'] == 'category') {
             $products = $porduct_data->get();
@@ -517,6 +521,26 @@ class WebController extends Controller
         if ($request['data_from'] == 'publisher') {
             $query = $porduct_data->where('publisher_id', $request['id']);
             // dd($query);
+
+            $products = $query->get();
+            $author_ids = [];
+            $category_ids = [];
+            foreach ($products as $product) {
+                foreach($product->writers as $writer) {
+                    array_push($author_ids, $writer['id']);
+                }
+                foreach($product->translators as $translator) {
+                    array_push($author_ids, $translator['id']);
+                }
+                foreach($product->editors as $editor) {
+                    array_push($author_ids, $editor['id']);
+                }
+                foreach($product->categories as $category) {
+                    array_push($category_ids, $category['id']);
+                }
+            }
+            $authors = Author::whereIn('id', $author_ids)->get();
+            $categories = Category::whereIn('id', $category_ids)->get();
         }
 
         if ($request['data_from'] == 'latest') {
@@ -658,9 +682,6 @@ class WebController extends Controller
         }
 
         $products = $fetched->paginate(60)->appends($data);
-        $authors = Author::get();
-        $publishers = Publisher::get();
-        $categories = Category::get();
 
         // dd($products);
         return view('web-views.products.view', compact('products', 'data', 'datasource', 'authors', 'publishers', 'categories'), $data);

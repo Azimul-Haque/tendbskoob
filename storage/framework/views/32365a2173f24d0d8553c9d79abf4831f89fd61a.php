@@ -14,13 +14,7 @@
             <?php $__currentLoopData = $cart; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $group_key=>$group): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <?php $__currentLoopData = $group; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cart_key=>$cartItem): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <?php if($cart_key==0): ?>
-                        <?php if($cartItem->seller_is=='admin'): ?>
-                            <?php echo e(\App\CPU\Helpers::get_business_settings('company_name')); ?>
-
-                        <?php else: ?>
-                            <?php echo e(\App\Model\Shop::where(['seller_id'=>$cartItem['seller_id']])->first()->name); ?>
-
-                        <?php endif; ?>
+                        
                     <?php endif; ?>
                     <div class="cart_item mb-2">
                         <div class="row">
@@ -39,7 +33,8 @@
                                     <div class="media-body d-flex justify-content-center align-items-center">
                                         <div class="cart_product">
                                             <div class="product-title">
-                                                <a href="<?php echo e(route('product',$cartItem['slug'])); ?>"><?php echo e($cartItem['name']); ?></a>
+                                                <a href="<?php echo e(route('product',$cartItem['slug'])); ?>"><?php echo e($cartItem['name_bangla']); ?></a><br/>
+                                                <small><?php echo e($cartItem['author']); ?></small>
                                             </div>
                                             <div
                                                 class=" text-accent"><?php echo e(\App\CPU\Helpers::currency_converter($cartItem['price']-$cartItem['discount'])); ?></div>

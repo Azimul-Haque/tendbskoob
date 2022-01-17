@@ -423,11 +423,13 @@
                        style="width:49%;">
                         {{\App\CPU\translate('generate_invoice')}}
                     </a>
-                    <a class="btn btn-secondary" type="button"
+                    <!-- 
+                        <a class="btn btn-secondary" type="button"
                        href="{{route('track-order.result',['order_id'=>$order['id']])}}"
                        style="width:50%; color: white">
                         {{\App\CPU\translate('Track')}} {{\App\CPU\translate('Order')}}
-                    </a>
+                    </a>    
+                    -->
 
                 </div>
             </section>

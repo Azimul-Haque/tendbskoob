@@ -71,7 +71,7 @@ Route::group(['namespace' => 'Web','middleware'=>['maintenance_mode']], function
     Route::get('account-address-delete', 'UserProfileController@address_delete')->name('address-delete');
     Route::post('account-address-update', 'UserProfileController@address_update')->name('address-update');
     Route::get('account-payment', 'UserProfileController@account_payment')->name('account-payment');
-    Route::get('account-oder', 'UserProfileController@account_oder')->name('account-oder');
+    Route::get('account-order', 'UserProfileController@account_oder')->name('account-oder');
     Route::get('account-order-details', 'UserProfileController@account_order_details')->name('account-order-details')->middleware('customer');
     Route::get('generate-invoice/{id}', 'UserProfileController@generate_invoice')->name('generate-invoice');
     Route::get('account-wishlist', 'UserProfileController@account_wishlist')->name('account-wishlist'); //add to card not work
