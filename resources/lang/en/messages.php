@@ -1454,4 +1454,13 @@
   'incomplete_info' => 'Incomplete info',
   'Publication (ASC)' => 'Publication (ASC)',
   'Publication (DESC)' => 'Publication (DESC)',
+  'SUPPORT TICKET ANSWER' => 'SUPPORT TICKET ANSWER',
+  'Date Submitted' => 'Date Submitted',
+  'Last Updated' => 'Last Updated',
+  'Submit message' => 'Submit message',
+  'Book Request' => 'Book Request',
+  'Problem' => 'Problem',
+  'Partner Request' => 'Partner Request',
+  'Inquiry' => 'Inquiry',
+  'বইয়ের নাম' => '���ইয়ের নাম',
 );

@@ -107,11 +107,13 @@
                                     <label class="" for="inlineFormCustomSelect"><?php echo e(\App\CPU\translate('Type')); ?></label>
                                     <select class="custom-select " id="ticket-type" name="ticket_type" required>
                                         <option
-                                            value="Website problem"><?php echo e(\App\CPU\translate('Website')); ?> <?php echo e(\App\CPU\translate('problem')); ?></option>
-                                        <option value="Partner request"><?php echo e(\App\CPU\translate('partner_request')); ?></option>
+                                            value="Website problem"><?php echo e(\App\CPU\translate('Website')); ?> <?php echo e(\App\CPU\translate('Problem')); ?></option>
+                                        <option value="Partner request"><?php echo e(\App\CPU\translate('Partner Request')); ?></option>
                                         <option value="Complaint"><?php echo e(\App\CPU\translate('Complaint')); ?></option>
                                         <option
-                                            value="Info inquiry"><?php echo e(\App\CPU\translate('Info')); ?> <?php echo e(\App\CPU\translate('inquiry')); ?> </option>
+                                            value="Info inquiry"><?php echo e(\App\CPU\translate('Info')); ?> <?php echo e(\App\CPU\translate('Inquiry')); ?> </option>
+                                            <option
+                                            value="Book Request"><?php echo e(\App\CPU\translate('Book Request')); ?> </option>
                                     </select>
                                 </div>
                             </div>

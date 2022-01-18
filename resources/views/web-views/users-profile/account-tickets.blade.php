@@ -109,11 +109,13 @@
                                     <label class="" for="inlineFormCustomSelect">{{\App\CPU\translate('Type')}}</label>
                                     <select class="custom-select " id="ticket-type" name="ticket_type" required>
                                         <option
-                                            value="Website problem">{{\App\CPU\translate('Website')}} {{\App\CPU\translate('problem')}}</option>
-                                        <option value="Partner request">{{\App\CPU\translate('partner_request')}}</option>
+                                            value="Website problem">{{\App\CPU\translate('Website')}} {{\App\CPU\translate('Problem')}}</option>
+                                        <option value="Partner request">{{\App\CPU\translate('Partner Request')}}</option>
                                         <option value="Complaint">{{\App\CPU\translate('Complaint')}}</option>
                                         <option
-                                            value="Info inquiry">{{\App\CPU\translate('Info')}} {{\App\CPU\translate('inquiry')}} </option>
+                                            value="Info inquiry">{{\App\CPU\translate('Info')}} {{\App\CPU\translate('Inquiry')}} </option>
+                                            <option
+                                            value="Book Request">{{\App\CPU\translate('Book Request')}} </option>
                                     </select>
                                 </div>
                             </div>

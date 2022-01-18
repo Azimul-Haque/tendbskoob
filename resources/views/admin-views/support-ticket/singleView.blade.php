@@ -24,7 +24,7 @@
             <div class="media pb-4">
                 <img class="rounded-circle" style="width: 40px; height:40px;"
                      src="{{asset('storage/app/public/profile')}}/{{isset($userDetails)?$userDetails['image']:''}}"
-                     onerror="this.src='http://localhost/ecommerce/public/assets/front-end/img/image-place-holder.png'"
+                     onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
                      alt="{{isset($userDetails)?$userDetails['name']:'not found'}}"/>
                 <div class="media-body {{Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'}}">
                     <h6 class="font-size-md mb-2">{{isset($userDetails)?$userDetails['name']:'not found'}}</h6>
@@ -38,7 +38,7 @@
                     <div class="media pb-4">
                         <img class="rounded-circle" style="width: 40px; height:40px;"
                              src="{{asset('storage/app/public/profile')}}/{{isset($userDetails)?$userDetails['image']:''}}"
-                             onerror="this.src='http://localhost/ecommerce/public/assets/front-end/img/image-place-holder.png'"
+                             onerror="this.src='{{ asset('public/assets/front-end/img/image-place-holder.png') }}'"
                              alt="{{isset($userDetails)?$userDetails['name']:'not found'}}"/>
                         <div class="media-body {{Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'}}">
                             <h6 class="font-size-md mb-2">{{isset($userDetails)?$userDetails['name']:'not found'}}</h6>

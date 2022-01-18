@@ -887,6 +887,9 @@
                 @else
                     <div class="text-center pt-5">
                         <h2>{{\App\CPU\translate('No Product Found')}}</h2>
+                        @if($data['data_from'] == 'search')
+                            <a href="{{ route('book-request') }}" class="btn btn-sm btn-success"><i class="fa fa-refresh"></i> অনুরোধ করুন</a>
+                        @endif
                     </div>
                 @endif
             </section>

@@ -188,6 +188,32 @@ class UserProfileController extends Controller
         return back();
     }
 
+    public function book_request()
+    {
+        if (auth('customer')->check()) {
+            return view('web-views.users-profile.book-request');
+        } else {
+            return redirect()->route('customer.auth.login');
+        }
+    }
+
+    public function submit_book_request(Request $request)
+    {
+        $ticket = [
+            'subject' => 'বইয়ের নামঃ ' . $request['ticket_subject'],
+            'type' => 'Book Request',
+            'customer_id' => auth('customer')->check() ? auth('customer')->id() : null,
+            'priority' => 'High',
+            'description' => 'বইয়ের নামঃ ' . $request['ticket_subject'] . ', বইয়ের তথ্যঃ ' .$request['ticket_description'],
+            'created_at' => now(),
+            'updated_at' => now(),
+        ];
+        DB::table('support_tickets')->insert($ticket);
+
+        Toastr::success('সফলভাবে সংরক্ষিত হয়েছে।');
+        return redirect()->route('home');
+    }
+
     public function single_ticket(Request $request)
     {
         $ticket = SupportTicket::where('id', $request->id)->first();

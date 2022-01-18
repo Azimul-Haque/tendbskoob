@@ -47,5 +47,11 @@
             </a>
         </li>
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    
+    <?php if(count($products) == 0): ?>
+    <li class="list-group-item" style="padding: .3rem 0rem!important;">
+        পাওয়া যায়নি! <a href="<?php echo e(route('book-request')); ?>" class="btn btn-sm btn-success"><i class="fa fa-refresh"></i> অনুরোধ করুন</a>
+    </li>  
+    <?php endif; ?>
 </ul>
 <?php /**PATH C:\xampp\htdocs\booksbd\resources\views/web-views/partials/_search-result.blade.php ENDPATH**/ ?>

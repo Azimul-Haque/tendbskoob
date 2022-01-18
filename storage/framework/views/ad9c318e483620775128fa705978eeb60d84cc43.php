@@ -816,6 +816,9 @@
                 <?php else: ?>
                     <div class="text-center pt-5">
                         <h2><?php echo e(\App\CPU\translate('No Product Found')); ?></h2>
+                        <?php if($data['data_from'] == 'search'): ?>
+                            <a href="<?php echo e(route('book-request')); ?>" class="btn btn-sm btn-success"><i class="fa fa-refresh"></i> অনুরোধ করুন</a>
+                        <?php endif; ?>
                     </div>
                 <?php endif; ?>
             </section>

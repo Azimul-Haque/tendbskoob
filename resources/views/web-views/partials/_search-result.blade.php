@@ -43,4 +43,10 @@
             </a>
         </li>
     @endforeach
+    
+    @if(count($products) == 0)
+    <li class="list-group-item" style="padding: .3rem 0rem!important;">
+        পাওয়া যায়নি! <a href="{{ route('book-request') }}" class="btn btn-sm btn-success"><i class="fa fa-refresh"></i> অনুরোধ করুন</a>
+    </li>  
+    @endif
 </ul>
