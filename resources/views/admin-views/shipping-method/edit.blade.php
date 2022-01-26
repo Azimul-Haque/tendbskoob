@@ -1,5 +1,7 @@
 @extends('layouts.back-end.app')
 
+@section('title', \App\CPU\translate('Edit Shipping Method'))
+
 @push('css_or_js')
 
 @endpush
@@ -51,9 +53,13 @@
 
                         <div class="form-group">
                             <div class="row justify-content-center">
-                                <div class="col-md-10">
+                                <div class="col-md-5">
                                     <label for="cost">{{\App\CPU\translate('cost')}}</label>
                                     <input type="number" min="0" max="1000000" name="cost" value="{{\App\CPU\BackEndHelper::usd_to_currency($method['cost'])}}" class="form-control" placeholder="{{\App\CPU\translate('Ex')}} : {{\App\CPU\translate('10 $')}}">
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="extra">{{\App\CPU\translate('Extra Cost Per KG (After 1 KG)')}}</label>
+                                    <input type="number" min="0" max="1000000" name="extra" value="{{\App\CPU\BackEndHelper::usd_to_currency($method['extra'])}}" class="form-control" placeholder="{{\App\CPU\translate('Ex')}} : {{\App\CPU\translate('10 $')}}">
                                 </div>
                             </div>
                         </div>

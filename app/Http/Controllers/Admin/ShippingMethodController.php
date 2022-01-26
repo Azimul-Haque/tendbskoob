@@ -23,7 +23,8 @@ class ShippingMethodController extends Controller
         $request->validate([
             'title'    => 'required|max:200',
             'duration' => 'required',
-            'cost'     => 'numeric',
+            'cost'     => 'required|numeric',
+            'extra'     => 'required|numeric',
         ]);
 
         DB::table('shipping_methods')->insert([
@@ -32,6 +33,7 @@ class ShippingMethodController extends Controller
             'title'        => $request['title'],
             'duration'     => $request['duration'],
             'cost'         => BackEndHelper::currency_to_usd($request['cost']),
+            'extra'         => BackEndHelper::currency_to_usd($request['extra']),
             'status'       => 1,
             'created_at'   => now(),
             'updated_at'   => now(),
@@ -66,6 +68,7 @@ class ShippingMethodController extends Controller
             'title'    => 'required|max:200',
             'duration' => 'required',
             'cost'     => 'numeric',
+            'extra'     => 'numeric',
         ]);
 
         DB::table('shipping_methods')->where(['id' => $id])->update([
@@ -74,6 +77,7 @@ class ShippingMethodController extends Controller
             'title'        => $request['title'],
             'duration'     => $request['duration'],
             'cost'         => BackEndHelper::currency_to_usd($request['cost']),
+            'extra'         => BackEndHelper::currency_to_usd($request['extra']),
             'status'       => 1,
             'created_at'   => now(),
             'updated_at'   => now(),

@@ -1,5 +1,7 @@
 @extends('layouts.back-end.app')
 
+@section('title', \App\CPU\translate('Shipping Method Settings'))
+
 @section('content')
 <div class="content container-fluid">
     <div class="card">

@@ -1,5 +1,7 @@
 @extends('layouts.back-end.app')
 
+@section('title', \App\CPU\translate('Sipping Method By Seller'))
+
 @push('css_or_js')
     <!-- Custom styles for this page -->
     <link href="{{asset('public/assets/back-end')}}/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">

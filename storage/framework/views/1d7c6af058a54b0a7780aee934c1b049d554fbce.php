@@ -1,3 +1,5 @@
+<?php $__env->startSection('title', \App\CPU\translate('Shipping Method')); ?>
+
 <?php $__env->startPush('css_or_js'); ?>
     <!-- Custom styles for this page -->
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
@@ -47,9 +49,14 @@
 
                             <div class="form-group">
                                 <div class="row justify-content-center">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <label for="cost"><?php echo e(\App\CPU\translate('cost')); ?></label>
                                         <input type="number" min="0" max="1000000" name="cost" class="form-control"
+                                               placeholder="<?php echo e(\App\CPU\translate('Ex')); ?> : <?php echo e(\App\CPU\translate('10')); ?> ">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="extra"><?php echo e(\App\CPU\translate('Extra Cost Per KG (After 1 KG)')); ?></label>
+                                        <input type="number" min="0" max="1000000" name="extra" class="form-control"
                                                placeholder="<?php echo e(\App\CPU\translate('Ex')); ?> : <?php echo e(\App\CPU\translate('10')); ?> ">
                                     </div>
                                 </div>
@@ -81,6 +88,7 @@
                                     <th scope="col"><?php echo e(\App\CPU\translate('title')); ?></th>
                                     <th scope="col"><?php echo e(\App\CPU\translate('duration')); ?></th>
                                     <th scope="col"><?php echo e(\App\CPU\translate('cost')); ?></th>
+                                    <th scope="col"><?php echo e(\App\CPU\translate('extra cost')); ?></th>
                                     <th scope="col"><?php echo e(\App\CPU\translate('status')); ?></th>
                                     <th scope="col" style="width: 50px"><?php echo e(\App\CPU\translate('action')); ?></th>
                                 </tr>
@@ -96,6 +104,10 @@
                                         </td>
                                         <td>
                                             <?php echo e(\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($method['cost']))); ?>
+
+                                        </td>
+                                        <td>
+                                            <?php echo e(\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($method['extra']))); ?>
 
                                         </td>
 

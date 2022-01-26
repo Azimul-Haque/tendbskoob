@@ -1463,4 +1463,9 @@
   'Partner Request' => 'Partner Request',
   'Inquiry' => 'Inquiry',
   'বইয়ের নাম' => '���ইয়ের নাম',
+  'Edit Shipping Method' => 'Edit Shipping Method',
+  'Extra Cost Per KG (After 1 KG)' => 'Extra Cost Per KG (After 1 KG)',
+  'extra-cost' => 'Extra-cost',
+  'extra cost' => 'Extra cost',
+  'Shipping Method Settings' => 'Shipping Method Settings',
 );

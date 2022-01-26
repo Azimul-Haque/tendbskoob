@@ -280,7 +280,8 @@
         }
 
         .product-title {
-            font-family: 'Roboto', sans-serif !important;
+            /* font-family: 'Roboto', sans-serif !important; */
+            font-family: hindsiliguri !important;
             font-weight: 400 !important;
             font-size: 22px !important;
             color: #000000 !important;
@@ -464,7 +465,8 @@
         }
 
         .text-accent {
-            font-family: 'Roboto', sans-serif;
+            /* font-family: 'Roboto', sans-serif; */
+            font-family: hindsiliguri !important;
             font-weight: 700;
             font-size: 18px;
             color: <?php echo e($web_config['primary_color']); ?>;
@@ -635,6 +637,15 @@
             margin-<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>: -8px !important;
             border-top-left-radius: 0px;
             border-top-right-radius: 0px;
+        }
+    </style>
+    <style type="text/css">
+        @font-face {
+          font-family: hindsiliguri;
+          src: url(<?php echo e(asset('public/fonts/HindSiliguri-Regular.woff')); ?>);
+        }
+        body, h1, h2, h3, h4, h5, h6, p, a, span, li, td, div, big, small, i, b {
+            font-family: hindsiliguri;
         }
     </style>
 </head>
