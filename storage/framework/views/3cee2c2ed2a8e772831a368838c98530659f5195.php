@@ -49,7 +49,7 @@
             </span>
         </div>
         <div class="d-flex justify-content-between">
-            <span class="cart_title"><?php echo e(\App\CPU\translate('shipping')); ?></span>
+            <span class="cart_title"><?php echo e(\App\CPU\translate('shipping')); ?> <br/><small>(বইয়ের মোট ওজনঃ )</small></span>
             <span class="cart_value">
                 <?php echo e(\App\CPU\Helpers::currency_converter($total_shipping_cost)); ?>
 
