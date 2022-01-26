@@ -7,6 +7,7 @@ use App\CPU\CartManager;
 use App\CPU\Helpers;
 use App\Http\Controllers\Controller;
 use App\Model\Cart;
+use App\Model\CartShipping;
 use App\Model\Color;
 use App\Model\Product;
 use Illuminate\Http\Request;
@@ -91,6 +92,9 @@ class CartController extends Controller
             session()->put('offline_cart', $new_collection);
             return response()->json($new_collection);
         } else {
+            $oldcart = Cart::where(['id' => $request->key, 'customer_id' => auth('customer')->id()])->first();
+            CartShipping::where('cart_group_id', $oldcart->cart_group_id)->delete();
+            // dd($oldcart);
             Cart::where(['id' => $request->key, 'customer_id' => auth('customer')->id()])->delete();
         }
 

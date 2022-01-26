@@ -33,11 +33,12 @@ class CartManager
                     'price'         => $item['price'],
                     'tax'           => $item['tax'],
                     'discount'      => $item['discount'],
+                    'weight'        => $item['weight'],
                     'slug'          => $item['slug'],
                     'name'          => $item['name'],
                     'name_bangla'   => $item['name_bangla'],
                     'thumbnail'     => $item['thumbnail'],
-                    'publisher_id'  => $item['[publisher_id'],
+                    'publisher_id'  => $item['publisher_id'],
                     'seller_id'  => $item['seller_id'],
                     'seller_is'  => $item['seller_is'],
                     'shop_info'  => $item['shop_info'],
@@ -279,6 +280,7 @@ class CartManager
         /*$data['shipping_method_id'] = $shipping_id;*/
         $cart['price'] = $price;
         $cart['tax'] = $tax;
+        $cart['weight'] = $product->weight ? $product->weight : 0;
         $cart['slug'] = $product->slug;
         $cart['name'] = $product->name;
         $cart['name_bangla'] = $product->name_bangla;
@@ -346,6 +348,7 @@ class CartManager
         }
 
         $cart->save();
+        CartShipping::where('cart_group_id', $cart->cart_group_id)->delete();
 
         return [
             'status' => $status,

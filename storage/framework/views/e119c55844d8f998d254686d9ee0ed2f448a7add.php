@@ -73,8 +73,12 @@
                                     <?php endif; ?>
                                 </th>
                                 <th>Price</th>
-                                <th><?php echo e(\App\CPU\translate('featured')); ?></th>
-                                <th><?php echo e(\App\CPU\translate('Active')); ?> <?php echo e(\App\CPU\translate('status')); ?></th>
+                                <?php if(auth('admin')->user()->role->name != 'Master Admin' && auth('admin')->user()->role->name != 'Admin'): ?>
+                                    
+                                <?php else: ?>
+                                    <th><?php echo e(\App\CPU\translate('featured')); ?></th>
+                                    <th><?php echo e(\App\CPU\translate('Active')); ?> <?php echo e(\App\CPU\translate('status')); ?></th>
+                                <?php endif; ?>
                                 <th>Stocks</th>
                                 <th>Stock Status</th>
                                 <th style="width: 5px" class="text-center"><?php echo e(\App\CPU\translate('Action')); ?></th>
@@ -111,20 +115,25 @@
                                                 <b><?php echo e(\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['unit_price']))); ?></b>
                                             </small>
                                         </td>
-                                        <td>
-                                            <label class="switch">
-                                                <input type="checkbox"
-                                                    onclick="featured_status('<?php echo e($p['id']); ?>')" <?php echo e($p->featured == 1?'checked':''); ?>>
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label class="switch switch-status">
-                                                <input type="checkbox" class="status"
-                                                    id="<?php echo e($p['id']); ?>" <?php echo e($p->status == 1?'checked':''); ?>>
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </td>
+                                        <?php if(auth('admin')->user()->role->name != 'Master Admin' && auth('admin')->user()->role->name != 'Admin'): ?>
+                                    
+                                        <?php else: ?>
+                                            <td>
+                                                <label class="switch">
+                                                    <input type="checkbox"
+                                                        onclick="featured_status('<?php echo e($p['id']); ?>')" <?php echo e($p->featured == 1?'checked':''); ?>>
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <label class="switch switch-status">
+                                                    <input type="checkbox" class="status"
+                                                        id="<?php echo e($p['id']); ?>" <?php echo e($p->status == 1?'checked':''); ?>>
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </td>
+                                        <?php endif; ?>
+                                        
                                         <td>
                                             <?php echo e($p->current_stock); ?>
 

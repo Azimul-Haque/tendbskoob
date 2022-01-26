@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Customer;
 
+use App\Model\Cart;
 use App\CPU\CartManager;
 use App\CPU\Helpers;
 use App\Http\Controllers\Controller;
@@ -50,7 +51,20 @@ class SystemController extends Controller
         }
         $shipping['cart_group_id'] = $request['cart_group_id'];
         $shipping['shipping_method_id'] = $request['id'];
-        $shipping['shipping_cost'] = ShippingMethod::find($request['id'])->cost;
+        // extra shipping cost
+        $extra_cost = 0;
+        $cart_products = Cart::where(['customer_id' => auth('customer')->user()->id, 'cart_group_id' => $request['cart_group_id']])->get();
+        $total_weight = 0;
+        foreach($cart_products as $cart_product) {
+            $total_weight = $total_weight + ($cart_product->weight * $cart_product->quantity);
+        }
+        $extraweigt = ceil($total_weight) - 1;
+        if($extraweigt > 0) { // 1 kg less
+            // dd(ShippingMethod::find($request['id'])->extra * $extraweigt . ' | ' . $total_weight);
+            $extra_cost = ShippingMethod::find($request['id'])->extra * $extraweigt;
+        }
+        // extra shipping cost
+        $shipping['shipping_cost'] = ShippingMethod::find($request['id'])->cost + $extra_cost;
         $shipping->save();
     }
 

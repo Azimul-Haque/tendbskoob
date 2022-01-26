@@ -145,7 +145,7 @@
             </div>
             <div class="col-6">
                 <a href="{{route('checkout-details')}}"
-                   class="btn btn-primary pull-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}">
+                   class="btn btn-primary pull-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}" id="checkout-btn">
                     {{\App\CPU\translate('checkout')}}
                     <i class="fa fa-{{Session::get('direction') === "rtl" ? 'backward' : 'forward'}} px-1"></i>
                 </a>
@@ -161,6 +161,9 @@
     cartQuantityInitialize();
 
     function set_shipping_id(id, cart_group_id) {
+
+        $('#checkout-btn').hide();
+
         $.get({
             url: '{{url('/')}}/customer/set-shipping-method',
             dataType: 'json',
