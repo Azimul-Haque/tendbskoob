@@ -319,7 +319,7 @@
                 </a>
                 <a class="navbar-brand d-sm-none <?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?>"
                    href="<?php echo e(route('home')); ?>">
-                    <img style="height: 38px!important; width: auto;" class="mobile-logo-img"
+                    <img style="height: 50px!important; width: auto;" class="mobile-logo-img"
                          src="<?php echo e(asset("storage/app/public/company")."/".$web_config['mob_logo']->value); ?>"
                          onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                          alt="<?php echo e($web_config['name']->value); ?>"/>
