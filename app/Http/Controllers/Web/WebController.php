@@ -202,7 +202,7 @@ class WebController extends Controller
             })->paginate(40);
             $search_param = $request->search;
         } else {
-            $authors = Author::paginate(2);
+            $authors = Author::paginate(40);
         }
         
         return view('web-views.authors', compact('authors', 'search_param'));
