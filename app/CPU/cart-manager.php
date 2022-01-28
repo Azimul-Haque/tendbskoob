@@ -98,6 +98,17 @@ class CartManager
         return $cost;
     }
 
+    public static function get_total_weight($group_id = null)
+    {
+        if ($group_id == null) {
+            $total_weight = CartShipping::whereIn('cart_group_id', CartManager::get_cart_group_ids())->sum('total_weight');
+        } else {
+            $data = CartShipping::where('cart_group_id', $group_id)->first();
+            $total_weight = isset($data) ? $data->total_weight : 0;
+        }
+        return $total_weight;
+    }
+
     public static function cart_total($cart)
     {
         $total = 0;

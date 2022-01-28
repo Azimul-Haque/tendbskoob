@@ -97,7 +97,7 @@
                                     <img
                                         src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail']}}"
                                         onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"
-                                        style="height: 120px; width: auto;">
+                                        style="height: 120px; width: auto;" onmousedown='return false;' onselectstart='return false;'>
                                 </a>
                             </div>
                             <div class="wishlist_product_desc col-md-8 mt-3">

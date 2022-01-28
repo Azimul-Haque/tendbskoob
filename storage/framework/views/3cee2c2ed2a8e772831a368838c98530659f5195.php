@@ -21,9 +21,11 @@
         <?php ($sub_total=0); ?>
         <?php ($total_tax=0); ?>
         <?php ($total_shipping_cost=0); ?>
+        <?php ($total_weight=0); ?>
         <?php ($total_discount_on_product=0); ?>
         <?php ($cart=\App\CPU\CartManager::get_cart()); ?>
         <?php ($shipping_cost=\App\CPU\CartManager::get_shipping_cost()); ?>
+        <?php ($total_weight=\App\CPU\CartManager::get_total_weight()); ?>
         <?php if($cart->count() > 0): ?>
             <?php $__currentLoopData = $cart; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $cartItem): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <?php ($sub_total+=$cartItem['price']*$cartItem['quantity']); ?>
@@ -31,6 +33,7 @@
                 <?php ($total_discount_on_product+=$cartItem['discount']*$cartItem['quantity']); ?>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             <?php ($total_shipping_cost=$shipping_cost); ?>
+            <?php ($total_weight=$total_weight); ?>
         <?php else: ?>
             <span><?php echo e(\App\CPU\translate('empty_cart')); ?></span>
         <?php endif; ?>
@@ -49,7 +52,7 @@
             </span>
         </div>
         <div class="d-flex justify-content-between">
-            <span class="cart_title"><?php echo e(\App\CPU\translate('shipping')); ?> <br/><small>(বইয়ের মোট ওজনঃ )</small></span>
+            <span class="cart_title"><?php echo e(\App\CPU\translate('shipping')); ?> <br/><small>(বইয়ের মোট ওজনঃ <b><?php echo e($total_weight); ?> KG</b>)</small></span>
             <span class="cart_value">
                 <?php echo e(\App\CPU\Helpers::currency_converter($total_shipping_cost)); ?>
 

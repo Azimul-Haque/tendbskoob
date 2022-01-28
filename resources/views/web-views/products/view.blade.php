@@ -785,7 +785,7 @@
                             <center>
                                 <img class="img-fluid rounded-circle" style="padding:10px;"
                                     onerror="this.src='{{asset('public/assets/front-end/img/user_demo.jpg')}}'"
-                                    src="{{ asset('public/images/author/' . $datasource['image']) }}">
+                                    src="{{ asset('public/images/author/' . $datasource['image']) }}" onmousedown='return false;' onselectstart='return false;'>
                             </center>
                         </div>
                         <div class="col-md-9 card" style="padding:10px;">
@@ -807,7 +807,7 @@
                             <center>
                                 <img class="img-fluid rounded-circle" style="padding:10px;"
                                     onerror="this.src='{{asset('public/assets/front-end/img/user_demo.jpg')}}'"
-                                    src="{{ asset('public/images/publisher/' . $datasource['image']) }}">
+                                    src="{{ asset('public/images/publisher/' . $datasource['image']) }}" onmousedown='return false;' onselectstart='return false;'>
                             </center>
                         </div>
                         <div class="col-md-9 card" style="padding:10px;">

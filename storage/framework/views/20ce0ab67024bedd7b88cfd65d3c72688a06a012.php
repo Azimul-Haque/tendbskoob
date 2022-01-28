@@ -362,7 +362,7 @@
                             <img style="height: 206px;"
                                  src="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($deal_of_the_day->product['thumbnail']); ?>"
                                  onerror="this.src='<?php echo e(asset('public/assets/front-end/img/book_demo.jpg')); ?>'"
-                                 alt="">
+                                 alt="" onmousedown='return false;' onselectstart='return false;'>
                         </div>
                         <div style="text-align: center; padding-top: 26px;">
                             <h5 style="font-weight: 600; color: <?php echo e($web_config['primary_color']); ?>">
@@ -401,7 +401,7 @@
                                 <img style="height: 206px;"
                                      src="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($product['thumbnail']); ?>"
                                      onerror="this.src='<?php echo e(asset('public/assets/front-end/img/book_demo.jpg')); ?>'"
-                                     alt="">
+                                     alt="" onmousedown='return false;' onselectstart='return false;'>
                             </div>
                             <div style="text-align: center; padding-top: 60px;" class="pb-2">
                                 <button class="buy_btn" onclick="location.href='<?php echo e(route('product',$product->slug)); ?>'">
@@ -416,25 +416,25 @@
                     <div class="row p-0">
                         <div class="col-md-3 p-0 text-center mobile-padding mt-1 mt-md-0">
                             <img style="height: 29px;" src="<?php echo e(asset("public/assets/front-end/png/delivery.png")); ?>"
-                                 alt="">
+                                 alt="" onmousedown='return false;' onselectstart='return false;'>
                             <div class="deal-title">3 <?php echo e(\App\CPU\translate('days')); ?>
 
                                 <br><span><?php echo e(\App\CPU\translate('free_delivery')); ?></span></div>
                         </div>
                         <div class="col-md-3 p-0 text-center mt-1 mt-md-0">
-                            <img style="height: 29px;" src="<?php echo e(asset("public/assets/front-end/png/money.png")); ?>" alt="">
+                            <img style="height: 29px;" src="<?php echo e(asset("public/assets/front-end/png/money.png")); ?>" alt="" onmousedown='return false;' onselectstart='return false;'>
                             <div class="deal-title"><?php echo e(\App\CPU\translate('money_back_guarantee')); ?></div>
                         </div>
                         <div class="col-md-3 p-0 text-center mt-1 mt-md-0">
                             <img style="height: 29px;" src="<?php echo e(asset("public/assets/front-end/png/Genuine.png")); ?>"
-                                 alt="">
+                                 alt="" onmousedown='return false;' onselectstart='return false;'>
                             <div class="deal-title">100% <?php echo e(\App\CPU\translate('genuine')); ?>
 
                                 <br><span><?php echo e(\App\CPU\translate('product')); ?></span></div>
                         </div>
                         <div class="col-md-3 p-0 text-center mt-1 mt-md-0">
                             <img style="height: 29px;" src="<?php echo e(asset("public/assets/front-end/png/Payment.png")); ?>"
-                                 alt="">
+                                 alt="" onmousedown='return false;' onselectstart='return false;'>
                             <div class="deal-title"><?php echo e(\App\CPU\translate('authentic_payment')); ?></div>
                         </div>
                     </div>
@@ -492,11 +492,11 @@
                                 <img style="vertical-align: middle; padding: 16%;height: 100px"
                                 src="<?php echo e(asset('public/images/category/' . $category['icon'])); ?>"
                                  onerror="this.src='<?php echo e(asset('public/assets/front-end/img/category_demo.jpg')); ?>'"
-                                 alt="<?php echo e($category->name_bangla); ?>">
+                                 alt="<?php echo e($category->name_bangla); ?>" onmousedown='return false;' onselectstart='return false;'>
                             <?php else: ?>
                                 <img style="vertical-align: middle; padding: 16%;height: 100px"
                                 src="<?php echo e(asset('public/assets/front-end/img/category_demo.jpg')); ?>"
-                                alt="<?php echo e($category->name_bangla); ?>">
+                                alt="<?php echo e($category->name_bangla); ?>" onmousedown='return false;' onselectstart='return false;'>
                             <?php endif; ?>
                             <p class="text-center small" style="margin-top: -10px"><?php echo e(\Illuminate\Support\Str::limit($category->name_bangla, 17)); ?></p>
                         </a>
@@ -531,9 +531,9 @@
                             <div class="brand_div d-flex align-items-center justify-content-center"
                                  style="height:100px">
                                 <?php if($author->image): ?>
-                                    <img src="<?php echo e(asset("public/images/author/" . $author->image)); ?>" alt="<?php echo e($author->name); ?>" onerror="this.src='<?php echo e(asset('public/assets/front-end/img/user_demo.jpg')); ?>'">
+                                    <img src="<?php echo e(asset("public/images/author/" . $author->image)); ?>" alt="<?php echo e($author->name); ?>" onerror="this.src='<?php echo e(asset('public/assets/front-end/img/user_demo.jpg')); ?>'" onmousedown='return false;' onselectstart='return false;'>
                                 <?php else: ?>
-                                    <img src="<?php echo e(asset('public/assets/front-end/img/user_demo.jpg')); ?>">
+                                    <img src="<?php echo e(asset('public/assets/front-end/img/user_demo.jpg')); ?>" onmousedown='return false;' onselectstart='return false;'>
                                 <?php endif; ?>
                             </div>
                         </a>
@@ -601,7 +601,7 @@
                                     <img style="height: 77px; width: 54px"
                                          src="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($bestSell->product['thumbnail']); ?>"
                                          onerror="this.src='<?php echo e(asset('public/assets/front-end/img/book_demo.jpg')); ?>'"
-                                         alt="Product"/>
+                                         alt="Product" onmousedown='return false;' onselectstart='return false;'/>
                                 </a>
                                 <div class="media-body">
                                     <h6 class="widget-product-title">
@@ -658,7 +658,7 @@
                                     <img style="height: 77px; width: 54px"
                                          src="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($product['thumbnail']); ?>"
                                          onerror="this.src='<?php echo e(asset('public/assets/front-end/img/book_demo.jpg')); ?>'"
-                                         alt="Product"/>
+                                         alt="Product" onmousedown='return false;' onselectstart='return false;'/>
                                 </a>
                                 <div class="media-body">
                                     <h6 class="widget-product-title">
@@ -713,7 +713,7 @@
                                     <img style="height: 77px; width: 54px"
                                          src="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($top->product['thumbnail']); ?>"
                                          onerror="this.src='<?php echo e(asset('public/assets/front-end/img/book_demo.jpg')); ?>'"
-                                         alt="Product"/>
+                                         alt="Product" onmousedown='return false;' onselectstart='return false;'/>
                                 </a>
                                 <div class="media-body">
                                     <h6 class="widget-product-title">

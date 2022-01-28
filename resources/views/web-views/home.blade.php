@@ -359,7 +359,7 @@
                             <img style="height: 206px;"
                                  src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$deal_of_the_day->product['thumbnail']}}"
                                  onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"
-                                 alt="">
+                                 alt="" onmousedown='return false;' onselectstart='return false;'>
                         </div>
                         <div style="text-align: center; padding-top: 26px;">
                             <h5 style="font-weight: 600; color: {{$web_config['primary_color']}}">
@@ -395,7 +395,7 @@
                                 <img style="height: 206px;"
                                      src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail']}}"
                                      onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"
-                                     alt="">
+                                     alt="" onmousedown='return false;' onselectstart='return false;'>
                             </div>
                             <div style="text-align: center; padding-top: 60px;" class="pb-2">
                                 <button class="buy_btn" onclick="location.href='{{route('product',$product->slug)}}'">
@@ -409,23 +409,23 @@
                     <div class="row p-0">
                         <div class="col-md-3 p-0 text-center mobile-padding mt-1 mt-md-0">
                             <img style="height: 29px;" src="{{asset("public/assets/front-end/png/delivery.png")}}"
-                                 alt="">
+                                 alt="" onmousedown='return false;' onselectstart='return false;'>
                             <div class="deal-title">3 {{\App\CPU\translate('days')}}
                                 <br><span>{{\App\CPU\translate('free_delivery')}}</span></div>
                         </div>
                         <div class="col-md-3 p-0 text-center mt-1 mt-md-0">
-                            <img style="height: 29px;" src="{{asset("public/assets/front-end/png/money.png")}}" alt="">
+                            <img style="height: 29px;" src="{{asset("public/assets/front-end/png/money.png")}}" alt="" onmousedown='return false;' onselectstart='return false;'>
                             <div class="deal-title">{{\App\CPU\translate('money_back_guarantee')}}</div>
                         </div>
                         <div class="col-md-3 p-0 text-center mt-1 mt-md-0">
                             <img style="height: 29px;" src="{{asset("public/assets/front-end/png/Genuine.png")}}"
-                                 alt="">
+                                 alt="" onmousedown='return false;' onselectstart='return false;'>
                             <div class="deal-title">100% {{\App\CPU\translate('genuine')}}
                                 <br><span>{{\App\CPU\translate('product')}}</span></div>
                         </div>
                         <div class="col-md-3 p-0 text-center mt-1 mt-md-0">
                             <img style="height: 29px;" src="{{asset("public/assets/front-end/png/Payment.png")}}"
-                                 alt="">
+                                 alt="" onmousedown='return false;' onselectstart='return false;'>
                             <div class="deal-title">{{\App\CPU\translate('authentic_payment')}}</div>
                         </div>
                     </div>
@@ -481,11 +481,11 @@
                                 <img style="vertical-align: middle; padding: 16%;height: 100px"
                                 src="{{ asset('public/images/category/' . $category['icon']) }}"
                                  onerror="this.src='{{asset('public/assets/front-end/img/category_demo.jpg')}}'"
-                                 alt="{{$category->name_bangla}}">
+                                 alt="{{$category->name_bangla}}" onmousedown='return false;' onselectstart='return false;'>
                             @else
                                 <img style="vertical-align: middle; padding: 16%;height: 100px"
                                 src="{{asset('public/assets/front-end/img/category_demo.jpg')}}"
-                                alt="{{$category->name_bangla}}">
+                                alt="{{$category->name_bangla}}" onmousedown='return false;' onselectstart='return false;'>
                             @endif
                             <p class="text-center small" style="margin-top: -10px">{{\Illuminate\Support\Str::limit($category->name_bangla, 17)}}</p>
                         </a>
@@ -519,9 +519,9 @@
                             <div class="brand_div d-flex align-items-center justify-content-center"
                                  style="height:100px">
                                 @if ($author->image)
-                                    <img src="{{asset("public/images/author/" . $author->image)}}" alt="{{$author->name}}" onerror="this.src='{{asset('public/assets/front-end/img/user_demo.jpg')}}'">
+                                    <img src="{{asset("public/images/author/" . $author->image)}}" alt="{{$author->name}}" onerror="this.src='{{asset('public/assets/front-end/img/user_demo.jpg')}}'" onmousedown='return false;' onselectstart='return false;'>
                                 @else
-                                    <img src="{{asset('public/assets/front-end/img/user_demo.jpg')}}">
+                                    <img src="{{asset('public/assets/front-end/img/user_demo.jpg')}}" onmousedown='return false;' onselectstart='return false;'>
                                 @endif
                             </div>
                         </a>
@@ -623,7 +623,7 @@
                                     <img style="height: 77px; width: 54px"
                                          src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$bestSell->product['thumbnail']}}"
                                          onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"
-                                         alt="Product"/>
+                                         alt="Product" onmousedown='return false;' onselectstart='return false;'/>
                                 </a>
                                 <div class="media-body">
                                     <h6 class="widget-product-title">
@@ -676,7 +676,7 @@
                                     <img style="height: 77px; width: 54px"
                                          src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail']}}"
                                          onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"
-                                         alt="Product"/>
+                                         alt="Product" onmousedown='return false;' onselectstart='return false;'/>
                                 </a>
                                 <div class="media-body">
                                     <h6 class="widget-product-title">
@@ -727,7 +727,7 @@
                                     <img style="height: 77px; width: 54px"
                                          src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$top->product['thumbnail']}}"
                                          onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"
-                                         alt="Product"/>
+                                         alt="Product" onmousedown='return false;' onselectstart='return false;'/>
                                 </a>
                                 <div class="media-body">
                                     <h6 class="widget-product-title">

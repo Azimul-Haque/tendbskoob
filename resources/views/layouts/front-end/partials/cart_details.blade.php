@@ -30,7 +30,7 @@
                                             <img style="height: 82px;"
                                                  onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                                                  src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$cartItem['thumbnail']}}"
-                                                 alt="Product">
+                                                 alt="Product" onmousedown='return false;' onselectstart='return false;'>
                                         </a>
                                     </div>
 

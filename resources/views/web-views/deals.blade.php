@@ -103,7 +103,7 @@
         <img class="d-block for-image"
              onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
              src="{{asset('storage/app/public/deal')}}/{{$deal['banner']}}"
-             alt="Shop Converse">
+             alt="Shop Converse" onmousedown='return false;' onselectstart='return false;'>
 
     </div>
     <div class="container md-4 mt-3 rtl"

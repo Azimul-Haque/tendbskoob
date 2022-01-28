@@ -17,7 +17,7 @@
                     <div class="col-1">
                         <img src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail']}}"
                          onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"
-                         style="">
+                         style="" onmousedown='return false;' onselectstart='return false;'>
                     </div>
                     <div class="col-9">
                         {{$product['name_bangla']}}<br/>

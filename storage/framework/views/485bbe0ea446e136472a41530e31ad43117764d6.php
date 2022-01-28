@@ -19,7 +19,7 @@
              style="min-width: 110px">
             <img style="height: 130px!important; width: 91px!important;"
                  src="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($product['thumbnail']); ?>"
-                 onerror="this.src='<?php echo e(asset('public/assets/front-end/img/book_demo.jpg')); ?>'"/>
+                 onerror="this.src='<?php echo e(asset('public/assets/front-end/img/book_demo.jpg')); ?>'" onmousedown='return false;' onselectstart='return false;'/>
         </div>
         <div class="flash_deal_product_details pl-2 pr-1 d-flex align-items-center">
             <div>

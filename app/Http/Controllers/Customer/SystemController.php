@@ -65,6 +65,7 @@ class SystemController extends Controller
         }
         // extra shipping cost
         $shipping['shipping_cost'] = ShippingMethod::find($request['id'])->cost + $extra_cost;
+        $shipping['total_weight'] = $total_weight;
         $shipping->save();
     }
 

@@ -345,7 +345,7 @@
         <tr>
             <th style="text-align: left">
                 <img height="70" width="200" src="{{asset("storage/app/public/company/$company_web_logo")}}"
-                     alt="">
+                     alt="" onmousedown='return false;' onselectstart='return false;'>
             </th>
             <th style="text-align: right">
                 <h1 style="color: #030303; margin-bottom: 0px; font-size: 30px;text-transform: capitalize">{{\App\CPU\translate('invoice')}}</h1>

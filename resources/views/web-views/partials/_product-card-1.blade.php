@@ -17,7 +17,7 @@
              style="min-width: 110px">
             <img style="height: 130px!important; width: 91px!important;"
                  src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail']}}"
-                 onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"/>
+                 onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'" onmousedown='return false;' onselectstart='return false;'/>
         </div>
         <div class="flash_deal_product_details pl-2 pr-1 d-flex align-items-center">
             <div>

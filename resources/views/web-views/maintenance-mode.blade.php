@@ -38,7 +38,7 @@
     <div class="row">
         <div class="col-12 mt-5">
             <center>
-                <img style="width: 350px!important;" src="{{asset('public/assets/front-end')}}/img/maintenance-mode.jpg">
+                <img style="width: 350px!important;" src="{{asset('public/assets/front-end')}}/img/maintenance-mode.jpg" onmousedown='return false;' onselectstart='return false;'>
                 <h1>{{\App\CPU\translate('Website is under Maintenance')}}.</h1><br>
                 <h5>{{\App\CPU\translate('Plese come back later')}}.</h5>
             </center>

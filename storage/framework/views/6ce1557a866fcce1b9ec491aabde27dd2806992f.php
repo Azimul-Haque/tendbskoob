@@ -77,7 +77,7 @@
                         onerror="this.src='<?php echo e(asset('public/assets/front-end/img/book_demo.jpg')); ?>'"
                         src="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($product['thumbnail']); ?>"
                         data-zoom="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($product['thumbnail']); ?>"
-                        alt="Product image" width="">
+                        alt="Product image" width="" onmousedown='return false;' onselectstart='return false;'>
                     </div>
                     
                 </div>
@@ -360,7 +360,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="col-lg-7 col-md-7">
+                                    <div class="col-lg-7 col-md-7" onmousedown='return false;' onselectstart='return false;' style="-webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;">
                                         <?php echo $product['details']; ?>
 
                                     </div>
@@ -534,7 +534,7 @@
                                                                  class="rounded-circle" width="64"
                                                                  onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                                                                  src="<?php echo e(asset("storage/app/public/profile")); ?>/<?php echo e((isset($productReview->user)?$productReview->user->image:'')); ?>"
-                                                                 alt="<?php echo e(isset($productReview->user)?$productReview->user->f_name:'not exist'); ?>"/>
+                                                                 alt="<?php echo e(isset($productReview->user)?$productReview->user->f_name:'not exist'); ?>" onmousedown='return false;' onselectstart='return false;'/>
                                                             <div
                                                                 class="media-body <?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>">
                                                                 <h6 class="font-size-sm mb-0"><?php echo e(isset($productReview->user)?$productReview->user->f_name:'not exist'); ?></h6>
@@ -569,7 +569,7 @@
                                                                     class="cz-image-zoom"
                                                                     onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                                                                     src="<?php echo e(asset("storage/app/public/review/$photo")); ?>"
-                                                                    alt="Product review" width="67">
+                                                                    alt="Product review" width="67" onmousedown='return false;' onselectstart='return false;'>
                                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         <?php endif; ?>
                                                     </div>

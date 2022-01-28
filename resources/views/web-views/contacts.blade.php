@@ -64,7 +64,7 @@
     <div class="container rtl" style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
         <div class="row no-gutters">
             <div class="col-lg-6 iframe-full-height-wrap ">
-                <img style="" class="for-contac-image" src="{{asset("public/assets/front-end/png/contact.png")}}" alt="">
+                <img style="" class="for-contac-image" src="{{asset("public/assets/front-end/png/contact.png")}}" alt="" onmousedown='return false;' onselectstart='return false;'>
             </div>
             <div class="col-lg-6 for-send-message px-4 px-xl-5  box-shadow-sm">
                 <h2 class="h4 mb-4 text-center"

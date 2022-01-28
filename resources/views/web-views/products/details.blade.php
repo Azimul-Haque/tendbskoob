@@ -207,7 +207,7 @@
                         onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"
                         src="{{ \App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail'] }}"
                         data-zoom="{{ \App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail'] }}"
-                        alt="Product image" width="">
+                        alt="Product image" width="" onmousedown='return false;' onselectstart='return false;'>
                     </div>
                     {{-- <div class="cz-image-zoom-pane"></div> --}}
                 </div>
@@ -661,7 +661,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="col-lg-7 col-md-7">
+                                    <div class="col-lg-7 col-md-7" onmousedown='return false;' onselectstart='return false;' style="-webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;">
                                         {!! $product['details'] !!}
                                     </div>
                                 </div>
@@ -827,7 +827,7 @@
                                                                  class="rounded-circle" width="64"
                                                                  onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                                                                  src="{{asset("storage/app/public/profile")}}/{{(isset($productReview->user)?$productReview->user->image:'')}}"
-                                                                 alt="{{isset($productReview->user)?$productReview->user->f_name:'not exist'}}"/>
+                                                                 alt="{{isset($productReview->user)?$productReview->user->f_name:'not exist'}}" onmousedown='return false;' onselectstart='return false;'/>
                                                             <div
                                                                 class="media-body {{Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'}}">
                                                                 <h6 class="font-size-sm mb-0">{{isset($productReview->user)?$productReview->user->f_name:'not exist'}}</h6>
@@ -861,7 +861,7 @@
                                                                     class="cz-image-zoom"
                                                                     onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                                                                     src="{{asset("storage/app/public/review/$photo")}}"
-                                                                    alt="Product review" width="67">
+                                                                    alt="Product review" width="67" onmousedown='return false;' onselectstart='return false;'>
                                                             @endforeach
                                                         @endif
                                                     </div>

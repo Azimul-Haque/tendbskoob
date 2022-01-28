@@ -28,7 +28,7 @@
             <a href="{{route('product',$product->slug)}}">
                 <img src="{{\App\CPU\ProductManager::product_image_path('thumbnail')}}/{{$product['thumbnail']}}"
                      onerror="this.src='{{asset('public/assets/front-end/img/book_demo.jpg')}}'"
-                     style="width: 90%;max-height: 215px!important;">
+                     style="width: 90%;max-height: 215px!important;" onmousedown='return false;' onselectstart='return false;'>
             </a>
         </div>
     </div>

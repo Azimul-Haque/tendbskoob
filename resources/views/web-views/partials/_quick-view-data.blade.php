@@ -132,7 +132,7 @@
                                 <img class="show-imag img-responsive" style="max-height: 500px!important;"
                                      onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                                      src="{{asset("storage/app/public/product/$photo")}}"
-                                     alt="Product image" width="">
+                                     alt="Product image" width="" onmousedown='return false;' onselectstart='return false;'>
                             </div>
                         @endforeach
                     @endif
@@ -146,7 +146,7 @@
                                         <a href="javascript:" class=" cz-thumblist-item d-flex align-items-center justify-content-center">
                                             <img class="click-img" src="{{asset("storage/app/public/product/$photo")}}"
                                                  onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                                 alt="Product thumb">
+                                                 alt="Product thumb" onmousedown='return false;' onselectstart='return false;'>
                                         </a>
                                     </div>
                                 @endforeach

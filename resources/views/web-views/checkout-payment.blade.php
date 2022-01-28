@@ -45,7 +45,7 @@
                                         <a class="btn btn-block"
                                            href="{{route('checkout-complete',['payment_method'=>'cash_on_delivery'])}}">
                                             <img width="150" style="margin-top: -10px"
-                                                 src="{{asset('public/assets/front-end/img/cod.png')}}"/>
+                                                 src="{{asset('public/assets/front-end/img/cod.png')}}" onmousedown='return false;' onselectstart='return false;'/>
                                         </a>
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@
                                             <input type="hidden" value="{{ auth('customer')->user()->get(['id', 'name', 'email', 'phone']) }}" name="custom1"/>
                                             <button class="btn btn-block" type="submit">
                                                 <img width="150"
-                                                     src="{{asset('public/assets/front-end/img/shurjopay.png')}}"/>
+                                                     src="{{asset('public/assets/front-end/img/shurjopay.png')}}" onmousedown='return false;' onselectstart='return false;'/>
                                             </button>
                                         </form>
                                     </div>
@@ -82,7 +82,7 @@
                                             <input type="hidden" value="{{ csrf_token() }}" name="_token"/>
                                             <button class="btn btn-block" type="submit">
                                                 <img width="150"
-                                                     src="{{asset('public/assets/front-end/img/sslcomz.png')}}"/>
+                                                     src="{{asset('public/assets/front-end/img/sslcomz.png')}}" onmousedown='return false;' onselectstart='return false;'/>
                                             </button>
                                         </form>
                                     </div>
