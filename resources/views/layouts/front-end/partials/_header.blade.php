@@ -305,7 +305,7 @@
                 <a class="navbar-brand d-none d-sm-block {{Session::get('direction') === "rtl" ? 'ml-3' : 'mr-3'}} flex-shrink-0"
                    href="{{route('home')}}"
                    style="min-width: 7rem;">
-                    <img style="height: 65px!important; width: auto;"
+                    <img style="height: 70px!important; width: auto;"
                          src="{{asset("storage/app/public/company")."/".$web_config['web_logo']->value}}"
                          onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                          alt="{{$web_config['name']->value}}"/>

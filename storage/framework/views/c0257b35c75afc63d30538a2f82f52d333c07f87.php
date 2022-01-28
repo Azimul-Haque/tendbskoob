@@ -312,7 +312,7 @@
                 <a class="navbar-brand d-none d-sm-block <?php echo e(Session::get('direction') === "rtl" ? 'ml-3' : 'mr-3'); ?> flex-shrink-0"
                    href="<?php echo e(route('home')); ?>"
                    style="min-width: 7rem;">
-                    <img style="height: 65px!important; width: auto;"
+                    <img style="height: 70px!important; width: auto;"
                          src="<?php echo e(asset("storage/app/public/company")."/".$web_config['web_logo']->value); ?>"
                          onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                          alt="<?php echo e($web_config['name']->value); ?>"/>
