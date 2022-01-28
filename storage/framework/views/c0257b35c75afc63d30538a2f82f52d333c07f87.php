@@ -454,7 +454,7 @@
                     <?php if(!request()->is('/')): ?>
                         <ul class="navbar-nav pr-2 pl-2 <?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?> d-none d-xl-block">
                             <li class="nav-item" style="float: left;">
-                                <a class="nav-link off-canvas-toggle" href="#!">
+                                <a class="nav-link off-canvas-toggle2" href="#!">
                                     <i class="czi-menu align-middle mt-n1 mr-2"></i>
                                 </a>
                             </li>
@@ -465,7 +465,7 @@
                         <!--web-->
                         <?php if(request()->is('/')): ?>
                             <li class="nav-item" style="float: left;">
-                                <a class="nav-link off-canvas-toggle" href="#!">
+                                <a class="nav-link off-canvas-toggle2" href="#!">
                                     <i class="czi-menu align-middle mt-n1 mr-2"></i>
                                 </a>
                             </li>
@@ -613,7 +613,7 @@
 
                     <ul class="navbar-nav mega-nav1 pr-2 pl-2 d-blocksss d-xl-none"><!--mobile-->
                         <li class="nav-item d-none d-md-block">
-                            <a class="nav-link off-canvas-toggle2" href="#!">
+                            <a class="nav-link off-canvas-toggle3" href="#!">
                                 <i class="czi-menu align-middle mt-n1 mr-2"></i>
                             </a>
                         </li>
