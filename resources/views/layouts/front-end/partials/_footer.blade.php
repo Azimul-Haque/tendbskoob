@@ -3,12 +3,20 @@
     .social-media :hover {
         color: {{$web_config['secondary_color']}} !important;
     }
+
+    .page-footer {
+        background: #F1F2F4;
+        color: black;
+    }
+    .footer-heder {
+        color: #000000;
+    }
     .widget-list-link{
-        color: #999898 !important;
+        color: #000000 !important;
     }
 
     .widget-list-link:hover{
-        color: white !important;
+        color: #000000 !important;
     }
 </style>
 
@@ -23,7 +31,7 @@
             <div class="col-md-3 col-lg-3 col-xl-3 mt-3">
                 <div class="text-nowrap mb-4">
                     <a class="d-inline-block mt-n1" href="{{route('home')}}">
-                        <img width="250" style="height: 60px!important;"
+                        <img style="height: 70px!important; width: auto;"
                              src="{{asset("storage/app/public/company/")}}/{{ $web_config['footer_logo']->value }}"
                              onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                              alt="{{ $web_config['name']->value }}"/>
@@ -34,7 +42,7 @@
                     @foreach ($social_media as $item)
                         <span class="social-media">
                                 <a class="social-btn sb-light sb-{{$item->name}} {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}} mb-2"
-                                   target="_blank" href="{{$item->link}}" style="color: white!important;">
+                                   target="_blank" href="{{$item->link}}" style="color: rgb(71, 71, 71)!important;">
                                     <i class="{{$item->icon}}" aria-hidden="true"></i>
                                 </a>
                             </span>
