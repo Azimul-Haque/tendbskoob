@@ -36,6 +36,13 @@
         line-height: 1.25rem;
     }
 
+    .list-level-0>.list-item>a:hover {
+        background: rgb(185, 185, 185);
+    }
+    .list-level-1>.list-item:hover {
+        background: rgb(185, 185, 185);
+    }
+
     @media (min-width: 992px) {
         .navbar-sticky.navbar-stuck .navbar-stuck-menu.show {
             display: block;
@@ -177,6 +184,10 @@
     </div>
     -->
 
+    @php($categories=\App\Model\Category::with(['childes.childes'])->where('position', 0)->take(11)->get())
+    @php($authors=\App\Model\Author::take(15)->get())
+    @php($publishers=\App\Model\Publisher::take(15)->get())
+
     <!-- off-canvas -->
     <div class="off-canvas">
       <div class="off-canvas-header">
@@ -192,6 +203,28 @@
         <nav>
           <ul class="list-level-0">
             <li class="list-item">
+                <div class="input-group-overlay d-md-none my-3">
+                    <form action="{{route('products')}}" type="submit" class="search_form">
+                        <input class="form-control appended-form-control search-bar-input-mobile" type="text"
+                               autocomplete="off" id="globalsearch"
+                               placeholder="{{\App\CPU\translate('search')}}" name="name" required>
+                        <input name="data_from" value="search" hidden>
+                        <input name="page" value="1" hidden>
+                        <button class="input-group-append-overlay search_button" type="submit"
+                                style="border-radius: {{Session::get('direction') === "rtl" ? '7px 0px 0px 7px; right: unset; left: 0' : '0px 7px 7px 0px; left: unset; right: 0'}};">
+                        <span class="input-group-text" style="font-size: 20px;">
+                            <i class="czi-search text-white"></i>
+                        </span>
+                        </button>
+                        <div class="card search-card"
+                             style="position: absolute;background: white;z-index: 999;width: 100%;display: none">
+                            <div class="card-body search-result-box" id=""
+                                 style="overflow:scroll; height:400px;overflow-x: hidden"></div>
+                        </div>
+                    </form>
+                </div>
+            </li>
+            <li class="list-item">
               <a class="link-level-1" href="#">
                 নীড়পাতা
               </a>
@@ -199,49 +232,61 @@
 
             <li class="list-item">
               <a class="link-level-1" href="#">
-                Services&nbsp;<span class="link-arrow">&#8250;</span>
+                লেখক &nbsp;<span class="link-arrow">&#8250;</span>
               </a>
               <ul class="list-level-1">
+                @foreach ($authors as $author)
+                    <li class="list-item">
+                        <a class="link-level-2" href="{{route('products', ['id'=> $author['id'],'data_from'=>'author','page'=>1, 'author_name'=>$author['slug']]) }}">
+                            {{ $author->name_bangla }}
+                        </a>
+                    </li> 
+                @endforeach
                 <li class="list-item">
-                  <a class="link-level-2" href="#">
-                    UX-Design
-                  </a>
-                </li>
-                <li class="list-item">
-                  <a class="link-level-2" href="#">
-                    Webdesign
-                  </a>
-                </li>
-                <li class="list-item">
-                  <a class="link-level-2" href="#">
-                    Content Marketing
-                  </a>
-                </li>
+                    <a class="link-level-2" href="{{ route('authors') }}">
+                        <b>আরও দেখুন <i class="fa fa-angle-double-right"></i></b>
+                    </a>
+                </li> 
               </ul>
             </li>
 
             <li class="list-item">
               <a class="link-level-1" href="#">
-                Team&nbsp;<span class="link-arrow">&#8250;</span>
+                বিষয়সমূহ&nbsp;<span class="link-arrow">&#8250;</span>
               </a>
               <ul class="list-level-1">
+                @foreach ($categories as $category)
+                    <li class="list-item">
+                        <a class="link-level-2" href="{{route('products', ['id'=> $category['id'],'data_from'=>'category','page'=>1]) }}">
+                            {{ $category->name_bangla }}
+                        </a>
+                    </li> 
+                @endforeach
                 <li class="list-item">
-                  <a class="link-level-2" href="#">
-                    John
-                  </a>
-                </li>
+                    <a class="link-level-2" href="{{ route('categories') }}">
+                        <b>আরও দেখুন <i class="fa fa-angle-double-right"></i></b>
+                    </a>
+                </li> 
+              </ul>
+            </li>
 
+            <li class="list-item">
+              <a class="link-level-1" href="#">
+                প্রকাশনী &nbsp;<span class="link-arrow">&#8250;</span>
+              </a>
+              <ul class="list-level-1">
+                @foreach ($publishers as $publisher)
+                    <li class="list-item">
+                        <a class="link-level-2" href="{{route('products', ['id'=> $publisher['id'],'data_from'=>'publisher', 'author_name'=>$author['slug'], 'page'=>1]) }}">
+                            {{ $publisher->name_bangla }}
+                        </a>
+                    </li> 
+                @endforeach
                 <li class="list-item">
-                  <a class="link-level-2" href="#">
-                    Peter
-                  </a>
-                </li>
-
-                <li class="list-item">
-                  <a class="link-level-2" href="#">
-                    Gordon
-                  </a>
-                </li>
+                    <a class="link-level-2" href="{{ route('publishers') }}">
+                        <b>আরও দেখুন <i class="fa fa-angle-double-right"></i></b>
+                    </a>
+                </li> 
               </ul>
             </li>
           </ul>
@@ -253,7 +298,8 @@
     <div class="navbar-sticky bg-light mobile-head">
         <div class="navbar navbar-expand-md navbar-light">
             <div class="container ">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+               <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"> -->
+                <button class="navbar-toggler off-canvas-toggle">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <a class="navbar-brand d-none d-sm-block {{Session::get('direction') === "rtl" ? 'ml-3' : 'mr-3'}} flex-shrink-0"
@@ -288,11 +334,11 @@
                         </button>
                         <input name="data_from" value="search" hidden>
                         <input name="page" value="1" hidden>
-                        <diV class="card search-card"
+                        <div class="card search-card"
                              style="position: absolute;background: white;z-index: 999;width: 100%;display: none">
                             <div class="card-body search-result-box"
                                  style="overflow:scroll; height:400px;overflow-x: hidden"></div>
-                        </diV>
+                        </div>
                     </form>
                 </div>
                 <!-- Toolbar-->
@@ -387,22 +433,33 @@
                                 <i class="czi-search text-white"></i>
                             </span>
                             </button>
-                            <diV class="card search-card"
+                            <div class="card search-card"
                                  style="position: absolute;background: white;z-index: 999;width: 100%;display: none">
                                 <div class="card-body search-result-box" id=""
                                      style="overflow:scroll; height:400px;overflow-x: hidden"></div>
-                            </diV>
+                            </div>
                         </form>
                     </div>
 
-                    @php($categories=\App\Model\Category::with(['childes.childes'])->where('position', 0)->paginate(11))
+                    @if (!request()->is('/'))
+                        <ul class="navbar-nav pr-2 pl-2 {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}} d-none d-xl-block">
+                            <li class="nav-item" style="float: left;">
+                                <a class="nav-link off-canvas-toggle2" href="#!">
+                                    <i class="czi-menu align-middle mt-n1 mr-2"></i>
+                                </a>
+                            </li>
+                        </ul> 
+                    @endif
+                    
                     <ul class="navbar-nav mega-nav pr-2 pl-2 {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}} d-none d-xl-block">
                         <!--web-->
-                        <li class="nav-item" style="float: left;">
-                            <a class="nav-link off-canvas-toggle" href="#!">
-                                <i class="czi-menu align-middle mt-n1 mr-2"></i>
-                            </a>
-                        </li>
+                        @if (request()->is('/'))
+                            <li class="nav-item" style="float: left;">
+                                <a class="nav-link off-canvas-toggle2" href="#!">
+                                    <i class="czi-menu align-middle mt-n1 mr-2"></i>
+                                </a>
+                            </li>
+                        @endif
                         <li class="nav-item {{!request()->is('/')?'dropdown':''}}">
                             <a class="nav-link dropdown-toggle {{Session::get('direction') === "rtl" ? 'pr-0' : 'pl-0'}}"
                                href="#" data-toggle="dropdown" style="{{request()->is('/')?'pointer-events: none':''}}">
@@ -544,7 +601,7 @@
 
                     <ul class="navbar-nav mega-nav1 pr-2 pl-2 d-blocksss d-xl-none"><!--mobile-->
                         <li class="nav-item d-none d-md-block">
-                            <a class="nav-link off-canvas-toggle2" href="#!">
+                            <a class="nav-link off-canvas-toggle3" href="#!">
                                 <i class="czi-menu align-middle mt-n1 mr-2"></i>
                             </a>
                         </li>
@@ -608,7 +665,7 @@
                             <a class="nav-link" href="{{route('home')}}">নীড়পাতা</a>
                         </li>
 
-                        @php($authors=\App\Model\Author::paginate(15))
+                        
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="{{route('authors')}}">লেখক</a>
                             <ul class="dropdown-menu dropdown-menu-{{Session::get('direction') === "rtl" ? 'right' : 'left'}} scroll-bar"
@@ -639,7 +696,7 @@
                             </ul>
                         </li>
                         
-                        @php($publishers=\App\Model\Publisher::paginate(15))
+                        
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="{{route('publishers')}}">প্রকাশনী</a>
                             <ul class="dropdown-menu dropdown-menu-{{Session::get('direction') === "rtl" ? 'right' : 'left'}} scroll-bar"

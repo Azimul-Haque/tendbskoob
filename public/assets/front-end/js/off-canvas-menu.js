@@ -22,6 +22,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       _defineProperty(this, "iconOpen2", document.querySelector(".off-canvas-toggle2"));
 
+      _defineProperty(this, "iconOpen3", document.querySelector(".off-canvas-toggle3"));
+
       _defineProperty(this, "linkLevel1", document.querySelectorAll(".link-level-1"));
 
       _defineProperty(this, "sidebar", document.querySelector(".off-canvas"));
@@ -40,6 +42,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
 
         this.iconOpen2.addEventListener("click", function () {
+          var e = [document.querySelector(".icon-close")];
+          _this.openMenu(_this.sidebar, _this.body), _this.addCloseEvents(e, _this.sidebar, _this.body);
+        });
+        
+        this.iconOpen3.addEventListener("click", function () {
           var e = [document.querySelector(".icon-close")];
           _this.openMenu(_this.sidebar, _this.body), _this.addCloseEvents(e, _this.sidebar, _this.body);
         });

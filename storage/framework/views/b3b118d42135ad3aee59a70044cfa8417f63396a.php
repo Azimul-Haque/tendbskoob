@@ -17,7 +17,7 @@
                     <div class="col-1">
                         <img src="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($product['thumbnail']); ?>"
                          onerror="this.src='<?php echo e(asset('public/assets/front-end/img/book_demo.jpg')); ?>'"
-                         style="">
+                         style="" onmousedown='return false;' onselectstart='return false;'>
                     </div>
                     <div class="col-9">
                         <?php echo e($product['name_bangla']); ?><br/>
@@ -47,5 +47,11 @@
             </a>
         </li>
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    
+    <?php if(count($products) == 0): ?>
+    <li class="list-group-item" style="padding: .3rem 0rem!important;">
+        পাওয়া যায়নি! <a href="<?php echo e(route('book-request')); ?>" class="btn btn-sm btn-success"><i class="fa fa-refresh"></i> অনুরোধ করুন</a>
+    </li>  
+    <?php endif; ?>
 </ul>
 <?php /**PATH C:\wamp\www\booksbd\resources\views/web-views/partials/_search-result.blade.php ENDPATH**/ ?>
