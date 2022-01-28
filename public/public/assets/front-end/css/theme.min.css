@@ -14252,7 +14252,7 @@ a.nav-link:hover .media-tab-media {
 }
 
 .page-item {
-    margin: .15rem
+    /*margin: .15rem*/
 }
 
 .page-item.active {

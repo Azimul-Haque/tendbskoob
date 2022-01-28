@@ -70,7 +70,7 @@ abstract class AbstractPaginator implements Htmlable
      *
      * @var int
      */
-    public $onEachSide = 3;
+    public $onEachSide = 1;
 
     /**
      * The paginator options.
