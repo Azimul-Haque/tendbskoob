@@ -225,7 +225,7 @@
                 </div>
             </li>
             <li class="list-item">
-              <a class="link-level-1" href="#">
+              <a class="link-level-1" href="{{ route('home') }}">
                 নীড়পাতা
               </a>
             </li>
@@ -305,14 +305,14 @@
                 <a class="navbar-brand d-none d-sm-block {{Session::get('direction') === "rtl" ? 'ml-3' : 'mr-3'}} flex-shrink-0"
                    href="{{route('home')}}"
                    style="min-width: 7rem;">
-                    <img width="250" height="60" style="height: 60px!important;"
+                    <img style="height: 65px!important; width: auto;"
                          src="{{asset("storage/app/public/company")."/".$web_config['web_logo']->value}}"
                          onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                          alt="{{$web_config['name']->value}}"/>
                 </a>
                 <a class="navbar-brand d-sm-none {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"
                    href="{{route('home')}}">
-                    <img width="100" height="60" style="height: 38px!important;" class="mobile-logo-img"
+                    <img style="height: 38px!important; width: auto;" class="mobile-logo-img"
                          src="{{asset("storage/app/public/company")."/".$web_config['mob_logo']->value}}"
                          onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                          alt="{{$web_config['name']->value}}"/>
