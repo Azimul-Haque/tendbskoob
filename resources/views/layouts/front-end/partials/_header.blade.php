@@ -111,7 +111,7 @@
 <header class="box-shadow-sm rtl">
     <!-- Topbar-->
     <!--
-        <div class="topbar">
+    <div class="topbar">
         <div class="container ">
             <div>
                 @php( $local = \App\CPU\Helpers::default_lang())
@@ -177,6 +177,78 @@
     </div>
     -->
 
+    <!-- off-canvas -->
+    <div class="off-canvas">
+      <div class="off-canvas-header">
+        <h4 class="off-canvas-title">
+          মেনু
+        </h4>
+        <div data-bs-dismiss="off-canvas" aria-label="Close">
+          <div class="icon-close"></div>
+        </div>
+      </div>
+
+      <div class="off-canvas-body">
+        <nav>
+          <ul class="list-level-0">
+            <li class="list-item">
+              <a class="link-level-1" href="#">
+                নীড়পাতা
+              </a>
+            </li>
+
+            <li class="list-item">
+              <a class="link-level-1" href="#">
+                Services&nbsp;<span class="link-arrow">&#8250;</span>
+              </a>
+              <ul class="list-level-1">
+                <li class="list-item">
+                  <a class="link-level-2" href="#">
+                    UX-Design
+                  </a>
+                </li>
+                <li class="list-item">
+                  <a class="link-level-2" href="#">
+                    Webdesign
+                  </a>
+                </li>
+                <li class="list-item">
+                  <a class="link-level-2" href="#">
+                    Content Marketing
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="list-item">
+              <a class="link-level-1" href="#">
+                Team&nbsp;<span class="link-arrow">&#8250;</span>
+              </a>
+              <ul class="list-level-1">
+                <li class="list-item">
+                  <a class="link-level-2" href="#">
+                    John
+                  </a>
+                </li>
+
+                <li class="list-item">
+                  <a class="link-level-2" href="#">
+                    Peter
+                  </a>
+                </li>
+
+                <li class="list-item">
+                  <a class="link-level-2" href="#">
+                    Gordon
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!-- off-canvas -->
 
     <div class="navbar-sticky bg-light mobile-head">
         <div class="navbar navbar-expand-md navbar-light">
@@ -324,12 +396,16 @@
                     </div>
 
                     @php($categories=\App\Model\Category::with(['childes.childes'])->where('position', 0)->paginate(11))
-                    <ul class="navbar-nav mega-nav pr-2 pl-2 {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}} d-none d-xl-block ">
+                    <ul class="navbar-nav mega-nav pr-2 pl-2 {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}} d-none d-xl-block">
                         <!--web-->
+                        <li class="nav-item" style="float: left;">
+                            <a class="nav-link off-canvas-toggle" href="#!">
+                                <i class="czi-menu align-middle mt-n1 mr-2"></i>
+                            </a>
+                        </li>
                         <li class="nav-item {{!request()->is('/')?'dropdown':''}}">
                             <a class="nav-link dropdown-toggle {{Session::get('direction') === "rtl" ? 'pr-0' : 'pl-0'}}"
                                href="#" data-toggle="dropdown" style="{{request()->is('/')?'pointer-events: none':''}}">
-                                <i class="czi-menu align-middle mt-n1 {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i>
                                 <span
                                     style="margin-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 40px !important;margin-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}: 50px">
                                     বিষয়সমূহ
@@ -466,11 +542,16 @@
                         </li>
                     </ul>
 
-                    <ul class="navbar-nav mega-nav1 pr-2 pl-2 d-block d-xl-none"><!--mobile-->
+                    <ul class="navbar-nav mega-nav1 pr-2 pl-2 d-blocksss d-xl-none"><!--mobile-->
+                        <li class="nav-item d-none d-md-block">
+                            <a class="nav-link off-canvas-toggle2" href="#!">
+                                <i class="czi-menu align-middle mt-n1 mr-2"></i>
+                            </a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle {{Session::get('direction') === "rtl" ? 'pr-0' : 'pl-0'}}"
                                href="#" data-toggle="dropdown">
-                                <i class="czi-menu align-middle mt-n1 {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i>
+                                
                                 <span
                                     style="margin-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 20px !important;">বিষয়সমূহ</span>
                             </a>

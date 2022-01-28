@@ -27,6 +27,7 @@
     <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
     <link rel="stylesheet" href="{{asset('public/assets/back-end')}}/css/toastr.css"/>
     <link rel="stylesheet" href="{{asset('public/assets/front-end')}}/css/master.css"/>
+    <link rel="stylesheet" href="{{asset('public/assets/front-end')}}/css/off-canvas-menu.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Titillium+Web:wght@400;600;700&display=swap" rel="stylesheet">
 
     @stack('css_or_js')
@@ -706,12 +707,11 @@
 {{--Toastr--}}
 <script src={{asset("public/assets/back-end/js/toastr.js")}}></script>
 <!-- Main theme script-->
+<script src="{{asset('public/assets/front-end')}}/js/off-canvas-menu.js"></script>
 <script src="{{asset('public/assets/front-end')}}/js/theme.min.js"></script>
 <script src="{{asset('public/assets/front-end')}}/js/slick.min.js"></script>
 
 <script src="{{asset('public/assets/front-end')}}/js/sweet_alert.js"></script>
-{{--Toastr--}}
-<script src={{asset("public/assets/back-end/js/toastr.js")}}></script>
 {!! Toastr::message() !!}
 
 <script>

@@ -61,9 +61,9 @@
                                 <div class="brand_div d-flex align-items-center justify-content-center"
                                  style="height: 200px">
                                     <?php if($author->image && file_exists(public_path('/images/author/' . $author->image))): ?>
-                                        <img src="<?php echo e(asset("public/images/author/" . $author->image)); ?>" alt="<?php echo e($author->name); ?>" onerror="this.src='<?php echo e(asset('public/assets/front-end/img/user_demo.jpg')); ?>'" alt="<?php echo e($author->name_bangla); ?>">
+                                        <img src="<?php echo e(asset("public/images/author/" . $author->image)); ?>" alt="<?php echo e($author->name); ?>" onerror="this.src='<?php echo e(asset('public/assets/front-end/img/user_demo.jpg')); ?>'" alt="<?php echo e($author->name_bangla); ?>" onmousedown='return false;' onselectstart='return false;'>
                                     <?php else: ?>
-                                        <img src="<?php echo e(asset('public/assets/front-end/img/user_demo.jpg')); ?>" alt="<?php echo e($author->name_bangla); ?>">
+                                        <img src="<?php echo e(asset('public/assets/front-end/img/user_demo.jpg')); ?>" alt="<?php echo e($author->name_bangla); ?>" onmousedown='return false;' onselectstart='return false;'>
                                     <?php endif; ?>
                                 </div>
                             </a>
