@@ -3,12 +3,20 @@
     .social-media :hover {
         color: <?php echo e($web_config['secondary_color']); ?> !important;
     }
+
+    .page-footer {
+        background: #F1F2F4;
+        color: black;
+    }
+    .footer-heder {
+        color: #000000;
+    }
     .widget-list-link{
-        color: #999898 !important;
+        color: #000000 !important;
     }
 
     .widget-list-link:hover{
-        color: white !important;
+        color: #000000 !important;
     }
 </style>
 
@@ -23,7 +31,7 @@
             <div class="col-md-3 col-lg-3 col-xl-3 mt-3">
                 <div class="text-nowrap mb-4">
                     <a class="d-inline-block mt-n1" href="<?php echo e(route('home')); ?>">
-                        <img width="250" style="height: 60px!important;"
+                        <img style="height: 70px!important; width: auto;"
                              src="<?php echo e(asset("storage/app/public/company/")); ?>/<?php echo e($web_config['footer_logo']->value); ?>"
                              onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                              alt="<?php echo e($web_config['name']->value); ?>"/>
@@ -34,7 +42,7 @@
                     <?php $__currentLoopData = $social_media; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <span class="social-media">
                                 <a class="social-btn sb-light sb-<?php echo e($item->name); ?> <?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?> mb-2"
-                                   target="_blank" href="<?php echo e($item->link); ?>" style="color: white!important;">
+                                   target="_blank" href="<?php echo e($item->link); ?>" style="color: rgb(71, 71, 71)!important;">
                                     <i class="<?php echo e($item->icon); ?>" aria-hidden="true"></i>
                                 </a>
                             </span>

@@ -36,6 +36,13 @@
         line-height: 1.25rem;
     }
 
+    .list-level-0>.list-item>a:hover {
+        background: rgb(185, 185, 185);
+    }
+    .list-level-1>.list-item:hover {
+        background: rgb(185, 185, 185);
+    }
+
     @media (min-width: 992px) {
         .navbar-sticky.navbar-stuck .navbar-stuck-menu.show {
             display: block;
@@ -111,7 +118,7 @@
 <header class="box-shadow-sm rtl">
     <!-- Topbar-->
     <!--
-        <div class="topbar">
+    <div class="topbar">
         <div class="container ">
             <div>
                 <?php ( $local = \App\CPU\Helpers::default_lang()); ?>
@@ -181,24 +188,138 @@
     </div>
     -->
 
+    <?php ($categories=\App\Model\Category::with(['childes.childes'])->where('position', 0)->take(11)->get()); ?>
+    <?php ($authors=\App\Model\Author::take(15)->get()); ?>
+    <?php ($publishers=\App\Model\Publisher::take(15)->get()); ?>
+
+    <!-- off-canvas -->
+    <div class="off-canvas">
+      <div class="off-canvas-header">
+        <h4 class="off-canvas-title">
+          মেনু
+        </h4>
+        <div data-bs-dismiss="off-canvas" aria-label="Close">
+          <div class="icon-close"></div>
+        </div>
+      </div>
+
+      <div class="off-canvas-body">
+        <nav>
+          <ul class="list-level-0">
+            <li class="list-item">
+                <div class="input-group-overlay d-md-none my-3">
+                    <form action="<?php echo e(route('products')); ?>" type="submit" class="search_form">
+                        <input class="form-control appended-form-control search-bar-input-mobile" type="text"
+                               autocomplete="off" id="globalsearch"
+                               placeholder="<?php echo e(\App\CPU\translate('search')); ?>" name="name" required>
+                        <input name="data_from" value="search" hidden>
+                        <input name="page" value="1" hidden>
+                        <button class="input-group-append-overlay search_button" type="submit"
+                                style="border-radius: <?php echo e(Session::get('direction') === "rtl" ? '7px 0px 0px 7px; right: unset; left: 0' : '0px 7px 7px 0px; left: unset; right: 0'); ?>;">
+                        <span class="input-group-text" style="font-size: 20px;">
+                            <i class="czi-search text-white"></i>
+                        </span>
+                        </button>
+                        <div class="card search-card"
+                             style="position: absolute;background: white;z-index: 999;width: 100%;display: none">
+                            <div class="card-body search-result-box" id=""
+                                 style="overflow:scroll; height:400px;overflow-x: hidden"></div>
+                        </div>
+                    </form>
+                </div>
+            </li>
+            <li class="list-item">
+              <a class="link-level-1" href="<?php echo e(route('home')); ?>">
+                নীড়পাতা
+              </a>
+            </li>
+
+            <li class="list-item">
+              <a class="link-level-1" href="#">
+                লেখক &nbsp;<span class="link-arrow">&#8250;</span>
+              </a>
+              <ul class="list-level-1">
+                <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $author): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li class="list-item">
+                        <a class="link-level-2" href="<?php echo e(route('products', ['id'=> $author['id'],'data_from'=>'author','page'=>1, 'author_name'=>$author['slug']])); ?>">
+                            <?php echo e($author->name_bangla); ?>
+
+                        </a>
+                    </li> 
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <li class="list-item">
+                    <a class="link-level-2" href="<?php echo e(route('authors')); ?>">
+                        <b>আরও দেখুন <i class="fa fa-angle-double-right"></i></b>
+                    </a>
+                </li> 
+              </ul>
+            </li>
+
+            <li class="list-item">
+              <a class="link-level-1" href="#">
+                বিষয়সমূহ&nbsp;<span class="link-arrow">&#8250;</span>
+              </a>
+              <ul class="list-level-1">
+                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li class="list-item">
+                        <a class="link-level-2" href="<?php echo e(route('products', ['id'=> $category['id'],'data_from'=>'category','page'=>1])); ?>">
+                            <?php echo e($category->name_bangla); ?>
+
+                        </a>
+                    </li> 
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <li class="list-item">
+                    <a class="link-level-2" href="<?php echo e(route('categories')); ?>">
+                        <b>আরও দেখুন <i class="fa fa-angle-double-right"></i></b>
+                    </a>
+                </li> 
+              </ul>
+            </li>
+
+            <li class="list-item">
+              <a class="link-level-1" href="#">
+                প্রকাশনী &nbsp;<span class="link-arrow">&#8250;</span>
+              </a>
+              <ul class="list-level-1">
+                <?php $__currentLoopData = $publishers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $publisher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li class="list-item">
+                        <a class="link-level-2" href="<?php echo e(route('products', ['id'=> $publisher['id'],'data_from'=>'publisher', 'author_name'=>$author['slug'], 'page'=>1])); ?>">
+                            <?php echo e($publisher->name_bangla); ?>
+
+                        </a>
+                    </li> 
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <li class="list-item">
+                    <a class="link-level-2" href="<?php echo e(route('publishers')); ?>">
+                        <b>আরও দেখুন <i class="fa fa-angle-double-right"></i></b>
+                    </a>
+                </li> 
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!-- off-canvas -->
 
     <div class="navbar-sticky bg-light mobile-head">
         <div class="navbar navbar-expand-md navbar-light">
             <div class="container ">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+               <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"> -->
+                <button class="navbar-toggler off-canvas-toggle">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <a class="navbar-brand d-none d-sm-block <?php echo e(Session::get('direction') === "rtl" ? 'ml-3' : 'mr-3'); ?> flex-shrink-0"
                    href="<?php echo e(route('home')); ?>"
                    style="min-width: 7rem;">
-                    <img width="250" height="60" style="height: 60px!important;"
+                    <img style="height: 70px!important; width: auto;"
                          src="<?php echo e(asset("storage/app/public/company")."/".$web_config['web_logo']->value); ?>"
                          onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                          alt="<?php echo e($web_config['name']->value); ?>"/>
                 </a>
                 <a class="navbar-brand d-sm-none <?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?>"
                    href="<?php echo e(route('home')); ?>">
-                    <img width="100" height="60" style="height: 38px!important;" class="mobile-logo-img"
+                    <img style="height: 50px!important; width: auto;" class="mobile-logo-img"
                          src="<?php echo e(asset("storage/app/public/company")."/".$web_config['mob_logo']->value); ?>"
                          onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                          alt="<?php echo e($web_config['name']->value); ?>"/>
@@ -220,11 +341,11 @@
                         </button>
                         <input name="data_from" value="search" hidden>
                         <input name="page" value="1" hidden>
-                        <diV class="card search-card"
+                        <div class="card search-card"
                              style="position: absolute;background: white;z-index: 999;width: 100%;display: none">
                             <div class="card-body search-result-box"
                                  style="overflow:scroll; height:400px;overflow-x: hidden"></div>
-                        </diV>
+                        </div>
                     </form>
                 </div>
                 <!-- Toolbar-->
@@ -322,21 +443,36 @@
                                 <i class="czi-search text-white"></i>
                             </span>
                             </button>
-                            <diV class="card search-card"
+                            <div class="card search-card"
                                  style="position: absolute;background: white;z-index: 999;width: 100%;display: none">
                                 <div class="card-body search-result-box" id=""
                                      style="overflow:scroll; height:400px;overflow-x: hidden"></div>
-                            </diV>
+                            </div>
                         </form>
                     </div>
 
-                    <?php ($categories=\App\Model\Category::with(['childes.childes'])->where('position', 0)->paginate(11)); ?>
-                    <ul class="navbar-nav mega-nav pr-2 pl-2 <?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?> d-none d-xl-block ">
+                    <?php if(!request()->is('/')): ?>
+                        <ul class="navbar-nav pr-2 pl-2 <?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?> d-none d-xl-block">
+                            <li class="nav-item" style="float: left;">
+                                <a class="nav-link off-canvas-toggle2" href="#!">
+                                    <i class="czi-menu align-middle mt-n1 mr-2"></i>
+                                </a>
+                            </li>
+                        </ul> 
+                    <?php endif; ?>
+                    
+                    <ul class="navbar-nav mega-nav pr-2 pl-2 <?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?> d-none d-xl-block">
                         <!--web-->
+                        <?php if(request()->is('/')): ?>
+                            <li class="nav-item" style="float: left;">
+                                <a class="nav-link off-canvas-toggle2" href="#!">
+                                    <i class="czi-menu align-middle mt-n1 mr-2"></i>
+                                </a>
+                            </li>
+                        <?php endif; ?>
                         <li class="nav-item <?php echo e(!request()->is('/')?'dropdown':''); ?>">
                             <a class="nav-link dropdown-toggle <?php echo e(Session::get('direction') === "rtl" ? 'pr-0' : 'pl-0'); ?>"
                                href="#" data-toggle="dropdown" style="<?php echo e(request()->is('/')?'pointer-events: none':''); ?>">
-                                <i class="czi-menu align-middle mt-n1 <?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?>"></i>
                                 <span
                                     style="margin-<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>: 40px !important;margin-<?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>: 50px">
                                     বিষয়সমূহ
@@ -475,11 +611,16 @@
                         </li>
                     </ul>
 
-                    <ul class="navbar-nav mega-nav1 pr-2 pl-2 d-block d-xl-none"><!--mobile-->
+                    <ul class="navbar-nav mega-nav1 pr-2 pl-2 d-blocksss d-xl-none"><!--mobile-->
+                        <li class="nav-item d-none d-md-block">
+                            <a class="nav-link off-canvas-toggle3" href="#!">
+                                <i class="czi-menu align-middle mt-n1 mr-2"></i>
+                            </a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle <?php echo e(Session::get('direction') === "rtl" ? 'pr-0' : 'pl-0'); ?>"
                                href="#" data-toggle="dropdown">
-                                <i class="czi-menu align-middle mt-n1 <?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?>"></i>
+                                
                                 <span
                                     style="margin-<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>: 20px !important;">বিষয়সমূহ</span>
                             </a>
@@ -537,7 +678,7 @@
                             <a class="nav-link" href="<?php echo e(route('home')); ?>">নীড়পাতা</a>
                         </li>
 
-                        <?php ($authors=\App\Model\Author::paginate(15)); ?>
+                        
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="<?php echo e(route('authors')); ?>">লেখক</a>
                             <ul class="dropdown-menu dropdown-menu-<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?> scroll-bar"
@@ -570,7 +711,7 @@
                             </ul>
                         </li>
                         
-                        <?php ($publishers=\App\Model\Publisher::paginate(15)); ?>
+                        
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="<?php echo e(route('publishers')); ?>">প্রকাশনী</a>
                             <ul class="dropdown-menu dropdown-menu-<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?> scroll-bar"

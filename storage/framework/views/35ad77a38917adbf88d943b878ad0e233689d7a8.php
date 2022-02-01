@@ -274,7 +274,7 @@
                                                 <img class="d-block"
                                                      onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                                                      src="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($product['thumbnail']); ?>"
-                                                     alt="VR Collection" width="60">
+                                                     alt="VR Collection" width="60" onmousedown='return false;' onselectstart='return false;'>
                                             </td>
                                             <td width="80%" class="for-glaxy-name" style="vertical-align:middle">
                                                 <a href="<?php echo e(route('product',[$product['slug']])); ?>" style="color: #5C7CFF !important;">

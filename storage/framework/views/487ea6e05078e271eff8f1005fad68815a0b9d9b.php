@@ -31,7 +31,7 @@
                             <img class="d-block w-100" style="max-height: 350px"
                                  onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                                  src="<?php echo e(asset('storage/app/public/banner')); ?>/<?php echo e($banner['photo']); ?>"
-                                 alt="">
+                                 alt="" onmousedown='return false;' onselectstart='return false;'>
                         </a>
                     </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -55,7 +55,7 @@
                        style="cursor: pointer;">
                         <img class="d-block footer_banner_img" style="width: 100%"
                              onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
-                             src="<?php echo e(asset('storage/app/public/banner')); ?>/<?php echo e($banner['photo']); ?>">
+                             src="<?php echo e(asset('storage/app/public/banner')); ?>/<?php echo e($banner['photo']); ?>" onmousedown='return false;' onselectstart='return false;'>
                     </a>
                 </div>
                 <div class="modal fade" id="quick_banner<?php echo e($banner->id); ?>" tabindex="-1"
@@ -74,7 +74,7 @@
                             <div class="modal-body">
                                 <img class="d-block mx-auto"
                                      onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
-                                     src="<?php echo e(asset('storage/app/public/banner')); ?>/<?php echo e($banner['photo']); ?>">
+                                     src="<?php echo e(asset('storage/app/public/banner')); ?>/<?php echo e($banner['photo']); ?>" onmousedown='return false;' onselectstart='return false;'>
                                 <?php if($banner->url!=""): ?>
                                     <div class="text-center mt-2">
                                         <a href="<?php echo e($banner->url); ?>"

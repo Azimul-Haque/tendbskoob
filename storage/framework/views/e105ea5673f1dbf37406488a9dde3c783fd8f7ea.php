@@ -185,7 +185,7 @@
                     <img class="rounded-circle" style="text-align: <?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>; height:40px; width:40px;"
                          onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                          src="<?php echo e(asset('storage/app/public/profile')); ?>/<?php echo e(auth('customer')->user()->image); ?>"
-                         alt="<?php echo e(auth('customer')->user()->f_name); ?>"/>
+                         alt="<?php echo e(auth('customer')->user()->f_name); ?>" onmousedown='return false;' onselectstart='return false;'/>
                     <div class="media-body <?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>">
                         <h6 class="font-size-md mb-2"><?php echo e(auth('customer')->user()->f_name); ?></h6>
                         <p class="font-size-md mb-1"><?php echo e($ticket['description']); ?></p>
@@ -214,7 +214,7 @@
                             <img class="rounded-circle" height="40" width="40"
                                  onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                                  src="<?php echo e(asset('storage/app/public/profile')); ?>/<?php echo e(auth('customer')->user()->image); ?>"
-                                 alt="<?php echo e(auth('customer')->user()->f_name); ?>"/>
+                                 alt="<?php echo e(auth('customer')->user()->f_name); ?>" onmousedown='return false;' onselectstart='return false;'/>
                             <div class="media-body <?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>">
                                 <h6 class="font-size-md mb-2"><?php echo e(auth('customer')->user()->f_name); ?></h6>
                                 <p class="font-size-md mb-1"><?php echo e($conversation['customer_message']); ?></p>
