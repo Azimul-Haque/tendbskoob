@@ -839,7 +839,7 @@
                                 <b>{{ isset($data_from_name) ? $data_from_name : ''}}</b>
                                 <label>( {{$products->total()}} {{\App\CPU\translate('items found')}} )</label>
                             @else
-                                {{ strtoupper($data['data_from']) }} {{\App\CPU\translate('products')}}
+                                {{ strtoupper($data['data_from']) }} {{\App\CPU\translate('Books')}}
                                 <label>( {{$products->total()}} {{\App\CPU\translate('items found')}} )</label>
                             @endif
                                     
@@ -886,7 +886,7 @@
                     </div>
                 @else
                     <div class="text-center pt-5">
-                        <h2>{{\App\CPU\translate('No Product Found')}}</h2>
+                        <h2>{{\App\CPU\translate('No Books Found')}}</h2>
                         @if($data['data_from'] == 'search')
                             <a href="{{ route('book-request') }}" class="btn btn-sm btn-success"><i class="fa fa-refresh"></i> অনুরোধ করুন</a>
                         @endif
@@ -911,7 +911,7 @@
 
         function filter(value) {
             $.get({
-                url: '{{url('/')}}/products',
+                url: '{{url('/')}}/books',
                 data: {
                     id: '{{$data['id']}}',
                     name: '{{$data['name']}}',
@@ -937,7 +937,7 @@
             let min = $('#min_price').val();
             let max = $('#max_price').val();
             $.get({
-                url: '{{url('/')}}/products',
+                url: '{{url('/')}}/books',
                 data: {
                     id: '{{$data['id']}}',
                     name: '{{$data['name']}}',
