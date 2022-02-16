@@ -103,7 +103,7 @@
                  width="100%" style="height: 100%;" onmousedown='return false;' onselectstart='return false;'>
         </a>
     </div>
-    <div class="product_details {{$product['current_stock']==0?'stock-card':''}}">
+    <div class="product_details {{$product['current_stock']==0?'stock-card':'stock-card'}}">
         <h3 class="product-title">
             <a class="ptr ptr1" href="{{route('product',$product->slug)}}">{{$product['name']}}</a>
         </h3>
@@ -132,6 +132,9 @@
         {{-- @if($product['current_stock']<=0)
             <label class="badge badge-danger stock-out-side">{{\App\CPU\translate('Stock Out')}}</label>
         @endif --}}
+        @if($product['stock_status'] == 3)
+            <label class="badge badge-danger stock-out-side">{{\App\CPU\translate('Back Order')}}</label>
+        @endif
     </div>
 </div>
 

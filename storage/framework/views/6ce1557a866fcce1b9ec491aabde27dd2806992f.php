@@ -266,21 +266,28 @@
                         
                         mt-2">
                             
-                            <button
-                                class="btn btn-primary element-center btn-gap-<?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>"
-                                onclick="addToCart()"
-                                type="button"
-                                style="width:37%; height: 45px; margin-right: 10px;">
-                                <i class="fa fa-cart-plus mr-2"></i>
-                                <span class="string-limit"><?php echo e(\App\CPU\translate('add_to_cart')); ?></span>
-                            </button>
-                            <button type="button" onclick="addWishlist('<?php echo e($product['id']); ?>')"
-                                    class="btn btn-dark for-hover-bg"
-                                    style="">
-                                <i class="fa fa-heart-o <?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?>"
-                                   aria-hidden="true"></i>
-                                <span class="countWishlist-<?php echo e($product['id']); ?>"><?php echo e($countWishlist); ?></span>
-                            </button>
+                            <?php if($product['stock_status'] == 3): ?>
+                                <?php
+                                    $book_details = 'লেখকঃ ' . $product->writers[0]->name_bangla . ', প্রকাশনীঃ ' . $product->publisher->name_bangla;
+                                ?>
+                                <a href="<?php echo e(route('book-request', ['book_name' => $product->name_bangla, 'book_details' => $book_details])); ?>" class="btn btn-success"><i class="fa fa-refresh"></i> বইটি অনুরোধ করুন</a>
+                            <?php else: ?>
+                                <button
+                                    class="btn btn-primary element-center btn-gap-<?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>"
+                                    onclick="addToCart()"
+                                    type="button"
+                                    style="width:37%; height: 45px; margin-right: 10px;">
+                                    <i class="fa fa-cart-plus mr-2"></i>
+                                    <span class="string-limit"><?php echo e(\App\CPU\translate('add_to_cart')); ?></span>
+                                </button>
+                                <button type="button" onclick="addWishlist('<?php echo e($product['id']); ?>')"
+                                        class="btn btn-dark for-hover-bg"
+                                        style="">
+                                    <i class="fa fa-heart-o <?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?>"
+                                    aria-hidden="true"></i>
+                                    <span class="countWishlist-<?php echo e($product['id']); ?>"><?php echo e($countWishlist); ?></span>
+                                </button>
+                            <?php endif; ?>
                         </div>
                     </form>
                     <hr style="padding-bottom: 10px">

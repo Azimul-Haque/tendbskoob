@@ -1479,4 +1479,5 @@
   'All Authors' => 'All Authors',
   'All Category' => 'All Category',
   'Best Selling Books' => 'Best Selling Books',
+  'Back Order' => 'Back Order',
 );

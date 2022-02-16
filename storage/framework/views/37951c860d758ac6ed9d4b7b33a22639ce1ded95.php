@@ -766,7 +766,7 @@
                                 <b><?php echo e(isset($data_from_name) ? $data_from_name : ''); ?></b>
                                 <label>( <?php echo e($products->total()); ?> <?php echo e(\App\CPU\translate('items found')); ?> )</label>
                             <?php else: ?>
-                                <?php echo e(strtoupper($data['data_from'])); ?> <?php echo e(\App\CPU\translate('products')); ?>
+                                <?php echo e(strtoupper($data['data_from'])); ?> <?php echo e(\App\CPU\translate('Books')); ?>
 
                                 <label>( <?php echo e($products->total()); ?> <?php echo e(\App\CPU\translate('items found')); ?> )</label>
                             <?php endif; ?>
@@ -815,7 +815,7 @@
                     </div>
                 <?php else: ?>
                     <div class="text-center pt-5">
-                        <h2><?php echo e(\App\CPU\translate('No Product Found')); ?></h2>
+                        <h2><?php echo e(\App\CPU\translate('No Books Found')); ?></h2>
                         <?php if($data['data_from'] == 'search'): ?>
                             <a href="<?php echo e(route('book-request')); ?>" class="btn btn-sm btn-success"><i class="fa fa-refresh"></i> অনুরোধ করুন</a>
                         <?php endif; ?>
@@ -840,7 +840,7 @@
 
         function filter(value) {
             $.get({
-                url: '<?php echo e(url('/')); ?>/products',
+                url: '<?php echo e(url('/')); ?>/books',
                 data: {
                     id: '<?php echo e($data['id']); ?>',
                     name: '<?php echo e($data['name']); ?>',
@@ -866,7 +866,7 @@
             let min = $('#min_price').val();
             let max = $('#max_price').val();
             $.get({
-                url: '<?php echo e(url('/')); ?>/products',
+                url: '<?php echo e(url('/')); ?>/books',
                 data: {
                     id: '<?php echo e($data['id']); ?>',
                     name: '<?php echo e($data['name']); ?>',
