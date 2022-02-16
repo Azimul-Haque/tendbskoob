@@ -61,9 +61,9 @@
                                 <div class="brand_div d-flex align-items-center justify-content-center"
                                  style="height: 200px">
                                     <?php if($publisher->image && file_exists(public_path('/public/images/publisher/' . $publisher->image))): ?>
-                                        <img src="<?php echo e(asset("public/images/publisher/" . $publisher->image)); ?>" alt="<?php echo e($publisher->name); ?>" onerror="this.src='<?php echo e(asset('public/assets/front-end/img/category_demo.jpg')); ?>'" alt="<?php echo e($publisher->name_bangla); ?>">
+                                        <img src="<?php echo e(asset("public/images/publisher/" . $publisher->image)); ?>" alt="<?php echo e($publisher->name); ?>" onerror="this.src='<?php echo e(asset('public/assets/front-end/img/category_demo.jpg')); ?>'" alt="<?php echo e($publisher->name_bangla); ?>" onmousedown='return false;' onselectstart='return false;' style="height: 135px; width: auto;">
                                     <?php else: ?>
-                                        <img src="<?php echo e(asset('public/assets/front-end/img/category_demo.jpg')); ?>" alt="<?php echo e($publisher->name_bangla); ?>">
+                                        <img src="<?php echo e(asset('public/assets/front-end/img/category_demo.jpg')); ?>" alt="<?php echo e($publisher->name_bangla); ?>" onmousedown='return false;' onselectstart='return false;' style="height: 135px; width: auto;">
                                     <?php endif; ?>
                                 </div>
                             </a>
