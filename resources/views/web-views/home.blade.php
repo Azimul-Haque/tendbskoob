@@ -407,23 +407,23 @@
                 </div>
                 <div class="container mt-2">
                     <div class="row p-0">
-                        <div class="col-md-3 p-0 text-center mobile-padding mt-1 mt-md-0">
+                        {{-- <div class="col-md-3 p-0 text-center mobile-padding mt-1 mt-md-0">
                             <img style="height: 29px;" src="{{asset("public/assets/front-end/png/delivery.png")}}"
                                  alt="" onmousedown='return false;' onselectstart='return false;'>
                             <div class="deal-title">3 {{\App\CPU\translate('days')}}
                                 <br><span>{{\App\CPU\translate('free_delivery')}}</span></div>
-                        </div>
-                        <div class="col-md-3 p-0 text-center mt-1 mt-md-0">
+                        </div> --}}
+                        <div class="col-md-4 p-0 text-center mt-1 mt-md-0">
                             <img style="height: 29px;" src="{{asset("public/assets/front-end/png/money.png")}}" alt="" onmousedown='return false;' onselectstart='return false;'>
                             <div class="deal-title">{{\App\CPU\translate('money_back_guarantee')}}</div>
                         </div>
-                        <div class="col-md-3 p-0 text-center mt-1 mt-md-0">
+                        <div class="col-md-4 p-0 text-center mt-1 mt-md-0">
                             <img style="height: 29px;" src="{{asset("public/assets/front-end/png/Genuine.png")}}"
                                  alt="" onmousedown='return false;' onselectstart='return false;'>
                             <div class="deal-title">100% {{\App\CPU\translate('genuine')}}
                                 <br><span>{{\App\CPU\translate('product')}}</span></div>
                         </div>
-                        <div class="col-md-3 p-0 text-center mt-1 mt-md-0">
+                        <div class="col-md-4 p-0 text-center mt-1 mt-md-0">
                             <img style="height: 29px;" src="{{asset("public/assets/front-end/png/Payment.png")}}"
                                  alt="" onmousedown='return false;' onselectstart='return false;'>
                             <div class="deal-title">{{\App\CPU\translate('authentic_payment')}}</div>
@@ -458,7 +458,7 @@
     </div>
 
     {{--categries--}}
-    <section class="container rtl">
+    {{-- <section class="container rtl">
         <!-- Heading-->
         <div class="section-header">
             <div class="feature_header">
@@ -493,10 +493,10 @@
                 @endforeach
             </div>
         </div>
-    </section>
+    </section> --}}
 
     {{--brands--}}
-    <section class="container rtl">
+    {{-- <section class="container rtl">
         <!-- Heading-->
         <div class="section-header">
             <div class="feature_header" style="color: black">
@@ -509,7 +509,6 @@
                 </a>
             </div>
         </div>
-    {{--<hr class="view_border">--}}
     <!-- Grid-->
         <div class="mt-2 mb-3 brand-slider">
             <div class="owl-carousel owl-theme" id="brands-slider">
@@ -530,7 +529,7 @@
                 @endforeach
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <!-- top sellers -->
     {{-- @if(count($top_sellers) > 0)

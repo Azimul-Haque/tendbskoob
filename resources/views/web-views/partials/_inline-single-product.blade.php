@@ -129,9 +129,9 @@
                 </strike>
             @endif
         </div>
-        @if($product['current_stock']<=0)
+        {{-- @if($product['current_stock']<=0)
             <label class="badge badge-danger stock-out-side">{{\App\CPU\translate('Stock Out')}}</label>
-        @endif
+        @endif --}}
     </div>
 </div>
 
