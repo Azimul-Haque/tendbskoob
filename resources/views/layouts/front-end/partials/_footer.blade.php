@@ -224,7 +224,7 @@
         <!-- Footer links -->
         <img style="height: 120px!important; width: auto;"
          src="{{ asset("public/assets/front-end/img/shurjoPay_footer.png") }}"
-         alt="shurjoPay" />
+         alt="shurjoPay" onmousedown='return false;' onselectstart='return false;'>
     </div>
 
     <hr>
