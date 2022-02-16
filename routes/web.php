@@ -48,7 +48,7 @@ Route::group(['namespace' => 'Web','middleware'=>['maintenance_mode']], function
     Route::get('privacy-policy', 'WebController@privacy_policy')->name('privacy-policy');
 
     Route::get('/book/{slug}', 'WebController@product')->name('product');
-    Route::get('products', 'WebController@products')->name('products');
+    Route::get('books', 'WebController@products')->name('products');
     Route::get('orderDetails', 'WebController@orderdetails')->name('orderdetails');
 
     //Chat with seller from product details

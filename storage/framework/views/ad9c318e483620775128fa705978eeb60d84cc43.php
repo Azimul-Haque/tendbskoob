@@ -710,7 +710,7 @@
                             <center>
                                 <img class="img-fluid rounded-circle" style="padding:10px;"
                                     onerror="this.src='<?php echo e(asset('public/assets/front-end/img/user_demo.jpg')); ?>'"
-                                    src="<?php echo e(asset('public/images/author/' . $datasource['image'])); ?>">
+                                    src="<?php echo e(asset('public/images/author/' . $datasource['image'])); ?>" onmousedown='return false;' onselectstart='return false;'>
                             </center>
                         </div>
                         <div class="col-md-9 card" style="padding:10px;">
@@ -733,7 +733,7 @@
                             <center>
                                 <img class="img-fluid rounded-circle" style="padding:10px;"
                                     onerror="this.src='<?php echo e(asset('public/assets/front-end/img/user_demo.jpg')); ?>'"
-                                    src="<?php echo e(asset('public/images/publisher/' . $datasource['image'])); ?>">
+                                    src="<?php echo e(asset('public/images/publisher/' . $datasource['image'])); ?>" onmousedown='return false;' onselectstart='return false;'>
                             </center>
                         </div>
                         <div class="col-md-9 card" style="padding:10px;">

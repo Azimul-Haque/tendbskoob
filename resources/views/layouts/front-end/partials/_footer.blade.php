@@ -222,6 +222,9 @@
             <!-- Grid column -->
         </div>
         <!-- Footer links -->
+        <img style="height: 70px!important; width: auto;"
+         src="{{ asset("public/assets/front-end/img/shurjoPay_footer.png") }}"
+         alt="shurjoPay" />
     </div>
 
     <hr>

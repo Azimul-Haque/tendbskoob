@@ -10,7 +10,7 @@
 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 <div class="col-12">
-    <nav class="d-flex justify-content-between pt-2" aria-label="Page navigation"
+    <nav class="d-flexsss justify-content-between pt-2" aria-label="Page navigation"
          id="paginator-ajax">
         <?php echo $products->links(); ?>
 

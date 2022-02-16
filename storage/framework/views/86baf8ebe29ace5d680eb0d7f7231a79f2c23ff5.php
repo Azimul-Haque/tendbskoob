@@ -209,6 +209,9 @@
             <!-- Grid column -->
         </div>
         <!-- Footer links -->
+        <img style="height: 70px!important; width: auto;"
+         src="<?php echo e(asset("public/assets/front-end/img/shurjoPay_footer.png")); ?>"
+         alt="shurjoPay" />
     </div>
 
     <hr>

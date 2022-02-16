@@ -17,7 +17,7 @@
                     <div class="col-1">
                         <img src="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($product['thumbnail']); ?>"
                          onerror="this.src='<?php echo e(asset('public/assets/front-end/img/book_demo.jpg')); ?>'"
-                         style="">
+                         style="" onmousedown='return false;' onselectstart='return false;'>
                     </div>
                     <div class="col-9">
                         <?php echo e($product['name_bangla']); ?><br/>
