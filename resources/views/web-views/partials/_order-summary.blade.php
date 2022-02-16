@@ -99,20 +99,20 @@
     </div>
     <div class="container mt-2">
         <div class="row p-0">
-            <div class="col-md-3 p-0 text-center mobile-padding">
+           <!-- <div class="col-md-3 p-0 text-center mobile-padding">
                 <img style="height: 29px;" src="{{asset("public/assets/front-end/png/delivery.png")}}" alt="">
                 <div class="deal-title">3 {{\App\CPU\translate('days')}} <br><span>{{\App\CPU\translate('free_delivery')}}</span></div>
-            </div>
+            </div> -->
 
-            <div class="col-md-3 p-0 text-center">
+            <div class="col-md-4 p-0 text-center">
                 <img style="height: 29px;" src="{{asset("public/assets/front-end/png/money.png")}}" alt="">
                 <div class="deal-title">{{\App\CPU\translate('money_back_guarantee')}}</div>
             </div>
-            <div class="col-md-3 p-0 text-center">
+            <div class="col-md-4 p-0 text-center">
                 <img style="height: 29px;" src="{{asset("public/assets/front-end/png/Genuine.png")}}" alt="">
                 <div class="deal-title">100% {{\App\CPU\translate('genuine')}}<br><span>{{\App\CPU\translate('product')}}</span></div>
             </div>
-            <div class="col-md-3 p-0 text-center">
+            <div class="col-md-4 p-0 text-center">
                 <img style="height: 29px;" src="{{asset("public/assets/front-end/png/Payment.png")}}" alt="">
                 <div class="deal-title">{{\App\CPU\translate('authentic_payment')}}</div>
             </div>
