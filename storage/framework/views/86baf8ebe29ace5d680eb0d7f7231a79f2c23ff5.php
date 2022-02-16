@@ -209,9 +209,9 @@
             <!-- Grid column -->
         </div>
         <!-- Footer links -->
-        <img style="height: 70px!important; width: auto;"
+        <img style="height: 120px!important; width: auto;"
          src="<?php echo e(asset("public/assets/front-end/img/shurjoPay_footer.png")); ?>"
-         alt="shurjoPay" />
+         alt="shurjoPay" onmousedown='return false;' onselectstart='return false;'>
     </div>
 
     <hr>

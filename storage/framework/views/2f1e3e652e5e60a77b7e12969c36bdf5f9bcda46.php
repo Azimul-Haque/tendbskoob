@@ -258,9 +258,7 @@
                             </div>
 
                             <div class="col-12">
-                                <?php if($product['current_stock']<=0): ?>
-                                    <h5 class="mt-3" style="color: red"><?php echo e(\App\CPU\translate('out_of_stock')); ?></h5>
-                                <?php endif; ?>
+                                
                             </div>
                         </div>
 

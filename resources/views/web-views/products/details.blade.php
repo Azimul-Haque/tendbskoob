@@ -426,9 +426,9 @@
                             </div>
 
                             <div class="col-12">
-                                @if($product['current_stock']<=0)
+                                {{-- @if($product['current_stock']<=0)
                                     <h5 class="mt-3" style="color: red">{{\App\CPU\translate('out_of_stock')}}</h5>
-                                @endif
+                                @endif --}}
                             </div>
                         </div>
 
