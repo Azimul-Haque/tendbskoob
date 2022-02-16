@@ -295,7 +295,7 @@
             <!-- Heading-->
             <div class="section-header">
                 <div class="feature_header">
-                    <span class="for-feature-title"><?php echo e(\App\CPU\translate('featured_products')); ?></span>
+                    <span class="for-feature-title"><?php echo e(\App\CPU\translate('featured_books')); ?></span>
                 </div>
                 <div>
                     <a class="btn btn-outline-accent btn-sm viw-btn-a"
@@ -414,25 +414,19 @@
                 </div>
                 <div class="container mt-2">
                     <div class="row p-0">
-                        <div class="col-md-3 p-0 text-center mobile-padding mt-1 mt-md-0">
-                            <img style="height: 29px;" src="<?php echo e(asset("public/assets/front-end/png/delivery.png")); ?>"
-                                 alt="" onmousedown='return false;' onselectstart='return false;'>
-                            <div class="deal-title">3 <?php echo e(\App\CPU\translate('days')); ?>
-
-                                <br><span><?php echo e(\App\CPU\translate('free_delivery')); ?></span></div>
-                        </div>
-                        <div class="col-md-3 p-0 text-center mt-1 mt-md-0">
+                        
+                        <div class="col-md-4 p-0 text-center mt-1 mt-md-0">
                             <img style="height: 29px;" src="<?php echo e(asset("public/assets/front-end/png/money.png")); ?>" alt="" onmousedown='return false;' onselectstart='return false;'>
                             <div class="deal-title"><?php echo e(\App\CPU\translate('money_back_guarantee')); ?></div>
                         </div>
-                        <div class="col-md-3 p-0 text-center mt-1 mt-md-0">
+                        <div class="col-md-4 p-0 text-center mt-1 mt-md-0">
                             <img style="height: 29px;" src="<?php echo e(asset("public/assets/front-end/png/Genuine.png")); ?>"
                                  alt="" onmousedown='return false;' onselectstart='return false;'>
                             <div class="deal-title">100% <?php echo e(\App\CPU\translate('genuine')); ?>
 
                                 <br><span><?php echo e(\App\CPU\translate('product')); ?></span></div>
                         </div>
-                        <div class="col-md-3 p-0 text-center mt-1 mt-md-0">
+                        <div class="col-md-4 p-0 text-center mt-1 mt-md-0">
                             <img style="height: 29px;" src="<?php echo e(asset("public/assets/front-end/png/Payment.png")); ?>"
                                  alt="" onmousedown='return false;' onselectstart='return false;'>
                             <div class="deal-title"><?php echo e(\App\CPU\translate('authentic_payment')); ?></div>
@@ -444,7 +438,7 @@
             <div class="col-xl-9 col-md-8">
                 <div class="section-header">
                     <div class="feature_header">
-                        <span class="for-feature-title"><?php echo e(\App\CPU\translate('latest_products')); ?></span>
+                        <span class="for-feature-title"><?php echo e(\App\CPU\translate('latest_books')); ?></span>
                     </div>
                     <div>
                         <a class="btn btn-outline-accent btn-sm viw-btn-a"
@@ -468,81 +462,10 @@
     </div>
 
     
-    <section class="container rtl">
-        <!-- Heading-->
-        <div class="section-header">
-            <div class="feature_header">
-                <span><?php echo e(\App\CPU\translate('categories')); ?></span>
-            </div>
-            <div>
-                <a class="btn btn-outline-accent btn-sm viw-btn-a"
-                   href="<?php echo e(route('categories')); ?>"><?php echo e(\App\CPU\translate('view_all')); ?>
-
-                    <i class="czi-arrow-<?php echo e(Session::get('direction') === "rtl" ? 'left mr-1 ml-n1' : 'right ml-1 mr-n1'); ?>"></i>
-                </a>
-            </div>
-        </div>
-
-        <div class="mt-2 mb-3 brand-slider">
-            <div class="owl-carousel owl-theme " id="category-slider">
-                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="category_div" style="height: 132px; width: 100%;">
-                        <a href="<?php echo e(route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])); ?>">
-                            <?php if($category['icon']): ?>
-                                <img style="vertical-align: middle; padding: 16%;height: 100px"
-                                src="<?php echo e(asset('public/images/category/' . $category['icon'])); ?>"
-                                 onerror="this.src='<?php echo e(asset('public/assets/front-end/img/category_demo.jpg')); ?>'"
-                                 alt="<?php echo e($category->name_bangla); ?>" onmousedown='return false;' onselectstart='return false;'>
-                            <?php else: ?>
-                                <img style="vertical-align: middle; padding: 16%;height: 100px"
-                                src="<?php echo e(asset('public/assets/front-end/img/category_demo.jpg')); ?>"
-                                alt="<?php echo e($category->name_bangla); ?>" onmousedown='return false;' onselectstart='return false;'>
-                            <?php endif; ?>
-                            <p class="text-center small" style="margin-top: -10px"><?php echo e(\Illuminate\Support\Str::limit($category->name_bangla, 17)); ?></p>
-                        </a>
-                    </div>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            </div>
-        </div>
-    </section>
+    
 
     
-    <section class="container rtl">
-        <!-- Heading-->
-        <div class="section-header">
-            <div class="feature_header" style="color: black">
-                <span> <?php echo e(\App\CPU\translate('Authors')); ?></span>
-            </div>
-            <div>
-                <a class="btn btn-outline-accent btn-sm viw-btn-a" href="<?php echo e(route('brands')); ?>">
-                    <?php echo e(\App\CPU\translate('view_all')); ?>
-
-                    <i class="czi-arrow-<?php echo e(Session::get('direction') === "rtl" ? 'left mr-1 ml-n1' : 'right ml-1 mr-n1'); ?>"></i>
-                </a>
-            </div>
-        </div>
     
-    <!-- Grid-->
-        <div class="mt-2 mb-3 brand-slider">
-            <div class="owl-carousel owl-theme" id="brands-slider">
-                <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $author): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="text-center">
-                        <a href="<?php echo e(route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1])); ?>">
-                            <div class="brand_div d-flex align-items-center justify-content-center"
-                                 style="height:100px">
-                                <?php if($author->image): ?>
-                                    <img src="<?php echo e(asset("public/images/author/" . $author->image)); ?>" alt="<?php echo e($author->name); ?>" onerror="this.src='<?php echo e(asset('public/assets/front-end/img/user_demo.jpg')); ?>'" onmousedown='return false;' onselectstart='return false;'>
-                                <?php else: ?>
-                                    <img src="<?php echo e(asset('public/assets/front-end/img/user_demo.jpg')); ?>" onmousedown='return false;' onselectstart='return false;'>
-                                <?php endif; ?>
-                            </div>
-                        </a>
-                        <small><?php echo e($author->name_bangla); ?></small>
-                    </div>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            </div>
-        </div>
-    </section>
 
     <!-- top sellers -->
     

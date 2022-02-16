@@ -26,7 +26,7 @@
                                             <img style="height: 82px;"
                                                  onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                                                  src="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($cartItem['thumbnail']); ?>"
-                                                 alt="Product">
+                                                 alt="Product" onmousedown='return false;' onselectstart='return false;'>
                                         </a>
                                     </div>
 

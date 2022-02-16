@@ -183,7 +183,7 @@
                         <div class="position-relative <?php echo e(Session::get('direction') === "rtl" ? 'ml-n4' : 'mr-n4'); ?> mb-3">
                             <?php if($product->colors && count(json_decode($product->colors)) > 0): ?>
                                 <div class="flex-start">
-                                    <div class="product-description-label mt-2"><?php echo e(\App\CPU\translate('color')); ?>:
+                                    <div class="mt-2"><?php echo e(\App\CPU\translate('color')); ?>:
                                     </div>
                                     <div>
                                         <ul class="list-inline checkbox-color mb-1 flex-start <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'); ?>"
@@ -219,7 +219,7 @@
                     <!-- Quantity + Add to cart -->
                         <div class="row no-gutters">
                             <div class="col-2">
-                                <div class="product-description-label mt-2"><?php echo e(\App\CPU\translate('Quantity')); ?>:</div>
+                                <div class="mt-2"><?php echo e(\App\CPU\translate('Quantity')); ?>:</div>
                             </div>
                             <div class="col-10">
                                 <div class="product-quantity d-flex align-items-center">
@@ -249,7 +249,7 @@
 
                         <div class="row flex-start no-gutters d-none mt-2" id="chosen_price_div">
                             <div class="<?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?>">
-                                <div class="product-description-label"><?php echo e(\App\CPU\translate('total_price')); ?>:</div>
+                                <div class=""><?php echo e(\App\CPU\translate('Total Price')); ?>:</div>
                             </div>
                             <div>
                                 <div class="product-price for-total-price">
@@ -258,9 +258,7 @@
                             </div>
 
                             <div class="col-12">
-                                <?php if($product['current_stock']<=0): ?>
-                                    <h5 class="mt-3" style="color: red"><?php echo e(\App\CPU\translate('out_of_stock')); ?></h5>
-                                <?php endif; ?>
+                                
                             </div>
                         </div>
 

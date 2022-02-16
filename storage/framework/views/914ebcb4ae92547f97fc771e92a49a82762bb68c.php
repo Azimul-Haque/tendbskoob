@@ -2,10 +2,7 @@
 
 <div class="product-card card <?php echo e($product['current_stock']==0?'stock-card':''); ?>"
      style="margin-bottom: 40px;display: flex; align-items: center; justify-content: center;">
-    <?php if($product['current_stock']<=0): ?>
-        <label style="left: 29%!important; top: 29%!important;"
-               class="badge badge-danger stock-out"><?php echo e(\App\CPU\translate('stock_out')); ?></label>
-    <?php endif; ?>
+    
 
     <div class="card-header inline_product clickable" style="cursor: pointer;max-height: 193px;min-height: 193px">
         <?php if($product->discount > 0): ?>

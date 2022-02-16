@@ -237,13 +237,15 @@ class CartManager
         $cart['product_id'] = $product->id;
         $cart['choices'] = json_encode($choices);
 
-        //chek if out of stock
-        if ($product['current_stock'] < $request['quantity']) {
-            return [
-                'status' => 0,
-                'message' => translate('out_of_stock!')
-            ];
-        }
+        // CHECH IF OUT OF STOCK
+        // CHECH IF OUT OF STOCK
+        // CHECH IF OUT OF STOCK
+        // if ($product['current_stock'] < $request['quantity']) {
+        //     return [
+        //         'status' => 0,
+        //         'message' => translate('out_of_stock!')
+        //     ];
+        // }
 
         $cart['variations'] = json_encode($variations);
         $cart['variant'] = $str;
@@ -348,10 +350,11 @@ class CartManager
                     }
                 }
             }
-        } else if ($product['current_stock'] < $request->quantity) {
-            $status = 0;
-            $qty = $cart['quantity'];
         }
+        // else if ($product['current_stock'] < $request->quantity) {
+        //     $status = 0;
+        //     $qty = $cart['quantity'];
+        // }
 
         if ($status){
             $qty = $request->quantity;

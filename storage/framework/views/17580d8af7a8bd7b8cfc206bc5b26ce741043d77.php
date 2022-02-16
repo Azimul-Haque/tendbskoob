@@ -42,7 +42,7 @@
                                         <a class="btn btn-block"
                                            href="<?php echo e(route('checkout-complete',['payment_method'=>'cash_on_delivery'])); ?>">
                                             <img width="150" style="margin-top: -10px"
-                                                 src="<?php echo e(asset('public/assets/front-end/img/cod.png')); ?>"/>
+                                                 src="<?php echo e(asset('public/assets/front-end/img/cod.png')); ?>" onmousedown='return false;' onselectstart='return false;'/>
                                         </a>
                                     </div>
                                 </div>
@@ -62,7 +62,7 @@
                                             <input type="hidden" value="<?php echo e(auth('customer')->user()->get(['id', 'name', 'email', 'phone'])); ?>" name="custom1"/>
                                             <button class="btn btn-block" type="submit">
                                                 <img width="150"
-                                                     src="<?php echo e(asset('public/assets/front-end/img/shurjopay.png')); ?>"/>
+                                                     src="<?php echo e(asset('public/assets/front-end/img/shurjopay.png')); ?>" onmousedown='return false;' onselectstart='return false;'/>
                                             </button>
                                         </form>
                                     </div>
@@ -79,7 +79,7 @@
                                             <input type="hidden" value="<?php echo e(csrf_token()); ?>" name="_token"/>
                                             <button class="btn btn-block" type="submit">
                                                 <img width="150"
-                                                     src="<?php echo e(asset('public/assets/front-end/img/sslcomz.png')); ?>"/>
+                                                     src="<?php echo e(asset('public/assets/front-end/img/sslcomz.png')); ?>" onmousedown='return false;' onselectstart='return false;'/>
                                             </button>
                                         </form>
                                     </div>

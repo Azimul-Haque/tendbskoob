@@ -59,24 +59,14 @@
             <!-- Filter by price-->
             <div class="sidebarL">
                 <h3 class="widget-title btnF" style="font-weight: 700;">
-                    <a class="<?php echo e(Request::is('account-oder*') || Request::is('account-order-details*') ? 'active-menu' :''); ?>" href="<?php echo e(route('account-oder')); ?> "><?php echo e(\App\CPU\translate('my_order')); ?></a>
+                    <a class="<?php echo e(Request::is('account-order*') || Request::is('account-order-details*') ? 'active-menu' :''); ?>" href="<?php echo e(route('account-oder')); ?> "><?php echo e(\App\CPU\translate('my_order')); ?></a>
                 </h3>
                 <div class="divider-role"
                      style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;">
                 </div>
             </div>
         </div>
-        <div class="pb-0">
-            <!-- Filter by price-->
-            <div class="sidebarL">
-                <h3 class="widget-title btnF" style="font-weight: 700;">
-                    <a class="<?php echo e(Request::is('track-order*')?'active-menu':''); ?>" href="<?php echo e(route('track-order.index')); ?> "><?php echo e(\App\CPU\translate('track_your_order')); ?></a>
-                </h3>
-                <div class="divider-role"
-                     style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;">
-                </div>
-            </div>
-        </div>
+        
         <div class="pb-0">
             <!-- Filter by price-->
             <div class="sidebarL">
@@ -89,17 +79,7 @@
         </div>
 
         
-        <div class="pb-0">
-            <!-- Filter by price-->
-            <div class="sidebarL">
-                <h3 class="widget-title btnF" style="font-weight: 700;">
-                    <a class="<?php echo e(Request::is('chat*')?'active-menu':''); ?>" href="<?php echo e(route('chat-with-seller')); ?>"><?php echo e(\App\CPU\translate('chat_with_seller')); ?></a>
-                </h3>
-                <div class="divider-role"
-                     style="border: 1px solid whitesmoke; margin-bottom: 14px;  margin-top: -6px;">
-                </div>
-            </div>
-        </div>
+        
 
         <div class="pb-0">
             <!-- Filter by price-->

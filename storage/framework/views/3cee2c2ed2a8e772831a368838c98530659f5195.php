@@ -107,20 +107,20 @@
     </div>
     <div class="container mt-2">
         <div class="row p-0">
-            <div class="col-md-3 p-0 text-center mobile-padding">
+           <!-- <div class="col-md-3 p-0 text-center mobile-padding">
                 <img style="height: 29px;" src="<?php echo e(asset("public/assets/front-end/png/delivery.png")); ?>" alt="">
                 <div class="deal-title">3 <?php echo e(\App\CPU\translate('days')); ?> <br><span><?php echo e(\App\CPU\translate('free_delivery')); ?></span></div>
-            </div>
+            </div> -->
 
-            <div class="col-md-3 p-0 text-center">
+            <div class="col-md-4 p-0 text-center">
                 <img style="height: 29px;" src="<?php echo e(asset("public/assets/front-end/png/money.png")); ?>" alt="">
                 <div class="deal-title"><?php echo e(\App\CPU\translate('money_back_guarantee')); ?></div>
             </div>
-            <div class="col-md-3 p-0 text-center">
+            <div class="col-md-4 p-0 text-center">
                 <img style="height: 29px;" src="<?php echo e(asset("public/assets/front-end/png/Genuine.png")); ?>" alt="">
                 <div class="deal-title">100% <?php echo e(\App\CPU\translate('genuine')); ?><br><span><?php echo e(\App\CPU\translate('product')); ?></span></div>
             </div>
-            <div class="col-md-3 p-0 text-center">
+            <div class="col-md-4 p-0 text-center">
                 <img style="height: 29px;" src="<?php echo e(asset("public/assets/front-end/png/Payment.png")); ?>" alt="">
                 <div class="deal-title"><?php echo e(\App\CPU\translate('authentic_payment')); ?></div>
             </div>
