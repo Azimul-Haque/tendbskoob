@@ -100,23 +100,23 @@
                         </li>
                     @endif
                     <li class="widget-list-item"><a class="widget-list-link"
-                                                    href="{{route('products',['data_from'=>'featured','page'=>1])}}">{{\App\CPU\translate('featured_products')}}</a>
+                                                    href="{{route('products',['data_from'=>'featured','page'=>1])}}">{{\App\CPU\translate('Featured Books')}}</a>
                     </li>
                     <li class="widget-list-item"><a class="widget-list-link"
-                                                    href="{{route('products',['data_from'=>'latest','page'=>1])}}">{{\App\CPU\translate('latest_products')}}</a>
+                                                    href="{{route('products',['data_from'=>'latest','page'=>1])}}">{{\App\CPU\translate('Latest Books')}}</a>
                     </li>
                     <li class="widget-list-item"><a class="widget-list-link"
-                                                    href="{{route('products',['data_from'=>'best-selling','page'=>1])}}">{{\App\CPU\translate('best_selling_product')}}</a>
+                                                    href="{{route('products',['data_from'=>'best-selling','page'=>1])}}">{{\App\CPU\translate('Best Selling Books')}}</a>
                     </li>
                     <li class="widget-list-item"><a class="widget-list-link"
-                                                    href="{{route('products',['data_from'=>'top-rated','page'=>1])}}">{{\App\CPU\translate('top_rated_product')}}</a>
+                                                    href="{{route('products',['data_from'=>'top-rated','page'=>1])}}">{{\App\CPU\translate('Top Rated Books')}}</a>
                     </li>
 
                     <li class="widget-list-item"><a class="widget-list-link"
-                                                    href="{{route('brands')}}">{{\App\CPU\translate('all_brand')}}</a>
+                                                    href="{{route('authors')}}">{{\App\CPU\translate('All Authors')}}</a>
                     </li>
                     <li class="widget-list-item"><a class="widget-list-link"
-                                                    href="{{route('categories')}}">{{\App\CPU\translate('all_category')}}</a>
+                                                    href="{{route('categories')}}">{{\App\CPU\translate('All Category')}}</a>
                     </li>
 
                 </ul>

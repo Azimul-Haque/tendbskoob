@@ -102,23 +102,23 @@
                         </li>
                     <?php endif; ?>
                     <li class="widget-list-item"><a class="widget-list-link"
-                                                    href="<?php echo e(route('products',['data_from'=>'featured','page'=>1])); ?>"><?php echo e(\App\CPU\translate('featured_products')); ?></a>
+                                                    href="<?php echo e(route('products',['data_from'=>'featured','page'=>1])); ?>"><?php echo e(\App\CPU\translate('Featured Books')); ?></a>
                     </li>
                     <li class="widget-list-item"><a class="widget-list-link"
-                                                    href="<?php echo e(route('products',['data_from'=>'latest','page'=>1])); ?>"><?php echo e(\App\CPU\translate('latest_products')); ?></a>
+                                                    href="<?php echo e(route('products',['data_from'=>'latest','page'=>1])); ?>"><?php echo e(\App\CPU\translate('Latest Books')); ?></a>
                     </li>
                     <li class="widget-list-item"><a class="widget-list-link"
-                                                    href="<?php echo e(route('products',['data_from'=>'best-selling','page'=>1])); ?>"><?php echo e(\App\CPU\translate('best_selling_product')); ?></a>
+                                                    href="<?php echo e(route('products',['data_from'=>'best-selling','page'=>1])); ?>"><?php echo e(\App\CPU\translate('Best Selling Books')); ?></a>
                     </li>
                     <li class="widget-list-item"><a class="widget-list-link"
-                                                    href="<?php echo e(route('products',['data_from'=>'top-rated','page'=>1])); ?>"><?php echo e(\App\CPU\translate('top_rated_product')); ?></a>
+                                                    href="<?php echo e(route('products',['data_from'=>'top-rated','page'=>1])); ?>"><?php echo e(\App\CPU\translate('Top Rated Books')); ?></a>
                     </li>
 
                     <li class="widget-list-item"><a class="widget-list-link"
-                                                    href="<?php echo e(route('brands')); ?>"><?php echo e(\App\CPU\translate('all_brand')); ?></a>
+                                                    href="<?php echo e(route('authors')); ?>"><?php echo e(\App\CPU\translate('All Authors')); ?></a>
                     </li>
                     <li class="widget-list-item"><a class="widget-list-link"
-                                                    href="<?php echo e(route('categories')); ?>"><?php echo e(\App\CPU\translate('all_category')); ?></a>
+                                                    href="<?php echo e(route('categories')); ?>"><?php echo e(\App\CPU\translate('All Category')); ?></a>
                     </li>
 
                 </ul>

@@ -295,7 +295,7 @@
             <!-- Heading-->
             <div class="section-header">
                 <div class="feature_header">
-                    <span class="for-feature-title"><?php echo e(\App\CPU\translate('featured_products')); ?></span>
+                    <span class="for-feature-title"><?php echo e(\App\CPU\translate('featured_books')); ?></span>
                 </div>
                 <div>
                     <a class="btn btn-outline-accent btn-sm viw-btn-a"
@@ -438,7 +438,7 @@
             <div class="col-xl-9 col-md-8">
                 <div class="section-header">
                     <div class="feature_header">
-                        <span class="for-feature-title"><?php echo e(\App\CPU\translate('latest_products')); ?></span>
+                        <span class="for-feature-title"><?php echo e(\App\CPU\translate('latest_books')); ?></span>
                     </div>
                     <div>
                         <a class="btn btn-outline-accent btn-sm viw-btn-a"
