@@ -261,7 +261,7 @@
                             <div class="col-12">
                                 
                                 <?php if($product['current_stock'] > 0): ?>
-                                    <h5 class="mt-3" style="color: green"><img class="img-fluid" style="margin-right: 8px; width: 18px; height: auto;" src="<?php echo e(asset('public/assets/front-end/img/in-stock(mini).svg')); ?>"> <?php echo e(\App\CPU\translate('Book in Stock')); ?></h5>
+                                    <h5 class="mt-3" style="color: green"><img style="margin-right: 8px; width: 18px; height: auto;" src="<?php echo e(asset('public/assets/front-end/img/in-stock(mini).svg')); ?>"> <?php echo e(\App\CPU\translate('Book in Stock')); ?></h5>
                                 <?php endif; ?>
                             </div>
                         </div>

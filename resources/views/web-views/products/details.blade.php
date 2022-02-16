@@ -431,7 +431,7 @@
                                     <h5 class="mt-3" style="color: red">{{\App\CPU\translate('out_of_stock')}}</h5>
                                 @endif --}}
                                 @if($product['current_stock'] > 0)
-                                    <h5 class="mt-3" style="color: green"><img class="img-fluid" style="margin-right: 8px; width: 18px; height: auto;" src="{{asset('public/assets/front-end/img/in-stock(mini).svg')}}"> {{\App\CPU\translate('Book in Stock')}}</h5>
+                                    <h5 class="mt-3" style="color: green"><img style="margin-right: 8px; width: 18px; height: auto;" src="{{asset('public/assets/front-end/img/in-stock(mini).svg')}}"> {{\App\CPU\translate('Book in Stock')}}</h5>
                                 @endif
                             </div>
                         </div>

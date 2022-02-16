@@ -54,7 +54,9 @@
         </div>
         <div class="justify-content-between text-center">
             <div class="product-price text-center">
-                
+                <?php if($product['current_stock'] > 0): ?>
+                    <small class="mt-3" style="color: green"><?php echo e(\App\CPU\translate('Book in Stock')); ?></small><br>
+                <?php endif; ?>
                 <?php if($product->published_price > $product->unit_price): ?>
                     <strike style="font-size: 12px!important;color: grey!important;">
                         ৳ <?php echo e(number_format($product->published_price, 0)); ?>

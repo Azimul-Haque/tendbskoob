@@ -65,7 +65,9 @@
         </div>
         <div class="justify-content-between text-center">
             <div class="product-price text-center">
-                
+                @if($product['current_stock'] > 0)
+                    <small class="mt-3" style="color: green">{{\App\CPU\translate('Book in Stock')}}</small><br>
+                @endif
                 @if($product->published_price > $product->unit_price)
                     <strike style="font-size: 12px!important;color: grey!important;">
                         ৳ {{ number_format($product->published_price, 0) }}
