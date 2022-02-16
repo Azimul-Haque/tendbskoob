@@ -1480,4 +1480,7 @@
   'All Category' => 'All Category',
   'Best Selling Books' => 'Best Selling Books',
   'Back Order' => 'Back Order',
+  'No Books Found' => 'No Books Found',
+  'Product in Stock' => 'Product in Stock',
+  'Book in Stock' => 'Book in Stock',
 );
