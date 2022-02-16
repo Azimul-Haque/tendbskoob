@@ -74,7 +74,7 @@
                             class="czi-arrow-<?php echo e(Session::get('direction') === "rtl" ? 'left mr-1 ml-n1' : 'right ml-1 mr-n1'); ?>"></i>
                     </a>
                 </div>
-                <a class="btn btn-primary btn-sm btn-block" href="<?php echo e(route('checkout-details')); ?>">
+                <a class="btn btn-primary btn-sm btn-block" href="<?php echo e(route('shop-cart')); ?>">
                     <i class="czi-card <?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?> font-size-base align-middle"></i><?php echo e(\App\CPU\translate('Checkout')); ?>
 
                 </a>

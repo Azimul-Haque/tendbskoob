@@ -26,7 +26,7 @@
                                             <img style="height: 82px;"
                                                  onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                                                  src="<?php echo e(\App\CPU\ProductManager::product_image_path('thumbnail')); ?>/<?php echo e($cartItem['thumbnail']); ?>"
-                                                 alt="Product">
+                                                 alt="Product" onmousedown='return false;' onselectstart='return false;'>
                                         </a>
                                     </div>
 
@@ -148,7 +148,7 @@
             </div>
             <div class="col-6">
                 <a href="<?php echo e(route('checkout-details')); ?>"
-                   class="btn btn-primary pull-<?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>">
+                   class="btn btn-primary pull-<?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>" id="checkout-btn">
                     <?php echo e(\App\CPU\translate('checkout')); ?>
 
                     <i class="fa fa-<?php echo e(Session::get('direction') === "rtl" ? 'backward' : 'forward'); ?> px-1"></i>
@@ -165,6 +165,9 @@
     cartQuantityInitialize();
 
     function set_shipping_id(id, cart_group_id) {
+
+        $('#checkout-btn').hide();
+
         $.get({
             url: '<?php echo e(url('/')); ?>/customer/set-shipping-method',
             dataType: 'json',
