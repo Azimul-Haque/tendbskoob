@@ -1083,7 +1083,8 @@
                     $('#set-tax-amount').html(data.tax);
                     $('#set-discount-amount').html(data.discount);
                     $('#available-quantity').html(data.quantity);
-                    $('.cart-qty-field').attr('max', data.quantity);
+                    // CUSTOM CODE TO SET MAX QTY
+                    // $('.cart-qty-field').attr('max', data.quantity);
                 }
             });
         }

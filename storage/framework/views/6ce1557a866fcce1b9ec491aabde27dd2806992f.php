@@ -653,8 +653,18 @@
     <script type="text/javascript">
         cartQuantityInitialize();
         getVariantPrice();
+        // SET MAX VALUE
+        // SET MAX VALUE
+        $('.cart-qty-field').attr('max', 50);
+        // SET MAX VALUE
+        // SET MAX VALUE
         $('#add-to-cart-form input').on('change', function () {
             getVariantPrice();
+            // SET MAX VALUE
+            // SET MAX VALUE
+            $('.cart-qty-field').attr('max', 50);
+            // SET MAX VALUE
+            // SET MAX VALUE
         });
 
         function showInstaImage(link) {
