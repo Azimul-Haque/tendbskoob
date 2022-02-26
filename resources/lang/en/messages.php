@@ -1483,4 +1483,5 @@
   'No Books Found' => 'No Books Found',
   'Product in Stock' => 'Product in Stock',
   'Book in Stock' => 'Book in Stock',
+  'Seller request for open a shop' => 'Seller request for open a shop',
 );

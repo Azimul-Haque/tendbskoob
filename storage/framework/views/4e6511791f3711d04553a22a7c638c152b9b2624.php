@@ -3,6 +3,10 @@
 <div class="product-card card <?php echo e($product['current_stock']==0?'stock-card':''); ?>"
      style="margin-bottom: 40px;display: flex; align-items: center; justify-content: center;">
     
+    <?php if($product['stock_status'] == 3): ?>
+        <label style="left: 29%!important; top: 29%!important;"
+               class="badge badge-danger stock-out"><?php echo e(\App\CPU\translate('Back Order')); ?></label>
+    <?php endif; ?>
 
     <div class="card-header inline_product clickable" style="cursor: pointer;max-height: 193px;min-height: 193px">
         <?php if($product->discount > 0): ?>
@@ -50,7 +54,9 @@
         </div>
         <div class="justify-content-between text-center">
             <div class="product-price text-center">
-                
+                <?php if($product['current_stock'] > 0): ?>
+                    <small class="mt-3" style="color: green"><?php echo e(\App\CPU\translate('Book in Stock')); ?></small><br>
+                <?php endif; ?>
                 <?php if($product->published_price > $product->unit_price): ?>
                     <strike style="font-size: 12px!important;color: grey!important;">
                         ৳ <?php echo e(number_format($product->published_price, 0)); ?>

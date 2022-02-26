@@ -1083,7 +1083,8 @@
                     $('#set-tax-amount').html(data.tax);
                     $('#set-discount-amount').html(data.discount);
                     $('#available-quantity').html(data.quantity);
-                    $('.cart-qty-field').attr('max', data.quantity);
+                    // CUSTOM CODE TO SET MAX QTY
+                    // $('.cart-qty-field').attr('max', data.quantity);
                 }
             });
         }
@@ -1288,7 +1289,7 @@
         }
     }
     text_list = [
-        "Search by Authors (ex. রবীন্দ্রনাথ ঠাকুর, Humayun Ahmed)",
+        "Search by Authors (ex. ফরহাদ মজহার, Salimullah Khan)",
         "Search by Publications (ex. বাংলাদেশ ডিফেন্স জার্নাল পাবলিশিং, Bangla Academy)",
         "Search by Books (ex. অসমাপ্ত আত্মজীবনী, People and Democracy"
     ];
