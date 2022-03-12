@@ -19,7 +19,7 @@
 @section('title',$product['name_bangla'] . ':' . $bn_book_writer_for_title . ' - ' . $product['name'] . ':' . $en_book_writer_for_title . ' | Booksbd.net')
 
 @push('css_or_js')
-    <meta name="description" content="{{$product->slug}}">
+    <meta name="description" content="{{ $product['meta_description'] }}">
     <meta name="keywords" content="@foreach(explode(' ',$product['name']) as $keyword) {{$keyword.' , '}} @endforeach">
     @if($product->added_by=='seller')
         <meta name="author" content="{{ $product->seller->shop?$product->seller->shop->name:$product->seller->f_name}}">

@@ -129,7 +129,7 @@ Route::group(['namespace' => 'Web','middleware'=>['maintenance_mode']], function
 });
 
 //Seller shop apply
-Route::group(['prefix' => 'shop', 'as' => 'shop.', 'namespace' => 'Seller\Auth'], function () {
+Route::group(['prefix' => 'publication', 'as' => 'shop.', 'namespace' => 'Seller\Auth'], function () {
     Route::get('apply', 'RegisterController@create')->name('apply');
     Route::post('apply', 'RegisterController@store');
 

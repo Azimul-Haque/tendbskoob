@@ -1,6 +1,7 @@
-<?php $__env->startSection('title',\App\CPU\translate('Welcome To').' '.$web_config['name']->value); ?>
+<?php $__env->startSection('title', 'BooksBD - Buy Book Online - Best Online Book Shop in Bangladesh'); ?>
 
 <?php $__env->startPush('css_or_js'); ?>
+    <meta name="description" content="BooksBD.net is Bangladesh's largest online bookshop. From the largest collection of Bangla books at the lowest price, you can buy Novels, Stories, Islamic, Computer Programming, Children, West Bengal, Fiction, Nonfiction, Medical, Engineering, Gift cards, and Text books. There is a cash on delivery option, as well as a happy return policy and a free shipping offer. Now is the time to shop!"/>
     <meta property="og:image" content="<?php echo e(asset('storage/app/public/company')); ?>/<?php echo e($web_config['web_logo']->value); ?>"/>
     <meta property="og:title" content="Welcome To <?php echo e($web_config['name']->value); ?> Home"/>
     <meta property="og:url" content="<?php echo e(env('APP_URL')); ?>">

@@ -17,7 +17,7 @@
 <?php $__env->startSection('title',$product['name_bangla'] . ':' . $bn_book_writer_for_title . ' - ' . $product['name'] . ':' . $en_book_writer_for_title . ' | Booksbd.net'); ?>
 
 <?php $__env->startPush('css_or_js'); ?>
-    <meta name="description" content="<?php echo e($product->slug); ?>">
+    <meta name="description" content="<?php echo e($product['meta_description']); ?>">
     <meta name="keywords" content="<?php $__currentLoopData = explode(' ',$product['name']); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $keyword): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <?php echo e($keyword.' , '); ?> <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>">
     <?php if($product->added_by=='seller'): ?>
         <meta name="author" content="<?php echo e($product->seller->shop?$product->seller->shop->name:$product->seller->f_name); ?>">
