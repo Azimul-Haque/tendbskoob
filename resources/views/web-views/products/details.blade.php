@@ -39,17 +39,17 @@
     @endif
 
     @if($product['meta_title']!=null)
-        <meta property="og:title" content="{{ $product->name_bangla . ' - ' . $product->name }}"/>
-        <meta property="twitter:title" content="{{ $product->name_bangla . ' - ' . $product->name }}"/>
+        <meta property="og:title" content="{{ $product['name_bangla'] . ':' . $bn_book_writer_for_title . ' - ' . $product['name'] . ':' . $en_book_writer_for_title . ' | Booksbd.net' }}"/>
+        <meta property="twitter:title" content="{{ $product['name_bangla'] . ':' . $bn_book_writer_for_title . ' - ' . $product['name'] . ':' . $en_book_writer_for_title . ' | Booksbd.net' }}"/>
     @else
-        <meta property="og:title" content="{{ $product->name_bangla . ' - ' . $product->name }}"/>
-        <meta property="twitter:title" content="{{ $product->name_bangla . ' - ' . $product->name }}"/>
+        <meta property="og:title" content="{{ $product['name_bangla'] . ':' . $bn_book_writer_for_title . ' - ' . $product['name'] . ':' . $en_book_writer_for_title . ' | Booksbd.net' }}"/>
+        <meta property="twitter:title" content="{{ $product['name_bangla'] . ':' . $bn_book_writer_for_title . ' - ' . $product['name'] . ':' . $en_book_writer_for_title . ' | Booksbd.net' }}"/>
     @endif
     <meta property="og:url" content="{{route('product',[$product->slug])}}">
 
     @if($product['meta_description']!=null)
-        <meta property="twitter:description" content="{{ $product['meta_description'] }}">
-        <meta property="og:description" content="{{ $product['meta_description'] }}">
+        <meta property="twitter:description" content="{{ $product->name_bangla . ', লেখকঃ ' . $bn_book_writer_for_title }}, বইটি সংগ্রহ করুন booksbd.net থেকে।  মূল্যঃ ৳ {{ $product->unit_price }}, booksbd.net এর বইসমূহ হাতে পেয়ে মূল্য পরিশোধের সুবিধাসহ অফারভেদে উপভোগ করুন ফ্রি শিপিং এবং সর্বোচ্চ ছাড়!">
+        <meta property="og:description" content="{{ $product->name_bangla . ', লেখকঃ ' . $bn_book_writer_for_title }}, বইটি সংগ্রহ করুন booksbd.net থেকে।  মূল্যঃ ৳ {{ $product->unit_price }}, booksbd.net এর বইসমূহ হাতে পেয়ে মূল্য পরিশোধের সুবিধাসহ অফারভেদে উপভোগ করুন ফ্রি শিপিং এবং সর্বোচ্চ ছাড়!">
     @else
         <meta property="og:description"
               content="@foreach(explode(' ',$product['name']) as $keyword) {{$keyword.' , '}} @endforeach">
