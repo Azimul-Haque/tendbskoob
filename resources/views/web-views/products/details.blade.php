@@ -48,8 +48,8 @@
     <meta property="og:url" content="{{route('product',[$product->slug])}}">
 
     @if($product['meta_description']!=null)
-        <meta property="twitter:description" content="{{ 'লেখকঃ ' . $bn_book_writer_for_title }},  মূল্যঃ ৳ {{ $product->unit_price }}, লিংকঃ {{ route('product',[$product->slug]) }} , booksbd.net থেকেবইটি সংগ্রহ করুন booksbd.net থেকে">
-        <meta property="og:description" content="{{ 'লেখকঃ ' . $bn_book_writer_for_title }},  মূল্যঃ ৳ {{ $product->unit_price }}, লিংকঃ {{ route('product',[$product->slug]) }} , booksbd.net থেকেবইটি সংগ্রহ করুন booksbd.net থেকে">
+        <meta property="twitter:description" content="{{ 'লেখকঃ ' . $bn_book_writer_for_title }},  মূল্যঃ ৳ {{ $product->unit_price }}, লিংকঃ {{ route('product',[$product->slug]) }}, booksbd.net থেকে বইটি সংগ্রহ করুন booksbd.net থেকে">
+        <meta property="og:description" content="{{ 'লেখকঃ ' . $bn_book_writer_for_title }},  মূল্যঃ ৳ {{ $product->unit_price }}, লিংকঃ {{ route('product',[$product->slug]) }}, booksbd.net থেকে বইটি সংগ্রহ করুন booksbd.net থেকে">
     @else
         <meta property="og:description"
               content="@foreach(explode(' ',$product['name']) as $keyword) {{$keyword.' , '}} @endforeach">
