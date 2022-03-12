@@ -312,7 +312,7 @@
                 </a>
                 <a class="navbar-brand d-sm-none {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"
                    href="{{route('home')}}">
-                    <img style="height: 20px!important; width: auto;" class="mobile-logo-img"
+                    <img style="height: 40px!important; width: auto;" class="mobile-logo-img"
                          src="{{asset("storage/app/public/company")."/".$web_config['mob_logo']->value}}"
                          onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
                          alt="{{$web_config['name']->value}}"/>
