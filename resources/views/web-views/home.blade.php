@@ -5,9 +5,11 @@
 @push('css_or_js')
     <meta name="description" content="BooksBD.net is Bangladesh's largest online bookshop. From the largest collection of Bangla books at the lowest price, you can buy Novels, Stories, Islamic, Computer Programming, Children, West Bengal, Fiction, Nonfiction, Medical, Engineering, Gift cards, and Text books. There is a cash on delivery option, as well as a happy return policy and a free shipping offer. Now is the time to shop!"/>
     <meta property="og:image" content="{{asset('storage/app/public/company')}}/{{$web_config['web_logo']->value}}"/>
+    <meta property="og:image:width" content="500"/>
+    <meta property="og:image:height" content="236"/>
     <meta property="og:title" content="Welcome To {{$web_config['name']->value}} Home"/>
     <meta property="og:url" content="{{env('APP_URL')}}">
-    <meta property="og:description" content="{!! substr($web_config['about']->value,0,100) !!}">
+    <meta property="og:description" content="BooksBD.net is Bangladesh's largest online bookshop. From the largest collection of Bangla books at the lowest price, you can buy Novels, Stories, Islamic, Computer Programming, Children, West Bengal, Fiction, Nonfiction, Medical, Engineering, Gift cards, and Text books. There is a cash on delivery option, as well as a happy return policy and a free shipping offer. Now is the time to shop!">
 
     <meta property="twitter:card" content="{{asset('storage/app/public/company')}}/{{$web_config['web_logo']->value}}"/>
     <meta property="twitter:title" content="Welcome To {{$web_config['name']->value}} Home"/>

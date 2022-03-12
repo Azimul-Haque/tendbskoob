@@ -11,15 +11,16 @@
 <?php $__env->startSection('title', $titleforthispage); ?>
 
 <?php $__env->startPush('css_or_js'); ?>
+    <meta name="description" content="BooksBD.net is Bangladesh's largest online bookshop. From the largest collection of Bangla books at the lowest price, you can buy Novels, Stories, Islamic, Computer Programming, Children, West Bengal, Fiction, Nonfiction, Medical, Engineering, Gift cards, and Text books. There is a cash on delivery option, as well as a happy return policy and a free shipping offer. Now is the time to shop!"/>
     <meta property="og:image" content="<?php echo e(asset('storage/app/public/company')); ?>/<?php echo e($web_config['web_logo']); ?>"/>
     <meta property="og:title" content="Products of <?php echo e($web_config['name']); ?> "/>
     <meta property="og:url" content="<?php echo e(env('APP_URL')); ?>">
-    <meta property="og:description" content="<?php echo substr($web_config['about']->value,0,100); ?>">
+    <meta property="og:description" content="BooksBD.net is Bangladesh's largest online bookshop. From the largest collection of Bangla books at the lowest price, you can buy Novels, Stories, Islamic, Computer Programming, Children, West Bengal, Fiction, Nonfiction, Medical, Engineering, Gift cards, and Text books. There is a cash on delivery option, as well as a happy return policy and a free shipping offer. Now is the time to shop!">
 
     <meta property="twitter:card" content="<?php echo e(asset('storage/app/public/company')); ?>/<?php echo e($web_config['web_logo']); ?>"/>
     <meta property="twitter:title" content="Products of <?php echo e($web_config['name']); ?>"/>
     <meta property="twitter:url" content="<?php echo e(env('APP_URL')); ?>">
-    <meta property="twitter:description" content="<?php echo substr($web_config['about']->value,0,100); ?>">
+    <meta property="twitter:description" content="BooksBD.net is Bangladesh's largest online bookshop. From the largest collection of Bangla books at the lowest price, you can buy Novels, Stories, Islamic, Computer Programming, Children, West Bengal, Fiction, Nonfiction, Medical, Engineering, Gift cards, and Text books. There is a cash on delivery option, as well as a happy return policy and a free shipping offer. Now is the time to shop!">
 
     <style>
         .headerTitle {
