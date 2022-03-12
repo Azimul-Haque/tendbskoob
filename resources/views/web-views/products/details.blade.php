@@ -39,11 +39,11 @@
     @endif
 
     @if($product['meta_title']!=null)
-        <meta property="og:title" content="{{ $product['name_bangla'] . ':' . $bn_book_writer_for_title . ' | Booksbd.net' }}"/>
-        <meta property="twitter:title" content="{{ $product['name_bangla'] . ':' . $bn_book_writer_for_title . ' | Booksbd.net' }}"/>
+        <meta property="og:title" content="{{ $product['name_bangla'] . ' - ' . $bn_book_writer_for_title . ' | Booksbd.net' }}"/>
+        <meta property="twitter:title" content="{{ $product['name_bangla'] . ' - ' . $bn_book_writer_for_title . ' | Booksbd.net' }}"/>
     @else
-        <meta property="og:title" content="{{ $product['name_bangla'] . ':' . $bn_book_writer_for_title . ' | Booksbd.net' }}"/>
-        <meta property="twitter:title" content="{{ $product['name_bangla'] . ':' . $bn_book_writer_for_title . ' | Booksbd.net' }}"/>
+        <meta property="og:title" content="{{ $product['name_bangla'] . ' - ' . $bn_book_writer_for_title . ' | Booksbd.net' }}"/>
+        <meta property="twitter:title" content="{{ $product['name_bangla'] . ' - ' . $bn_book_writer_for_title . ' | Booksbd.net' }}"/>
     @endif
     <meta property="og:url" content="{{route('product',[$product->slug])}}">
 
