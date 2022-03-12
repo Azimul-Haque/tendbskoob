@@ -16,7 +16,7 @@
     <meta name="description" content="BooksBD.net is Bangladesh's largest online bookshop. From the largest collection of Bangla books at the lowest price, you can buy Novels, Stories, Islamic, Computer Programming, Children, West Bengal, Fiction, Nonfiction, Medical, Engineering, Gift cards, and Text books. There is a cash on delivery option, as well as a happy return policy and a free shipping offer. Now is the time to shop!"/>
     <meta property="og:image" content="{{asset('storage/app/public/company')}}/{{$web_config['web_logo']}}"/>
     <meta property="og:title" content="{{ $titleforthispage }}"/>
-    <meta property="og:url" content="{{ url()->current() }}">
+    {{-- <meta property="og:url" content="{{ url()->current() }}"> --}}
     <meta property="og:description" content="{{ $datasource['name_bangla'] }} এর সকল বই সংগ্রহ করুন booksbd.net থেকে। {{ $datasource['name_bangla'] }} এর বইসমূহ হাতে পেয়ে মূল্য পরিশোধের সুবিধাসহ অফারভেদে উপভোগ করুন ফ্রি শিপিং এবং সর্বোচ্চ ছাড়!">
 
     <meta property="twitter:card" content="{{asset('storage/app/public/company')}}/{{$web_config['web_logo']}}"/>
