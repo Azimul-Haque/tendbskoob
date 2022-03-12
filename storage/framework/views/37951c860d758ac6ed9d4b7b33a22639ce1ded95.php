@@ -1,5 +1,5 @@
 <?php
-    $titleforthispage = strtoupper($data['data_from']).' products';
+    $titleforthispage = strtoupper($data['data_from']).' books';
 
     if($data['data_from'] == 'author' || $data['data_from'] == 'publisher' || $data['data_from'] == 'category'){
         $titleforthispage = $datasource['name'] . ' Books - ' . $datasource['name_bangla'] . ' এর বই | Booksbd.net';
@@ -13,14 +13,14 @@
 <?php $__env->startPush('css_or_js'); ?>
     <meta name="description" content="BooksBD.net is Bangladesh's largest online bookshop. From the largest collection of Bangla books at the lowest price, you can buy Novels, Stories, Islamic, Computer Programming, Children, West Bengal, Fiction, Nonfiction, Medical, Engineering, Gift cards, and Text books. There is a cash on delivery option, as well as a happy return policy and a free shipping offer. Now is the time to shop!"/>
     <meta property="og:image" content="<?php echo e(asset('storage/app/public/company')); ?>/<?php echo e($web_config['web_logo']); ?>"/>
-    <meta property="og:title" content="Products of <?php echo e($web_config['name']); ?> "/>
-    <meta property="og:url" content="<?php echo e(env('APP_URL')); ?>">
-    <meta property="og:description" content="BooksBD.net is Bangladesh's largest online bookshop. From the largest collection of Bangla books at the lowest price, you can buy Novels, Stories, Islamic, Computer Programming, Children, West Bengal, Fiction, Nonfiction, Medical, Engineering, Gift cards, and Text books. There is a cash on delivery option, as well as a happy return policy and a free shipping offer. Now is the time to shop!">
+    <meta property="og:title" content="<?php echo e($titleforthispage); ?>"/>
+    <meta property="og:url" content="<?php echo e(url()->current()); ?>">
+    <meta property="og:description" content="<?php echo e($datasource['name_bangla']); ?> এর সকল বই সংগ্রহ করুন booksbd.net থেকে। <?php echo e($datasource['name_bangla']); ?> এর বইসমূহ হাতে পেয়ে মূল্য পরিশোধের সুবিধাসহ অফারভেদে উপভোগ করুন ফ্রি শিপিং এবং সর্বোচ্চ ছাড়!">
 
     <meta property="twitter:card" content="<?php echo e(asset('storage/app/public/company')); ?>/<?php echo e($web_config['web_logo']); ?>"/>
-    <meta property="twitter:title" content="Products of <?php echo e($web_config['name']); ?>"/>
-    <meta property="twitter:url" content="<?php echo e(env('APP_URL')); ?>">
-    <meta property="twitter:description" content="BooksBD.net is Bangladesh's largest online bookshop. From the largest collection of Bangla books at the lowest price, you can buy Novels, Stories, Islamic, Computer Programming, Children, West Bengal, Fiction, Nonfiction, Medical, Engineering, Gift cards, and Text books. There is a cash on delivery option, as well as a happy return policy and a free shipping offer. Now is the time to shop!">
+    <meta property="twitter:title" content="<?php echo e($titleforthispage); ?>"/>
+    <meta property="twitter:url" content="<?php echo e(url()->current()); ?>">
+    <meta property="twitter:description" content="<?php echo e($datasource['name_bangla']); ?> এর সকল বই সংগ্রহ করুন booksbd.net থেকে। <?php echo e($datasource['name_bangla']); ?> এর বইসমূহ হাতে পেয়ে মূল্য পরিশোধের সুবিধাসহ অফারভেদে উপভোগ করুন ফ্রি শিপিং এবং সর্বোচ্চ ছাড়!">
 
     <style>
         .headerTitle {
