@@ -123,11 +123,11 @@
             <div>
                 @php( $local = \App\CPU\Helpers::default_lang())
                 <div
-                    class="topbar-text dropdown disable-autohide {{Session::get('direction') === "rtl" ? 'ml-3' : 'mr-3'}} text-capitalize">
+                    class="topbar-text dropdown disable-autohide {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}} text-capitalize">
                     <a class="topbar-link dropdown-toggle" href="#" data-toggle="dropdown">
                         @foreach(json_decode($language['value'],true) as $data)
                             @if($data['code']==$local)
-                                <img class="{{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}" width="20"
+                                <img class="{{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}" width="20"
                                      src="{{asset('public/assets/front-end')}}/img/flags/{{$data['code']}}.png"
                                      alt="Eng">
                                 {{$data['name']}}
@@ -140,7 +140,7 @@
                             @if($data['status']==1)
                                 <li>
                                     <a class="dropdown-item pb-1" href="{{route('lang',[$data['code']])}}">
-                                        <img class="{{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"
+                                        <img class="{{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}"
                                              width="20"
                                              src="{{asset('public/assets/front-end')}}/img/flags/{{$data['code']}}.png"
                                              alt="{{$data['name']}}"/>
@@ -302,7 +302,7 @@
                 <button class="navbar-toggler off-canvas-toggle">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand d-none d-sm-block {{Session::get('direction') === "rtl" ? 'ml-3' : 'mr-3'}} flex-shrink-0"
+                <a class="navbar-brand d-none d-sm-block {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}} flex-shrink-0"
                    href="{{route('home')}}"
                    style="min-width: 7rem;">
                     <img style="height: 70px!important; width: auto;"
@@ -349,7 +349,7 @@
                             <i class="navbar-tool-icon czi-menu"></i>
                         </div>
                     </a>
-                    <div class="navbar-tool dropdown {{Session::get('direction') === "rtl" ? 'mr-3' : 'ml-3'}}">
+                    <div class="navbar-tool dropdown {{Session::get('direction') === "rtl" ? 'mr-1' : 'ml-1'}}">
                         <a class="navbar-tool-icon-box bg-secondary dropdown-toggle" href="{{route('wishlists')}}">
                             <span class="navbar-tool-label">
                                 <span
@@ -360,7 +360,7 @@
                     </div>
                     @if(auth('customer')->check())
                         <div class="dropdown">
-                            <a class="navbar-tool ml-2 mr-2 " type="button" data-toggle="dropdown" aria-haspopup="true"
+                            <a class="navbar-tool ml-1 mr-1 " type="button" data-toggle="dropdown" aria-haspopup="true"
                                aria-expanded="false">
                                 <div class="navbar-tool-icon-box bg-secondary">
                                     <div class="navbar-tool-icon-box bg-secondary">
@@ -387,7 +387,7 @@
                         </div>
                     @else
                         <div class="dropdown">
-                            <a class="navbar-tool {{Session::get('direction') === "rtl" ? 'mr-3' : 'ml-3'}}"
+                            <a class="navbar-tool {{Session::get('direction') === "rtl" ? 'mr-1' : 'ml-1'}}"
                                type="button" data-toggle="dropdown" aria-haspopup="true"
                                aria-expanded="false">
                                 <div class="navbar-tool-icon-box bg-secondary">
@@ -399,11 +399,11 @@
                             <div class="dropdown-menu dropdown-menu-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}" aria-labelledby="dropdownMenuButton"
                                  style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
                                 <a class="dropdown-item" href="{{route('customer.auth.login')}}">
-                                    <i class="fa fa-sign-in {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i> {{\App\CPU\translate('sing_in')}}
+                                    <i class="fa fa-sign-in {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}"></i> {{\App\CPU\translate('sing_in')}}
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{route('customer.auth.register')}}">
-                                    <i class="fa fa-user-circle {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"></i>{{\App\CPU\translate('sing_up')}}
+                                    <i class="fa fa-user-circle {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}"></i>{{\App\CPU\translate('sing_up')}}
                                 </a>
                             </div>
                         </div>

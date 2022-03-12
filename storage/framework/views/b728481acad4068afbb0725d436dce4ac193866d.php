@@ -1,5 +1,5 @@
 
-<div class="navbar-tool dropdown <?php echo e(Session::get('direction') === "rtl" ? 'mr-3' : 'ml-3'); ?>"
+<div class="navbar-tool dropdown <?php echo e(Session::get('direction') === "rtl" ? 'mr-1' : 'ml-1'); ?>"
      style="margin-<?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>: 6px">
     <a class="navbar-tool-icon-box bg-secondary dropdown-toggle" href="<?php echo e(route('shop-cart')); ?>">
         <span class="navbar-tool-label">
