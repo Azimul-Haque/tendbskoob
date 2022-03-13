@@ -630,7 +630,6 @@ class WebController extends Controller
             // dd($product_ids);
         }
 
-
         if ($request['sort_by'] == 'latest') {
             $fetched = $query->orderBy('id', 'DESC');
         } elseif ($request['sort_by'] == 'low-high') {
@@ -645,8 +644,6 @@ class WebController extends Controller
             $fetched = $query;
         }
         // $fetched = $query;
-        
-        
 
         if ($request['min_price'] != null || $request['max_price'] != null) {
             $fetched = $fetched->whereBetween('unit_price', [Helpers::convert_currency_to_usd($request['min_price']), Helpers::convert_currency_to_usd($request['max_price'])]);
@@ -664,12 +661,6 @@ class WebController extends Controller
         
         $datasource = collect();
 
-
-        if ($request->ajax()) {
-            return response()->json([
-                'view' => view('web-views.products._ajax-products', compact('products'))->render()
-            ], 200);
-        }
         if ($request['data_from'] == 'category') {
             $data['data_from_name'] = Category::find((int)$request['id'])->name_bangla;
             $datasource = Category::find((int)$request['id']);
@@ -693,7 +684,11 @@ class WebController extends Controller
         // dd($datasource);
 
         $products = $fetched->paginate(60)->appends($data);
-
+        if ($request->ajax()) {
+            return response()->json([
+                'view' => view('web-views.products._ajax-products', compact('products'))->render()
+            ], 200);
+        }
         
         return view('web-views.products.view', compact('products', 'data', 'datasource', 'authors', 'publishers', 'categories'), $data);
 

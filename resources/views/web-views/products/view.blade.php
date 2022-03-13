@@ -3,10 +3,10 @@
 @php
     $titleforthispage = strtoupper($data['data_from']).' books';
 
-    if($data['data_from'] == 'author' || $data['data_from'] == 'publisher' || $data['data_from'] == 'category'){
-        $titleforthispage = $datasource['name'] . ' Books - ' . $datasource['name_bangla'] ? $datasource['name_bangla'] : '' . ' এর বই | Booksbd.net';
+    if($data['data_from'] == 'author' || $data['data_from'] == 'publisher' || $data['data_from'] == 'category') {
+        $titleforthispage = $datasource['name'] . ' Books - ' . $datasource['name_bangla'] . ' এর বই | Booksbd.net';
     } else {
-        $titleforthispage = strtoupper($data['data_from']) .' products';
+        $titleforthispage = strtoupper($data['data_from']) .' বইসমূহ | Booksbd.net';
     }
 @endphp
 
@@ -17,13 +17,23 @@
     <meta property="og:image" content="{{asset('storage/app/public/company')}}/{{$web_config['web_logo']}}"/>
     <meta property="og:title" content="{{ $titleforthispage }}"/>
     {{-- <meta property="og:url" content="{{ url()->current() }}"> --}}
-    <meta property="og:description" content="{{ $datasource['name_bangla'] ? $datasource['name_bangla'] : '' }} এর সকল বই সংগ্রহ করুন booksbd.net থেকে। {{ $datasource['name_bangla'] }} এর বইসমূহ হাতে পেয়ে মূল্য পরিশোধের সুবিধাসহ অফারভেদে উপভোগ করুন ফ্রি শিপিং এবং সর্বোচ্চ ছাড়!">
-
+    <?php
+        if($data['data_from'] == 'author' || $data['data_from'] == 'publisher' || $data['data_from'] == 'category') {
+            $titleforthispage = $datasource['name'] . ' Books - ' . $datasource['name_bangla'] . ' এর বই | Booksbd.net';
+         
+    ?>
+        <meta property="twitter:description" content="{{ $datasource['name_bangla'] ? $datasource['name_bangla'] : '' }}  এর সকল বই সংগ্রহ করুন booksbd.net থেকে। {{ $datasource['name_bangla'] ? $datasource['name_bangla'] : '' }} এর বইসমূহ হাতে পেয়ে মূল্য পরিশোধের সুবিধাসহ অফারভেদে উপভোগ করুন ফ্রি শিপিং এবং সর্বোচ্চ ছাড়!">
+    <?php
+        } else {
+            $titleforthispage = strtoupper($data['data_from']) .' বইসমূহ | Booksbd.net';
+    ?>
+        <meta property="twitter:description" content="{{ ucfirst($data['data_from']) }} বইসমূহ সংগ্রহ করুন booksbd.net থেকে। {{ ucfirst($data['data_from']) }} বইসমূহ হাতে পেয়ে মূল্য পরিশোধের সুবিধাসহ অফারভেদে উপভোগ করুন ফ্রি শিপিং এবং সর্বোচ্চ ছাড়!">
+    <?php
+        }
+    ?>
     <meta property="twitter:card" content="{{asset('storage/app/public/company')}}/{{$web_config['web_logo']}}"/>
     <meta property="twitter:title" content="{{ $titleforthispage }}"/>
     <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:description" content="{{ $datasource['name_bangla'] }} এর সকল বই সংগ্রহ করুন booksbd.net থেকে। {{ $datasource['name_bangla'] }} এর বইসমূহ হাতে পেয়ে মূল্য পরিশোধের সুবিধাসহ অফারভেদে উপভোগ করুন ফ্রি শিপিং এবং সর্বোচ্চ ছাড়!">
-
     <style>
         .headerTitle {
             font-size: 26px;
