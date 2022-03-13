@@ -1484,4 +1484,7 @@
   'Product in Stock' => 'Product in Stock',
   'Book in Stock' => 'Book in Stock',
   'Seller request for open a shop' => 'Seller request for open a shop',
+  'পাবলিকেশন রেজিস্ট্রেশন' => '���াবলিকেশন রেজিস্ট্রেশন',
+  'welcome_to_publication_login' => 'Welcome to publication login',
+  'shop name not found' => 'Shop name not found',
 );

@@ -30,9 +30,9 @@ class SellerController extends Controller
             $sellers = Seller::with(['orders', 'product'])
                 ->where(function ($q) use ($key) {
                     foreach ($key as $value) {
-                        $q->orWhere('f_name', 'like', "%{$value}%")
-                            ->orWhere('l_name', 'like', "%{$value}%")
-                            ->orWhere('phone', 'like', "%{$value}%")
+                        $q->orWhere('name', 'like', "%{$value}%")
+                            ->orWhere('address', 'like', "%{$value}%")
+                            ->orWhere('payment_number', 'like', "%{$value}%")
                             ->orWhere('email', 'like', "%{$value}%");
                     }
                 });

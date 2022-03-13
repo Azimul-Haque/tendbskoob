@@ -51,7 +51,7 @@
                                 <thead class="thead-light">
                                 <tr>
                                     <th scope="col">{{\App\CPU\translate('SL#')}}</th>
-                                    <th scope="col">{{\App\CPU\translate('name')}}</th>
+                                    <th scope="col">{{\App\CPU\translate('Name')}}</th>
                                     <th scope="col">{{\App\CPU\translate('Phone')}}</th>
                                     <th scope="col">{{\App\CPU\translate('Email')}}</th>
                                     <th scope="col">{{\App\CPU\translate('status')}}</th>

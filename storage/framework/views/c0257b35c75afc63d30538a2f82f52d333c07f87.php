@@ -747,10 +747,10 @@
                         <!-- <li class="nav-item dropdown <?php echo e(request()->is('/')?'active':''); ?>">
                             <a class="nav-link" href="<?php echo e(route('sellers')); ?>"><?php echo e(\App\CPU\translate('Sellers')); ?></a>
                         </li>
-
+                        -->
                         <?php ($seller_registration=\App\Model\BusinessSetting::where(['type'=>'seller_registration'])->first()->value); ?>
                         <?php if($seller_registration): ?>
-                            <li class="nav-item">
+                            <li class="nav-item dropdown ml-2">
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -770,7 +770,7 @@
                                     </div>
                                 </div>
                             </li>
-                        <?php endif; ?> -->
+                        <?php endif; ?> 
                     </ul>
                 </div>
             </div>

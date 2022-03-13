@@ -1,4 +1,4 @@
-<?php $__env->startSection('title',\App\CPU\translate('Seller Apply')); ?>
+<?php $__env->startSection('title', 'বুকস বিডিতে প্রকাশনী হিসেবে অ্যাকাউন্ট করুন | Booksbd.net'); ?>
 
 <?php $__env->startPush('css_or_js'); ?>
 <link href="<?php echo e(asset('public/assets/back-end')); ?>/css/select2.min.css" rel="stylesheet"/>
@@ -16,103 +16,93 @@
             <!-- Nested Row within Card Body -->
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="p-5">
-                        <div class="text-center mb-2 ">
-                            <h3 class="" > <?php echo e(\App\CPU\translate('Shop')); ?> <?php echo e(\App\CPU\translate('Application')); ?></h3>
+                    <div class="p-2">
+                        <div class="text-center mb-2">
+                            <h3 class=""><b>বুকস বিডিতে প্রকাশনী হিসেবে</b> অ্যাকাউন্ট করুন</h3>
                             <hr>
                         </div>
-                        <form class="user" action="<?php echo e(route('shop.apply')); ?>" method="post" enctype="multipart/form-data">
+                        <form class="user mt-4" action="<?php echo e(route('shop.apply')); ?>" method="post" enctype="multipart/form-data">
                             <?php echo csrf_field(); ?>
-                            <h5 class="black"><?php echo e(\App\CPU\translate('Seller')); ?> <?php echo e(\App\CPU\translate('Info')); ?> </h5>
+                            <h5 class="black">প্রকাশনী সম্পর্কিত তথ্যাদি</h5>
                             <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="text" class="form-control form-control-user" id="exampleFirstName" name="f_name" value="<?php echo e(old('f_name')); ?>" placeholder="<?php echo e(\App\CPU\translate('first_name')); ?>" required>
+                                <div class="col-md-4 mb-3 mb-sm-0">
+                                    <label for="name">প্রকাশনীর নাম</label>
+                                    <input type="text" class="form-control form-control-user" id="name" name="name" value="<?php echo e(old('name')); ?>" placeholder="Din Publications" required>
                                 </div>
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user" id="exampleLastName" name="l_name" value="<?php echo e(old('l_name')); ?>" placeholder="<?php echo e(\App\CPU\translate('last_name')); ?>" required>
+                                <div class="col-md-4">
+                                    <label for="address">প্রকাশনীর ঠিকানা</label>
+                                    <input type="text" class="form-control form-control-user" id="address" name="address" value="<?php echo e(old('address')); ?>" placeholder="Banglabazar, Dhaka" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="address">প্রকাশনীর লোগো <span style="color:red;">(অনুপাত - ১ঃ১)</span></label>
+                                    <div class="form-group">
+                                        <div class="custom-file" style="text-align: left">
+                                            <input type="file" name="image" id="customFileUpload" class="custom-file-input"
+                                                accept=".jpg, .png, .jpeg, .gif, .bmp, .bmp, .tiff|image/*" required>
+                                            <label class="custom-file-label" for="customFileUpload"><?php echo e(\App\CPU\translate('Upload')); ?> <?php echo e(\App\CPU\translate('image')); ?></label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0 mt-4">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail" name="email" value="<?php echo e(old('email')); ?>" placeholder="<?php echo e(\App\CPU\translate('email_address')); ?>" required>
+                                <div class="col-md-8 mb-3 mb-sm-0 mt-0">
+                                    <label for="description">আপনার প্রকাশনী সম্পর্কে কিছু বলুন</label><br/>
+                                    <textarea name="description" id="description" style="width: 100%; height: 220px;" placeholder="আপনার প্রকাশনী সম্পর্কে কিছু বলুন" required></textarea>
                                 </div>
-                                <div class="col-sm-6"><small class="text-danger">( * <?php echo e(\App\CPU\translate('country_code_is_must')); ?> <?php echo e(\App\CPU\translate('like_for_BD_880')); ?> )</small>
-                                    <input type="number" class="form-control form-control-user" id="exampleInputPhone" name="phone" value="<?php echo e(old('phone')); ?>" placeholder="<?php echo e(\App\CPU\translate('phone_number')); ?>" required>
+                                <div class="col-md-4">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label for="collection_point">বই সংগ্রহ করার পয়েন্ট</label>
+                                            <select name="collection_point" id="collection_point" class="form-control form-control-user">
+                                                <option selected disabled>নির্বাচন করুন</option>
+                                                <option value="বাংলাবাজার">বাংলাবাজার</option>
+                                                <option value="কাঁটাবন">কাঁটাবন</option>
+                                                <option value="মিরপুর (হেড অফিস)">মিরপুর (হেড অফিস)</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-12 mt-3">
+                                            <label for="payment_number">পেমেন্ট গ্রহণ করার জন্য আপনার নম্বরটি দিন</label>
+                                            <input type="number" class="form-control form-control-user" id="payment_number" name="payment_number" value="<?php echo e(old('payment_number')); ?>" placeholder="01712345678" required>
+                                        </div>
+                                        <div class="col-md-12 mt-3">
+                                            <label for="payment_option">আপনার নম্বরটি কোন সেবার আওতাধীন?</label>
+                                            <select name="payment_option" id="payment_option" class="form-control form-control-user">
+                                                <option selected disabled>নির্বাচন করুন</option>
+                                                <option value="বিকাশ">বিকাশ</option>
+                                                <option value="নগদ">নগদ</option>
+                                                <option value="রকেট">মিরপুর (হেড অফিস)</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="password" class="form-control form-control-user" minlength="6" id="exampleInputPassword" name="password" placeholder="<?php echo e(\App\CPU\translate('password')); ?>" required>
+                                <div class="col-md-4 mb-3 mb-sm-0">
+                                    <label for="email">আপনার ই-মেইল</label>
+                                    <input type="email" class="form-control form-control-user" id="email" name="email" value="<?php echo e(old('email')); ?>" placeholder="bdjp@booksbd.net" required>
                                 </div>
-                                <div class="col-sm-6">
-                                    <input type="password" class="form-control form-control-user" minlength="6" id="exampleRepeatPassword" placeholder="<?php echo e(\App\CPU\translate('repeat_password')); ?>" required>
-                                    <div class="pass invalid-feedback"><?php echo e(\App\CPU\translate('Repeat')); ?>  <?php echo e(\App\CPU\translate('password')); ?> <?php echo e(\App\CPU\translate('not match')); ?> .</div>
+                                <div class="col-md-4">
+                                    <label for="password">আপনার পাসওয়ার্ড দিন</label>
+                                    <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="পাসওয়ার্ড লিখুন" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="password_confirmation ">আপনার পাসওয়ার্ডটি পুনরায় দিন</label>
+                                    <input type="password" class="form-control form-control-user" id="password_confirmation" name="password_confirmation" placeholder="পুনরায় পাসওয়ার্ড লিখুন" required>
                                 </div>
                             </div>
                             <div class="">
-                                <div class="pb-1">
+                                <div class="pb-1 mb-2">
                                     <center>
-                                        <img style="width: auto;border: 1px solid; border-radius: 10px; max-height:200px;" id="viewer"
+                                        <img style="width: auto;border: 1px solid; max-height:200px;" id="viewer"
                                             src="<?php echo e(asset('public\assets\back-end\img\400x400\img2.jpg')); ?>" alt="banner image"/>
                                     </center>
                                 </div>
-
-                                <div class="form-group">
-                                    <div class="custom-file" style="text-align: left">
-                                        <input type="file" name="image" id="customFileUpload" class="custom-file-input"
-                                            accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*">
-                                        <label class="custom-file-label" for="customFileUpload"><?php echo e(\App\CPU\translate('Upload')); ?> <?php echo e(\App\CPU\translate('image')); ?></label>
-                                    </div>
-                                </div>
                             </div>
-
-
-                            <h5 class="black"><?php echo e(\App\CPU\translate('Shop')); ?> <?php echo e(\App\CPU\translate('Info')); ?></h5>
-                            <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0 ">
-                                    <input type="text" class="form-control form-control-user" id="shop_name" name="shop_name" placeholder="<?php echo e(\App\CPU\translate('shop_name')); ?>" value="<?php echo e(old('shop_name')); ?>"required>
-                                </div>
-                                <div class="col-sm-6">
-                                    <textarea name="shop_address" class="form-control" id="shop_address"rows="1" placeholder="<?php echo e(\App\CPU\translate('shop_address')); ?>"><?php echo e(old('shop_address')); ?></textarea>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="pb-1">
-                                    <center>
-                                        <img style="width: auto;border: 1px solid; border-radius: 10px; max-height:200px;" id="viewerLogo"
-                                            src="<?php echo e(asset('public\assets\back-end\img\400x400\img2.jpg')); ?>" alt="banner image"/>
-                                    </center>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="custom-file" style="text-align: left">
-                                        <input type="file" name="logo" id="LogoUpload" class="custom-file-input"
-                                            accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*">
-                                        <label class="custom-file-label" for="LogoUpload"><?php echo e(\App\CPU\translate('Upload')); ?> <?php echo e(\App\CPU\translate('logo')); ?></label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="pb-1">
-                                    <center>
-                                        <img style="width: auto;border: 1px solid; border-radius: 10px; max-height:200px;" id="viewerBanner"
-                                             src="<?php echo e(asset('public\assets\back-end\img\400x400\img2.jpg')); ?>" alt="banner image"/>
-                                    </center>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="custom-file" style="text-align: left">
-                                        <input type="file" name="banner" id="BannerUpload" class="custom-file-input"
-                                               accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" style="overflow: hidden; padding: 2%">
-                                        <label class="custom-file-label" for="BannerUpload"><?php echo e(\App\CPU\translate('Upload')); ?> <?php echo e(\App\CPU\translate('Banner')); ?></label>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-user btn-block" id="apply"><?php echo e(\App\CPU\translate('Apply')); ?> <?php echo e(\App\CPU\translate('Shop')); ?> </button>
+                            <button type="submit" class="btn btn-primary btn-user btn-block" id="apply">দাখিল করুন</button>
                         </form>
                         <hr>
-                        <div class="text-center">
-                            <a class="small"  href="<?php echo e(route('seller.auth.login')); ?>"><?php echo e(\App\CPU\translate('already_have_an_account?_login.')); ?></a>
+                        <div class="text-center mt-4">
+                            আমাদের সাথে একাউন্ট আছে?  <a href="<?php echo e(route('seller.auth.login')); ?>" style="color: #339B38 !important;">সাইন ইন</a>
                         </div>
                     </div>
                 </div>

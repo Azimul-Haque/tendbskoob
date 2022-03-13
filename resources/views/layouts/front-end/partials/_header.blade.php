@@ -730,10 +730,10 @@
                         <!-- <li class="nav-item dropdown {{request()->is('/')?'active':''}}">
                             <a class="nav-link" href="{{route('sellers')}}">{{ \App\CPU\translate('Sellers')}}</a>
                         </li>
-
+                        -->
                         @php($seller_registration=\App\Model\BusinessSetting::where(['type'=>'seller_registration'])->first()->value)
                         @if($seller_registration)
-                            <li class="nav-item">
+                            <li class="nav-item dropdown ml-2">
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -752,7 +752,7 @@
                                     </div>
                                 </div>
                             </li>
-                        @endif -->
+                        @endif 
                     </ul>
                 </div>
             </div>
