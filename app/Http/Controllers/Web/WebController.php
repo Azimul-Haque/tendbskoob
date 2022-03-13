@@ -687,10 +687,10 @@ class WebController extends Controller
             $datasource = Publisher::find((int)$request['id']);
         }
         if ($request['data_from'] == 'latest') {
-                 = 'Latest';
+            $data['data_from_name'] = 'Latest';
             $datasource = Publisher::find((int)$request['id']);
         }
-        dd($datasource);
+        // dd($datasource);
 
         $products = $fetched->paginate(60)->appends($data);
 
