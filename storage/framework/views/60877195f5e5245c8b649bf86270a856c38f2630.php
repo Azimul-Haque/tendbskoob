@@ -49,12 +49,12 @@
                                 <thead class="thead-light">
                                 <tr>
                                     <th scope="col"><?php echo e(\App\CPU\translate('SL#')); ?></th>
-                                    <th scope="col"><?php echo e(\App\CPU\translate('name')); ?></th>
-                                    <th scope="col"><?php echo e(\App\CPU\translate('Phone')); ?></th>
+                                    <th scope="col"><?php echo e(\App\CPU\translate('Name')); ?></th>
+                                    <th scope="col">Collection Point</th>
+                                    <th scope="col">Collection Info</th>
                                     <th scope="col"><?php echo e(\App\CPU\translate('Email')); ?></th>
-                                    <th scope="col"><?php echo e(\App\CPU\translate('status')); ?></th>
-                                    <th scope="col"><?php echo e(\App\CPU\translate('orders')); ?></th>
-                                    <th scope="col"><?php echo e(\App\CPU\translate('Products')); ?></th>
+                                    <th scope="col"><?php echo e(\App\CPU\translate('Address')); ?></th>
+                                    
                                     <th scope="col" style="width: 50px"><?php echo e(\App\CPU\translate('action')); ?></th>
                                 </tr>
                                 </thead>
@@ -62,29 +62,16 @@
                                 <?php $__currentLoopData = $sellers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$seller): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
                                         <td scope="col"><?php echo e($sellers->firstItem()+$key); ?></td>
-                                        <td scope="col"><?php echo e($seller->f_name); ?> <?php echo e($seller->l_name); ?></td>
-                                        <td scope="col"><?php echo e($seller->phone); ?></td>
-                                        <td scope="col"><?php echo e($seller->email); ?></td>
                                         <td scope="col">
+                                            <?php echo e($seller->name); ?><br/>
                                             <?php echo $seller->status=='approved'?'<label class="badge badge-success">Active</label>':'<label class="badge badge-danger">In-Active</label>'; ?>
 
                                         </td>
-                                        <td scope="col">
-                                            <a href="<?php echo e(route('admin.sellers.order-list',[$seller['id']])); ?>"
-                                               class="btn btn-outline-primary btn-block">
-                                                <i class="tio-shopping-cart-outlined"></i>( <?php echo e($seller->orders->count()); ?>
-
-                                                )
-                                            </a>
-                                        </td>
-                                        <td scope="col">
-                                            <a href="<?php echo e(route('admin.sellers.product-list',[$seller['id']])); ?>"
-                                               class="btn btn-outline-primary btn-block">
-                                                <i class="tio-premium-outlined mr-1"></i>( <?php echo e($seller->product->count()); ?>
-
-                                                )
-                                            </a>
-                                        </td>
+                                        <td scope="col"><?php echo e($seller->collection_point); ?></td>
+                                        <td scope="col"><?php echo e($seller->payment_number); ?><br/><?php echo e($seller->payment_option); ?></td>
+                                        <td scope="col"><?php echo e($seller->email); ?></td>
+                                        <td scope="col"><?php echo e($seller->address); ?></td>
+                                        
                                         <td>
                                             <a class="btn btn-primary"
                                                href="<?php echo e(route('admin.sellers.view',$seller->id)); ?>">

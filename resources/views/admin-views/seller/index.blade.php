@@ -52,11 +52,12 @@
                                 <tr>
                                     <th scope="col">{{\App\CPU\translate('SL#')}}</th>
                                     <th scope="col">{{\App\CPU\translate('Name')}}</th>
-                                    <th scope="col">{{\App\CPU\translate('Phone')}}</th>
+                                    <th scope="col">Collection Point</th>
+                                    <th scope="col">Collection Info</th>
                                     <th scope="col">{{\App\CPU\translate('Email')}}</th>
-                                    <th scope="col">{{\App\CPU\translate('status')}}</th>
-                                    <th scope="col">{{\App\CPU\translate('orders')}}</th>
-                                    <th scope="col">{{\App\CPU\translate('Products')}}</th>
+                                    <th scope="col">{{\App\CPU\translate('Address')}}</th>
+                                    {{-- <th scope="col">{{\App\CPU\translate('orders')}}</th>
+                                    <th scope="col">{{\App\CPU\translate('Products')}}</th> --}}
                                     <th scope="col" style="width: 50px">{{\App\CPU\translate('action')}}</th>
                                 </tr>
                                 </thead>
@@ -64,13 +65,15 @@
                                 @foreach($sellers as $key=>$seller)
                                     <tr>
                                         <td scope="col">{{$sellers->firstItem()+$key}}</td>
-                                        <td scope="col">{{$seller->f_name}} {{$seller->l_name}}</td>
-                                        <td scope="col">{{$seller->phone}}</td>
-                                        <td scope="col">{{$seller->email}}</td>
                                         <td scope="col">
+                                            {{$seller->name}}<br/>
                                             {!! $seller->status=='approved'?'<label class="badge badge-success">Active</label>':'<label class="badge badge-danger">In-Active</label>' !!}
                                         </td>
-                                        <td scope="col">
+                                        <td scope="col">{{$seller->collection_point}}</td>
+                                        <td scope="col">{{ $seller->payment_number }}<br/>{{ $seller->payment_option }}</td>
+                                        <td scope="col">{{$seller->email}}</td>
+                                        <td scope="col">{{$seller->address}}</td>
+                                        {{-- <td scope="col">
                                             <a href="{{route('admin.sellers.order-list',[$seller['id']])}}"
                                                class="btn btn-outline-primary btn-block">
                                                 <i class="tio-shopping-cart-outlined"></i>( {{$seller->orders->count()}}
@@ -83,7 +86,7 @@
                                                 <i class="tio-premium-outlined mr-1"></i>( {{$seller->product->count()}}
                                                 )
                                             </a>
-                                        </td>
+                                        </td> --}}
                                         <td>
                                             <a class="btn btn-primary"
                                                href="{{route('admin.sellers.view',$seller->id)}}">
