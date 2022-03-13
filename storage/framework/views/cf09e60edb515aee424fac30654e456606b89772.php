@@ -4,15 +4,15 @@
         <div class="navbar-nav-wrap">
             <div class="navbar-brand-wrapper">
                 <!-- Logo -->
-                @php($seller_logo=auth('seller')->user()->image)
+                <?php ($seller_logo=auth('seller')->user()->image); ?>
 
-                <a class="navbar-brand" href="{{route('seller.dashboard.index')}}" aria-label="">
+                <a class="navbar-brand" href="<?php echo e(route('seller.dashboard.index')); ?>" aria-label="">
                     <img class="navbar-brand-logo" style="max-height: 42px;"
-                         onerror="this.src='{{asset('public/assets/back-end/img/160x160/img1.jpg')}}'"
-                         src="{{asset("storage/app/public/shop/$seller_logo")}}" alt="Logo" height="40" width="40">
+                         onerror="this.src='<?php echo e(asset('public/assets/back-end/img/160x160/img1.jpg')); ?>'"
+                         src="<?php echo e(asset("storage/app/public/shop/$seller_logo")); ?>" alt="Logo" height="40" width="40">
                     <img class="navbar-brand-logo-mini" style="max-height: 42px;"
-                         onerror="this.src='{{asset('public/assets/back-end/img/160x160/img1.jpg')}}'"
-                         src="{{asset("storage/app/public/shop/$seller_logo")}}"
+                         onerror="this.src='<?php echo e(asset('public/assets/back-end/img/160x160/img1.jpg')); ?>'"
+                         src="<?php echo e(asset("storage/app/public/shop/$seller_logo")); ?>"
                          alt="Logo" height="40" width="40">
 
                 </a>
@@ -37,41 +37,42 @@
 
 
             <!-- Secondary Content -->
-            <div class="navbar-nav-wrap-content-right" style="{{Session::get('direction') === "rtl" ? 'margin-left:unset; margin-right: auto' : 'margin-right:unset; margin-left: auto'}}">
+            <div class="navbar-nav-wrap-content-right" style="<?php echo e(Session::get('direction') === "rtl" ? 'margin-left:unset; margin-right: auto' : 'margin-right:unset; margin-left: auto'); ?>">
                 <!-- Navbar -->
                 <ul class="navbar-nav align-items-center flex-row">
 
                     <li class="nav-item d-none d-sm-inline-block">
                         <div class="hs-unfold">
                             <div style="background:white;padding: 9px;border-radius: 5px;">
-                                @php( $local = session()->has('local')?session('local'):'en')
-                                @php($lang = \App\Model\BusinessSetting::where('type', 'language')->first())
+                                <?php ( $local = session()->has('local')?session('local'):'en'); ?>
+                                <?php ($lang = \App\Model\BusinessSetting::where('type', 'language')->first()); ?>
                                 <div
-                                    class="topbar-text dropdown disable-autohide {{Session::get('direction') === "rtl" ? 'ml-3' : 'mr-3'}} text-capitalize">
+                                    class="topbar-text dropdown disable-autohide <?php echo e(Session::get('direction') === "rtl" ? 'ml-3' : 'mr-3'); ?> text-capitalize">
                                     <a class="topbar-link dropdown-toggle" href="#" data-toggle="dropdown" style="color: black!important;">
-                                        @foreach(json_decode($lang['value'],true) as $data)
-                                            @if($data['code']==$local)
-                                                <img class="{{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}" width="20"
-                                                     src="{{asset('public/assets/front-end')}}/img/flags/{{$data['code']}}.png"
+                                        <?php $__currentLoopData = json_decode($lang['value'],true); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php if($data['code']==$local): ?>
+                                                <img class="<?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?>" width="20"
+                                                     src="<?php echo e(asset('public/assets/front-end')); ?>/img/flags/<?php echo e($data['code']); ?>.png"
                                                      alt="Eng">
-                                                {{$data['name']}}
-                                            @endif
-                                        @endforeach
+                                                <?php echo e($data['name']); ?>
+
+                                            <?php endif; ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        @foreach(json_decode($lang['value'],true) as $key =>$data)
-                                            @if($data['status']==1)
+                                        <?php $__currentLoopData = json_decode($lang['value'],true); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key =>$data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php if($data['status']==1): ?>
                                                 <li>
-                                                    <a class="dropdown-item pb-1" href="{{route('lang',[$data['code']])}}">
-                                                        <img class="{{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}"
+                                                    <a class="dropdown-item pb-1" href="<?php echo e(route('lang',[$data['code']])); ?>">
+                                                        <img class="<?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?>"
                                                              width="20"
-                                                             src="{{asset('public/assets/front-end')}}/img/flags/{{$data['code']}}.png"
-                                                             alt="{{$data['name']}}"/>
-                                                        <span style="text-transform: capitalize">{{\App\CPU\Helpers::get_language_name($data['code'])}}</span>
+                                                             src="<?php echo e(asset('public/assets/front-end')); ?>/img/flags/<?php echo e($data['code']); ?>.png"
+                                                             alt="<?php echo e($data['name']); ?>"/>
+                                                        <span style="text-transform: capitalize"><?php echo e(\App\CPU\Helpers::get_language_name($data['code'])); ?></span>
                                                     </a>
                                                 </li>
-                                            @endif
-                                        @endforeach
+                                            <?php endif; ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </ul>
                                 </div>
                             </div>
@@ -82,9 +83,9 @@
                         <!-- Notification -->
                         <div class="hs-unfold">
                             <a title="Website Home" class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle"
-                               href="{{route('home')}}" target="_blank">
+                               href="<?php echo e(route('home')); ?>" target="_blank">
                                 <i class="tio-globe"></i>
-                                {{--<span class="btn-status btn-sm-status btn-status-danger"></span>--}}
+                                
                             </a>
                         </div>
                         <!-- End Notification -->
@@ -94,12 +95,12 @@
                         <!-- Notification -->
                         <div class="hs-unfold">
                             <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle"
-                               href="{{route('seller.messages.chat')}}">
+                               href="<?php echo e(route('seller.messages.chat')); ?>">
                                 <i class="tio-email"></i>
-                                @php($message=\App\Model\Chatting::where(['seen_by_seller'=>1,'seller_id'=>auth('seller')->id()])->count())
-                                @if($message!=0)
+                                <?php ($message=\App\Model\Chatting::where(['seen_by_seller'=>1,'seller_id'=>auth('seller')->id()])->count()); ?>
+                                <?php if($message!=0): ?>
                                     <span class="btn-status btn-sm-status btn-status-danger"></span>
-                                @endif
+                                <?php endif; ?>
                             </a>
                         </div>
                         <!-- End Notification -->
@@ -109,7 +110,7 @@
                         <!-- Notification -->
                         <div class="hs-unfold">
                             <a class="js-hs-unfold-invoker btn btn-icon btn-ghost-secondary rounded-circle"
-                               href="{{route('seller.orders.list',['pending'])}}">
+                               href="<?php echo e(route('seller.orders.list',['pending'])); ?>">
                                 <i class="tio-shopping-cart-outlined"></i>
 
                             </a>
@@ -127,10 +128,10 @@
                                      "type": "css-animation"
                                    }'>
                                 <div class="avatar avatar-sm avatar-circle">
-                                    {{-- <img src="{{asset('storage/app/public/seller/'.auth('seller')->user()->image)}}"  onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" class="img-profile rounded-circle"> --}}
+                                    
                                     <img class="avatar-img"
-                                         onerror="this.src='{{asset('public/assets/back-end/img/160x160/img1.jpg')}}'"
-                                         src="{{asset('storage/app/public/seller/')}}/{{auth('seller')->user()->image}}"
+                                         onerror="this.src='<?php echo e(asset('public/assets/back-end/img/160x160/img1.jpg')); ?>'"
+                                         src="<?php echo e(asset('storage/app/public/seller/')); ?>/<?php echo e(auth('seller')->user()->image); ?>"
                                          alt="Image Description">
                                     <span class="avatar-status avatar-sm-status avatar-status-success"></span>
                                 </div>
@@ -142,16 +143,16 @@
                                 <div class="dropdown-item-text">
                                     <div class="media align-items-center">
                                         <div class="avatar avatar-sm avatar-circle mr-2">
-                                            {{-- <img src="{{asset('storage/app/public/seller/'.auth('seller')->user()->image)}}"  onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'" class="img-profile rounded-circle"> --}}
+                                            
                                             <img class="avatar-img"
-                                                 onerror="this.src='{{asset('public/assets/back-end/img/160x160/img1.jpg')}}'"
-                                                 src="{{asset('storage/app/public/seller/')}}/{{auth('seller')->user()->image}}"
+                                                 onerror="this.src='<?php echo e(asset('public/assets/back-end/img/160x160/img1.jpg')); ?>'"
+                                                 src="<?php echo e(asset('storage/app/public/seller/')); ?>/<?php echo e(auth('seller')->user()->image); ?>"
                                                  alt="Image Description">
                                         </div>
                                         <div class="media-body">
-                                            <span class="card-title h5">{{auth('seller')->user()->f_name}}</span>
+                                            <span class="card-title h5"><?php echo e(auth('seller')->user()->f_name); ?></span>
 
-                                            <span class="card-text">{{auth('seller')->user()->email}}</span>
+                                            <span class="card-text"><?php echo e(auth('seller')->user()->email); ?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -159,14 +160,14 @@
                                 <div class="dropdown-divider"></div>
 
                                 <a class="dropdown-item"
-                                   href="{{route('seller.profile.update',auth('seller')->user()->id)}}">
-                                    <span class="text-truncate pr-2" title="Settings">{{\App\CPU\translate('Settings')}}</span>
+                                   href="<?php echo e(route('seller.profile.update',auth('seller')->user()->id)); ?>">
+                                    <span class="text-truncate pr-2" title="Settings"><?php echo e(\App\CPU\translate('Settings')); ?></span>
                                 </a>
 
                                 <div class="dropdown-divider"></div>
 
                                 <a class="dropdown-item" href="javascript:" onclick="Swal.fire({
-                                    title: '{{\App\CPU\translate('Do you want to logout')}}?',
+                                    title: '<?php echo e(\App\CPU\translate('Do you want to logout')); ?>?',
                                     showDenyButton: true,
                                     showCancelButton: true,
                                     confirmButtonColor: '#377dff',
@@ -175,12 +176,12 @@
                                     denyButtonText: `Don't Logout`,
                                     }).then((result) => {
                                     if (result.value) {
-                                    location.href='{{route('seller.auth.logout')}}';
+                                    location.href='<?php echo e(route('seller.auth.logout')); ?>';
                                     } else{
                                     Swal.fire('Canceled', '', 'info')
                                     }
                                     })">
-                                    <span class="text-truncate pr-2" title="Sign out">{{\App\CPU\translate('Sign out')}}</span>
+                                    <span class="text-truncate pr-2" title="Sign out"><?php echo e(\App\CPU\translate('Sign out')); ?></span>
                                 </a>
                             </div>
                         </div>
@@ -195,3 +196,4 @@
 </div>
 <div id="headerFluid" class="d-none"></div>
 <div id="headerDouble" class="d-none"></div>
+<?php /**PATH C:\wamp\www\booksbd\resources\views/layouts/back-end/partials-seller/_header.blade.php ENDPATH**/ ?>

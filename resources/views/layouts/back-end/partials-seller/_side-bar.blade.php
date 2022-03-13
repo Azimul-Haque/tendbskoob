@@ -37,7 +37,7 @@
             <div class="navbar-vertical-footer-offset" style="padding-bottom: 0">
                 <div class="navbar-brand-wrapper justify-content-between side-logo">
                     <!-- Logo -->
-                    @php($seller_logo=\App\Model\Shop::where(['seller_id'=>auth('seller')->id()])->first()->image)
+                    @php($seller_logo=auth('seller')->user()->image)
                     <a class="navbar-brand" href="{{route('seller.dashboard.index')}}" aria-label="Front">
                         <img onerror="this.src='{{asset('public/assets/back-end/img/900x400/img1.jpg')}}'"
                              class="navbar-brand-logo-mini for-seller-logo"
