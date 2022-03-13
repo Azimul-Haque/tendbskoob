@@ -630,8 +630,9 @@ class WebController extends Controller
             // dd($product_ids);
         }
 
+
         if ($request['sort_by'] == 'latest') {
-            $fetched = $query->latest();
+            $fetched = $query->orderBy('id', 'DESC');
         } elseif ($request['sort_by'] == 'low-high') {
             $fetched = $query->orderBy('unit_price', 'ASC');
         } elseif ($request['sort_by'] == 'high-low') {
@@ -643,11 +644,14 @@ class WebController extends Controller
         } else {
             $fetched = $query;
         }
+        // $fetched = $query;
+        
+        
 
         if ($request['min_price'] != null || $request['max_price'] != null) {
             $fetched = $fetched->whereBetween('unit_price', [Helpers::convert_currency_to_usd($request['min_price']), Helpers::convert_currency_to_usd($request['max_price'])]);
         }
-
+        
         $data = [
             'id' => $request['id'],
             'name' => $request['name'],
@@ -657,8 +661,10 @@ class WebController extends Controller
             'min_price' => $request['min_price'],
             'max_price' => $request['max_price'],
         ];
-
+        
         $datasource = collect();
+
+
         if ($request->ajax()) {
             return response()->json([
                 'view' => view('web-views.products._ajax-products', compact('products'))->render()
@@ -680,10 +686,15 @@ class WebController extends Controller
             $data['data_from_name'] = Publisher::find((int)$request['id'])->name_bangla;
             $datasource = Publisher::find((int)$request['id']);
         }
+        if ($request['data_from'] == 'latest') {
+                 = 'Latest';
+            $datasource = Publisher::find((int)$request['id']);
+        }
+        dd($datasource);
 
         $products = $fetched->paginate(60)->appends($data);
 
-        // dd($products);
+        
         return view('web-views.products.view', compact('products', 'data', 'datasource', 'authors', 'publishers', 'categories'), $data);
 
         
