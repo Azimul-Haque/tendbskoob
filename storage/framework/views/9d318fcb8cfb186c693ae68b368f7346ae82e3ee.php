@@ -2,7 +2,7 @@
     <?php if(!empty($product['product_id'])): ?>
         <?php ($product=$product->product); ?>
     <?php endif; ?>
-    <div class=" <?php echo e(Request::is('products*')?'col-lg-3 col-md-4 col-sm-4 col-6':'col-lg-2 col-md-3 col-sm-4 col-6'); ?> <?php echo e(Request::is('shopView*')?'col-lg-3 col-md-4 col-sm-4 col-6':''); ?> mb-2">
+    <div class=" <?php echo e(Request::is('books*')?'col-lg-3 col-md-4 col-sm-4 col-6':'col-lg-2 col-md-3 col-sm-4 col-6'); ?> <?php echo e(Request::is('shopView*')?'col-lg-3 col-md-4 col-sm-4 col-6':''); ?> mb-2">
         <?php if(!empty($product)): ?>
             <?php echo $__env->make('web-views.partials._single-product',['p'=>$product], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         <?php endif; ?>
