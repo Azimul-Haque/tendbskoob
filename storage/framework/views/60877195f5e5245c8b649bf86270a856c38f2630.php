@@ -52,8 +52,7 @@
                                     <th scope="col"><?php echo e(\App\CPU\translate('Name')); ?></th>
                                     <th scope="col">Collection Point</th>
                                     <th scope="col">Collection Info</th>
-                                    <th scope="col"><?php echo e(\App\CPU\translate('Email')); ?></th>
-                                    <th scope="col"><?php echo e(\App\CPU\translate('Address')); ?></th>
+                                    <th scope="col"><?php echo e(\App\CPU\translate('Email & Physical Address')); ?></th>
                                     
                                     <th scope="col" style="width: 50px"><?php echo e(\App\CPU\translate('action')); ?></th>
                                 </tr>
@@ -69,13 +68,17 @@
                                         </td>
                                         <td scope="col"><?php echo e($seller->collection_point); ?></td>
                                         <td scope="col"><?php echo e($seller->payment_number); ?><br/><?php echo e($seller->payment_option); ?></td>
-                                        <td scope="col"><?php echo e($seller->email); ?></td>
-                                        <td scope="col"><?php echo e($seller->address); ?></td>
+                                        <td scope="col"><?php echo e($seller->email); ?></br><?php echo e($seller->address); ?></td>
                                         
                                         <td>
                                             <a class="btn btn-primary"
                                                href="<?php echo e(route('admin.sellers.view',$seller->id)); ?>">
                                                 <?php echo e(\App\CPU\translate('View')); ?>
+
+                                            </a>
+                                            <a class="btn btn-success"
+                                               href="<?php echo e(route('admin.sellers.view',$seller->id)); ?>">
+                                                <i class="tio-edit nav-icon"></i> <?php echo e(\App\CPU\translate('Edit')); ?>
 
                                             </a>
                                         </td>

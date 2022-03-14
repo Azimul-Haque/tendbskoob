@@ -175,6 +175,12 @@ class SellerController extends Controller
         return back();
     }
 
+    public function edit($seller_id)
+    {
+        $seller = Seller::findOrFail($seller_id);
+        return view('admin-views.seller.order-list', compact('seller'));
+    }
+
     public function order_list($seller_id)
     {
         $orders = Order::where('seller_id', $seller_id)->where('seller_is', 'seller');

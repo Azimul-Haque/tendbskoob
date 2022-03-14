@@ -1487,4 +1487,5 @@
   'পাবলিকেশন রেজিস্ট্রেশন' => '���াবলিকেশন রেজিস্ট্রেশন',
   'welcome_to_publication_login' => 'Welcome to publication login',
   'shop name not found' => 'Shop name not found',
+  'Email & Physical Address' => 'Email & Physical Address',
 );

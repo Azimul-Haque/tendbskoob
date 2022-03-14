@@ -54,8 +54,7 @@
                                     <th scope="col">{{\App\CPU\translate('Name')}}</th>
                                     <th scope="col">Collection Point</th>
                                     <th scope="col">Collection Info</th>
-                                    <th scope="col">{{\App\CPU\translate('Email')}}</th>
-                                    <th scope="col">{{\App\CPU\translate('Address')}}</th>
+                                    <th scope="col">{{\App\CPU\translate('Email & Physical Address')}}</th>
                                     {{-- <th scope="col">{{\App\CPU\translate('orders')}}</th>
                                     <th scope="col">{{\App\CPU\translate('Products')}}</th> --}}
                                     <th scope="col" style="width: 50px">{{\App\CPU\translate('action')}}</th>
@@ -71,8 +70,7 @@
                                         </td>
                                         <td scope="col">{{$seller->collection_point}}</td>
                                         <td scope="col">{{ $seller->payment_number }}<br/>{{ $seller->payment_option }}</td>
-                                        <td scope="col">{{$seller->email}}</td>
-                                        <td scope="col">{{$seller->address}}</td>
+                                        <td scope="col">{{$seller->email}}</br>{{$seller->address}}</td>
                                         {{-- <td scope="col">
                                             <a href="{{route('admin.sellers.order-list',[$seller['id']])}}"
                                                class="btn btn-outline-primary btn-block">
@@ -91,6 +89,10 @@
                                             <a class="btn btn-primary"
                                                href="{{route('admin.sellers.view',$seller->id)}}">
                                                 {{\App\CPU\translate('View')}}
+                                            </a>
+                                            <a class="btn btn-success"
+                                               href="{{route('admin.sellers.view',$seller->id)}}">
+                                                <i class="tio-edit nav-icon"></i> {{\App\CPU\translate('Edit')}}
                                             </a>
                                         </td>
                                     </tr>
