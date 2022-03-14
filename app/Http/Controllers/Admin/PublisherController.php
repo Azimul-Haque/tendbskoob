@@ -87,7 +87,7 @@ class PublisherController extends BaseController
             // $filename = Helpers::random_slug(10) . '.' . $image->getClientOriginalExtension();
             $filename = Helpers::random_slug(10) . '.jpg';
             $location = public_path('/public/images/publisher/'. $filename);
-            Image::make($image)->resize(200, 200)->save($location);
+            Image::make($image)->fit(200, 200)->save($location);
             $publisher->image = $filename;
             // $publisher->image = ImageManager::upload('publisher/', 'png', $request->file('image'));
         }
@@ -126,7 +126,7 @@ class PublisherController extends BaseController
             // $filename = Helpers::random_slug(10) . '.' . $image->getClientOriginalExtension();
             $filename = Helpers::random_slug(10) . '.jpg';
             $location = public_path('/public/images/publisher/'. $filename);
-            Image::make($image)->resize(200, 200)->save($location);
+            Image::make($image)->fit(200, 200)->save($location);
             $publisher->image = $filename;
             // $publisher->image = ImageManager::upload('publisher/', 'png', $request->file('image'));
         }

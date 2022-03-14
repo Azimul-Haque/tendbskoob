@@ -46,7 +46,7 @@ class RegisterController extends Controller
                 $image    = $request->file('image');
                 $filename = Helpers::random_slug(10) . '.jpg';
                 $location = public_path('/public/images/publisher/'. $filename);
-                Image::make($image)->resize(200, 200)->save($location);
+                Image::make($image)->fit(200, 200)->save($location);
                 $seller->image = $filename;
             }
             $seller->email = $request->email;

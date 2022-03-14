@@ -62,7 +62,7 @@
                                         </div>
                                         <div class="col-md-12 mt-3">
                                             <label for="payment_number">পেমেন্ট গ্রহণ করার জন্য আপনার নম্বরটি দিন</label>
-                                            <input type="number" class="form-control form-control-user" id="payment_number" name="payment_number" value="<?php echo e(old('payment_number')); ?>" placeholder="01712345678" required>
+                                            <input type="number" class="form-control form-control-user" id="payment_number" name="payment_number" value="<?php echo e(old('payment_number')); ?>" placeholder="01712345678" maxlength="11" required>
                                         </div>
                                         <div class="col-md-12 mt-3">
                                             <label for="payment_option">আপনার নম্বরটি কোন সেবার আওতাধীন?</label>
@@ -123,6 +123,11 @@
     </script>
 <?php endif; ?>
 <script>
+    $('#payment_number').keypress(function() {
+        if (this.value.length >= 11) {
+            return false;
+        }
+    });
     $('#exampleInputPassword ,#exampleRepeatPassword').on('keyup',function () {
         var pass = $("#exampleInputPassword").val();
         var passRepeat = $("#exampleRepeatPassword").val();

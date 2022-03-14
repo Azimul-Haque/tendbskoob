@@ -125,6 +125,11 @@
     </script>
 @endif
 <script>
+    $('#payment_number').keypress(function() {
+        if (this.value.length >= 11) {
+            return false;
+        }
+    });
     $('#exampleInputPassword ,#exampleRepeatPassword').on('keyup',function () {
         var pass = $("#exampleInputPassword").val();
         var passRepeat = $("#exampleRepeatPassword").val();
