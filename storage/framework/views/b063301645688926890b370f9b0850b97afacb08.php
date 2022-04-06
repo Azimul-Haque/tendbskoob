@@ -461,7 +461,7 @@
                     <!--business section ends here-->
 
                         <?php if(\App\CPU\Helpers::module_permission_check('user_section')): ?>
-                            <li class="nav-item <?php echo e((Request::is('admin/customer/list') || Request::is('admin/sellers/seller-list'))?'scroll-here':''); ?>">
+                            <li class="nav-item <?php echo e((Request::is('admin/customer/list'))?'scroll-here':''); ?>">
                                 <small class="nav-subtitle" title=""><?php echo e(\App\CPU\translate('user_section')); ?></small>
                                 <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                             </li>
