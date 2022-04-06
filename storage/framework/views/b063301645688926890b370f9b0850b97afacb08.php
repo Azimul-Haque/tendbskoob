@@ -264,6 +264,14 @@
                                         class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate"><?php echo e(\App\CPU\translate('Books')); ?></span>
                                 </a>
                             </li>
+                            <li class="navbar-vertical-aside-has-menu <?php echo e(Request::is('admin/product/list/in_hous*')?'active':''); ?>">
+                                <a class="js-navbar-vertical-aside-menu-link nav-link"
+                                   href="<?php echo e(route('admin.product.list',['in_house', ''])); ?>">
+                                    <i class="tio-book nav-icon"></i>
+                                    <span
+                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate"><?php echo e(\App\CPU\translate('Books')); ?></span>
+                                </a>
+                            </li>
 
 
                             
