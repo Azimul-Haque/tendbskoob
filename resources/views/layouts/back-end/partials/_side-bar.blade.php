@@ -249,7 +249,7 @@
                                    href="{{route('admin.sellers.seller-list')}}">
                                     <i class="tio-users-switch nav-icon"></i>
                                     <span
-                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Books')}}</span>
+                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Seller List')}}</span>
                                 </a>
                             </li>
 
@@ -505,7 +505,8 @@
                                 </a>
                                 <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
                                     style="display: {{Request::is('admin/seller*')?'block':'none'}}">
-                                    <li class="nav-item {{Request::is('admin/sellers/seller-list')?'active':''}}">
+                                    <li class="nav-item "> 
+                                        {{-- {{Request::is('admin/sellers/seller-list')?'active':''}} --}}
                                         <a class="nav-link"
                                         href="{{route('admin.sellers.seller-list')}}">
                                             <span class="tio-circle nav-indicator-icon"></span>
