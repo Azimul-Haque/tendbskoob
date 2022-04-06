@@ -236,20 +236,12 @@
                                 </a>
                             </li>
 
-                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/product/list/in_house*')?'active scroll-here':''}}">
+                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/product/list/in_house*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link"
                                    href="{{route('admin.product.list',['in_house', ''])}}">
                                     <i class="tio-book nav-icon"></i>
                                     <span
                                         class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Books')}}</span>
-                                </a>
-                            </li>
-                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/sellers/seller-list*')?'active scroll-here':''}}">
-                                <a class="js-navbar-vertical-aside-menu-link nav-link"
-                                   href="{{route('admin.sellers.seller-list')}}">
-                                    <i class="tio-users-switch nav-icon"></i>
-                                    <span
-                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Seller List')}}</span>
                                 </a>
                             </li>
 
@@ -352,6 +344,14 @@
                                         </a>
                                     </li>
                                 </ul>
+                            </li>
+                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/sellers/seller-list*')?'active':''}}">
+                                <a class="js-navbar-vertical-aside-menu-link nav-link"
+                                   href="{{route('admin.sellers.seller-list')}}">
+                                    <i class="tio-users-switch nav-icon"></i>
+                                    <span
+                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">{{\App\CPU\translate('Seller List')}}</span>
+                                </a>
                             </li>
                             <li class="navbar-vertical-aside-has-menu {{Request::is('admin/product/list/seller*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
