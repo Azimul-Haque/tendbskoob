@@ -256,7 +256,7 @@
                                 </a>
                             </li>
 
-                            <li class="navbar-vertical-aside-has-menu <?php echo e(Request::is('admin/product/list/in_hous*')?'active':''); ?>">
+                            <li class="navbar-vertical-aside-has-menu <?php echo e(Request::is('admin/product/list/in_house*')?'active scroll-here':''); ?>">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link"
                                    href="<?php echo e(route('admin.product.list',['in_house', ''])); ?>">
                                     <i class="tio-book nav-icon"></i>
@@ -264,7 +264,7 @@
                                         class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate"><?php echo e(\App\CPU\translate('Books')); ?></span>
                                 </a>
                             </li>
-                            <li class="navbar-vertical-aside-has-menu <?php echo e(Request::is('admin/sellers/seller-list*')?'active':''); ?>">
+                            <li class="navbar-vertical-aside-has-menu <?php echo e(Request::is('admin/sellers/seller-list*')?'active scroll-here':''); ?>">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link"
                                    href="<?php echo e(route('admin.sellers.seller-list')); ?>">
                                     <i class="tio-users-switch nav-icon"></i>
