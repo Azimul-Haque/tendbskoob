@@ -236,7 +236,7 @@
                                 </a>
                             </li>
 
-                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/product/list/in_hous*')?'active':''}}">
+                            <li class="navbar-vertical-aside-has-menu {{Request::is('admin/product/list/in_house*')?'active':''}}">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link"
                                    href="{{route('admin.product.list',['in_house', ''])}}">
                                     <i class="tio-book nav-icon"></i>
