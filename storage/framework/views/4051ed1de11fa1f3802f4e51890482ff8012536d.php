@@ -191,7 +191,7 @@
                         </li>
                         <li class="nav-item <?php echo e(Request::is('admin/product/list/seller/0')?'active':''); ?>">
                             <a class="nav-link " href="<?php echo e(route('admin.product.list',['seller', 'status'=>'0'])); ?>">
-                                <span class="tio-circle nav-indicator-icon"></span>
+                                <i class="tio-book nav-icon"></i>
                                 <span class="text-truncate"><?php echo e(\App\CPU\translate('New')); ?> <?php echo e(\App\CPU\translate('Books')); ?></span>
                             </a>
                         </li>

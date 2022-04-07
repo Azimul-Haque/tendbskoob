@@ -180,8 +180,8 @@
                         </li>
                         <li class="nav-item {{Request::is('admin/product/list/seller/0')?'active':''}}">
                             <a class="nav-link " href="{{route('admin.product.list',['seller', 'status'=>'0'])}}">
-                                <span class="tio-circle nav-indicator-icon"></span>
-                                <span class="text-truncate">{{\App\CPU\translate('New')}} {{\App\CPU\translate('Books')}}</span>
+                                <i class="tio-book nav-icon"></i>
+                                <span class="text-truncate">{{\App\CPU\translate('Seller')}} {{\App\CPU\translate('Books')}}</span>
                             </a>
                         </li>
 
