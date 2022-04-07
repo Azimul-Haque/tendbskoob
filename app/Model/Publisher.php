@@ -12,4 +12,9 @@ class Publisher extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+    public function seller()
+    {
+        return $this->hasOne('App\Seller');
+    }
 }
