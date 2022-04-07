@@ -256,7 +256,7 @@
                                 </a>
                             </li>
 
-                            <li class="navbar-vertical-aside-has-menu <?php echo e(Request::is('admin/product/list/in_hous*')?'active':''); ?>">
+                            <li class="navbar-vertical-aside-has-menu <?php echo e(Request::is('admin/product/list/in_house*')?'active':''); ?>">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link"
                                    href="<?php echo e(route('admin.product.list',['in_house', ''])); ?>">
                                     <i class="tio-book nav-icon"></i>
@@ -305,6 +305,14 @@
                                         </a>
                                     </li>
                                 </ul>
+                            </li>
+                            <li class="navbar-vertical-aside-has-menu <?php echo e(Request::is('admin/sellers/seller-list*')?'active':''); ?>">
+                                <a class="js-navbar-vertical-aside-menu-link nav-link"
+                                   href="<?php echo e(route('admin.sellers.seller-list')); ?>">
+                                    <i class="tio-users-switch nav-icon"></i>
+                                    <span
+                                        class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate"><?php echo e(\App\CPU\translate('Seller List')); ?></span>
+                                </a>
                             </li>
                             <li class="navbar-vertical-aside-has-menu <?php echo e(Request::is('admin/product/list/seller*')?'active':''); ?>">
                                 <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle"
@@ -453,7 +461,7 @@
                     <!--business section ends here-->
 
                         <?php if(\App\CPU\Helpers::module_permission_check('user_section')): ?>
-                            <li class="nav-item <?php echo e((Request::is('admin/customer/list') || Request::is('admin/sellers/seller-list'))?'scroll-here':''); ?>">
+                            <li class="nav-item <?php echo e((Request::is('admin/customer/list'))?'scroll-here':''); ?>">
                                 <small class="nav-subtitle" title=""><?php echo e(\App\CPU\translate('user_section')); ?></small>
                                 <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                             </li>
@@ -466,7 +474,8 @@
                                 </a>
                                 <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
                                     style="display: <?php echo e(Request::is('admin/seller*')?'block':'none'); ?>">
-                                    <li class="nav-item <?php echo e(Request::is('admin/sellers/seller-list')?'active':''); ?>">
+                                    <li class="nav-item "> 
+                                        
                                         <a class="nav-link"
                                         href="<?php echo e(route('admin.sellers.seller-list')); ?>">
                                             <span class="tio-circle nav-indicator-icon"></span>
