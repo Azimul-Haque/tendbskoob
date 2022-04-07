@@ -25,8 +25,11 @@
             <div>
                 Seller Status: 
                 @if ($seller->status=="active")
+                    <span class="badge badge-success">Active</span>
                 @elseif ($seller->status=="pending")
+                    <span class="badge badge-info">Pending</span>
                 @elseif ($seller->status=="suspended")
+                    <span class="badge badge-danger">Suspended</span>
                 @endif
                 @if ($seller->status=="pending")
                     <div class="mt-4 pr-2 float-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}">
