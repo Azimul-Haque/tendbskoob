@@ -66,6 +66,14 @@
                                 </form>
                                 <br/><br/>
                                 অথবা, রিজেক্ট করতে চাইলে নিচের বাটনে ক্লিক করুন
+                                <a class="btn btn-danger btn-sm" href="javascript:"
+                                onclick="form_alert('seller-{{$seller['id']}}','Want to delete this item ?')">
+                                    <i class="tio-add-to-trash"></i> {{\App\CPU\translate('Delete')}}
+                                </a>
+                                <form action="{{route('admin.product.delete',[$p['id']])}}"
+                                    method="post" id="product-{{$p['id']}}">
+                                    @csrf @method('delete')
+                                </form>
                                 <form class="" action="{{route('admin.sellers.updateStatus')}}" method="POST">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$seller->id}}">
