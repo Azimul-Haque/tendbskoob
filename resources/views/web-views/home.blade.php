@@ -3,7 +3,7 @@
 @section('title', 'BooksBD - Buy Book Online - Best Online Book Shop in Bangladesh')
 
 @push('css_or_js')
-    <meta name="description" content="BooksBD.net is Bangladesh's largest online bookshop. From the largest collection of Bangla books at the lowest price, you can buy Novels, Stories, Islamic, Computer Programming, Children, West Bengal, Fiction, Nonfiction, Medical, Engineering, Gift cards, and Text books. There is a cash on delivery option, as well as a happy return policy and a free shipping offer. Now is the time to shop!"/>
+    <meta name="description" content="BooksBD.net is Bangladesh's largest online bookshop. From the largest collection of Bangla books at the lowest price, you can buy Novels, Stories, Islamic, Computer Programming, Children, West Bengal, Fiction, Nonfiction, Medical, Engineering, Gift cards, and Text books. There is a cash on delivery option, as well as a happy return policy and a free shipping offer. Now is the time to shop! Developed by A. H. M. Azimul Haque"/>
     <meta property="og:image" content="{{ asset('/public/assets/front-end/img/thumbnail.png') }}"/>
     {{-- <meta property="og:image:width" content="500"/>
     <meta property="og:image:height" content="236"/> --}}

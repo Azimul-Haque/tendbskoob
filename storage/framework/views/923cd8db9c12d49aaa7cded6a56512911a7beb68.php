@@ -123,11 +123,11 @@
             <div>
                 <?php ( $local = \App\CPU\Helpers::default_lang()); ?>
                 <div
-                    class="topbar-text dropdown disable-autohide <?php echo e(Session::get('direction') === "rtl" ? 'ml-3' : 'mr-3'); ?> text-capitalize">
+                    class="topbar-text dropdown disable-autohide <?php echo e(Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'); ?> text-capitalize">
                     <a class="topbar-link dropdown-toggle" href="#" data-toggle="dropdown">
                         <?php $__currentLoopData = json_decode($language['value'],true); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $data): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <?php if($data['code']==$local): ?>
-                                <img class="<?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?>" width="20"
+                                <img class="<?php echo e(Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'); ?>" width="20"
                                      src="<?php echo e(asset('public/assets/front-end')); ?>/img/flags/<?php echo e($data['code']); ?>.png"
                                      alt="Eng">
                                 <?php echo e($data['name']); ?>
@@ -141,7 +141,7 @@
                             <?php if($data['status']==1): ?>
                                 <li>
                                     <a class="dropdown-item pb-1" href="<?php echo e(route('lang',[$data['code']])); ?>">
-                                        <img class="<?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?>"
+                                        <img class="<?php echo e(Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'); ?>"
                                              width="20"
                                              src="<?php echo e(asset('public/assets/front-end')); ?>/img/flags/<?php echo e($data['code']); ?>.png"
                                              alt="<?php echo e($data['name']); ?>"/>
@@ -309,7 +309,7 @@
                 <button class="navbar-toggler off-canvas-toggle">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand d-none d-sm-block <?php echo e(Session::get('direction') === "rtl" ? 'ml-3' : 'mr-3'); ?> flex-shrink-0"
+                <a class="navbar-brand d-none d-sm-block <?php echo e(Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'); ?> flex-shrink-0"
                    href="<?php echo e(route('home')); ?>"
                    style="min-width: 7rem;">
                     <img style="height: 70px!important; width: auto;"
@@ -319,7 +319,7 @@
                 </a>
                 <a class="navbar-brand d-sm-none <?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?>"
                    href="<?php echo e(route('home')); ?>">
-                    <img style="height: 50px!important; width: auto;" class="mobile-logo-img"
+                    <img style="height: 40px!important; width: auto;" class="mobile-logo-img"
                          src="<?php echo e(asset("storage/app/public/company")."/".$web_config['mob_logo']->value); ?>"
                          onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                          alt="<?php echo e($web_config['name']->value); ?>"/>
@@ -356,7 +356,7 @@
                             <i class="navbar-tool-icon czi-menu"></i>
                         </div>
                     </a>
-                    <div class="navbar-tool dropdown <?php echo e(Session::get('direction') === "rtl" ? 'mr-3' : 'ml-3'); ?>">
+                    <div class="navbar-tool dropdown <?php echo e(Session::get('direction') === "rtl" ? 'mr-1' : 'ml-1'); ?>">
                         <a class="navbar-tool-icon-box bg-secondary dropdown-toggle" href="<?php echo e(route('wishlists')); ?>">
                             <span class="navbar-tool-label">
                                 <span
@@ -367,7 +367,7 @@
                     </div>
                     <?php if(auth('customer')->check()): ?>
                         <div class="dropdown">
-                            <a class="navbar-tool ml-2 mr-2 " type="button" data-toggle="dropdown" aria-haspopup="true"
+                            <a class="navbar-tool ml-1 mr-1 " type="button" data-toggle="dropdown" aria-haspopup="true"
                                aria-expanded="false">
                                 <div class="navbar-tool-icon-box bg-secondary">
                                     <div class="navbar-tool-icon-box bg-secondary">
@@ -395,7 +395,7 @@
                         </div>
                     <?php else: ?>
                         <div class="dropdown">
-                            <a class="navbar-tool <?php echo e(Session::get('direction') === "rtl" ? 'mr-3' : 'ml-3'); ?>"
+                            <a class="navbar-tool <?php echo e(Session::get('direction') === "rtl" ? 'mr-1' : 'ml-1'); ?>"
                                type="button" data-toggle="dropdown" aria-haspopup="true"
                                aria-expanded="false">
                                 <div class="navbar-tool-icon-box bg-secondary">
@@ -407,12 +407,12 @@
                             <div class="dropdown-menu dropdown-menu-<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>" aria-labelledby="dropdownMenuButton"
                                  style="text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;">
                                 <a class="dropdown-item" href="<?php echo e(route('customer.auth.login')); ?>">
-                                    <i class="fa fa-sign-in <?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?>"></i> <?php echo e(\App\CPU\translate('sing_in')); ?>
+                                    <i class="fa fa-sign-in <?php echo e(Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'); ?>"></i> <?php echo e(\App\CPU\translate('sing_in')); ?>
 
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="<?php echo e(route('customer.auth.register')); ?>">
-                                    <i class="fa fa-user-circle <?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?>"></i><?php echo e(\App\CPU\translate('sing_up')); ?>
+                                    <i class="fa fa-user-circle <?php echo e(Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'); ?>"></i><?php echo e(\App\CPU\translate('sing_up')); ?>
 
                                 </a>
                             </div>
@@ -747,10 +747,10 @@
                         <!-- <li class="nav-item dropdown <?php echo e(request()->is('/')?'active':''); ?>">
                             <a class="nav-link" href="<?php echo e(route('sellers')); ?>"><?php echo e(\App\CPU\translate('Sellers')); ?></a>
                         </li>
-
+                        -->
                         <?php ($seller_registration=\App\Model\BusinessSetting::where(['type'=>'seller_registration'])->first()->value); ?>
                         <?php if($seller_registration): ?>
-                            <li class="nav-item">
+                            <li class="nav-item dropdown ml-2">
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -770,7 +770,7 @@
                                     </div>
                                 </div>
                             </li>
-                        <?php endif; ?> -->
+                        <?php endif; ?> 
                     </ul>
                 </div>
             </div>
