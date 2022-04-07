@@ -119,11 +119,11 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label for="password">আপনার পাসওয়ার্ড দিন <span style="color:red;">(পরিবর্তন করতে চাইলে দিন, নাহলে ফাঁকা রাখুন)</span></label>
-                                            <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="পাসওয়ার্ড লিখুন" autocomplete="off">
+                                            <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="পাসওয়ার্ড লিখুন (পরিবর্তন করতে চাইলে দিন, নাহলে ফাঁকা রাখুন)" autocomplete="off">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="password_confirmation ">আপনার পাসওয়ার্ডটি পুনরায় দিন <span style="color:red;">(পরিবর্তন করতে চাইলে দিন, নাহলে ফাঁকা রাখুন)</span></label>
-                                            <input type="password" class="form-control form-control-user" id="password_confirmation" name="password_confirmation" placeholder="পুনরায় পাসওয়ার্ড লিখুন" autocomplete="off">
+                                            <input type="password" class="form-control form-control-user" id="password_confirmation" name="password_confirmation" placeholder="পুনরায় পাসওয়ার্ড লিখুন (পরিবর্তন করতে চাইলে দিন, নাহলে ফাঁকা রাখুন)" autocomplete="off">
                                         </div>
                                     </div>
                                     <div class="">
