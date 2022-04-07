@@ -13,6 +13,7 @@
                 <li class="breadcrumb-item"><a href="{{route('admin.dashboard.index')}}">{{\App\CPU\translate('Dashboard')}}</a>
                 </li>
                 <li class="breadcrumb-item" aria-current="page">{{\App\CPU\translate('Seller_Edit')}}</li>
+                <li class="breadcrumb-item" aria-current="page">{{ $seller->name }}</li>
             </ol>
         </nav>
 

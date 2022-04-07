@@ -11,6 +11,7 @@
                 <li class="breadcrumb-item"><a href="<?php echo e(route('admin.dashboard.index')); ?>"><?php echo e(\App\CPU\translate('Dashboard')); ?></a>
                 </li>
                 <li class="breadcrumb-item" aria-current="page"><?php echo e(\App\CPU\translate('Seller_Edit')); ?></li>
+                <li class="breadcrumb-item" aria-current="page"><?php echo e($seller->name); ?></li>
             </ol>
         </nav>
 
