@@ -82,6 +82,7 @@
                                     </form>
                                 @endif
                             @elseif ($seller->status == 'approved')
+                                    
                             @endif
                         </div>
                     </div>
