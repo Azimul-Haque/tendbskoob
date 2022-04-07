@@ -57,7 +57,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="p-2">
-                                <form class="user mt-4" action="{{route('admin.sellers.update', $seller->id)}}" method="PUT" enctype="multipart/form-data">
+                                <form class="user mt-4" action="{{ route('admin.sellers.update', $seller->id) }}" method="PUT" enctype="multipart/form-data">
                                     @csrf
                                     <h5 class="black">প্রকাশনী সম্পর্কিত তথ্যাদি</h5>
                                     <div class="form-group row">
