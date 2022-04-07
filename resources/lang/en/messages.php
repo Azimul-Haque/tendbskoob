@@ -1489,4 +1489,5 @@
   'shop name not found' => 'Shop name not found',
   'Email & Physical Address' => 'Email & Physical Address',
   'Seller_Edit' => 'Seller Edit',
+  'seller_edit' => 'Seller edit',
 );

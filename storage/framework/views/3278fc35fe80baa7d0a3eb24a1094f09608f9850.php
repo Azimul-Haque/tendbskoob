@@ -44,53 +44,13 @@
                 <?php endif; ?>
             </div>
         </div>
-        <!-- Page Header -->
-    <div class="page-header">
-        <div class="flex-between row mx-1">
-            <div>
-                <h1 class="page-header-title"><?php echo e($seller->name? $seller->name : "Shop Name : Update Please"); ?></h1>
-            </div>
-        </div>
-        <!-- Nav Scroller -->
-        <div class="js-nav-scroller hs-nav-scroller-horizontal">
-            <!-- Nav -->
-            <ul class="nav nav-tabs page-header-tabs">
-                <li class="nav-item">
-                        <a class="nav-link active" href="<?php echo e(route('admin.sellers.view',$seller->id)); ?>"><?php echo e(\App\CPU\translate('Shop')); ?></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="<?php echo e(route('admin.sellers.view',['id'=>$seller->id, 'tab'=>'order'])); ?>"><?php echo e(\App\CPU\translate('Order')); ?></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="<?php echo e(route('admin.sellers.view',['id'=>$seller->id, 'tab'=>'product'])); ?>"><?php echo e(\App\CPU\translate('Product')); ?></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="<?php echo e(route('admin.sellers.view',['id'=>$seller->id, 'tab'=>'setting'])); ?>"><?php echo e(\App\CPU\translate('Setting')); ?></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="<?php echo e(route('admin.sellers.view',['id'=>$seller->id, 'tab'=>'transaction'])); ?>"><?php echo e(\App\CPU\translate('Transaction')); ?></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="<?php echo e(route('admin.sellers.view',['id'=>$seller->id, 'tab'=>'review'])); ?>"><?php echo e(\App\CPU\translate('Review')); ?></a>
-                    </li>
-
-            </ul>
-            <!-- End Nav -->
-        </div>
-        <!-- End Nav Scroller -->
-    </div>
         <!-- End Page Header -->
         <div class="card mb-3">
             <div class="card-body">
                 <div class=" gx-2 gx-lg-3 mb-2">
                     <div>
                         <h4><i style="font-size: 30px"
-                               class="tio-wallet"></i><?php echo e(\App\CPU\translate('seller_wallet')); ?></h4>
+                               class="tio-edit"></i><?php echo e(\App\CPU\translate('Seller_Edit')); ?></h4>
                     </div>
                     <div class="row gx-2 gx-lg-3" id="order_stats">
                         <div class="flex-between" style="width: 100%">

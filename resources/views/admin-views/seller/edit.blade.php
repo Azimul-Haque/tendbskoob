@@ -52,7 +52,7 @@
                 <div class=" gx-2 gx-lg-3 mb-2">
                     <div>
                         <h4><i style="font-size: 30px"
-                               class="tio-wallet"></i>{{\App\CPU\translate('seller_wallet')}}</h4>
+                               class="tio-edit"></i>{{\App\CPU\translate('Seller_Edit')}}</h4>
                     </div>
                     <div class="row gx-2 gx-lg-3" id="order_stats">
                         <div class="flex-between" style="width: 100%">
