@@ -18,6 +18,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Model\Review;
 use App\Model\OrderTransaction;
+use Illuminate\Support\Facades\File;
+use Illuminate\Filesystem\Filesystem;
 use Image;
 
 class SellerController extends Controller
