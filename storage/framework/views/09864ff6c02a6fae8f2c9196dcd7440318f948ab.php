@@ -44,20 +44,18 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <?php if($seller->status=="pending"): ?>
-                            <div class="text-center">
-                                <form class="d-inline-block" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
-                                    <?php echo csrf_field(); ?>
-                                    <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
-                                    <input type="hidden" name="status" value="approved">
-                                    <button type="submit" class="btn btn-primary"><?php echo e(\App\CPU\translate('Approve')); ?></button>
-                                </form>
-                                <form class="d-inline-block" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
-                                    <?php echo csrf_field(); ?>
-                                    <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
-                                    <input type="hidden" name="status" value="rejected">
-                                    <button type="submit" class="btn btn-danger"><?php echo e(\App\CPU\translate('reject')); ?></button>
-                                </form>
-                            </div>
+                            <form class="d-inline-block" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
+                                <?php echo csrf_field(); ?>
+                                <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
+                                <input type="hidden" name="status" value="approved">
+                                <button type="submit" class="btn btn-primary"><?php echo e(\App\CPU\translate('Approve')); ?></button>
+                            </form>
+                            <form class="d-inline-block" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
+                                <?php echo csrf_field(); ?>
+                                <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
+                                <input type="hidden" name="status" value="rejected">
+                                <button type="submit" class="btn btn-danger"><?php echo e(\App\CPU\translate('reject')); ?></button>
+                            </form>
                             <?php endif; ?>
                         </div>
                     </div>
