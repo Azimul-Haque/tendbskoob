@@ -84,15 +84,13 @@
                             @elseif ($seller->status == 'approved')
                                 সাসপেন্ড করুন
                                 <a class="btn btn-danger" href="javascript:"
-                                onclick="form_alert('seller-{{$seller['id']}}','নিশ্চিতভাবে এই সেলারকে রিজেক্ট করতে চান?')">
-                                    <i class="tio-add-to-trash"></i> {{\App\CPU\translate('Reject')}}
+                                onclick="form_alert('seller-{{$seller['id']}}','নিশ্চিতভাবে এই সেলারকে সাসপেন্ড করতে চান?')">
+                                    <i class="tio-add-to-trash"></i> {{\App\CPU\translate('Suspend')}}
                                 </a>
                                 <form class="d-inline-block" action="{{route('admin.sellers.updateStatus')}}" method="POST">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$seller->id}}">
                                     <input type="hidden" name="status" value="suspended">
-                                    <button type="submit"
-                                            class="btn btn-outline-danger">{{\App\CPU\translate('suspend')}}</button>
                                 </form>
                             @endif
                         </div>
