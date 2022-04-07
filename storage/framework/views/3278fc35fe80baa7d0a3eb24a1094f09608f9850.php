@@ -127,6 +127,8 @@
                                     <div class="">
                                         <div class="pb-1 mb-2">
                                             <center>
+                                                <img style="width: auto;border: 1px solid; max-height:200px;" id="viewer"
+                                                    src="<?php echo e(asset('public\assets\back-end\img\400x400\img2.jpg')); ?>" />
                                                 <img style="width: auto;border: 1px solid; max-height:200px;" id="viewer" onerror="this.src='<?php echo e(asset('public\assets\back-end\img\400x400\img2.jpg')); ?>'" src="<?php echo e(asset('public/images/publisher/' . $seller['image'])); ?>" alt="Publisher Image">
                                             </center>
                                         </div>
