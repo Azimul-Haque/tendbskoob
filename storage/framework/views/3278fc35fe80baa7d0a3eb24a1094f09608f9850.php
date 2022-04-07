@@ -96,15 +96,15 @@
                                                 </div>
                                                 <div class="col-md-12 mt-3">
                                                     <label for="payment_number">পেমেন্ট গ্রহণ করার জন্য আপনার নম্বরটি দিন</label>
-                                                    <input type="number" class="form-control form-control-user" id="payment_number" name="payment_number" value="<?php echo e(old('payment_number')); ?>" placeholder="01712345678" maxlength="11" required>
+                                                    <input type="number" class="form-control form-control-user" id="payment_number" name="payment_number" value="<?php echo e($seller->payment_number); ?>" placeholder="01712345678" maxlength="11" required>
                                                 </div>
                                                 <div class="col-md-12 mt-3">
                                                     <label for="payment_option">আপনার নম্বরটি কোন সেবার আওতাধীন?</label>
                                                     <select name="payment_option" id="payment_option" class="form-control form-control-user">
                                                         <option selected disabled>নির্বাচন করুন</option>
-                                                        <option value="বিকাশ">বিকাশ</option>
-                                                        <option value="নগদ">নগদ</option>
-                                                        <option value="রকেট">মিরপুর (হেড অফিস)</option>
+                                                        <option value="বিকাশ" <?php if($seller->payment_option == 'বিকাশ'): ?> selected <?php endif; ?>>বিকাশ</option>
+                                                        <option value="নগদ" <?php if($seller->payment_option == 'নগদ'): ?> selected <?php endif; ?>>নগদ</option>
+                                                        <option value="রকেট" <?php if($seller->payment_option == 'রকেট'): ?> selected <?php endif; ?>>রকেট</option>
                                                     </select>
                                                 </div>
                                             </div>

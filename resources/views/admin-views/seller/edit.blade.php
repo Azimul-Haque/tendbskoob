@@ -104,9 +104,9 @@
                                                     <label for="payment_option">আপনার নম্বরটি কোন সেবার আওতাধীন?</label>
                                                     <select name="payment_option" id="payment_option" class="form-control form-control-user">
                                                         <option selected disabled>নির্বাচন করুন</option>
-                                                        <option value="বিকাশ">বিকাশ</option>
-                                                        <option value="নগদ">নগদ</option>
-                                                        <option value="রকেট">মিরপুর (হেড অফিস)</option>
+                                                        <option value="বিকাশ" @if($seller->payment_option == 'বিকাশ') selected @endif>বিকাশ</option>
+                                                        <option value="নগদ" @if($seller->payment_option == 'নগদ') selected @endif>নগদ</option>
+                                                        <option value="রকেট" @if($seller->payment_option == 'রকেট') selected @endif>রকেট</option>
                                                     </select>
                                                 </div>
                                             </div>
