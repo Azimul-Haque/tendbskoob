@@ -16,7 +16,7 @@
     <div class="d-md-flex_ align-items-center justify-content-between mb-0">
         <div class="row text-center">
             <div class="col-12">
-                <h3 class="h3 mt-2 text-black-50">{{\App\CPU\translate('product_list')}}</h3>
+                <h3 class="h3 mt-2 text-black-50">{{\App\CPU\translate('book_list')}}</h3>
             </div>
         </div>
     </div>
