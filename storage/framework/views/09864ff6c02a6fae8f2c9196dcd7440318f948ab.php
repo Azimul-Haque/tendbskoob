@@ -64,7 +64,12 @@
                                 </form>
                                 <br/><br/>
                                 অথবা, রিজেক্ট করতে চাইলে নিচের বাটনে ক্লিক করুন
-                                <form class="" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
+                                <a class="btn btn-danger btn-sm" href="javascript:"
+                                onclick="form_alert('seller-<?php echo e($seller['id']); ?>','Want to delete this item ?')">
+                                    <i class="tio-add-to-trash"></i> <?php echo e(\App\CPU\translate('Delete')); ?>
+
+                                </a>
+                                <form class="" id="seller-<?php echo e($seller['id']); ?>" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
                                     <?php echo csrf_field(); ?>
                                     <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
                                     <input type="hidden" name="status" value="rejected">
