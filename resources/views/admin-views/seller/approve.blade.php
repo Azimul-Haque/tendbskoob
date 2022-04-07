@@ -3,7 +3,7 @@
 @section('title', $seller->name? $seller->name : \App\CPU\translate("Shop Name"))
 
 @push('css_or_js')
-
+<link href="{{ asset('public/assets/select2/css/select2.min.css')}}" rel="stylesheet">
 @endpush
 
 @section('content')
@@ -152,7 +152,7 @@
             // dir: "rtl",
             width: 'resolve'
         });
-        
+
         $("#publisher_id").select2({
             placeholder: "Select Publication",
         });
