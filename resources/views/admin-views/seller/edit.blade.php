@@ -115,11 +115,11 @@
                                     <div class="form-group row">
                                         <div class="col-md-4 mb-3 mb-sm-0">
                                             <label for="email">আপনার ই-মেইল</label>
-                                            <input type="email" class="form-control form-control-user" id="email" name="email" value="{{old('email')}}" placeholder="bdjp@booksbd.net" required>
+                                            <input type="email" class="form-control form-control-user" id="email" name="email" value="{{ $seller->email }}" placeholder="bdjp@booksbd.net" required>
                                         </div>
                                         <div class="col-md-4">
-                                            <label for="password">আপনার পাসওয়ার্ড দিন</label>
-                                            <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="পাসওয়ার্ড লিখুন" required>
+                                            <label for="password">আপনার পাসওয়ার্ড দিন (পরিবর্তন করতে চাইলে দিন, নাহলে ফাঁকা রাখুন)</label>
+                                            <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="পাসওয়ার্ড লিখুন" autocomplete="off">
                                         </div>
                                         <div class="col-md-4">
                                             <label for="password_confirmation ">আপনার পাসওয়ার্ডটি পুনরায় দিন</label>
