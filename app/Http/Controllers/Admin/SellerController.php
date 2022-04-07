@@ -196,27 +196,25 @@ class SellerController extends Controller
             'password'         => 'sometimes|confirmed|min:6',
         ]);
 
-        DB::transaction(function ($r) use ($request) {
-            $seller = Seller::findOrFail($id);
-            $seller->name = $request->name;
-            $seller->address = $request->address;
-            $seller->description = $request->description;
-            $seller->collection_point = $request->collection_point;
-            $seller->payment_number = $request->payment_number;
-            $seller->payment_option = $request->payment_option;
+        $seller = Seller::findOrFail($id);
+        $seller->name = $request->name;
+        $seller->address = $request->address;
+        $seller->description = $request->description;
+        $seller->collection_point = $request->collection_point;
+        $seller->payment_number = $request->payment_number;
+        $seller->payment_option = $request->payment_option;
 
-            if($request->hasFile('image')) {
-                $image    = $request->file('image');
-                $filename = Helpers::random_slug(10) . '.jpg';
-                $location = public_path('/public/images/publisher/'. $filename);
-                Image::make($image)->fit(200, 200)->save($location);
-                $seller->image = $filename;
-            }
-            $seller->email = $request->email;
-            $seller->password = bcrypt($request->password);
-            $seller->status = "pending";
-            $seller->save();
-        });
+        if($request->hasFile('image')) {
+            $image    = $request->file('image');
+            $filename = Helpers::random_slug(10) . '.jpg';
+            $location = public_path('/public/images/publisher/'. $filename);
+            Image::make($image)->fit(200, 200)->save($location);
+            $seller->image = $filename;
+        }
+        $seller->email = $request->email;
+        $seller->password = bcrypt($request->password);
+        $seller->status = "pending";
+        $seller->save();
 
         Toastr::success('Publication applied successfully!');
         return redirect()->route('seller.auth.login');
