@@ -131,6 +131,7 @@
                                             <center>
                                                 <img style="width: auto;border: 1px solid; max-height:200px;" id="viewer"
                                                     src="{{asset('public\assets\back-end\img\400x400\img2.jpg')}}" alt="banner image"/>
+                                                <img style="width: auto;border: 1px solid; max-height:200px;" id="viewer" onerror="this.src='{{asset('public/assets/front-end/img/user_demo.jpg')}}'" src="{{ asset('public/images/author/' . $datasource['image']) }}" onmousedown='return false;' onselectstart='return false;'>
                                             </center>
                                         </div>
                                     </div>
