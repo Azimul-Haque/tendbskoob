@@ -24,6 +24,10 @@
             </div>
             <div>
                 Seller Status: 
+                @if ($seller->status=="active")
+                @elseif ($seller->status=="pending")
+                @elseif ($seller->status=="suspended")
+                @endif
                 @if ($seller->status=="pending")
                     <div class="mt-4 pr-2 float-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}">
                         <div class="flex-start">
