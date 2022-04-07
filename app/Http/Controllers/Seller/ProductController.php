@@ -30,7 +30,9 @@ class ProductController extends Controller
     {
         $cat = Category::where(['parent_id' => 0])->get();
         $br = Brand::orderBY('name', 'ASC')->get();
-        return view('seller-views.product.add-new', compact('cat', 'br'));
+        $publishers = Publisher::get();
+        $authors = Author::get();
+        return view('seller-views.product.add-new', compact('cat', 'br', 'publishers', 'authors'));
     }
 
     public function status_update(Request $request)
