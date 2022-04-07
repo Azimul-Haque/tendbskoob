@@ -55,7 +55,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="p-2">
-                                <form class="user mt-4" action="<?php echo e(route('shop.update', $seller->id)); ?>" method="post" enctype="multipart/form-data">
+                                <form class="user mt-4" action="<?php echo e(route('admin.sellers.update', $seller->id)); ?>" method="post" enctype="multipart/form-data">
                                     <?php echo csrf_field(); ?>
                                     <h5 class="black">প্রকাশনী সম্পর্কিত তথ্যাদি</h5>
                                     <div class="form-group row">
