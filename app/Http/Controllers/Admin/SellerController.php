@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Model\Review;
 use App\Model\OrderTransaction;
+use Image;
 
 class SellerController extends Controller
 {
@@ -186,13 +187,13 @@ class SellerController extends Controller
         $this->validate($request, [
             'name'             => 'required|max:100',
             'address'          => 'required|max:150',
-            'image'            => 'required|image|mimes:jpeg,png,jpg,gif,bmp,bmp,tiff|max:200',
+            'image'            => 'sometimes|image|mimes:jpeg,png,jpg,gif,bmp,bmp,tiff|max:200',
             'description'      => 'required|max:200',
             'collection_point' => 'required',
             'payment_number'   => 'required',
             'payment_option'   => 'required',
             'email'            => 'required|unique:sellers',
-            'password'         => 'required|confirmed|min:6',
+            'password'         => 'sometimes|confirmed|min:6',
         ]);
 
         DB::transaction(function ($r) use ($request) {
