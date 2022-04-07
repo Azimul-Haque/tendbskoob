@@ -1,5 +1,7 @@
 @extends('layouts.back-end.app-seller')
 
+@section('title', \App\CPU\translate('Add Book'))
+
 @push('css_or_js')
     <link href="{{asset('public/assets/back-end/css/tags-input.min.css')}}" rel="stylesheet">
     <link href="{{ asset('public/assets/select2/css/select2.min.css')}}" rel="stylesheet">
@@ -10,21 +12,24 @@
     <div class="content container-fluid">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route('seller.dashboard.index')}}">{{\App\CPU\translate('Dashboard')}}</a></li>
-                <li class="breadcrumb-item" aria-current="page"><a href="{{route('seller.product.list')}}">{{\App\CPU\translate('Product')}}</a></li>
-                <li class="breadcrumb-item">{{\App\CPU\translate('Add_new')}}</li>
+                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">{{\App\CPU\translate('Dashboard')}}</a>
+                </li>
+                <li class="breadcrumb-item" aria-current="page"><a
+                        href="{{route('admin.product.list', 'in_house')}}">{{\App\CPU\translate('Product')}}</a>
+                </li>
+                <li class="breadcrumb-item">{{\App\CPU\translate('Add')}} {{\App\CPU\translate('New')}} {{\App\CPU\translate('Book')}}</li>
             </ol>
         </nav>
 
         <!-- Content Row -->
         <div class="row">
             <div class="col-md-12">
-
-                <form class="product-form" action="{{route('seller.product.add-new')}}" method="post" enctype="multipart/form-data"
+                <form class="product-form" action="{{route('admin.product.store')}}" method="POST"
                       style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"
+                      enctype="multipart/form-data"
                       id="product_form">
                     @csrf
-                    <div class="card">
+                    {{-- <div class="card">
                         <div class="card-header">
                             @php($language=\App\Model\BusinessSetting::where('type','pnc_language')->first())
                             @php($language = $language->value ?? null)
@@ -56,17 +61,109 @@
                                         <label class="input-label"
                                                for="{{$lang}}_description">{{\App\CPU\translate('description')}}
                                             ({{strtoupper($lang)}})</label>
-                                        <textarea name="description[]" class="editor textarea" cols="30"
+                                        <textarea name="description[]" class="editor textarea" id="textarea" cols="30"
                                                   rows="10" required>{{old('details')}}</textarea>
                                     </div>
                                 </div>
                             @endforeach
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="card mt-2 rest-part">
+                    <div class="card">
                         <div class="card-header">
-                            <h4>{{\App\CPU\translate('General_info')}}</h4>
+                            <h4>Add New Book</h4>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="publisher_id">{{\App\CPU\translate('Publication')}} *</label>
+                                <select
+                                    class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id" id="publisher_id" required>
+                                    <option value="{{ old('publisher_id') }}" selected disabled>Select Publication</option>
+                                    @foreach($publishers as $publisher)
+                                        <option value="{{ $publisher['id'] }}" {{ old('name_bangla')==$publisher['id']? 'selected': '' }}>
+                                            {{ $publisher['name_bangla'] }} ({{ $publisher['name'] }})
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="input-label" for="name_bangla">{{\App\CPU\translate('Book Name (Bangla)')}} *</label>
+                                        <input type="text" name="name_bangla" id="name_bangla" class="form-control" placeholder="Book Name in Bangla" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="input-label" for="name">{{\App\CPU\translate('Book Name (English)')}} *</label>
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="Book Name" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="name">{{\App\CPU\translate('Writer')}}</label>
+                                    <select
+                                        class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
+                                        name="writer_id[]" id="writer_id" multiple>
+                                        @foreach($authors as $writer)
+                                            <option value="{{$writer['id']}}" imagename="{{ $writer->image != '' ? $writer->image : 0 }}" {{old('name_bangla')==$writer['id']? 'selected': ''}}>
+                                                {{ $writer['name_bangla'] }} ({{ $writer['name'] }})
+                                            </option>
+                                        @endforeach
+                                    </select><br/><br/>
+                                    
+                                    <label for="name">{{\App\CPU\translate('Translator')}}</label>
+                                    <select
+                                        class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
+                                        name="translator_id[]" id="translator_id" multiple>
+                                        @foreach($authors as $translator)
+                                            <option value="{{$translator['id']}}" imagename="{{ $translator->image != '' ? $translator->image : 0 }}" {{old('name_bangla')==$translator['id']? 'selected': ''}}>
+                                                {{ $translator['name_bangla'] }} ({{ $translator['name'] }})
+                                            </option>
+                                        @endforeach
+                                    </select><br/><br/>
+
+                                    <label for="name">{{\App\CPU\translate('Editor')}}</label>
+                                    <select
+                                        class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control" name="editor_id[]" id="editor_id" multiple>
+                                        @foreach($authors as $editor)
+                                            <option value="{{$editor['id']}}" imagename="{{ $editor->image != '' ? $editor->image : 0 }}" {{old('name_bangla')==$editor['id']? 'selected': ''}}>
+                                                {{ $editor['name_bangla'] }} ({{ $editor['name'] }})
+                                            </option>
+                                        @endforeach
+                                    </select><br/><br/>
+
+                                    <label for="name">{{\App\CPU\translate('Category')}} *</label>
+                                    <select class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control" name="category_id[]" id="category_id" multiple required>
+                                        @foreach($cat as $c)
+                                            <option value="{{$c['id']}}" {{old('name_bangla')==$c['id']? 'selected': ''}}>
+                                                {{ $c['name_bangla'] }} ({{ $c['name'] }})
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">{{\App\CPU\translate('Book Image')}} *</label> <small
+                                            style="color: red">(w: 260px, h: 372px)</small>
+                                    </div>
+                                    <center>
+                                        <div style="max-width:200px;">
+                                            <div class="row" id="thumbnail"></div>
+                                        </div>
+                                    </center>
+                                </div>
+                            </div><br/>
+                            <div class="form-group">
+                                <label class="input-label" for="description">{{\App\CPU\translate('description (Optional)')}}</label>
+                                <textarea name="description" class="editor textarea" id="textarea" cols="30" rows="10">{{old('description')}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {{-- <div class="card mt-2 rest-part">
+                        <div class="card-header">
+                            <h4>{{\App\CPU\translate('General Info')}}</h4>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
@@ -74,27 +171,27 @@
                                     <div class="col-md-4">
                                         <label for="name">{{\App\CPU\translate('Category')}}</label>
                                         <select
-                                            class="js-example-basic-multiple form-control"
-                                            name="category_id"
-                                            onchange="getRequest('{{url('/')}}/seller/product/get-categories?parent_id='+this.value,'sub-category-select','select')"
+                                            class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
+                                            name="category_id[]" id="category_id" multiple
+                                            onchange="getRequest('{{url('/')}}/admin/product/get-categories?parent_id='+this.value,'sub-category-select','select')"
                                             required>
-                                            <option value="{{old('category_id')}}" selected disabled>---{{\App\CPU\translate('Select')}}---</option>
+                                            <option value="{{old('category_id')}}" selected disabled>---Select---</option>
                                             @foreach($cat as $c)
-                                                <option value="{{$c['id']}}" {{old('name')==$c['id']? 'selected': ''}}>
-                                                    {{$c['name']}}
+                                                <option value="{{$c['id']}}" {{old('name_bangla')==$c['id']? 'selected': ''}}>
+                                                    {{$c['name_bangla']}}
                                                 </option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="name">{{\App\CPU\translate('Sub_category')}}</label>
+                                        <label for="name">{{\App\CPU\translate('Sub Category')}}</label>
                                         <select class="js-example-basic-multiple form-control"
-                                                name="sub_category_id" id="sub-category-select"
-                                                onchange="getRequest('{{url('/')}}/seller/product/get-categories?parent_id='+this.value,'sub-sub-category-select','select')">
+                                            name="sub_category_id" id="sub-category-select"
+                                            onchange="getRequest('{{url('/')}}/admin/product/get-categories?parent_id='+this.value,'sub-sub-category-select','select')">
                                         </select>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="name">{{\App\CPU\translate('Sub_sub_category')}}</label>
+                                        <label for="name">{{\App\CPU\translate('Sub Sub Category')}}</label>
                                         <select
                                             class="js-example-basic-multiple form-control"
                                             name="sub_sub_category_id" id="sub-sub-category-select">
@@ -132,9 +229,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="card mt-2 rest-part">
+                    {{-- <div class="card mt-2 rest-part">
                         <div class="card-header">
                             <h4>{{\App\CPU\translate('Variations')}}</h4>
                         </div>
@@ -147,7 +244,8 @@
                                             {{\App\CPU\translate('Colors')}} :
                                         </label>
                                         <label class="switch">
-                                            <input type="checkbox" class="status" name="colors_active" value="{{old('colors_active')}}" >
+                                            <input type="checkbox" class="status" value="{{old('colors_active')}}"
+                                                   name="colors_active">
                                             <span class="slider round"></span>
                                         </label>
                                         <select
@@ -177,98 +275,134 @@
                                     </div>
 
                                     <div class="col-md-12 mt-2 mb-2">
-                                        <div class="customer_choice_options" id="customer_choice_options">
-
-                                        </div>
+                                        <div class="customer_choice_options" id="customer_choice_options"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="card mt-2 rest-part">
                         <div class="card-header">
-                            <h4>{{\App\CPU\translate('Product_price_&_stock')}}</h4>
+                            <h4>{{\App\CPU\translate('Product price & stock')}}</h4>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label class="control-label">{{\App\CPU\translate('Unit_price')}}</label>
-                                        <input type="number" min="0" value="0" step="0.01"
-                                               placeholder="{{\App\CPU\translate('Unit_price')}}"
-                                               name="unit_price" value="{{old('unit_price')}}"  class="form-control" required>
+                                        <label class="control-label">{{\App\CPU\translate('ISBN Number')}}</label>
+                                        <input type="text"
+                                               placeholder="{{\App\CPU\translate('ISBN Number')}}"
+                                               name="isbn" value="{{old('isbn')}}" class="form-control">
                                     </div>
                                     <div class="col-md-6">
-                                        <label
-                                            class="control-label">{{\App\CPU\translate('Purchase_price')}}</label>
-                                        <input type="number" min="0" value="0" step="0.01"
-                                               placeholder="{{\App\CPU\translate('Purchase_price')}}"
-                                               name="purchase_price" value="{{old('purchase_price')}}"  class="form-control" required>
+                                        @if (auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin')
+                                            <label
+                                                class="control-label">{{\App\CPU\translate('Book Weight (KG)')}}</label>
+                                            <input type="number" min="0" step="0.01"
+                                                placeholder="{{\App\CPU\translate('Book Weight')}}"
+                                                value="{{old('weight')}}" name="weight" class="form-control">
+                                        @endif
                                     </div>
                                 </div>
-
                                 <div class="row pt-4">
-                                    <div class="col-md-6">
+                                    @if (auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin')
+                                        <div class="col-md-4">
+                                            <label
+                                                class="control-label">{{\App\CPU\translate('Purchase Price')}} (৳)</label>
+                                            <input type="number" min="0" step="0.01"
+                                                placeholder="{{\App\CPU\translate('Purchase Price')}}"
+                                                value="{{old('purchase_price')}}"
+                                                name="purchase_price" class="form-control" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="control-label">{{\App\CPU\translate('Published Price')}} (৳)</label>
+                                            <input type="number" min="0" step="0.01"
+                                                placeholder="{{\App\CPU\translate('Published Price')}}"
+                                                name="published_price" value="{{old('published_price')}}" class="form-control"
+                                                required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="control-label">{{\App\CPU\translate('Sale Price')}} (৳)</label>
+                                            <input type="number" min="0" step="0.01"
+                                                placeholder="{{\App\CPU\translate('Sale Price')}}"
+                                                name="unit_price" value="{{old('unit_price')}}" class="form-control"
+                                                required>
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="row pt-4">
+                                    {{-- <div class="col-md-5">
                                         <label class="control-label">{{\App\CPU\translate('Tax')}}</label>
                                         <label class="badge badge-info">{{\App\CPU\translate('Percent')}} ( % )</label>
                                         <input type="number" min="0" value="0" step="0.01"
-                                               placeholder="{{\App\CPU\translate('Tax')}}" name="tax" value="{{old('tax')}}"
+                                               placeholder="{{\App\CPU\translate('Tax')}}}" name="tax"
+                                               value="{{old('tax')}}"
                                                class="form-control">
                                         <input name="tax_type" value="percent" style="display: none">
                                     </div>
 
-                                    <div class="col-md-4">
+                                    <div class="col-md-5">
                                         <label class="control-label">{{\App\CPU\translate('Discount')}}</label>
-                                        <input type="number" min="0" value="0" step="0.01"
-                                               placeholder="{{\App\CPU\translate('Discount')}}" name="discount" value="{{old('discount')}}"
+                                        <input type="number" min="0" value="{{old('discount')}}" step="0.01"
+                                               placeholder="{{\App\CPU\translate('Discount')}}" name="discount"
                                                class="form-control">
                                     </div>
                                     <div class="col-md-2" style="padding-top: 30px;">
-                                        <select
-                                            class="form-control js-select2-custom"
+                                        <select style="width: 100%"
+                                            class="js-example-basic-multiple js-states js-example-responsive demo-select2"
                                             name="discount_type">
                                             <option value="flat">{{\App\CPU\translate('Flat')}}</option>
                                             <option value="percent">{{\App\CPU\translate('Percent')}}</option>
                                         </select>
                                     </div>
-                                </div>
-                                <div class="sku_combination" id="sku_combination">
+                                    <div class="pt-4 col-12 sku_combination" id="sku_combination">
 
-                                </div>
-                                <div class="row pt-4">
+                                    </div> --}}
                                     <div class="col-md-6" id="quantity">
-                                        <label class="control-label">{{\App\CPU\translate('total')}} {{\App\CPU\translate('Quantity')}}</label>
+                                        <label
+                                            class="control-label">{{\App\CPU\translate('total')}} {{\App\CPU\translate('Quantity')}}</label>
                                         <input type="number" min="0" value="0" step="1"
                                                placeholder="{{\App\CPU\translate('Quantity')}}"
-                                               name="current_stock" value="{{old('current_stock')}}" class="form-control" required>
+                                               name="current_stock" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6 pt-6">
+                                        <center>
+                                            <label class="radio-inline" style="margin-right: 10px;">
+                                                <input type="radio" name="stock_status" value="1" checked> In Stock 
+                                            </label>
+                                            <label class="radio-inline" style="margin-right: 10px;">
+                                                <input type="radio" name="stock_status" value="2"> Out of Stock 
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="stock_status" value="3"> Back Order 
+                                            </label>
+                                        </center>
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
 
-                    <div class="card mt-2 mb-2 rest-part">
+                    {{-- <div class="card mt-2 mb-2 rest-part">
                         <div class="card-header">
                             <h4>{{\App\CPU\translate('seo_section')}}</h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12 mb-4">
-                                    <label class="control-label">{{\App\CPU\translate('Meta_title')}}</label>
+                                    <label class="control-label">{{\App\CPU\translate('Meta Title')}}</label>
                                     <input type="text" name="meta_title" placeholder="" class="form-control">
                                 </div>
 
                                 <div class="col-md-8 mb-4">
-                                    <label class="control-label">{{\App\CPU\translate('Meta_description')}}</label>
+                                    <label class="control-label">{{\App\CPU\translate('Meta Description')}}</label>
                                     <textarea rows="10" type="text" name="meta_description" class="form-control"></textarea>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-group mb-0">
-                                        <label>{{\App\CPU\translate('Meta_image')}}</label>
+                                        <label>{{\App\CPU\translate('Meta Image')}}</label>
                                     </div>
                                     <div class="border border-dashed">
                                         <div class="row" id="meta_img"></div>
@@ -276,39 +410,30 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="card mt-2 rest-part">
+                    {{-- <div class="card mt-2 rest-part">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12 mb-4">
                                     <label class="control-label">{{\App\CPU\translate('Youtube video link')}}</label>
                                     <small class="badge badge-soft-danger"> ( {{\App\CPU\translate('optional, please provide embed link not direct link')}}. )</small>
-                                    <input type="text" name="video_link" placeholder="EX : https://www.youtube.com/embed/5R06LRdUCSE" class="form-control" required>
+                                    <input type="text" name="video_link" placeholder="{{\App\CPU\translate('EX')}} : https://www.youtube.com/embed/5R06LRdUCSE" class="form-control" required>
                                 </div>
 
                                 <div class="col-md-8">
                                     <div class="form-group">
-                                        <label>{{\App\CPU\translate('Upload_product_images')}}</label><small
-                                            style="color: red">* ( {{\App\CPU\translate('ratio 1:1')}}  )</small>
+                                        <label>{{\App\CPU\translate('Upload product images')}}</label><small
+                                            style="color: red">* ( {{\App\CPU\translate('ratio')}} 1:1 )</small>
                                     </div>
-                                    <div  class="p-2 border border-dashed"  style="max-width:430px;">
+                                    <div class="p-2 border border-dashed" style="max-width:430px;">
                                         <div class="row" id="coba"></div>
                                     </div>
-                                </div>
 
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="name">{{\App\CPU\translate('Upload_thumbnail')}}</label><small
-                                            style="color: red">* ( {{\App\CPU\translate('ratio 1:1')}} )</small>
-                                    </div>
-                                    <div style="max-width:200px;">
-                                        <div class="row" id="thumbnail"></div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="card card-footer">
                         <div class="row">
@@ -325,7 +450,6 @@
 
 @push('script')
     <script src="{{asset('public/assets/back-end')}}/js/tags-input.min.js"></script>
-    <script src="{{ asset('public/assets/select2/js/select2.min.js')}}"></script>
     <script src="{{asset('public/assets/back-end/js/spartan-multi-image-picker.js')}}"></script>
     <script>
         $(function () {
@@ -370,7 +494,7 @@
                 groupClassName: 'col-12',
                 maxFileSize: '',
                 placeholderImage: {
-                    image: '{{asset('public/assets/back-end/img/400x400/img2.jpg')}}',
+                    image: '{{asset('public/assets/back-end/img/book_demo.jpg')}}',
                     width: '100%',
                 },
                 dropFileLabel: "Drop Here",
@@ -432,12 +556,79 @@
             });
         });
 
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#viewer').attr('src="public/public/assets/back-end/img/book_demo.jpg', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#customFileUpload").change(function () {
+            readURL(this);
+        });
+
+
         $(".js-example-theme-single").select2({
             theme: "classic"
         });
 
         $(".js-example-responsive").select2({
+            // dir: "rtl",
             width: 'resolve'
+        });
+
+        $("#publisher_id").select2({
+            placeholder: "Select Publication",
+        });
+
+        function formatState (state) {
+            if (!state.id) {
+                return state.text;
+            }
+            // console.log(state.element.attributes['imagename'].value);
+            if(state.element.attributes['imagename'].value != 0) {
+                var baseUrl = "/public/images/author";
+                var $state = $(
+                    '<span><img src="' + baseUrl + '/' + state.element.attributes['imagename'].value + '" style="height:50px;width:50px;" /> ' + state.text + '</span>'
+                );
+            } else {
+                var $state = $(
+                    '<span><img src="/public/assets/back-end/img/user.png" style="height:50px;width:50px;" /> ' + state.text + '</span>'
+                );
+            }
+            
+            return $state;
+        };
+
+        $("#writer_id").select2({
+            placeholder: "Select Witer",
+            multiple: true,
+            templateResult: formatState,
+            templateSelection: formatState,
+        });
+
+        $("#translator_id").select2({
+            placeholder: "Select Translator",
+            multiple: true,
+            templateResult: formatState,
+            templateSelection: formatState,
+        });
+
+        $("#editor_id").select2({
+            placeholder: "Select Editor",
+            multiple: true,
+            templateResult: formatState,
+            templateSelection: formatState,
+        });
+
+        $("#category_id").select2({
+            placeholder: "Select Category",
+            multiple: true,
         });
     </script>
 
@@ -476,14 +667,15 @@
 
             $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
         }
+
+
         $('#colors-selector').on('change', function () {
             update_sku();
         });
 
         $('input[name="unit_price"]').on('keyup', function () {
-            update_sku();
+            // update_sku();
         });
-
 
         function update_sku() {
             $.ajaxSetup({
@@ -494,11 +686,10 @@
 
             $.ajax({
                 type: "POST",
-                url: '{{route('seller.product.sku-combination')}}',
+                url: '{{route('admin.product.sku-combination')}}',
                 data: $('#product_form').serialize(),
                 success: function (data) {
                     $('#sku_combination').html(data.view);
-                    $('#sku_combination').addClass('pt-4');
                     if (data.length > 1) {
                         $('#quantity').hide();
                     } else {
@@ -506,7 +697,7 @@
                     }
                 }
             });
-        };
+        }
 
         $(document).ready(function () {
             // color select select2
@@ -539,7 +730,7 @@
                 confirmButtonText: 'Yes',
                 reverseButtons: true
             }).then((result) => {
-                for ( instance in CKEDITOR.instances ) {
+                for (instance in CKEDITOR.instances) {
                     CKEDITOR.instances[instance].updateElement();
                 }
                 var formData = new FormData(document.getElementById('product_form'));
@@ -549,7 +740,7 @@
                     }
                 });
                 $.post({
-                    url: '{{route('seller.product.add-new')}}',
+                    url: '{{route('admin.product.store')}}',
                     data: formData,
                     contentType: false,
                     processData: false,
@@ -561,8 +752,9 @@
                                     ProgressBar: true
                                 });
                             }
+                            console.log(data.errors);
                         } else {
-                            toastr.success('{{\App\CPU\translate('product updated successfully!')}}', {
+                            toastr.success('{{\App\CPU\translate('product added successfully')}}!', {
                                 CloseButton: true,
                                 ProgressBar: true
                             });
@@ -574,7 +766,7 @@
         };
     </script>
 
-    <script>
+    {{-- <script>
         $(".lang_link").click(function (e) {
             e.preventDefault();
             $(".lang_link").removeClass('active');
@@ -585,20 +777,26 @@
             let lang = form_id.split("-")[0];
             console.log(lang);
             $("#" + lang + "-form").removeClass('d-none');
-            if (lang == '{{$default_lang}}') {
+            if (lang == ' default_lang ') {
                 $(".rest-part").removeClass('d-none');
             } else {
                 $(".rest-part").addClass('d-none');
             }
-        })
-    </script>
+        });
+    </script> --}}
 
     {{--ck editor--}}
-    <script src="{{asset('/')}}vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-    <script src="{{asset('/')}}vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
+    {{-- <script src="{{asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script> --}}
+    <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <script src="{{asset('/vendor/unisharp/laravel-ckeditor/adapters/jquery.js')}}"></script>
     <script>
-        $('.textarea').ckeditor({
-            contentsLangDirection : '{{Session::get('direction')}}',
+        $(document).ready(function() {
+            // $('.textarea').ckeditor({
+            //     // contentsLangDirection : '{{Session::get('direction')}}',
+            // });
+            CKEDITOR.replace('textarea', {
+                toolbar : 'Basic',
+            });
         });
     </script>
     {{--ck editor--}}
