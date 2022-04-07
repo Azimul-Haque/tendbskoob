@@ -1495,4 +1495,5 @@
   'Reject' => 'Reject',
   'Suspend' => 'Suspend',
   'Activate' => 'Activate',
+  'InHouse Books' => 'InHouse Books',
 );

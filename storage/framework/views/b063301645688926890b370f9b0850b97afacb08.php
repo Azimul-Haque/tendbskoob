@@ -281,7 +281,7 @@
                                    href="javascript:">
                                     <i class="tio-shop nav-icon"></i>
                                     <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                        <span class="text-truncate"><?php echo e(\App\CPU\translate('InHouse Products')); ?></span>
+                                        <span class="text-truncate"><?php echo e(\App\CPU\translate('InHouse Books')); ?></span>
                                     </span>
                                 </a>
                                 <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
