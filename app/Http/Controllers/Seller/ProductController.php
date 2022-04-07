@@ -285,7 +285,7 @@ class ProductController extends Controller
         } else {
             $pro->sortByDesc('publisher.name_bangla');
         }
-        return view('seller-views.product.list', compact('pro', 'search'));
+        return view('seller-views.product.list', compact('pro', 'search', 'orderby'));
     }
 
     public function get_categories(Request $request)
