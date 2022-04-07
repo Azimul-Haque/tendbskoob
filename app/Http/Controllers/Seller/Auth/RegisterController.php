@@ -54,7 +54,8 @@ class RegisterController extends Controller
             $seller->status = "pending";
             $seller->save();
 
-            // 
+            // APATOTO NEW SHOP CREATE KORTESI NA
+            // APATOTO NEW SHOP CREATE KORTESI NA
             // $shop = new Shop();
             // $shop->seller_id = $seller->id;
             // $shop->name = $request->shop_name;

@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', $seller->shop? $seller->shop->name : \App\CPU\translate("Shop Name")); ?>
+<?php $__env->startSection('title', $seller->name? $seller->name : \App\CPU\translate("Shop Name")); ?>
 
 <?php $__env->startPush('css_or_js'); ?>
 

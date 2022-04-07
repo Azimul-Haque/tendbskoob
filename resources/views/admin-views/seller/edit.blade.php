@@ -1,6 +1,6 @@
 @extends('layouts.back-end.app')
 
-@section('title', $seller->shop? $seller->shop->name : \App\CPU\translate("Shop Name"))
+@section('title', $seller->name? $seller->name : \App\CPU\translate("Shop Name"))
 
 @push('css_or_js')
 
