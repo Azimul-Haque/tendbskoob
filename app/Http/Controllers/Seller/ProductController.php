@@ -264,6 +264,8 @@ class ProductController extends Controller
     {
         $query_param = [];
         $search = $request['search'];
+        $orderby = $request['orderby'] ? $request['orderby'] : 'asc';
+        
         if ($request->has('search')) {
             $key = explode(' ', $request['search']);
             $pro = Product::where(['added_by' => 'seller', 'user_id' => \auth('seller')->id()])
