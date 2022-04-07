@@ -68,8 +68,9 @@
                                             {{$seller->name}}<br/>
                                             {!! $seller->status=='approved'?'<label class="badge badge-success">Active</label>':'<label class="badge badge-danger">In-Active</label>' !!}
                                         </td>
-                                        <td scope="col">{{$seller->collection_point}}</td>
-                                        <td scope="col">{{ $seller->payment_number }}<br/>{{ $seller->payment_option }}</td>
+                                        <td scope="col"></td>
+                                        <td scope="col">কালেকশন পয়েন্টঃ {{$seller->collection_point}}<br/>
+                                            {{ $seller->payment_number }}<br/>{{ $seller->payment_option }}</td>
                                         <td scope="col">{{$seller->email}}</br>{{$seller->address}}</td>
                                         {{-- <td scope="col">
                                             <a href="{{route('admin.sellers.order-list',[$seller['id']])}}"
