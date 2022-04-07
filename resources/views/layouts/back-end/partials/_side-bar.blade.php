@@ -320,7 +320,7 @@
                                    href="javascript:">
                                     <i class="tio-shop nav-icon"></i>
                                     <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                        <span class="text-truncate">{{\App\CPU\translate('InHouse Products')}}</span>
+                                        <span class="text-truncate">{{\App\CPU\translate('InHouse Books')}}</span>
                                     </span>
                                 </a>
                                 <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
@@ -366,19 +366,19 @@
                                     <li class="nav-item {{Request::is('admin/product/list/seller/0')?'active':''}}">
                                         <a class="nav-link " href="{{route('admin.product.list',['seller', 'status'=>'0'])}}">
                                             <span class="tio-circle nav-indicator-icon"></span>
-                                            <span class="text-truncate">{{\App\CPU\translate('New')}} {{\App\CPU\translate('Products')}}</span>
+                                            <span class="text-truncate">{{\App\CPU\translate('New')}} {{\App\CPU\translate('Books')}}</span>
                                         </a>
                                     </li>
                                     <li class="nav-item {{Request::is('admin/product/list/seller/1')?'active':''}}">
                                         <a class="nav-link " href="{{route('admin.product.list',['seller', 'status'=>'1'])}}">
                                             <span class="tio-circle nav-indicator-icon"></span>
-                                            <span class="text-truncate">{{\App\CPU\translate('Approved')}} {{\App\CPU\translate('Products')}}</span>
+                                            <span class="text-truncate">{{\App\CPU\translate('Approved')}} {{\App\CPU\translate('Books')}}</span>
                                         </a>
                                     </li>
                                     <li class="nav-item {{Request::is('admin/product/list/seller/2')?'active':''}}">
                                         <a class="nav-link " href="{{route('admin.product.list',['seller', 'status'=>'2'])}}">
                                             <span class="tio-circle nav-indicator-icon"></span>
-                                            <span class="text-truncate">{{\App\CPU\translate('Denied')}} {{\App\CPU\translate('Products')}}</span>
+                                            <span class="text-truncate">{{\App\CPU\translate('Denied')}} {{\App\CPU\translate('Books')}}</span>
                                         </a>
                                     </li>
                                 </ul>
