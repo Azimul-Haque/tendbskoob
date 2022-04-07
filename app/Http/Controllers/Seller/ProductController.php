@@ -266,7 +266,7 @@ class ProductController extends Controller
         $search = $request['search'];
         if ($request->has('search')) {
             $key = explode(' ', $request['search']);
-            $products = Product::where(['added_by' => 'seller', 'user_id' => \auth('seller')->id()])
+            $pro = Product::where(['added_by' => 'seller', 'user_id' => \auth('seller')->id()])
                 ->where(function ($q) use ($key) {
                     foreach ($key as $value) {
                         $q->Where('name', 'like', "%{$value}%");
@@ -274,11 +274,11 @@ class ProductController extends Controller
                 });
             $query_param = ['search' => $request['search']];
         } else {
-            $products = Product::where(['added_by' => 'seller', 'user_id' => \auth('seller')->id()]);
+            $pro = Product::where(['added_by' => 'seller', 'user_id' => \auth('seller')->id()]);
         }
-        $products = $products->orderBy('id', 'DESC')->paginate(Helpers::pagination_limit())->appends($query_param);
+        $pro = $pro->orderBy('id', 'DESC')->paginate(Helpers::pagination_limit())->appends($query_param);
 
-        return view('seller-views.product.list', compact('products', 'search'));
+        return view('seller-views.product.list', compact('pro', 'search'));
     }
 
     public function get_categories(Request $request)
