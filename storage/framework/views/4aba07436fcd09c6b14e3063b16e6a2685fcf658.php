@@ -345,4 +345,4 @@
     </script>
 <?php $__env->stopPush(); ?>
 
-<?php echo $__env->make('layouts.back-end.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp\www\booksbd\resources\views/seller-views/product/list.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.back-end.app-seller', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp\www\booksbd\resources\views/seller-views/product/list.blade.php ENDPATH**/ ?>
