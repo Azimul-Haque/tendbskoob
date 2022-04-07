@@ -31,28 +31,6 @@
                         <span class="badge badge-danger">Suspended</span>
                     <?php endif; ?>
                 </h3>
-                <?php if($seller->status=="pending"): ?>
-                    <div class="mt-4 pr-2 float-<?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>">
-                        <div class="flex-start">
-                            <h4 class="mx-1"><i class="tio-shop-outlined"></i></h4>
-                            <div><h4><?php echo e(\App\CPU\translate('Seller_request_for_open_a_shop.')); ?></h4></div>
-                        </div>
-                        <div class="text-center">
-                            <form class="d-inline-block" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
-                                <?php echo csrf_field(); ?>
-                                <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
-                                <input type="hidden" name="status" value="approved">
-                                <button type="submit" class="btn btn-primary"><?php echo e(\App\CPU\translate('Approve')); ?></button>
-                            </form>
-                            <form class="d-inline-block" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
-                                <?php echo csrf_field(); ?>
-                                <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
-                                <input type="hidden" name="status" value="rejected">
-                                <button type="submit" class="btn btn-danger"><?php echo e(\App\CPU\translate('reject')); ?></button>
-                            </form>
-                        </div>
-                    </div>
-                <?php endif; ?>
             </div>
         </div>
         <!-- End Page Header -->
@@ -65,7 +43,22 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            
+                            <?php if($seller->status=="pending"): ?>
+                            <div class="text-center">
+                                <form class="d-inline-block" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
+                                    <?php echo csrf_field(); ?>
+                                    <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
+                                    <input type="hidden" name="status" value="approved">
+                                    <button type="submit" class="btn btn-primary"><?php echo e(\App\CPU\translate('Approve')); ?></button>
+                                </form>
+                                <form class="d-inline-block" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
+                                    <?php echo csrf_field(); ?>
+                                    <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
+                                    <input type="hidden" name="status" value="rejected">
+                                    <button type="submit" class="btn btn-danger"><?php echo e(\App\CPU\translate('reject')); ?></button>
+                                </form>
+                            </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
