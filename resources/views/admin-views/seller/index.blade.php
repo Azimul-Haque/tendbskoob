@@ -52,7 +52,7 @@
                                 <tr>
                                     <th scope="col">{{\App\CPU\translate('SL#')}}</th>
                                     <th scope="col">{{\App\CPU\translate('Name')}}</th>
-                                    <th scope="col">Collection Point</th>
+                                    <th scope="col">Associate Publisher</th>
                                     <th scope="col">Collection Info</th>
                                     <th scope="col">{{\App\CPU\translate('Email & Physical Address')}}</th>
                                     {{-- <th scope="col">{{\App\CPU\translate('orders')}}</th>
