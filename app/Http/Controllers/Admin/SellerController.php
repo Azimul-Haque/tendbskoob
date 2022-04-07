@@ -229,6 +229,12 @@ class SellerController extends Controller
 
     }
 
+    public function approvalPage($seller_id)
+    {
+        $seller = Seller::findOrFail($seller_id);
+        return view('admin-views.seller.approve', compact('seller'));
+    }
+
     public function order_list($seller_id)
     {
         $orders = Order::where('seller_id', $seller_id)->where('seller_is', 'seller');
