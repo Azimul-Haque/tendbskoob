@@ -52,9 +52,6 @@
                         <h4><i style="font-size: 30px"
                                class="tio-edit"></i><?php echo e(\App\CPU\translate('Seller_Edit')); ?></h4>
                     </div>
-                    <div class="row gx-2 gx-lg-3" id="order_stats">
-                        s
-                    </div>
                     <div class="row">
                     <!-- Earnings (Monthly) Card Example -->
                     <div class="col-xl-6 for-card col-md-6 mt-4">
