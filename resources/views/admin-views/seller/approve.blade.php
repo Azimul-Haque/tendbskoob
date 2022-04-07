@@ -67,7 +67,7 @@
                                 <br/><br/>
                                 অথবা, রিজেক্ট করতে চাইলে নিচের বাটনে ক্লিক করুন<br/>
                                 <a class="btn btn-danger" href="javascript:"
-                                onclick="form_alert('seller-{{$seller['id']}}','Want to delete this item ?')">
+                                onclick="form_alert('seller-{{$seller['id']}}','নিশ্চিতভাবে এই সেলারকে রিজেক্ট করতে চান?')">
                                     <i class="tio-add-to-trash"></i> {{\App\CPU\translate('Reject')}}
                                 </a>
                                 <form class="" id="seller-{{$seller['id']}}" action="{{route('admin.sellers.updateStatus')}}" method="POST">
