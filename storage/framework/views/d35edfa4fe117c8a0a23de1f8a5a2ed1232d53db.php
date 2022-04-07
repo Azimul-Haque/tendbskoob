@@ -55,7 +55,7 @@
                             <div class="text-center">
                                 <div class="mb-5">
                                     <h1 class="display-4"><?php echo e(\App\CPU\translate('sign_in')); ?></h1>
-                                    <center><h1 class="h4 text-gray-900 mb-4"><?php echo e(\App\CPU\translate('welcome_back_to_seller_login')); ?></h1>
+                                    <center><h1 class="h4 text-gray-900 mb-4"><?php echo e(\App\CPU\translate('welcome_to_publication_login')); ?></h1>
                                     </center>
                                 </div>
                                 
