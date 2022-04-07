@@ -195,7 +195,7 @@ class SellerController extends Controller
             'collection_point' => 'required',
             'payment_number'   => 'required',
             'payment_option'   => 'required',
-            'email'            => 'required|unique:sellers,' . $id,
+            'email'            => 'required|unique:sellers,email,' . $id,
             'password'         => 'sometimes|confirmed',
         ]);
 
