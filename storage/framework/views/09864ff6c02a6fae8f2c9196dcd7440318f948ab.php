@@ -63,17 +63,17 @@
                                     <button type="submit" class="btn btn-primary"><?php echo e(\App\CPU\translate('Approve')); ?></button>
                                 </form>
                                 <br/><br/>
-                                অথবা, রিজেক্ট করতে চাইলে নিচের বাটনে ক্লিক করুন
-                                <a class="btn btn-danger btn-sm" href="javascript:"
+                                অথবা, রিজেক্ট করতে চাইলে নিচের বাটনে ক্লিক করুন<br/>
+                                <a class="btn btn-danger" href="javascript:"
                                 onclick="form_alert('seller-<?php echo e($seller['id']); ?>','Want to delete this item ?')">
-                                    <i class="tio-add-to-trash"></i> <?php echo e(\App\CPU\translate('Delete')); ?>
+                                    <i class="tio-add-to-trash"></i> <?php echo e(\App\CPU\translate('Reject')); ?>
 
                                 </a>
                                 <form class="" id="seller-<?php echo e($seller['id']); ?>" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
                                     <?php echo csrf_field(); ?>
                                     <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
                                     <input type="hidden" name="status" value="rejected">
-                                    <button type="submit" class="btn btn-danger"><?php echo e(\App\CPU\translate('reject')); ?></button>
+                                    
                                 </form>
                             <?php endif; ?>
                         </div>

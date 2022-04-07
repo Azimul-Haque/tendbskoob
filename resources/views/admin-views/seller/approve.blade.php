@@ -65,16 +65,16 @@
                                     <button type="submit" class="btn btn-primary">{{\App\CPU\translate('Approve')}}</button>
                                 </form>
                                 <br/><br/>
-                                অথবা, রিজেক্ট করতে চাইলে নিচের বাটনে ক্লিক করুন
-                                <a class="btn btn-danger btn-sm" href="javascript:"
+                                অথবা, রিজেক্ট করতে চাইলে নিচের বাটনে ক্লিক করুন<br/>
+                                <a class="btn btn-danger" href="javascript:"
                                 onclick="form_alert('seller-{{$seller['id']}}','Want to delete this item ?')">
-                                    <i class="tio-add-to-trash"></i> {{\App\CPU\translate('Delete')}}
+                                    <i class="tio-add-to-trash"></i> {{\App\CPU\translate('Reject')}}
                                 </a>
                                 <form class="" id="seller-{{$seller['id']}}" action="{{route('admin.sellers.updateStatus')}}" method="POST">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$seller->id}}">
                                     <input type="hidden" name="status" value="rejected">
-                                    <button type="submit" class="btn btn-danger">{{\App\CPU\translate('reject')}}</button>
+                                    {{-- <button type="submit" class="btn btn-danger">{{\App\CPU\translate('reject')}}</button> --}}
                                 </form>
                             @endif
                         </div>

@@ -1492,4 +1492,5 @@
   'seller_edit' => 'Seller edit',
   'Seller_Approve' => 'Seller Approve',
   'Add Book' => 'Add Book',
+  'Reject' => 'Reject',
 );
