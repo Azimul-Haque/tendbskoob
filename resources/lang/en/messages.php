@@ -1494,4 +1494,5 @@
   'Add Book' => 'Add Book',
   'Reject' => 'Reject',
   'Suspend' => 'Suspend',
+  'Activate' => 'Activate',
 );

@@ -83,11 +83,11 @@
                             <?php elseif($seller->status == 'approved'): ?>
                                 সাসপেন্ড করুন<br/>
                                 <a class="btn btn-danger" href="javascript:"
-                                onclick="form_alert('seller-<?php echo e($seller['id']); ?>','নিশ্চিতভাবে এই সেলারকে সাসপেন্ড করতে চান?')">
+                                onclick="form_alert('seller-suspend-<?php echo e($seller['id']); ?>','নিশ্চিতভাবে এই সেলারকে সাসপেন্ড করতে চান?')">
                                     <i class="tio-add-to-trash"></i> <?php echo e(\App\CPU\translate('Suspend')); ?>
 
                                 </a>
-                                <form class="d-inline-block" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
+                                <form class="d-inline-block" id="seller-suspend-<?php echo e($seller['id']); ?>" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
                                     <?php echo csrf_field(); ?>
                                     <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
                                     <input type="hidden" name="status" value="suspended">

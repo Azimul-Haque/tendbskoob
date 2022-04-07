@@ -81,13 +81,13 @@
                                                     <?php echo e(\App\CPU\translate('Suspend')); ?>
 
                                                 <?php elseif($seller->status=="pending"): ?>
-                                                    <?php echo e(\App\CPU\translate('Approve')); ?>
+                                                    <?php echo e(\App\CPU\translate('Activate')); ?>
 
                                                 <?php elseif($seller->status=="suspended"): ?>
-                                                    <?php echo e(\App\CPU\translate('Approve')); ?>
+                                                    <?php echo e(\App\CPU\translate('Activate')); ?>
 
                                                 <?php elseif($seller->status=="rejected"): ?>
-                                                    <?php echo e(\App\CPU\translate('Approve')); ?>
+                                                    <?php echo e(\App\CPU\translate('Activate')); ?>
 
                                                 <?php endif; ?>
                                             </a>
