@@ -81,7 +81,7 @@
                                     </form>
                                 <?php endif; ?>
                             <?php elseif($seller->status == 'approved'): ?>
-                                সাসপেন্ড করুন
+                                সাসপেন্ড করুন<br/>
                                 <a class="btn btn-danger" href="javascript:"
                                 onclick="form_alert('seller-<?php echo e($seller['id']); ?>','নিশ্চিতভাবে এই সেলারকে সাসপেন্ড করতে চান?')">
                                     <i class="tio-add-to-trash"></i> <?php echo e(\App\CPU\translate('Suspend')); ?>
