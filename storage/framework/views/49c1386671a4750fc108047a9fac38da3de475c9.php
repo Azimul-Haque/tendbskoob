@@ -4,7 +4,7 @@
         <div class="navbar-nav-wrap">
             <div class="navbar-brand-wrapper">
                 <!-- Logo -->
-                <?php ($seller_logo=\App\Model\Shop::where(['seller_id'=>auth('seller')->id()])->first()->image); ?>
+                <?php ($seller_logo=auth('seller')->user()->image); ?>
 
                 <a class="navbar-brand" href="<?php echo e(route('seller.dashboard.index')); ?>" aria-label="">
                     <img class="navbar-brand-logo" style="max-height: 42px;"
