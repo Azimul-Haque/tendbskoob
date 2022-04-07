@@ -9,6 +9,8 @@ use App\CPU\ImageManager;
 use App\Http\Controllers\Controller;
 use App\Model\Brand;
 use App\Model\Category;
+use App\Model\Publisher;
+use App\Model\Author;
 use App\Model\Color;
 use App\Model\DealOfTheDay;
 use App\Model\FlashDealProduct;
