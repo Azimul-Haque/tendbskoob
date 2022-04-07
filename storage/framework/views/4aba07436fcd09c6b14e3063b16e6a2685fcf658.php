@@ -36,7 +36,7 @@
                                     <input id="datatableSearch_" type="search" name="search" class="form-control"
                                            placeholder="<?php echo e(\App\CPU\translate('Search Book')); ?>" aria-label="Search orders"
                                            value="<?php echo e($search); ?>" required>
-                                    <input type="hidden" value="<?php echo e($request_status); ?>" name="status">
+                                    
                                     <button type="submit" class="btn btn-primary"><?php echo e(\App\CPU\translate('search')); ?></button>
                                 </div>
                             </form>
