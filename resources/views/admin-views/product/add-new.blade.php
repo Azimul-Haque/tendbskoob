@@ -1,6 +1,6 @@
 @extends('layouts.back-end.app')
 
-@section('title', \App\CPU\translate('Product Add'))
+@section('title', \App\CPU\translate('Add Book'))
 
 @push('css_or_js')
     <link href="{{asset('public/assets/back-end/css/tags-input.min.css')}}" rel="stylesheet">
