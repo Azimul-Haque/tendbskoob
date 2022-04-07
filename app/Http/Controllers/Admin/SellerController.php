@@ -177,7 +177,7 @@ class SellerController extends Controller
             Toastr::info('Seller has been suspended successfully');
         }
         $seller->save();
-        return back();
+        return redirect()->route('admin.sellers.seller-list');
     }
 
     public function edit($seller_id)
@@ -228,7 +228,6 @@ class SellerController extends Controller
 
         Toastr::success('Publication updated successfully!');
         return redirect()->route('admin.sellers.seller-list');
-
     }
 
     public function approvalPage($seller_id)
