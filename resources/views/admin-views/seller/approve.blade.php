@@ -65,7 +65,7 @@
                                     <button type="submit" class="btn btn-primary">{{\App\CPU\translate('Approve')}}</button>
                                 </form>
                                 <br/><br/>
-                                s
+                                অথবা, রিজেক্ট করতে চাইলে নিচের বাটনে ক্লিক করুন
                                 <form class="" action="{{route('admin.sellers.updateStatus')}}" method="POST">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$seller->id}}">

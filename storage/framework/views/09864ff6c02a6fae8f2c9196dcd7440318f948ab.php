@@ -63,7 +63,7 @@
                                     <button type="submit" class="btn btn-primary"><?php echo e(\App\CPU\translate('Approve')); ?></button>
                                 </form>
                                 <br/><br/>
-                                s
+                                অথবা, রিজেক্ট করতে চাইলে নিচের বাটনে ক্লিক করুন
                                 <form class="" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
                                     <?php echo csrf_field(); ?>
                                     <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
