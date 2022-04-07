@@ -89,9 +89,9 @@
                                                     <label for="collection_point">বই সংগ্রহ করার পয়েন্ট</label>
                                                     <select name="collection_point" id="collection_point" class="form-control form-control-user">
                                                         <option selected disabled>নির্বাচন করুন</option>
-                                                        <option value="বাংলাবাজার">বাংলাবাজার</option>
-                                                        <option value="কাঁটাবন">কাঁটাবন</option>
-                                                        <option value="মিরপুর (হেড অফিস)">মিরপুর (হেড অফিস)</option>
+                                                        <option value="বাংলাবাজার" <?php if($seller->collection_point == 'বাংলাবাজার'): ?> selected <?php endif; ?>>বাংলাবাজার</option>
+                                                        <option value="কাঁটাবন" <?php if($seller->collection_point == 'কাঁটাবন'): ?> selected <?php endif; ?>>কাঁটাবন</option>
+                                                        <option value="মিরপুর (হেড অফিস)" <?php if($seller->collection_point == 'মিরপুর (হেড অফিস)'): ?> selected <?php endif; ?>>মিরপুর (হেড অফিস)</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-12 mt-3">

@@ -91,14 +91,14 @@
                                                     <label for="collection_point">বই সংগ্রহ করার পয়েন্ট</label>
                                                     <select name="collection_point" id="collection_point" class="form-control form-control-user">
                                                         <option selected disabled>নির্বাচন করুন</option>
-                                                        <option value="বাংলাবাজার">বাংলাবাজার</option>
-                                                        <option value="কাঁটাবন">কাঁটাবন</option>
-                                                        <option value="মিরপুর (হেড অফিস)">মিরপুর (হেড অফিস)</option>
+                                                        <option value="বাংলাবাজার" @if($seller->collection_point == 'বাংলাবাজার') selected @endif>বাংলাবাজার</option>
+                                                        <option value="কাঁটাবন" @if($seller->collection_point == 'কাঁটাবন') selected @endif>কাঁটাবন</option>
+                                                        <option value="মিরপুর (হেড অফিস)" @if($seller->collection_point == 'মিরপুর (হেড অফিস)') selected @endif>মিরপুর (হেড অফিস)</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-12 mt-3">
                                                     <label for="payment_number">পেমেন্ট গ্রহণ করার জন্য আপনার নম্বরটি দিন</label>
-                                                    <input type="number" class="form-control form-control-user" id="payment_number" name="payment_number" value="{{old('payment_number')}}" placeholder="01712345678" maxlength="11" required>
+                                                    <input type="number" class="form-control form-control-user" id="payment_number" name="payment_number" value="{{ $seller->payment_number }}" placeholder="01712345678" maxlength="11" required>
                                                 </div>
                                                 <div class="col-md-12 mt-3">
                                                     <label for="payment_option">আপনার নম্বরটি কোন সেবার আওতাধীন?</label>
