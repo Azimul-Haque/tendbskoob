@@ -143,5 +143,9 @@
         $("#BannerUpload").change(function () {
             readBannerURL(this);
         });
+
+        $("#publisher_id").select2({
+            placeholder: "Select Publication",
+        });
     </script>
 @endpush

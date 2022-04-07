@@ -136,6 +136,10 @@
         $("#BannerUpload").change(function () {
             readBannerURL(this);
         });
+
+        $("#publisher_id").select2({
+            placeholder: "Select Publication",
+        });
     </script>
 <?php $__env->stopPush(); ?>
 
