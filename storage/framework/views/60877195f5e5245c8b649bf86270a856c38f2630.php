@@ -50,7 +50,7 @@
                                 <tr>
                                     <th scope="col"><?php echo e(\App\CPU\translate('SL#')); ?></th>
                                     <th scope="col"><?php echo e(\App\CPU\translate('Name')); ?></th>
-                                    <th scope="col">Collection Point</th>
+                                    <th scope="col">Associate Publisher</th>
                                     <th scope="col">Collection Info</th>
                                     <th scope="col"><?php echo e(\App\CPU\translate('Email & Physical Address')); ?></th>
                                     
@@ -66,15 +66,30 @@
                                             <?php echo $seller->status=='approved'?'<label class="badge badge-success">Active</label>':'<label class="badge badge-danger">In-Active</label>'; ?>
 
                                         </td>
-                                        <td scope="col"><?php echo e($seller->collection_point); ?></td>
-                                        <td scope="col"><?php echo e($seller->payment_number); ?><br/><?php echo e($seller->payment_option); ?></td>
+                                        <td scope="col">
+                                            <?php echo e($seller->publisher ? $seller->publisher->name_bangla : ''); ?>
+
+                                        </td>
+                                        <td scope="col">কালেকশন পয়েন্টঃ <?php echo e($seller->collection_point); ?><br/>
+                                            <?php echo e($seller->payment_number); ?>, <?php echo e($seller->payment_option); ?></td>
                                         <td scope="col"><?php echo e($seller->email); ?></br><?php echo e($seller->address); ?></td>
                                         
                                         <td>
                                             <a class="btn btn-primary"
                                                href="<?php echo e(route('admin.sellers.approvalpage', $seller->id)); ?>">
-                                               <?php echo e(\App\CPU\translate('Approve')); ?>
+                                                <?php if($seller->status=="approved"): ?>
+                                                    <?php echo e(\App\CPU\translate('Suspend')); ?>
 
+                                                <?php elseif($seller->status=="pending"): ?>
+                                                    <?php echo e(\App\CPU\translate('Activate')); ?>
+
+                                                <?php elseif($seller->status=="suspended"): ?>
+                                                    <?php echo e(\App\CPU\translate('Activate')); ?>
+
+                                                <?php elseif($seller->status=="rejected"): ?>
+                                                    <?php echo e(\App\CPU\translate('Activate')); ?>
+
+                                                <?php endif; ?>
                                             </a>
                                             
                                             <a class="btn btn-success"

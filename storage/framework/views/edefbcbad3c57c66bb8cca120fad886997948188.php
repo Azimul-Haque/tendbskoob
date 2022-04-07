@@ -1,7 +1,7 @@
 <?php $__env->startSection('title', $seller->name? $seller->name : \App\CPU\translate("Shop Name")); ?>
 
 <?php $__env->startPush('css_or_js'); ?>
-
+<link href="<?php echo e(asset('public/assets/select2/css/select2.min.css')); ?>" rel="stylesheet">
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -11,6 +11,7 @@
                 <li class="breadcrumb-item"><a href="<?php echo e(route('admin.dashboard.index')); ?>"><?php echo e(\App\CPU\translate('Dashboard')); ?></a>
                 </li>
                 <li class="breadcrumb-item" aria-current="page"><?php echo e(\App\CPU\translate('Seller_Edit')); ?></li>
+                <li class="breadcrumb-item" aria-current="page"><?php echo e($seller->name); ?></li>
             </ol>
         </nav>
 
@@ -20,28 +21,18 @@
                 <a href="<?php echo e(route('admin.sellers.seller-list')); ?>" class="btn btn-primary mt-3 mb-3"><?php echo e(\App\CPU\translate('Back_to_seller_list')); ?></a>
             </div>
             <div>
-                <?php if($seller->status=="pending"): ?>
-                    <div class="mt-4 pr-2 float-<?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>">
-                        <div class="flex-start">
-                            <h4 class="mx-1"><i class="tio-shop-outlined"></i></h4>
-                            <div><h4><?php echo e(\App\CPU\translate('Seller_request_for_open_a_shop.')); ?></h4></div>
-                        </div>
-                        <div class="text-center">
-                            <form class="d-inline-block" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
-                                <?php echo csrf_field(); ?>
-                                <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
-                                <input type="hidden" name="status" value="approved">
-                                <button type="submit" class="btn btn-primary"><?php echo e(\App\CPU\translate('Approve')); ?></button>
-                            </form>
-                            <form class="d-inline-block" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
-                                <?php echo csrf_field(); ?>
-                                <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
-                                <input type="hidden" name="status" value="rejected">
-                                <button type="submit" class="btn btn-danger"><?php echo e(\App\CPU\translate('reject')); ?></button>
-                            </form>
-                        </div>
-                    </div>
-                <?php endif; ?>
+                <h3>
+                    Seller Status: 
+                    <?php if($seller->status=="approved"): ?>
+                        <span class="badge badge-success">Active</span>
+                    <?php elseif($seller->status=="pending"): ?>
+                        <span class="badge badge-info">Pending</span>
+                    <?php elseif($seller->status=="suspended"): ?>
+                        <span class="badge badge-danger">Suspended</span>
+                    <?php elseif($seller->status=="rejected"): ?>
+                        <span class="badge badge-danger">Rejected</span>
+                    <?php endif; ?>
+                </h3>
             </div>
         </div>
         <!-- End Page Header -->
@@ -50,11 +41,58 @@
                 <div class=" gx-2 gx-lg-3 mb-2">
                     <div>
                         <h4><i style="font-size: 30px"
-                               class="tio-edit"></i><?php echo e(\App\CPU\translate('Seller_Approve')); ?></h4>
+                               class="tio-edit"></i>সেলার এক্টিভেশন/সাসপেনশন পাতা</h4>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            
+                            <?php if($seller->status=="pending" || $seller->status=="rejected" || $seller->status=="suspended"): ?>
+                                <form class="d-inline-block" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
+                                    <?php echo csrf_field(); ?>
+                                    <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
+                                    <input type="hidden" name="status" value="approved">
+                                    <div class="form-group">
+                                        <label for="publisher_id">পাবলিকেশার সেট করুন</label><br/>
+                                        <select
+                                            class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id" id="publisher_id" required>
+                                            <option value="<?php echo e(old('publisher_id')); ?>" selected disabled>Select Publication</option>
+                                            <?php $__currentLoopData = $publishers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $publisher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($publisher['id']); ?>" <?php echo e(old('name_bangla')==$publisher['id']? 'selected': ''); ?>>
+                                                    <?php echo e($publisher['name_bangla']); ?> (<?php echo e($publisher['name']); ?>)
+                                                </option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary"><?php echo e(\App\CPU\translate('Approve')); ?></button>
+                                </form>
+
+                                <?php if($seller->status != "rejected"): ?>
+                                    <br/><br/>
+                                    অথবা, রিজেক্ট করতে চাইলে নিচের বাটনে ক্লিক করুন<br/>
+                                    <a class="btn btn-danger" href="javascript:"
+                                    onclick="form_alert('seller-<?php echo e($seller['id']); ?>','নিশ্চিতভাবে এই সেলারকে রিজেক্ট করতে চান?')">
+                                        <i class="tio-add-to-trash"></i> <?php echo e(\App\CPU\translate('Reject')); ?>
+
+                                    </a>
+                                    <form class="" id="seller-<?php echo e($seller['id']); ?>" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
+                                        <?php echo csrf_field(); ?>
+                                        <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
+                                        <input type="hidden" name="status" value="rejected">
+                                        
+                                    </form>
+                                <?php endif; ?>
+                            <?php elseif($seller->status == 'approved'): ?>
+                                সাসপেন্ড করুন<br/>
+                                <a class="btn btn-danger" href="javascript:"
+                                onclick="form_alert('seller-suspend-<?php echo e($seller['id']); ?>','নিশ্চিতভাবে এই সেলারকে সাসপেন্ড করতে চান?')">
+                                    <i class="tio-add-to-trash"></i> <?php echo e(\App\CPU\translate('Suspend')); ?>
+
+                                </a>
+                                <form class="d-inline-block" id="seller-suspend-<?php echo e($seller['id']); ?>" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
+                                    <?php echo csrf_field(); ?>
+                                    <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
+                                    <input type="hidden" name="status" value="suspended">
+                                </form>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -126,6 +164,35 @@
         });
         $("#BannerUpload").change(function () {
             readBannerURL(this);
+        });
+
+        $(".js-example-theme-single").select2({
+            theme: "classic"
+        });
+
+        $(".js-example-responsive").select2({
+            // dir: "rtl",
+            width: 'resolve'
+        });
+
+        $("#publisher_id").select2({
+            placeholder: "Select Publication",
+        });
+        $(document).ready(function () {
+            // color select select2
+            $('.color-var-select').select2({
+                templateResult: colorCodeSelect,
+                templateSelection: colorCodeSelect,
+                escapeMarkup: function (m) {
+                    return m;
+                }
+            });
+
+            function colorCodeSelect(state) {
+                var colorCode = $(state.element).val();
+                if (!colorCode) return state.text;
+                return "<span class='color-preview' style='background-color:" + colorCode + ";'></span>" + state.text;
+            }
         });
     </script>
 <?php $__env->stopPush(); ?>
