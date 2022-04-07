@@ -100,7 +100,6 @@
                                                 @elseif ($seller->status=="rejected")
                                                     {{\App\CPU\translate('Approve')}}
                                                 @endif
-                                               
                                             </a>
                                             {{-- <a class="btn btn-primary"
                                                href="{{route('admin.sellers.view',$seller->id)}}">

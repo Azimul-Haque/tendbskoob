@@ -77,8 +77,20 @@
                                         <td>
                                             <a class="btn btn-primary"
                                                href="<?php echo e(route('admin.sellers.approvalpage', $seller->id)); ?>">
-                                               <?php echo e(\App\CPU\translate('Approve')); ?>
+                                                <?php if($seller->status=="active"): ?>
+                                                    <?php echo e(\App\CPU\translate('Suspend')); ?>
 
+                                                <?php elseif($seller->status=="pending"): ?>
+                                                    <?php echo e(\App\CPU\translate('Approve')); ?>
+
+                                                <?php elseif($seller->status=="suspended"): ?>
+                                                    <?php echo e(\App\CPU\translate('Approve')); ?>
+
+                                                <?php elseif($seller->status=="rejected"): ?>
+                                                    <?php echo e(\App\CPU\translate('Approve')); ?>
+
+                                                <?php endif; ?>
+                                               
                                             </a>
                                             
                                             <a class="btn btn-success"
