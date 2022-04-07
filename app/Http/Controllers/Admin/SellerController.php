@@ -205,6 +205,10 @@ class SellerController extends Controller
         $seller->payment_option = $request->payment_option;
 
         if($request->hasFile('image')) {
+            $image_path = public_path('/public/images/publisher/'. $seller->image);
+            if(File::exists($image_path)) {
+                File::delete($image_path);
+            }
             $image    = $request->file('image');
             $filename = Helpers::random_slug(10) . '.jpg';
             $location = public_path('/public/images/publisher/'. $filename);
