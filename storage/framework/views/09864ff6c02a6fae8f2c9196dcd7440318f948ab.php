@@ -21,7 +21,7 @@
                 <a href="<?php echo e(route('admin.sellers.seller-list')); ?>" class="btn btn-primary mt-3 mb-3"><?php echo e(\App\CPU\translate('Back_to_seller_list')); ?></a>
             </div>
             <div>
-                <h4>
+                <h3>
                     Seller Status: 
                     <?php if($seller->status=="active"): ?>
                         <span class="badge badge-success">Active</span>
@@ -30,7 +30,7 @@
                     <?php elseif($seller->status=="suspended"): ?>
                         <span class="badge badge-danger">Suspended</span>
                     <?php endif; ?>
-                </h4>
+                </h3>
                 <?php if($seller->status=="pending"): ?>
                     <div class="mt-4 pr-2 float-<?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>">
                         <div class="flex-start">

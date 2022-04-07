@@ -23,7 +23,7 @@
                 <a href="{{route('admin.sellers.seller-list')}}" class="btn btn-primary mt-3 mb-3">{{\App\CPU\translate('Back_to_seller_list')}}</a>
             </div>
             <div>
-                <h4>
+                <h3>
                     Seller Status: 
                     @if ($seller->status=="active")
                         <span class="badge badge-success">Active</span>
@@ -32,29 +32,7 @@
                     @elseif ($seller->status=="suspended")
                         <span class="badge badge-danger">Suspended</span>
                     @endif
-                </h4>
-                @if ($seller->status=="pending")
-                    <div class="mt-4 pr-2 float-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}">
-                        <div class="flex-start">
-                            <h4 class="mx-1"><i class="tio-shop-outlined"></i></h4>
-                            <div><h4>{{\App\CPU\translate('Seller_request_for_open_a_shop.')}}</h4></div>
-                        </div>
-                        <div class="text-center">
-                            <form class="d-inline-block" action="{{route('admin.sellers.updateStatus')}}" method="POST">
-                                @csrf
-                                <input type="hidden" name="id" value="{{$seller->id}}">
-                                <input type="hidden" name="status" value="approved">
-                                <button type="submit" class="btn btn-primary">{{\App\CPU\translate('Approve')}}</button>
-                            </form>
-                            <form class="d-inline-block" action="{{route('admin.sellers.updateStatus')}}" method="POST">
-                                @csrf
-                                <input type="hidden" name="id" value="{{$seller->id}}">
-                                <input type="hidden" name="status" value="rejected">
-                                <button type="submit" class="btn btn-danger">{{\App\CPU\translate('reject')}}</button>
-                            </form>
-                        </div>
-                    </div>
-                @endif
+                </h3>
             </div>
         </div>
         <!-- End Page Header -->
@@ -67,7 +45,28 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            
+                            @if ($seller->status=="pending")
+                                <div class="mt-4 pr-2 float-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}">
+                                    <div class="flex-start">
+                                        <h4 class="mx-1"><i class="tio-shop-outlined"></i></h4>
+                                        <div><h4>{{\App\CPU\translate('Seller_request_for_open_a_shop.')}}</h4></div>
+                                    </div>
+                                    <div class="text-center">
+                                        <form class="d-inline-block" action="{{route('admin.sellers.updateStatus')}}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{$seller->id}}">
+                                            <input type="hidden" name="status" value="approved">
+                                            <button type="submit" class="btn btn-primary">{{\App\CPU\translate('Approve')}}</button>
+                                        </form>
+                                        <form class="d-inline-block" action="{{route('admin.sellers.updateStatus')}}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{$seller->id}}">
+                                            <input type="hidden" name="status" value="rejected">
+                                            <button type="submit" class="btn btn-danger">{{\App\CPU\translate('reject')}}</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
