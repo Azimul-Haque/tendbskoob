@@ -218,11 +218,13 @@ class SellerController extends Controller
             $seller->image = $filename;
         }
         $seller->email = $request->email;
-        $seller->password = bcrypt($request->password);
-        $seller->status = "pending";
+        if($request->password) {
+            $seller->password = bcrypt($request->password);
+        }
+        // $seller->status = "pending";
         $seller->save();
 
-        Toastr::success('Publication applied successfully!');
+        Toastr::success('Publication updated successfully!');
         return redirect()->route('seller.auth.login');
 
     }
