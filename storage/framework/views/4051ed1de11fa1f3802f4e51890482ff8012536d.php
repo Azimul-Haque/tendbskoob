@@ -189,8 +189,8 @@
                             <small class="nav-subtitle"><?php echo e(\App\CPU\translate('book_management')); ?></small>
                             <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                         </li>
-                        <li class="nav-item <?php echo e(Request::is('admin/product/list/seller/0')?'active':''); ?>">
-                            <a class="nav-link " href="<?php echo e(route('admin.product.list',['seller', 'status'=>'0'])); ?>">
+                        <li class="nav-item <?php echo e((Request::is('seller/product*'))?'active':''); ?>">
+                            <a class="nav-link " href="<?php echo e(route('seller.product.list')); ?>">
                                 <i class="tio-book nav-icon"></i>
                                 <span class="text-truncate"><?php echo e(\App\CPU\translate('Seller')); ?> <?php echo e(\App\CPU\translate('Books')); ?></span>
                             </a>

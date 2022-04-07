@@ -179,7 +179,7 @@
                             <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                         </li>
                         <li class="nav-item {{(Request::is('seller/product*'))?'active':''}}">
-                            <a class="nav-link " href="{{route('admin.product.list',['seller', 'status'=>'0'])}}">
+                            <a class="nav-link " href="{{route('seller.product.list')}}">
                                 <i class="tio-book nav-icon"></i>
                                 <span class="text-truncate">{{\App\CPU\translate('Seller')}} {{\App\CPU\translate('Books')}}</span>
                             </a>
