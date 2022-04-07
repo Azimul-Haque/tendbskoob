@@ -25,7 +25,7 @@
             <div>
                 <h3>
                     Seller Status: 
-                    @if ($seller->status=="active")
+                    @if ($seller->status=="approved")
                         <span class="badge badge-success">Active</span>
                     @elseif ($seller->status=="pending")
                         <span class="badge badge-info">Pending</span>

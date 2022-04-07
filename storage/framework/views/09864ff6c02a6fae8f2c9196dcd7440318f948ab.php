@@ -23,7 +23,7 @@
             <div>
                 <h3>
                     Seller Status: 
-                    <?php if($seller->status=="active"): ?>
+                    <?php if($seller->status=="approved"): ?>
                         <span class="badge badge-success">Active</span>
                     <?php elseif($seller->status=="pending"): ?>
                         <span class="badge badge-info">Pending</span>
