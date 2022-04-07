@@ -23,6 +23,7 @@
                 <a href="{{route('admin.sellers.seller-list')}}" class="btn btn-primary mt-3 mb-3">{{\App\CPU\translate('Back_to_seller_list')}}</a>
             </div>
             <div>
+                Seller Status: 
                 @if ($seller->status=="pending")
                     <div class="mt-4 pr-2 float-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}">
                         <div class="flex-start">
