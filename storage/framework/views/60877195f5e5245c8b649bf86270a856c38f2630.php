@@ -77,7 +77,7 @@
 
                                             </a>
                                             <a class="btn btn-success"
-                                               href="<?php echo e(route('admin.sellers.view',$seller->id)); ?>">
+                                               href="<?php echo e(route('admin.sellers.edit',$seller->id)); ?>">
                                                 <i class="tio-edit nav-icon"></i> <?php echo e(\App\CPU\translate('Edit')); ?>
 
                                             </a>

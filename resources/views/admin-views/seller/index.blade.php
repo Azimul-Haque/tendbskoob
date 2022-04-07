@@ -91,7 +91,7 @@
                                                 {{\App\CPU\translate('View')}}
                                             </a>
                                             <a class="btn btn-success"
-                                               href="{{route('admin.sellers.view',$seller->id)}}">
+                                               href="{{route('admin.sellers.edit',$seller->id)}}">
                                                 <i class="tio-edit nav-icon"></i> {{\App\CPU\translate('Edit')}}
                                             </a>
                                         </td>

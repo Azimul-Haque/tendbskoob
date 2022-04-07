@@ -54,6 +54,7 @@ class RegisterController extends Controller
             $seller->status = "pending";
             $seller->save();
 
+            // 
             // $shop = new Shop();
             // $shop->seller_id = $seller->id;
             // $shop->name = $request->shop_name;
