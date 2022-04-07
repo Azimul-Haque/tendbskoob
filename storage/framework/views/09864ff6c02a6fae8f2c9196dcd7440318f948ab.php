@@ -49,7 +49,7 @@
                                 <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
                                 <input type="hidden" name="status" value="approved">
                                 <div class="form-group">
-                                    <label for="publisher_id"><?php echo e(\App\CPU\translate('Publication')); ?> *</label>
+                                    <label for="publisher_id"><?php echo e(\App\CPU\translate('Publication')); ?></label>
                                     <select
                                         class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id" id="publisher_id" required>
                                         <option value="<?php echo e(old('publisher_id')); ?>" selected disabled>Select Publication</option>
@@ -137,6 +137,15 @@
             readBannerURL(this);
         });
 
+        $(".js-example-theme-single").select2({
+            theme: "classic"
+        });
+
+        $(".js-example-responsive").select2({
+            // dir: "rtl",
+            width: 'resolve'
+        });
+        
         $("#publisher_id").select2({
             placeholder: "Select Publication",
         });
