@@ -69,7 +69,7 @@
                                             {!! $seller->status=='approved'?'<label class="badge badge-success">Active</label>':'<label class="badge badge-danger">In-Active</label>' !!}
                                         </td>
                                         <td scope="col">
-                                            {{$seller->collection_point}}
+                                            {{ $seller->publisher }}
                                         </td>
                                         <td scope="col">কালেকশন পয়েন্টঃ {{$seller->collection_point}}<br/>
                                             {{ $seller->payment_number }}, {{ $seller->payment_option }}</td>
