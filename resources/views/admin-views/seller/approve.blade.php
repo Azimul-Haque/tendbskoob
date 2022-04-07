@@ -64,12 +64,12 @@
                                     </div>
                                     <button type="submit" class="btn btn-primary">{{\App\CPU\translate('Approve')}}</button>
                                 </form>
-                            {{-- <form class="d-inline-block" action="{{route('admin.sellers.updateStatus')}}" method="POST">
-                                @csrf
-                                <input type="hidden" name="id" value="{{$seller->id}}">
-                                <input type="hidden" name="status" value="rejected">
-                                <button type="submit" class="btn btn-danger">{{\App\CPU\translate('reject')}}</button>
-                            </form> --}}
+                                <form class="" action="{{route('admin.sellers.updateStatus')}}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{$seller->id}}">
+                                    <input type="hidden" name="status" value="rejected">
+                                    <button type="submit" class="btn btn-danger">{{\App\CPU\translate('reject')}}</button>
+                                </form>
                             @endif
                         </div>
                     </div>

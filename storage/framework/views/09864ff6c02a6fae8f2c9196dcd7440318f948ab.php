@@ -44,25 +44,30 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <?php if($seller->status=="pending"): ?>
-                            <form class="d-inline-block" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
-                                <?php echo csrf_field(); ?>
-                                <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
-                                <input type="hidden" name="status" value="approved">
-                                <div class="form-group">
-                                    <label for="publisher_id">পাবলিকেশার সেট করু ন</label><br/>
-                                    <select
-                                        class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id" id="publisher_id" required>
-                                        <option value="<?php echo e(old('publisher_id')); ?>" selected disabled>Select Publication</option>
-                                        <?php $__currentLoopData = $publishers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $publisher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($publisher['id']); ?>" <?php echo e(old('name_bangla')==$publisher['id']? 'selected': ''); ?>>
-                                                <?php echo e($publisher['name_bangla']); ?> (<?php echo e($publisher['name']); ?>)
-                                            </option>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn btn-primary"><?php echo e(\App\CPU\translate('Approve')); ?></button>
-                            </form>
-                            
+                                <form class="d-inline-block" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
+                                    <?php echo csrf_field(); ?>
+                                    <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
+                                    <input type="hidden" name="status" value="approved">
+                                    <div class="form-group">
+                                        <label for="publisher_id">পাবলিকেশার সেট করুন</label><br/>
+                                        <select
+                                            class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id" id="publisher_id" required>
+                                            <option value="<?php echo e(old('publisher_id')); ?>" selected disabled>Select Publication</option>
+                                            <?php $__currentLoopData = $publishers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $publisher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($publisher['id']); ?>" <?php echo e(old('name_bangla')==$publisher['id']? 'selected': ''); ?>>
+                                                    <?php echo e($publisher['name_bangla']); ?> (<?php echo e($publisher['name']); ?>)
+                                                </option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary"><?php echo e(\App\CPU\translate('Approve')); ?></button>
+                                </form>
+                                <form class="" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
+                                    <?php echo csrf_field(); ?>
+                                    <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
+                                    <input type="hidden" name="status" value="rejected">
+                                    <button type="submit" class="btn btn-danger"><?php echo e(\App\CPU\translate('reject')); ?></button>
+                                </form>
                             <?php endif; ?>
                         </div>
                     </div>
