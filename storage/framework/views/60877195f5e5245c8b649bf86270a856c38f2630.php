@@ -72,7 +72,7 @@
                                         
                                         <td>
                                             <a class="btn btn-primary"
-                                               href="<?php echo e(route('admin.sellers.view',$seller->id)); ?>">
+                                               href="<?php echo e(route('admin.sellers.approvalpage', $seller->id)); ?>">
                                                <?php echo e(\App\CPU\translate('Approve')); ?>
 
                                             </a>
