@@ -186,6 +186,7 @@ class SellerController extends Controller
 
     public function update(Request $request, $id)
     {
+        $seller = Seller::findOrFail($id);
         $this->validate($request, [
             'name'             => 'required|max:100',
             'address'          => 'required|max:150',
@@ -198,7 +199,6 @@ class SellerController extends Controller
             'password'         => 'sometimes|confirmed',
         ]);
 
-        $seller = Seller::findOrFail($id);
         $seller->name = $request->name;
         $seller->address = $request->address;
         $seller->description = $request->description;
