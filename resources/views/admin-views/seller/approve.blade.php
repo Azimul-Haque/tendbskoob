@@ -67,7 +67,7 @@
                                     <button type="submit" class="btn btn-primary">{{\App\CPU\translate('Approve')}}</button>
                                 </form>
 
-                                @if ($seller->status=="rejected" || $seller->status=="suspended")
+                                @if ($seller->status != "rejected")
                                     <br/><br/>
                                     অথবা, রিজেক্ট করতে চাইলে নিচের বাটনে ক্লিক করুন<br/>
                                     <a class="btn btn-danger" href="javascript:"
