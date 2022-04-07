@@ -11,6 +11,7 @@
                 <li class="breadcrumb-item"><a href="<?php echo e(route('admin.dashboard.index')); ?>"><?php echo e(\App\CPU\translate('Dashboard')); ?></a>
                 </li>
                 <li class="breadcrumb-item" aria-current="page"><?php echo e(\App\CPU\translate('Seller_Edit')); ?></li>
+                <li class="breadcrumb-item" aria-current="page"><?php echo e($seller->name); ?></li>
             </ol>
         </nav>
 
@@ -134,10 +135,6 @@
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-user btn-block" id="apply">দাখিল করুন</button>
                                 </form>
-                                <hr>
-                                <div class="text-center mt-4">
-                                    আমাদের সাথে একাউন্ট আছে?  <a href="<?php echo e(route('seller.auth.login')); ?>" style="color: #339B38 !important;">সাইন ইন</a>
-                                </div>
                             </div>
                         </div>
                     </div>
