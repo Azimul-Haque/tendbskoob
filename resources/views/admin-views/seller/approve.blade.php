@@ -47,7 +47,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            @if ($seller->status=="pending")
+                            @if ($seller->status=="pending" || $seller->status=="rejected" || $seller->status=="rejected")
                                 <form class="d-inline-block" action="{{route('admin.sellers.updateStatus')}}" method="POST">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$seller->id}}">
