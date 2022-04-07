@@ -10,7 +10,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?php echo e(route('admin.dashboard.index')); ?>"><?php echo e(\App\CPU\translate('Dashboard')); ?></a>
                 </li>
-                <li class="breadcrumb-item" aria-current="page"><?php echo e(\App\CPU\translate('Seller_Details')); ?></li>
+                <li class="breadcrumb-item" aria-current="page"><?php echo e(\App\CPU\translate('Seller_Edit')); ?></li>
             </ol>
         </nav>
 
@@ -48,7 +48,7 @@
     <div class="page-header">
         <div class="flex-between row mx-1">
             <div>
-                <h1 class="page-header-title"><?php echo e($seller->shop? $seller->shop->name : "Shop Name : Update Please"); ?></h1>
+                <h1 class="page-header-title"><?php echo e($seller->name? $seller->name : "Shop Name : Update Please"); ?></h1>
             </div>
         </div>
         <!-- Nav Scroller -->
