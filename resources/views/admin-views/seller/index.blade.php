@@ -88,7 +88,7 @@
                                         <td>
                                             <a class="btn btn-primary"
                                                href="{{route('admin.sellers.view',$seller->id)}}">
-                                               <i class="tio-check nav-icon"></i> {{\App\CPU\translate('Approve')}}
+                                               {{\App\CPU\translate('Approve')}}
                                             </a>
                                             {{-- <a class="btn btn-primary"
                                                href="{{route('admin.sellers.view',$seller->id)}}">
