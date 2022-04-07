@@ -65,7 +65,7 @@
                                     <button type="submit" class="btn btn-primary"><?php echo e(\App\CPU\translate('Approve')); ?></button>
                                 </form>
 
-                                <?php if($seller->status != "rejected"): ?>
+                                <?php if($seller->status == "pending"): ?>
                                     <br/><br/>
                                     অথবা, রিজেক্ট করতে চাইলে নিচের বাটনে ক্লিক করুন<br/>
                                     <a class="btn btn-danger" href="javascript:"
