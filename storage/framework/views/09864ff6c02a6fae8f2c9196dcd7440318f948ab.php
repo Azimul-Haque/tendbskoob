@@ -45,7 +45,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <?php if($seller->status=="pending"): ?>
+                            <?php if($seller->status=="pending" || $seller->status=="rejected" || $seller->status=="suspended"): ?>
                                 <form class="d-inline-block" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
                                     <?php echo csrf_field(); ?>
                                     <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">

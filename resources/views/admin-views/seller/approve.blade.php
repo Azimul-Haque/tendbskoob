@@ -47,7 +47,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            @if ($seller->status=="pending" || $seller->status=="rejected" || $seller->status=="rejected")
+                            @if ($seller->status=="pending" || $seller->status=="rejected" || $seller->status=="suspended")
                                 <form class="d-inline-block" action="{{route('admin.sellers.updateStatus')}}" method="POST">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$seller->id}}">
@@ -66,18 +66,21 @@
                                     </div>
                                     <button type="submit" class="btn btn-primary">{{\App\CPU\translate('Approve')}}</button>
                                 </form>
-                                <br/><br/>
-                                অথবা, রিজেক্ট করতে চাইলে নিচের বাটনে ক্লিক করুন<br/>
-                                <a class="btn btn-danger" href="javascript:"
-                                onclick="form_alert('seller-{{$seller['id']}}','নিশ্চিতভাবে এই সেলারকে রিজেক্ট করতে চান?')">
-                                    <i class="tio-add-to-trash"></i> {{\App\CPU\translate('Reject')}}
-                                </a>
-                                <form class="" id="seller-{{$seller['id']}}" action="{{route('admin.sellers.updateStatus')}}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="id" value="{{$seller->id}}">
-                                    <input type="hidden" name="status" value="rejected">
-                                    {{-- <button type="submit" class="btn btn-danger">{{\App\CPU\translate('reject')}}</button> --}}
-                                </form>
+
+                                @if ($seller->status=="rejected" || $seller->status=="suspended")
+                                    <br/><br/>
+                                    অথবা, রিজেক্ট করতে চাইলে নিচের বাটনে ক্লিক করুন<br/>
+                                    <a class="btn btn-danger" href="javascript:"
+                                    onclick="form_alert('seller-{{$seller['id']}}','নিশ্চিতভাবে এই সেলারকে রিজেক্ট করতে চান?')">
+                                        <i class="tio-add-to-trash"></i> {{\App\CPU\translate('Reject')}}
+                                    </a>
+                                    <form class="" id="seller-{{$seller['id']}}" action="{{route('admin.sellers.updateStatus')}}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{$seller->id}}">
+                                        <input type="hidden" name="status" value="rejected">
+                                        {{-- <button type="submit" class="btn btn-danger">{{\App\CPU\translate('reject')}}</button> --}}
+                                    </form>
+                                @endif
                             @endif
                         </div>
                     </div>
