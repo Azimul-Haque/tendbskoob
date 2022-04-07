@@ -46,24 +46,24 @@
                     <div class="row">
                         <div class="col-lg-12">
                             @if ($seller->status=="pending")
-                            <form class="d-inline-block" action="{{route('admin.sellers.updateStatus')}}" method="POST">
-                                @csrf
-                                <input type="hidden" name="id" value="{{$seller->id}}">
-                                <input type="hidden" name="status" value="approved">
-                                <div class="form-group">
-                                    <label for="publisher_id">{{\App\CPU\translate('Publication')}}</label><br/>
-                                    <select
-                                        class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id" id="publisher_id" required>
-                                        <option value="{{ old('publisher_id') }}" selected disabled>Select Publication</option>
-                                        @foreach($publishers as $publisher)
-                                            <option value="{{ $publisher['id'] }}" {{ old('name_bangla')==$publisher['id']? 'selected': '' }}>
-                                                {{ $publisher['name_bangla'] }} ({{ $publisher['name'] }})
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn btn-primary">{{\App\CPU\translate('Approve')}}</button>
-                            </form>
+                                <form class="d-inline-block" action="{{route('admin.sellers.updateStatus')}}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{$seller->id}}">
+                                    <input type="hidden" name="status" value="approved">
+                                    <div class="form-group">
+                                        <label for="publisher_id">পাবলিকেশার সেট করুন</label><br/>
+                                        <select
+                                            class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id" id="publisher_id" required>
+                                            <option value="{{ old('publisher_id') }}" selected disabled>Select Publication</option>
+                                            @foreach($publishers as $publisher)
+                                                <option value="{{ $publisher['id'] }}" {{ old('name_bangla')==$publisher['id']? 'selected': '' }}>
+                                                    {{ $publisher['name_bangla'] }} ({{ $publisher['name'] }})
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">{{\App\CPU\translate('Approve')}}</button>
+                                </form>
                             {{-- <form class="d-inline-block" action="{{route('admin.sellers.updateStatus')}}" method="POST">
                                 @csrf
                                 <input type="hidden" name="id" value="{{$seller->id}}">

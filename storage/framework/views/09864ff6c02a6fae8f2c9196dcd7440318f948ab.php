@@ -49,7 +49,7 @@
                                 <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
                                 <input type="hidden" name="status" value="approved">
                                 <div class="form-group">
-                                    <label for="publisher_id"><?php echo e(\App\CPU\translate('Publication')); ?></label><br/>
+                                    <label for="publisher_id">পাবলিকেশার সেট করু ন</label><br/>
                                     <select
                                         class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id" id="publisher_id" required>
                                         <option value="<?php echo e(old('publisher_id')); ?>" selected disabled>Select Publication</option>
