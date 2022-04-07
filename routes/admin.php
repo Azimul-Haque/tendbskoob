@@ -219,6 +219,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as' => 'admin.'], fu
             Route::get('view/{id}/{tab?}', 'SellerController@view')->name('view');
             Route::get('edit/{id}', 'SellerController@edit')->name('edit');
             Route::put('update/{id}', 'SellerController@update')->name('update');
+            Route::get('approval/page/{id}', 'SellerController@approvalPage')->name('approvalpage');
             Route::post('update-status', 'SellerController@updateStatus')->name('updateStatus');
             Route::post('withdraw-status/{id}', 'SellerController@withdrawStatus')->name('withdraw_status');
             Route::get('withdraw_list', 'SellerController@withdraw')->name('withdraw_list');

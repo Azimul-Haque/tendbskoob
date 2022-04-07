@@ -87,7 +87,7 @@
                                         </td> --}}
                                         <td>
                                             <a class="btn btn-primary"
-                                               href="{{route('admin.sellers.view',$seller->id)}}">
+                                               href="{{route('admin.sellers.approvalpage', $seller->id)}}">
                                                {{\App\CPU\translate('Approve')}}
                                             </a>
                                             {{-- <a class="btn btn-primary"
