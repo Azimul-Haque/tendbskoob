@@ -197,7 +197,7 @@ class SellerController extends Controller
         ]);
 
         DB::transaction(function ($r) use ($request) {
-            $seller = new Seller();
+            $seller = Seller::findOrFail($id);
             $seller->name = $request->name;
             $seller->address = $request->address;
             $seller->description = $request->description;
