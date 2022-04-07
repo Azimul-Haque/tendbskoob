@@ -67,7 +67,7 @@
 
                                         </td>
                                         <td scope="col">
-                                            <?php echo e($seller->publisher); ?>
+                                            <?php echo e($seller->publisher->name_bangla); ?>
 
                                         </td>
                                         <td scope="col">কালেকশন পয়েন্টঃ <?php echo e($seller->collection_point); ?><br/>
