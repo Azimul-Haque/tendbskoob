@@ -232,6 +232,7 @@ class SellerController extends Controller
     public function approvalPage($seller_id)
     {
         $seller = Seller::findOrFail($seller_id);
+        $categories = Category::where(['parent_id' => 0])->get();
         return view('admin-views.seller.approve', compact('seller'));
     }
 
