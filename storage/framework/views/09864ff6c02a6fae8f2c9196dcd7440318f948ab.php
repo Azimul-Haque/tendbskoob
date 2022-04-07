@@ -80,6 +80,20 @@
                                         
                                     </form>
                                 <?php endif; ?>
+                            <?php elseif($seller->status == 'approved'): ?>
+                                সাসপেন্ড করুন
+                                <a class="btn btn-danger" href="javascript:"
+                                onclick="form_alert('seller-<?php echo e($seller['id']); ?>','নিশ্চিতভাবে এই সেলারকে রিজেক্ট করতে চান?')">
+                                    <i class="tio-add-to-trash"></i> <?php echo e(\App\CPU\translate('Reject')); ?>
+
+                                </a>
+                                <form class="d-inline-block" action="<?php echo e(route('admin.sellers.updateStatus')); ?>" method="POST">
+                                    <?php echo csrf_field(); ?>
+                                    <input type="hidden" name="id" value="<?php echo e($seller->id); ?>">
+                                    <input type="hidden" name="status" value="suspended">
+                                    <button type="submit"
+                                            class="btn btn-outline-danger"><?php echo e(\App\CPU\translate('suspend')); ?></button>
+                                </form>
                             <?php endif; ?>
                         </div>
                     </div>
