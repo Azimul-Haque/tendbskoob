@@ -88,8 +88,12 @@
                                         <td>
                                             <a class="btn btn-primary"
                                                href="{{route('admin.sellers.view',$seller->id)}}">
-                                                {{\App\CPU\translate('View')}}
+                                               <i class="tio-check nav-icon"></i> {{\App\CPU\translate('Approve')}}
                                             </a>
+                                            {{-- <a class="btn btn-primary"
+                                               href="{{route('admin.sellers.view',$seller->id)}}">
+                                                {{\App\CPU\translate('View')}}
+                                            </a> --}}
                                             <a class="btn btn-success"
                                                href="{{route('admin.sellers.edit',$seller->id)}}">
                                                 <i class="tio-edit nav-icon"></i> {{\App\CPU\translate('Edit')}}

@@ -73,9 +73,10 @@
                                         <td>
                                             <a class="btn btn-primary"
                                                href="<?php echo e(route('admin.sellers.view',$seller->id)); ?>">
-                                                <?php echo e(\App\CPU\translate('View')); ?>
+                                               <i class="tio-check nav-icon"></i> <?php echo e(\App\CPU\translate('Approve')); ?>
 
                                             </a>
+                                            
                                             <a class="btn btn-success"
                                                href="<?php echo e(route('admin.sellers.edit',$seller->id)); ?>">
                                                 <i class="tio-edit nav-icon"></i> <?php echo e(\App\CPU\translate('Edit')); ?>
