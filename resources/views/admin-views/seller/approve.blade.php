@@ -156,5 +156,21 @@
         $("#publisher_id").select2({
             placeholder: "Select Publication",
         });
+        $(document).ready(function () {
+            // color select select2
+            $('.color-var-select').select2({
+                templateResult: colorCodeSelect,
+                templateSelection: colorCodeSelect,
+                escapeMarkup: function (m) {
+                    return m;
+                }
+            });
+
+            function colorCodeSelect(state) {
+                var colorCode = $(state.element).val();
+                if (!colorCode) return state.text;
+                return "<span class='color-preview' style='background-color:" + colorCode + ";'></span>" + state.text;
+            }
+        });
     </script>
 @endpush
