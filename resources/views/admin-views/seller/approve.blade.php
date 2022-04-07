@@ -81,7 +81,7 @@
                                         {{-- <button type="submit" class="btn btn-danger">{{\App\CPU\translate('reject')}}</button> --}}
                                     </form>
                                 @endif
-                            @elseif ($seller->)
+                            @elseif ($seller->s)
                             @endif
                         </div>
                     </div>
