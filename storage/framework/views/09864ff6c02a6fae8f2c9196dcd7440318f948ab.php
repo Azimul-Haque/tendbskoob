@@ -41,7 +41,7 @@
                 <div class=" gx-2 gx-lg-3 mb-2">
                     <div>
                         <h4><i style="font-size: 30px"
-                               class="tio-edit"></i><?php echo e(\App\CPU\translate('Seller_Approve')); ?></h4>
+                               class="tio-edit"></i>সেলার এক্টিভেশন/সাসপেনশন পাতা</h4>
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
