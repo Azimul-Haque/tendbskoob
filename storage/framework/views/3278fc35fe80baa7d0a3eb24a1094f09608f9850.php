@@ -53,46 +53,16 @@
                                class="tio-edit"></i><?php echo e(\App\CPU\translate('Seller_Edit')); ?></h4>
                     </div>
                     <div class="row">
-                    <!-- Earnings (Monthly) Card Example -->
-                    <div class="col-xl-6 for-card col-md-6 mt-4">
-                        <div class="card for-card-body-2 shadow h-100  badge-primary"
-                             style="background: #362222!important;">
-                            <div class="card-body text-light">
-                                <div class="flex-between row no-gutters align-items-center">
-                                    <div>
-                                        <div class="font-weight-bold text-uppercase for-card-text mb-1">
-                                            <?php echo e(\App\CPU\translate('Withdrawable_balance')); ?>
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-6 for-card col-md-6 mt-4">
+                            s
+                        </div>
 
-                                        </div>
-                                        <div
-                                            class="for-card-count"><?php echo e($seller->wallet ? \App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($seller->wallet->total_earning)) : 0); ?></div>
-                                    </div>
-
-                                </div>
-                            </div>
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-6 for-card col-md-6 mt-4" style="cursor: pointer">
+                            s
                         </div>
                     </div>
-
-                    <!-- Earnings (Monthly) Card Example -->
-                    <div class="col-xl-6 for-card col-md-6 mt-4" style="cursor: pointer">
-                        <div class="card  shadow h-100 for-card-body-3 badge-info"
-                             style="background: #171010!important;">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div
-                                            class=" font-weight-bold for-card-text text-uppercase mb-1"><?php echo e(\App\CPU\translate('withdrawn')); ?></div>
-                                        <div
-                                            class="for-card-count"><?php echo e($seller->wallet ? \App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($seller->wallet->withdrawn)) : 0); ?></div>
-                                    </div>
-                                    <div class="col-auto for-margin">
-                                        <i class="tio-money-vs"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 </div>
 
             </div>
