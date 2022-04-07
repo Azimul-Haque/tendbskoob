@@ -82,11 +82,11 @@
                                     <option value="{{ auth('seller')->publisher ? auth('seller')->publisher->id : '' }}" selected disabled>
                                         {{ auth('seller')->publisher ? auth('seller')->publisher->name_bangla : '' }}
                                     </option>
-                                    @foreach($publishers as $publisher)
+                                    {{-- @foreach($publishers as $publisher)
                                         <option value="{{ $publisher['id'] }}" {{ old('name_bangla')==$publisher['id']? 'selected': '' }}>
                                             {{ $publisher['name_bangla'] }} ({{ $publisher['name'] }})
                                         </option>
-                                    @endforeach
+                                    @endforeach --}}
                                 </select>
                             </div>
                             <div class="form-group">

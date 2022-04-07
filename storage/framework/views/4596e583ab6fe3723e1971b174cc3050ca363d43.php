@@ -43,11 +43,7 @@
                                         <?php echo e(auth('seller')->publisher ? auth('seller')->publisher->name_bangla : ''); ?>
 
                                     </option>
-                                    <?php $__currentLoopData = $publishers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $publisher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <option value="<?php echo e($publisher['id']); ?>" <?php echo e(old('name_bangla')==$publisher['id']? 'selected': ''); ?>>
-                                            <?php echo e($publisher['name_bangla']); ?> (<?php echo e($publisher['name']); ?>)
-                                        </option>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    
                                 </select>
                             </div>
                             <div class="form-group">
