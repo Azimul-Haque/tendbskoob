@@ -165,17 +165,18 @@ class SellerController extends Controller
 
     public function updateStatus(Request $request)
     {
-        $order = Seller::findOrFail($request->id);
-        $order->status = $request->status;
+        $seller = Seller::findOrFail($request->id);
+        $seller->status = $request->status;
         if ($request->status == "approved") {
+            $seller->publisher_id = $request->publisher_id;
             Toastr::success('Seller has been approved successfully');
         } else if ($request->status == "rejected") {
             Toastr::info('Seller has been rejected successfully');
         } else if ($request->status == "suspended") {
-            $order->auth_token = Str::random(80);
+            $seller->auth_token = Str::random(80);
             Toastr::info('Seller has been suspended successfully');
         }
-        $order->save();
+        $seller->save();
         return back();
     }
 
