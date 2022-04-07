@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Order;
 use App\Model\OrderDetail;
 use App\Model\Product;
-use App\Model\Category;
+use App\Model\Publisher;
 use App\Model\Seller;
 use App\Model\WithdrawRequest;
 use App\Model\SellerWallet;
@@ -233,8 +233,8 @@ class SellerController extends Controller
     public function approvalPage($seller_id)
     {
         $seller = Seller::findOrFail($seller_id);
-        $categories = Category::where(['parent_id' => 0])->get();
-        return view('admin-views.seller.approve', compact('seller', 'categories'));
+        $publishers = Publisher::get();
+        return view('admin-views.seller.approve', compact('seller', 'publishers'));
     }
 
     public function order_list($seller_id)
