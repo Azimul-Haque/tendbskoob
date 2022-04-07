@@ -39,7 +39,7 @@
                                 <label for="publisher_id"><?php echo e(\App\CPU\translate('Publication')); ?> *</label>
                                 <select
                                     class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id" id="publisher_id" required>
-                                    <?php echo e(auth('seller')->publisher()); ?>
+                                    <?php echo e(auth('seller')->publisher); ?>
 
                                     
                                     
