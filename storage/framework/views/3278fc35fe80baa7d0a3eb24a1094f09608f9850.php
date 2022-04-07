@@ -72,7 +72,7 @@
                                             <div class="form-group">
                                                 <div class="custom-file" style="text-align: left">
                                                     <input type="file" name="image" id="customFileUpload" class="custom-file-input"
-                                                        accept=".jpg, .png, .jpeg, .gif, .bmp, .bmp, .tiff|image/*" required>
+                                                        accept=".jpg, .png, .jpeg, .gif, .bmp, .bmp, .tiff|image/*">
                                                     <label class="custom-file-label" for="customFileUpload"><?php echo e(\App\CPU\translate('Upload')); ?> <?php echo e(\App\CPU\translate('image')); ?></label>
                                                 </div>
                                             </div>
@@ -81,7 +81,7 @@
                                     <div class="form-group row">
                                         <div class="col-md-8 mb-3 mb-sm-0 mt-0">
                                             <label for="description">আপনার প্রকাশনী সম্পর্কে কিছু বলুন</label><br/>
-                                            <textarea name="description" id="description" style="width: 100%; height: 220px;" placeholder="আপনার প্রকাশনী সম্পর্কে কিছু বলুন" required></textarea>
+                                            <textarea name="description" id="description" style="width: 100%; height: 220px;" placeholder="আপনার প্রকাশনী সম্পর্কে কিছু বলুন" required><?php echo e($seller->description); ?></textarea>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="row">
