@@ -77,7 +77,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="publisher_id">{{\App\CPU\translate('Publication')}} *</label>
-                                {{ auth('seller') }}
+                                {{ Auth::user()->id }}
                                 <select
                                     class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id" id="publisher_id" required>
                                     
