@@ -195,7 +195,7 @@ class SellerController extends Controller
             'payment_number'   => 'required',
             'payment_option'   => 'required',
             'email'            => 'required|unique:sellers',
-            'password'         => 'sometimes|confirmed|min:6',
+            'password'         => 'sometimes|confirmed',
         ]);
 
         $seller = Seller::findOrFail($id);
