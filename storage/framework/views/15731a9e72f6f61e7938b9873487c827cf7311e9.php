@@ -77,7 +77,7 @@
                                         <td>
                                             <a class="btn btn-primary"
                                                href="<?php echo e(route('admin.sellers.approvalpage', $seller->id)); ?>">
-                                                <?php if($seller->status=="active"): ?>
+                                                <?php if($seller->status=="approved"): ?>
                                                     <?php echo e(\App\CPU\translate('Suspend')); ?>
 
                                                 <?php elseif($seller->status=="pending"): ?>
@@ -90,7 +90,6 @@
                                                     <?php echo e(\App\CPU\translate('Approve')); ?>
 
                                                 <?php endif; ?>
-                                               
                                             </a>
                                             
                                             <a class="btn btn-success"

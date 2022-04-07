@@ -91,7 +91,7 @@
                                         <td>
                                             <a class="btn btn-primary"
                                                href="{{route('admin.sellers.approvalpage', $seller->id)}}">
-                                                @if ($seller->status=="active")
+                                                @if ($seller->status=="approved")
                                                     {{\App\CPU\translate('Suspend')}}
                                                 @elseif ($seller->status=="pending")
                                                     {{\App\CPU\translate('Approve')}}

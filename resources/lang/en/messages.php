@@ -1493,4 +1493,5 @@
   'Seller_Approve' => 'Seller Approve',
   'Add Book' => 'Add Book',
   'Reject' => 'Reject',
+  'Suspend' => 'Suspend',
 );
