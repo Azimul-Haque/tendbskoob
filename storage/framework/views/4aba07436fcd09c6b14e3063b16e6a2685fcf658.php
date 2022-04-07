@@ -43,7 +43,7 @@
                             <!-- End Search -->
                         </div>
                         <div>
-                            <a href="<?php echo e(route('admin.product.add-new')); ?>" class="btn btn-primary  float-right">
+                            <a href="<?php echo e(route('seller.product.add-new')); ?>" class="btn btn-primary  float-right">
                                 <i class="tio-add-circle"></i>
                                 <span class="text"><?php echo e(\App\CPU\translate('Add New Book')); ?></span>
                             </a>

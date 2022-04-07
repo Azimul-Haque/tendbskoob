@@ -45,7 +45,7 @@
                             <!-- End Search -->
                         </div>
                         <div>
-                            <a href="{{route('admin.product.add-new')}}" class="btn btn-primary  float-right">
+                            <a href="{{route('seller.product.add-new')}}" class="btn btn-primary  float-right">
                                 <i class="tio-add-circle"></i>
                                 <span class="text">{{\App\CPU\translate('Add New Book')}}</span>
                             </a>
