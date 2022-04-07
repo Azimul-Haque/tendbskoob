@@ -319,7 +319,7 @@
                                    href="javascript:">
                                     <i class="tio-airdrop nav-icon"></i>
                                     <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                        <?php echo e(\App\CPU\translate('Seller')); ?> <?php echo e(\App\CPU\translate('Products')); ?>
+                                        <?php echo e(\App\CPU\translate('Seller')); ?> <?php echo e(\App\CPU\translate('Books')); ?>
 
                                     </span>
                                 </a>

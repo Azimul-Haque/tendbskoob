@@ -358,7 +358,7 @@
                                    href="javascript:">
                                     <i class="tio-airdrop nav-icon"></i>
                                     <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                        {{\App\CPU\translate('Seller')}} {{\App\CPU\translate('Products')}}
+                                        {{\App\CPU\translate('Seller')}} {{\App\CPU\translate('Books')}}
                                     </span>
                                 </a>
                                 <ul class="js-navbar-vertical-aside-submenu nav nav-sub"
