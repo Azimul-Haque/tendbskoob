@@ -175,7 +175,7 @@
                         <!-- End Pages -->
 
                         <li class="nav-item">
-                            <small class="nav-subtitle">{{\App\CPU\translate('product_management')}}</small>
+                            <small class="nav-subtitle">{{\App\CPU\translate('book_management')}}</small>
                             <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                         </li>
 
