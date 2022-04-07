@@ -265,7 +265,7 @@ class ProductController extends Controller
         $query_param = [];
         $search = $request['search'];
         $orderby = $request['orderby'] ? $request['orderby'] : 'asc';
-        
+
         if ($request->has('search')) {
             $key = explode(' ', $request['search']);
             $pro = Product::where(['added_by' => 'seller', 'user_id' => \auth('seller')->id()])
@@ -280,6 +280,11 @@ class ProductController extends Controller
         }
         $pro = $pro->orderBy('id', 'DESC')->paginate(Helpers::pagination_limit())->appends($query_param);
 
+        if($orderby == 'asc') {
+            $pro->sortBy('publisher.name_bangla');
+        } else {
+            $pro->sortByDesc('publisher.name_bangla');
+        }
         return view('seller-views.product.list', compact('pro', 'search'));
     }
 
