@@ -163,23 +163,6 @@ class SellerController extends Controller
         return view('admin-views.seller.view', compact('seller'));
     }
 
-    public function updateStatus(Request $request)
-    {
-        $seller = Seller::findOrFail($request->id);
-        $seller->status = $request->status;
-        if ($request->status == "approved") {
-            $seller->publisher_id = $request->publisher_id;
-            Toastr::success('Seller has been approved successfully');
-        } else if ($request->status == "rejected") {
-            Toastr::info('Seller has been rejected successfully');
-        } else if ($request->status == "suspended") {
-            $seller->auth_token = Str::random(80);
-            Toastr::info('Seller has been suspended successfully');
-        }
-        $seller->save();
-        return redirect()->route('admin.sellers.seller-list');
-    }
-
     public function edit($seller_id)
     {
         $seller = Seller::findOrFail($seller_id);
@@ -235,6 +218,23 @@ class SellerController extends Controller
         $seller = Seller::findOrFail($seller_id);
         $publishers = Publisher::get();
         return view('admin-views.seller.approve', compact('seller', 'publishers'));
+    }
+
+    public function updateStatus(Request $request)
+    {
+        $seller = Seller::findOrFail($request->id);
+        $seller->status = $request->status;
+        if ($request->status == "approved") {
+            $seller->publisher_id = $request->publisher_id;
+            Toastr::success('Seller has been approved successfully');
+        } else if ($request->status == "rejected") {
+            Toastr::info('Seller has been rejected successfully');
+        } else if ($request->status == "suspended") {
+            $seller->auth_token = Str::random(80);
+            Toastr::info('Seller has been suspended successfully');
+        }
+        $seller->save();
+        return redirect()->route('admin.sellers.seller-list');
     }
 
     public function order_list($seller_id)
