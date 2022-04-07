@@ -178,6 +178,12 @@
                             <small class="nav-subtitle">{{\App\CPU\translate('book_management')}}</small>
                             <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                         </li>
+                        <li class="nav-item {{Request::is('admin/product/list/seller/0')?'active':''}}">
+                            <a class="nav-link " href="{{route('admin.product.list',['seller', 'status'=>'0'])}}">
+                                <span class="tio-circle nav-indicator-icon"></span>
+                                <span class="text-truncate">{{\App\CPU\translate('New')}} {{\App\CPU\translate('Books')}}</span>
+                            </a>
+                        </li>
 
                         <li class="navbar-vertical-aside-has-menu {{(Request::is('seller/product*'))?'active':''}}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link nav-link-toggle" href="javascript:">
