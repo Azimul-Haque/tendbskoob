@@ -29,6 +29,8 @@
                         <span class="badge badge-info">Pending</span>
                     <?php elseif($seller->status=="suspended"): ?>
                         <span class="badge badge-danger">Suspended</span>
+                    <?php elseif($seller->status=="rejected"): ?>
+                        <span class="badge badge-danger">Rejected</span>
                     <?php endif; ?>
                 </h3>
             </div>

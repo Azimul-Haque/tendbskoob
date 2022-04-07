@@ -31,6 +31,8 @@
                         <span class="badge badge-info">Pending</span>
                     @elseif ($seller->status=="suspended")
                         <span class="badge badge-danger">Suspended</span>
+                    @elseif ($seller->status=="rejected")
+                        <span class="badge badge-danger">Rejected</span>
                     @endif
                 </h3>
             </div>
