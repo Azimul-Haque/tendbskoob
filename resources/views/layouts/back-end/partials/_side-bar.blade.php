@@ -203,9 +203,9 @@
                         @endif
                     <!--order management ends-->
 
-                        @if(\App\CPU\Helpers::module_permission_check('product_management'))
+                        @if(\App\CPU\Helpers::module_permission_check('book_management'))
                             <li class="nav-item {{(Request::is('admin/brand*') || Request::is('admin/category*') || Request::is('admin/sub*') || Request::is('admin/attribute*') || Request::is('admin/product*'))?'scroll-here':''}}">
-                                <small class="nav-subtitle" title="">{{\App\CPU\translate('product_management')}}</small>
+                                <small class="nav-subtitle" title="">{{\App\CPU\translate('book_management')}}</small>
                                 <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                             </li>
                             <!-- Pages -->
