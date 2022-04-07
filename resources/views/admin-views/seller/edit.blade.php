@@ -137,10 +137,6 @@
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-user btn-block" id="apply">দাখিল করুন</button>
                                 </form>
-                                <hr>
-                                <div class="text-center mt-4">
-                                    আমাদের সাথে একাউন্ট আছে?  <a href="{{route('seller.auth.login')}}" style="color: #339B38 !important;">সাইন ইন</a>
-                                </div>
                             </div>
                         </div>
                     </div>
