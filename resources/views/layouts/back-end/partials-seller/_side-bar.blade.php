@@ -178,7 +178,7 @@
                             <small class="nav-subtitle">{{\App\CPU\translate('book_management')}}</small>
                             <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                         </li>
-                        <li class="nav-item {{Request::is('admin/product/list/seller/0')?'active':''}}">
+                        <li class="nav-item {{(Request::is('seller/product*'))?'active':''}}">
                             <a class="nav-link " href="{{route('admin.product.list',['seller', 'status'=>'0'])}}">
                                 <i class="tio-book nav-icon"></i>
                                 <span class="text-truncate">{{\App\CPU\translate('Seller')}} {{\App\CPU\translate('Books')}}</span>
