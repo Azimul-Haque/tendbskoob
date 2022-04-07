@@ -1497,4 +1497,5 @@
   'Activate' => 'Activate',
   'InHouse Books' => 'InHouse Books',
   'book_management' => 'Book management',
+  'BookRR List' => 'BookRR List',
 );
