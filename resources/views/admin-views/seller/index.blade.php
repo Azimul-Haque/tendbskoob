@@ -94,11 +94,11 @@
                                                 @if ($seller->status=="approved")
                                                     {{\App\CPU\translate('Suspend')}}
                                                 @elseif ($seller->status=="pending")
-                                                    {{\App\CPU\translate('Approve')}}
+                                                    {{\App\CPU\translate('Activate')}}
                                                 @elseif ($seller->status=="suspended")
-                                                    {{\App\CPU\translate('Approve')}}
+                                                    {{\App\CPU\translate('Activate')}}
                                                 @elseif ($seller->status=="rejected")
-                                                    {{\App\CPU\translate('Approve')}}
+                                                    {{\App\CPU\translate('Activate')}}
                                                 @endif
                                             </a>
                                             {{-- <a class="btn btn-primary"
