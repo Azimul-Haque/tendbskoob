@@ -225,7 +225,7 @@ class SellerController extends Controller
         $seller->save();
 
         Toastr::success('Publication updated successfully!');
-        return redirect()->route('seller.auth.login');
+        return redirect()->route('admin.sellers.seller-list');
 
     }
 
