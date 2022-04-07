@@ -144,6 +144,15 @@
             readBannerURL(this);
         });
 
+        $(".js-example-theme-single").select2({
+            theme: "classic"
+        });
+
+        $(".js-example-responsive").select2({
+            // dir: "rtl",
+            width: 'resolve'
+        });
+        
         $("#publisher_id").select2({
             placeholder: "Select Publication",
         });
