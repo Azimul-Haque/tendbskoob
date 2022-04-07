@@ -63,11 +63,11 @@
                                     <div class="form-group row">
                                         <div class="col-md-4 mb-3 mb-sm-0">
                                             <label for="name">প্রকাশনীর নাম</label>
-                                            <input type="text" class="form-control form-control-user" id="name" name="name" value="{{old('name')}}" placeholder="Din Publications" required>
+                                            <input type="text" class="form-control form-control-user" id="name" name="name" value="{{ $seller->name }}" placeholder="Din Publications" required>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="address">প্রকাশনীর ঠিকানা</label>
-                                            <input type="text" class="form-control form-control-user" id="address" name="address" value="{{old('address')}}" placeholder="Banglabazar, Dhaka" required>
+                                            <input type="text" class="form-control form-control-user" id="address" name="address" value="{{ $seller->address }}" placeholder="Banglabazar, Dhaka" required>
                                         </div>
                                         <div class="col-md-4">
                                             <label for="address">প্রকাশনীর লোগো <span style="color:red;">(অনুপাত - ১ঃ১)</span></label>
