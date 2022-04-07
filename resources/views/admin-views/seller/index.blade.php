@@ -91,14 +91,14 @@
                                         <td>
                                             <a class="btn btn-primary"
                                                href="{{route('admin.sellers.approvalpage', $seller->id)}}">
-                                               @if ($seller->status=="active")
-                                               <span class="badge badge-success">Active</span>
+                                                @if ($seller->status=="active")
+                                                    {{\App\CPU\translate('Suspend')}}
                                                 @elseif ($seller->status=="pending")
-                                                    <span class="badge badge-info">Pending</span>
+                                                    {{\App\CPU\translate('Approve')}}
                                                 @elseif ($seller->status=="suspended")
-                                                    <span class="badge badge-danger">Suspended</span>
+                                                    {{\App\CPU\translate('Approve')}}
                                                 @elseif ($seller->status=="rejected")
-                                                    <span class="badge badge-danger">Rejected</span>
+                                                    {{\App\CPU\translate('Approve')}}
                                                 @endif
                                                
                                             </a>
