@@ -50,7 +50,7 @@
     <div class="page-header">
         <div class="flex-between row mx-1">
             <div>
-                <h1 class="page-header-title">{{ $seller->shop? $seller->shop->name : "Shop Name : Update Please" }}</h1>
+                <h1 class="page-header-title">{{ $seller->name? $seller->name : "Shop Name : Update Please" }}</h1>
             </div>
         </div>
         <!-- Nav Scroller -->
