@@ -48,6 +48,6 @@ class Seller extends Authenticatable
 
     public function publisher()
     {
-        return $this->hasOne('App\Publisher');
+        return $this->hasOne(Publisher::class);
     }
 }
