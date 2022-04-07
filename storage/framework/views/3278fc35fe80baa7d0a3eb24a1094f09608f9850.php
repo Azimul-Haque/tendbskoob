@@ -148,7 +148,69 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('script'); ?>
+    <script>
+        function Validate(file) {
+            var x;
+            var le = file.length;
+            var poin = file.lastIndexOf(".");
+            var accu1 = file.substring(poin, le);
+            var accu = accu1.toLowerCase();
+            if ((accu != '.png') && (accu != '.jpg') && (accu != '.jpeg')) {
+                x = 1;
+                return x;
+            } else {
+                x = 0;
+                return x;
+            }
+        }
 
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#viewer').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#customFileUpload").change(function () {
+            readURL(this);
+        });
+
+        function readlogoURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#viewerLogo').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function readBannerURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#viewerBanner').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#LogoUpload").change(function () {
+            readlogoURL(this);
+        });
+        $("#BannerUpload").change(function () {
+            readBannerURL(this);
+        });
+    </script>
 <?php $__env->stopPush(); ?>
 
 <?php echo $__env->make('layouts.back-end.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp\www\booksbd\resources\views/admin-views/seller/edit.blade.php ENDPATH**/ ?>
