@@ -119,7 +119,7 @@
                                             </label> --}}
                                         </td>
                                         <td>
-                                            @if($p->request_status == 1) <span class="badge badge-success">Approved</span> @else <span class="badge badge-warning">Pending</span> @endif
+                                            @if($p->request_status == 1) <span class="badge badge-success">Approved</span> @else <span class="badge badge-info">Pending</span> @endif
                                             {{-- <label class="switch switch-status">
                                                 <input type="checkbox" class="status"
                                                     id="{{$p['id']}}" {{$p->status == 1?'checked':''}}>

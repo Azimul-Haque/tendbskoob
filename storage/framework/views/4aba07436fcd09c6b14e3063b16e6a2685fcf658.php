@@ -117,11 +117,8 @@
                                             
                                         </td>
                                         <td>
-                                            <label class="switch switch-status">
-                                                <input type="checkbox" class="status"
-                                                    id="<?php echo e($p['id']); ?>" <?php echo e($p->status == 1?'checked':''); ?>>
-                                                <span class="slider round"></span>
-                                            </label>
+                                            <?php if($p->request_status == 1): ?> <span class="badge badge-success">Approved</span> <?php else: ?> <span class="badge badge-info">Pending</span> <?php endif; ?>
+                                            
                                         </td>
                                         <td>
                                             <?php echo e($p->current_stock); ?>
