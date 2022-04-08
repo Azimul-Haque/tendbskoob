@@ -152,11 +152,9 @@
                         </li>
                         <li class="widget-list-item">
                             <a class="widget-list-link" href="{{ route('shop.apply') }}">Become a Seller</a>
+                        </li>
+                        <li class="widget-list-item">
                             <a class="widget-list-link" href="{{ route('seller.auth.login') }}">Seller Login</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{route('seller.auth.login')}}">
-                                <b>{{ \App\CPU\translate('Seller')}}  {{ \App\CPU\translate('login')}} </b>
-                            </a>
                         </li>
                         {{--<li class="widget-list-item">
                             <a class="widget-list-link"
