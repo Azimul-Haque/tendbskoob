@@ -22,7 +22,7 @@
         <!-- Content Row -->
         <div class="row">
             <div class="col-md-12">
-                <form class="product-form" action="<?php echo e(route('admin.product.store')); ?>" method="POST"
+                <form class="product-form" action="<?php echo e(route('seller.product.add-new')); ?>" method="POST"
                       style="text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;"
                       enctype="multipart/form-data"
                       id="product_form">

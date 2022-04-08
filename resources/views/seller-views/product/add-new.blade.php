@@ -24,7 +24,7 @@
         <!-- Content Row -->
         <div class="row">
             <div class="col-md-12">
-                <form class="product-form" action="{{route('seller.product.store')}}" method="POST"
+                <form class="product-form" action="{{route('seller.product.add-new')}}" method="POST"
                       style="text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};"
                       enctype="multipart/form-data"
                       id="product_form">
