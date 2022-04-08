@@ -72,11 +72,7 @@
                                         </a>
                                     @endif
                                 </th>
-                                <th>Price</th>
-                                @if($p->added_by == 'seller')
-                                    <th>Aprrove Status</th>
-                                @endif
-                                
+                                <th>Price</th>                                
                                 @if(auth('admin')->user()->role->name != 'Master Admin' && auth('admin')->user()->role->name != 'Admin')
                                     
                                 @else
