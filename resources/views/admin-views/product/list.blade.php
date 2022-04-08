@@ -314,13 +314,13 @@
                 }
             });
             $.ajax({
-                url: "{{route('admin.product.featured-status')}}",
+                url: "{{route('admin.product.approve-status')}}",
                 method: 'POST',
                 data: {
                     id: id
                 },
                 success: function () {
-                    toastr.success('{{\App\CPU\translate('Featured status updated successfully')}}');
+                    toastr.success('{{\App\CPU\translate('Book has been approved successfully')}}');
                 }
             });
         }
