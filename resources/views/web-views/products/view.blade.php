@@ -730,8 +730,8 @@
                                                 onclick="location.href='{{route('products',['id'=> $publisher['id'],'data_from'=>'publisher','page'=>1, 'publisher_name'=>$publisher['slug']])}}'">
                                                 {{ $publisher['name_bangla'] }}
                                                 @if($publisher->products->count() > 0 )
-                                                    <span class="for-count-value"
-                                                          style="float: {{Session::get('direction') === "rtl" ? 'left' : 'right'}}">{{ $publisher->products->count() }}</span>
+                                                    {{-- <span class="for-count-value"
+                                                          style="float: {{Session::get('direction') === "rtl" ? 'left' : 'right'}}">{{ $publisher->products->count() }}</span> --}}
 
                                                 @endif
                                             </li>
@@ -773,8 +773,8 @@
                                                 onclick="location.href='{{route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])}}'">
                                                 {{ $category['name_bangla'] }}
                                                 @if($category->products->count() > 0 )
-                                                    <span class="for-count-value"
-                                                          style="float: {{Session::get('direction') === "rtl" ? 'left' : 'right'}}">{{ $category->products->count() }}</span>
+                                                    {{-- <span class="for-count-value"
+                                                          style="float: {{Session::get('direction') === "rtl" ? 'left' : 'right'}}">{{ $category->products->count() }}</span> --}}
 
                                                 @endif
                                             </li>
