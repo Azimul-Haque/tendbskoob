@@ -694,9 +694,11 @@
                                         </div>
                                         
                                         <div class="align-baseline">
-                                            /* <?php if($author->products()->count() > 0): ?>
-                                                <span class="count-value px-2">( <?php echo e($author->products()->count()); ?> )</span>
-                                            <?php endif; ?> */
+                                            <!--
+                                                <?php if($author->products()->count() > 0): ?>
+                                                    <span class="count-value px-2">( <?php echo e($author->products()->count()); ?> )</span>
+                                                <?php endif; ?>
+                                                -->
                                         </div>
                                     </li>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
