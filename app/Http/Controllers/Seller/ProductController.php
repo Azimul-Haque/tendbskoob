@@ -640,32 +640,9 @@ class ProductController extends Controller
         }
 
         
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'category_id' => 'required',
-            'brand_id' => 'required',
-            'unit' => 'required',
-            'tax' => 'required|min:0',
-            'unit_price' => 'required|numeric|min:1',
-            'purchase_price' => 'required|numeric|min:1',
-        ], [
-            'name.required' => 'Product name is required!',
-            'category_id.required' => 'category  is required!',
-            'brand_id.required' => 'brand  is required!',
-            'unit.required' => 'Unit  is required!',
-        ]);
+        
 
-        if ($request['discount_type'] == 'percent') {
-            $dis = ($request['unit_price'] / 100) * $request['discount'];
-        } else {
-            $dis = $request['discount'];
-        }
-
-        if ($request['unit_price'] <= $dis) {
-            $validator->after(function ($validator) {
-                $validator->errors()->add('unit_price', 'Discount can not be more or equal to the price!');
-            });
-        }
+        
 
         $product = Product::find($id);
         $product->name = $request->name[array_search('en', $request->lang)];
