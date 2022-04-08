@@ -122,15 +122,15 @@
                                         @if(auth('admin')->user()->role->name != 'Master Admin' && auth('admin')->user()->role->name != 'Admin')
                                     
                                         @else
-                                        @if($p->added_by == 'seller')
-                                            <td>
-                                                <label class="switch">
-                                                    <input type="checkbox"
-                                                        onclick="approve_status('{{$p['id']}}')" {{$p->request_status == 1?'checked':''}}>
-                                                    <span class="slider round"></span>
-                                                </label><br/>
-                                            </td>
-                                        @endif
+                                            @if($p->added_by == 'seller')
+                                                <td>
+                                                    <label class="switch">
+                                                        <input type="checkbox"
+                                                            onclick="approve_status('{{$p['id']}}')" {{$p->request_status == 1?'checked':''}}>
+                                                        <span class="slider round"></span>
+                                                    </label><br/>
+                                                </td>
+                                            @endif
                                             <td>
                                                 Featured: 
                                                 <label class="switch">
