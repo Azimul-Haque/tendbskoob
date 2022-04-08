@@ -119,11 +119,12 @@
                                             </label> --}}
                                         </td>
                                         <td>
-                                            <label class="switch switch-status">
+                                            @if($p->request_status == 1) <span class="badge badge-success">Approved</span> @else <span class="badge badge-warning">Pending</span> @endif
+                                            {{-- <label class="switch switch-status">
                                                 <input type="checkbox" class="status"
                                                     id="{{$p['id']}}" {{$p->status == 1?'checked':''}}>
                                                 <span class="slider round"></span>
-                                            </label>
+                                            </label> --}}
                                         </td>
                                         <td>
                                             {{ $p->current_stock }}
