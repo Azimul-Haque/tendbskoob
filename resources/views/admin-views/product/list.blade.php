@@ -99,7 +99,7 @@
                                         <td>
                                             {{ $p->publisher->name_bangla }}
                                             @if($p->added_by == 'seller')
-                                                {{ $p->publisher->seller }}
+                                                <br/>{{ $p->publisher->seller ? $p->publisher->seller->name : '' }}
                                             @endif
                                         </td>
                                         <td>
