@@ -121,8 +121,8 @@ class ProductController extends Controller
         // }
         // dd($request->all());
         $p              = new Product();
-        $p->added_by    = "admin";
-        $p->user_id     = auth('admin')->id();
+        $p->user_id = auth('seller')->id();
+        $product->added_by = "seller";
         $p->name        = Str::slug($request->name) == '' ? $request->name : ucwords(str_replace('-', ' ', $request->name));
         $p->name_bangla = $request->name_bangla;
         $p->slug        = Str::slug($request->name, '-') . '-' . Helpers::random_number(5);
