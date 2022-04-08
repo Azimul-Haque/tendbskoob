@@ -329,13 +329,13 @@ class ProductController extends Controller
         $br = Brand::orderBY('name', 'ASC')->get();
         $publishers = Publisher::get();
         $authors = Author::get();
-        
-        $product = Product::withoutGlobalScopes()->with('translations')->find($id);
-        $product_category = json_decode($product->category_ids);
-        $product->colors = json_decode($product->colors);
-        $categories = Category::where(['parent_id' => 0])->get();
-        $br = Brand::orderBY('name', 'ASC')->get();
-        return view('seller-views.product.edit', compact('categories', 'br', 'product', 'product_category'));
+
+        // $product = Product::withoutGlobalScopes()->with('translations')->find($id);
+        // $product_category = json_decode($product->category_ids);
+        // $product->colors = json_decode($product->colors);
+        // $categories = Category::where(['parent_id' => 0])->get();
+        // $br = Brand::orderBY('name', 'ASC')->get();
+        return view('seller-views.product.edit', compact('cat', 'br', 'product', 'product_category', 'publishers', 'authors'));
 
     }
 
