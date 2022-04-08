@@ -172,7 +172,7 @@ class ProductController extends Controller
         // $p->video_provider = 'youtube';
         // $p->video_url = $request->video_link;
         $p->status = 0;
-        $p->request_status = 1; // status default to 1
+        $p->request_status = 0; // status default to 0 for seller
         if($p->current_stock > 0) {
             $p->stock_status = $request->stock_status; // 1 = in stock, 2 = out of stock, 3 = back order
         } else {

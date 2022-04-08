@@ -278,7 +278,7 @@ class ProductController extends BaseController
         if(auth('admin')->user()->role->name != 'Master Admin' && auth('admin')->user()->role->name != 'Admin') {
             $p->status = 0;
         }
-        $p->request_status = 1; // status default to 1
+        $p->request_status = 1; // status default to 1 for admin
         if($p->current_stock > 0) {
             $p->stock_status = $request->stock_status; // 1 = in stock, 2 = out of stock, 3 = back order
         } else {
