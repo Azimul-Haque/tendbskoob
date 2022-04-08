@@ -416,11 +416,11 @@
                                                     {{ $author['name_bangla'] }}
                                                 </div>
                                                 @if($author->products->count() > 0 )
-                                                    <div>
+                                                    {{-- <div>
                                                         <span class="count-value">
                                                         {{ $author->products->count() }}
                                                         </span>
-                                                    </div>
+                                                    </div> --}}
                                                 @endif
                                             </li>
                                         </div>
