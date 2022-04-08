@@ -79,12 +79,15 @@
                                 <label for="publisher_id">{{\App\CPU\translate('Publication')}} *</label>
                                 <select
                                     class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id" id="publisher_id" required>
-                                    <option value="{{ old('publisher_id') }}" selected disabled>Select Publication</option>
+                                    <option value="{{ $seller->publisher ? $seller->publisher->id : '' }}" selected>
+                                        {{ $seller->publisher ? $seller->publisher->name_bangla : '' }}
+                                    </option>
+                                    {{-- <option value="{{ old('publisher_id') }}" selected disabled>Select Publication</option>
                                     @foreach($publishers as $publisher)
                                         <option value="{{ $publisher['id'] }}" @if ($product->publisher_id == $publisher['id']) selected="" @endif>
                                             {{ $publisher['name_bangla'] }} ({{ $publisher['name'] }})
                                         </option>
-                                    @endforeach
+                                    @endforeach --}}
                                 </select>
                             </div>
                             <div class="form-group">
