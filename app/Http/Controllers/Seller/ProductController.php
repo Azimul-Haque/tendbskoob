@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Seller;
 
+use Image;
+use Carbon\Carbon;
 use App\CPU\BackEndHelper;
 use App\CPU\Convert;
 use App\CPU\Helpers;
@@ -83,14 +85,9 @@ class ProductController extends Controller
             'name'         => 'required',
             'name_bangla'  => 'required',
             'category_id'  => 'required',
-            // 'brand_id' => 'required',
-            // 'unit' => 'required',
-            // 'images' => 'required',
+ 
             'image'          => 'required',
-            // 'tax'            => 'required|min:0',
-            // 'purchase_price'  => 'required|numeric|min:1',
-            // 'published_price' => 'required|numeric|min:1',
-            // 'unit_price'      => 'required|numeric|min:1',
+
             'current_stock'   => 'required|numeric',
         ], [
             'publisher_id.required'    => 'Publication is required!',
