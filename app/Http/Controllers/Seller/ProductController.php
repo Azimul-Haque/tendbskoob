@@ -350,6 +350,296 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'publisher_id' => 'required',
+            'name'         => 'required',
+            'name_bangla'  => 'required',
+            'category_id'  => 'required',
+            // 'brand_id' => 'required',
+            // 'unit' => 'required',
+            // 'images' => 'required',
+            'image'          => 'required',
+            // 'tax'            => 'required|min:0',
+            // 'purchase_price'  => 'required|numeric|min:1',
+            // 'published_price' => 'required|numeric|min:1',
+            // 'unit_price'      => 'required|numeric|min:1',
+            'current_stock'   => 'required|numeric',
+        ], [
+            'publisher_id.required'    => 'Publication is required!',
+            'name.required'            => 'English name is required!',
+            'name_bangla.required'     => 'Bangla name is required!',
+            'category_id.required'     => 'Category is required!',
+            'image.required'           => 'Book image is required!',
+            'purchase_price.required'  => 'Purchase Price is required!',
+            'published_price.required' => 'Published Price is required!',
+            'unit_price.required'      => 'Sale Price is required!',
+            'current_stock.required'   => 'Total Quantity is required!',
+            // 'brand_id.required' => 'brand  is required!',
+            // 'unit.required' => 'Unit  is required!',
+        ]);
+
+        // if ($request['discount_type'] == 'percent') {
+        //     $dis = ($request['unit_price'] / 100) * $request['discount'];
+        // } else {
+        //     $dis = $request['discount'];
+        // }
+
+        // if ($request['unit_price'] <= $dis) {
+        //     $validator->after(function ($validator) {
+        //         $validator->errors()->add(
+        //             'unit_price', 'Discount can not be more or equal to the price!'
+        //         );
+        //     });
+        // }
+        // dd($request->all());
+        $p              = new Product();
+        $p->added_by    = "admin";
+        $p->user_id     = auth('admin')->id();
+        $p->name        = Str::slug($request->name) == '' ? $request->name : ucwords(str_replace('-', ' ', $request->name));
+        $p->name_bangla = $request->name_bangla;
+        $p->slug        = Str::slug($request->name, '-') . '-' . Helpers::random_number(5);
+        if(Str::slug($request->name) == '') {
+            $p->slug = Helpers::random_slug(15) . '-' . Helpers::random_number(5);
+        }
+        // dd($p->slug);
+    
+        $category = [];
+        if($request->category_id) {
+            foreach($request->category_id as $categoryid) {
+                array_push($category, [
+                    'id' => $categoryid,
+                    'position' => 1,
+                ]);
+            }
+        }
+        // CATEGORY IDs ARE SYNCED LATER, AFTER SAVE
+        // dd($category);
+        // if ($request->category_id != null) {
+        //     array_push($category, [
+        //         'id' => $request->category_id,
+        //         'position' => 1,
+        //     ]);
+        // }
+        if ($request->sub_category_id != null) {
+            array_push($category, [
+                'id' => $request->sub_category_id,
+                'position' => 2,
+            ]);
+        }
+        if ($request->sub_sub_category_id != null) {
+            array_push($category, [
+                'id' => $request->sub_sub_category_id,
+                'position' => 3,
+            ]);
+        }
+
+        $p->category_ids = json_encode($category);
+        $p->brand_id = $request->brand_id;
+        $p->publisher_id = $request->publisher_id;
+        // $p->unit = $request->unit;
+        $p->isbn = $request->isbn;
+        $p->weight = $request->weight ? $request->weight : 0;
+
+
+        // if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
+        //     $p->colors = json_encode($request->colors);
+        // } else {
+        //     $colors = [];
+        //     $p->colors = json_encode($colors);
+        // }
+        // $choice_options = [];
+        // if ($request->has('choice')) {
+        //     foreach ($request->choice_no as $key => $no) {
+        //         $str = 'choice_options_' . $no;
+        //         $item['name'] = 'choice_' . $no;
+        //         $item['title'] = $request->choice[$key];
+        //         $item['options'] = explode(',', implode('|', $request[$str]));
+        //         array_push($choice_options, $item);
+        //     }
+        // }
+        // $p->choice_options = json_encode($choice_options);
+        // //combinations start
+        // $options = [];
+        // if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
+        //     $colors_active = 1;
+        //     array_push($options, $request->colors);
+        // }
+        // if ($request->has('choice_no')) {
+        //     foreach ($request->choice_no as $key => $no) {
+        //         $name = 'choice_options_' . $no;
+        //         $my_str = implode('|', $request[$name]);
+        //         array_push($options, explode(',', $my_str));
+        //     }
+        // }
+        //Generates the combinations of customer choice options
+        
+        // $combinations = Helpers::combinations($options);
+        // $variations = [];
+        // if (count($combinations[0]) > 0) {
+        //     foreach ($combinations as $key => $combination) {
+        //         $str = '';
+        //         foreach ($combination as $k => $item) {
+        //             if ($k > 0) {
+        //                 $str .= '-' . str_replace(' ', '', $item);
+        //             } else {
+        //                 if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
+        //                     $color_name = Color::where('code', $item)->first()->name;
+        //                     $str .= $color_name;
+        //                 } else {
+        //                     $str .= str_replace(' ', '', $item);
+        //                 }
+        //             }
+        //         }
+        //         $item = [];
+        //         $item['type'] = $str;
+        //         $item['price'] = BackEndHelper::currency_to_usd(abs($request['price_' . str_replace('.', '_', $str)]));
+        //         $item['sku'] = $request['sku_' . str_replace('.', '_', $str)];
+        //         $item['qty'] = abs($request['qty_' . str_replace('.', '_', $str)]);
+        //         array_push($variations, $item);
+        //         $stock_count += $item['qty'];
+        //     }
+        // } else {
+        //     $stock_count = (integer)$request['current_stock'];
+        // }
+
+        if ($validator->errors()->count() > 0) {
+            return response()->json(['errors' => Helpers::error_processor($validator)]);
+        }
+
+        // if ($request->file('images')) {
+        //     foreach ($request->file('images') as $img) {
+        //         $product_images[] = ImageManager::upload('product/', 'png', $img);
+        //     }
+        //     $p->images = json_encode($product_images);
+        // }
+        // $p->thumbnail = ImageManager::upload('product/thumbnail/', 'png', $request->image);
+        // $p->thumbnail = Image::make('product/thumbnail/');
+        //combinations end
+        $empty_array       = [];
+        $p->colors         = json_encode($empty_array);
+        $p->choice_options = json_encode($empty_array);
+        $p->variation      = json_encode($empty_array);
+        // $p->unit_price = BackEndHelper::currency_to_usd($request->unit_price);
+        
+        $p->purchase_price  = $request->purchase_price ? $request->purchase_price : 0;
+        $p->published_price = $request->published_price ? $request->published_price : 0;
+        $p->unit_price      = $request->unit_price ? $request->unit_price : 0;
+        // $p->tax = $request->tax_type == 'flat' ? BackEndHelper::currency_to_usd($request->tax) : $request->tax;
+        // $p->tax_type = $request->tax_type;
+        // $p->discount = $request->discount_type == 'flat' ? BackEndHelper::currency_to_usd($request->discount) : $request->discount;
+        // $p->discount_type = $request->discount_type;
+        // $p->attributes = json_encode($request->choice_attributes);
+        $stock_count      = (integer) $request['current_stock'];
+        $p->current_stock = abs($stock_count);
+        $p->details       = $request->description;
+
+
+        // $p->video_provider = 'youtube';
+        // $p->video_url = $request->video_link;
+        if(auth('admin')->user()->role->name != 'Master Admin' && auth('admin')->user()->role->name != 'Admin') {
+            $p->status = 0;
+        }
+        $p->request_status = 1; // status default to 1
+        if($p->current_stock > 0) {
+            $p->stock_status = $request->stock_status; // 1 = in stock, 2 = out of stock, 3 = back order
+        } else {
+            $p->stock_status = 2; // 1 = in stock, 2 = out of stock, 3 = back order
+        }
+        $p->meta_title = $request->bangla_name . '-' . $request->name;
+        $p->meta_description = $request->description;
+        // $p->meta_image = ImageManager::upload('product/meta/', 'png', $request->image);
+
+        if ($request->ajax()) {
+            return response()->json([], 200);
+        } else {
+            // to avoid the status 200 and uploading of image twice
+            if($request->hasFile('image')) {
+                $thumbnail = $request->file('image');
+                // $filename  = Carbon::now()->toDateString() . "-" . uniqid() . "." . $thumbnail->getClientOriginalExtension();
+                $filename  = Carbon::now()->toDateString() . "-" . uniqid() . ".jpg";
+                $location1  = storage_path('app/public/product/thumbnail/'. $filename);
+                $location2  = storage_path('app/public/product/meta/'. $filename);
+                Image::make($thumbnail)
+                     ->fit(260, 372)
+                    //  ->insert(public_path('public/assets/back-end/img/watermark.png'), 'bottom-right', 10, 10)
+                     ->text('www.booksbd.net', 20, 185, function($font) {
+                        $font->file(public_path('public/fonts/Roboto-Black.ttf'));
+                        $font->size(26);
+                        $font->color(array(250, 250, 250, 0.30));
+                        // $font->angle(45);
+                    })->save($location1);
+                Image::make($thumbnail)
+                     ->fit(260, 372)
+                    //  ->insert(public_path('public/assets/back-end/img/watermark.png'), 'bottom-right', 10, 10)
+                     ->text('www.booksbd.net', 20, 185, function($font) {
+                        $font->file(public_path('public/fonts/Roboto-Black.ttf'));
+                        $font->size(26);
+                        $font->color(array(250, 250, 250, 0.30));
+                        // $font->angle(45);
+                    })->save($location2);
+                // dd($thumbnail);
+                $p->thumbnail = $filename;
+                $p->meta_image = $filename;
+            }
+            $p->save();
+
+            // ATTACH CATEGORIES PUBLSHER...
+            // foreach ($request->category_id as $key => $value) {
+            //     $p->categories()->attach($value);
+            // }
+            $p->categories()->sync($request->category_id, false);
+            
+            
+            // ATTACH AUTHORS WRITER...
+            if($request->writer_id != null) {
+                foreach ($request->writer_id as $key => $value) {
+                    $p->writers()->attach([$value => ['author_type' => 1]]);
+                }
+            }
+            
+            // ATTACH AUTHORS TRANSLATOR...
+            if($request->translator_id != null) {
+                foreach ($request->translator_id as $key => $value) {
+                    $p->translators()->attach([$value => ['author_type' => 2]]);
+                }
+            }
+            
+            // ATTACH AUTHORS EDITOR...
+            if($request->editor_id != null) {
+                foreach ($request->editor_id as $key => $value) {
+                    $p->editors()->attach([$value => ['author_type' => 3]]);
+                }
+            }
+
+            // $data = [];
+            // foreach ($request->lang as $index => $key) {
+            //     if ($request->name[$index] && $key != 'en') {
+            //         array_push($data, array(
+            //             'translationable_type' => 'App\Model\Product',
+            //             'translationable_id' => $p->id,
+            //             'locale' => $key,
+            //             'key' => 'name',
+            //             'value' => $request->name[$index],
+            //         ));
+            //     }
+            //     if ($request->description[$index] && $key != 'en') {
+            //         array_push($data, array(
+            //             'translationable_type' => 'App\Model\Product',
+            //             'translationable_id' => $p->id,
+            //             'locale' => $key,
+            //             'key' => 'description',
+            //             'value' => $request->description[$index],
+            //         ));
+            //     }
+            // }
+            // Translation::insert($data);
+
+            Toastr::success(translate('Product added successfully!'));
+            return redirect()->route('admin.product.list', ['in_house']);
+        }
+
+        
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'category_id' => 'required',
