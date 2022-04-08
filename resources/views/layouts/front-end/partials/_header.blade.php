@@ -680,9 +680,9 @@
                                         </div>
                                         
                                         <div class="align-baseline">
-                                            @if($author->products()->count() > 0)
+                                            /* @if($author->products()->count() > 0)
                                                 <span class="count-value px-2">( {{ $author->products()->count() }} )</span>
-                                            @endif
+                                            @endif */
                                         </div>
                                     </li>
                                 @endforeach
