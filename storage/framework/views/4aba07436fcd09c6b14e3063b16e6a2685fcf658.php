@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', \App\CPU\translate('Book List')); ?>
+<?php $__env->startSection('title', \App\CPU\translate('Seller Book List')); ?>
 
 <?php $__env->startPush('css_or_js'); ?>
 
