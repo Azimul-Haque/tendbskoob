@@ -228,7 +228,7 @@
                         </li>
 
 
-                        <li class="navbar-vertical-aside-has-menu {{Request::is('seller/messages*')?'active':''}}">
+                        {{-- <li class="navbar-vertical-aside-has-menu {{Request::is('seller/messages*')?'active':''}}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link"
                                href="{{route('seller.messages.chat')}}">
                                 <i class="tio-email nav-icon"></i>
@@ -245,7 +245,7 @@
                                     {{\App\CPU\translate('my_bank_info')}}
                                 </span>
                             </a>
-                        </li>
+                        </li> --}}
 
 
                         <li class="navbar-vertical-aside-has-menu {{Request::is('seller/shop*')?'active':''}}">
