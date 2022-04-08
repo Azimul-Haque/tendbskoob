@@ -122,7 +122,7 @@ class ProductController extends Controller
         // dd($request->all());
         $p              = new Product();
         $p->user_id = auth('seller')->id();
-        $product->added_by = "seller";
+        $p->added_by = "seller";
         $p->name        = Str::slug($request->name) == '' ? $request->name : ucwords(str_replace('-', ' ', $request->name));
         $p->name_bangla = $request->name_bangla;
         $p->slug        = Str::slug($request->name, '-') . '-' . Helpers::random_number(5);
@@ -368,32 +368,7 @@ class ProductController extends Controller
 
         
 
-        $product = new Product();
-        $product->user_id = auth('seller')->id();
-        $product->added_by = "seller";
-        $product->name = $request->name[array_search('en', $request->lang)];
-        $product->slug = Str::slug($request->name[array_search('en', $request->lang)], '-') . '-' . Str::random(6);
-
-        $category = [];
-
-        if ($request->category_id != null) {
-            array_push($category, [
-                'id' => $request->category_id,
-                'position' => 1,
-            ]);
-        }
-        if ($request->sub_category_id != null) {
-            array_push($category, [
-                'id' => $request->sub_category_id,
-                'position' => 2,
-            ]);
-        }
-        if ($request->sub_sub_category_id != null) {
-            array_push($category, [
-                'id' => $request->sub_sub_category_id,
-                'position' => 3,
-            ]);
-        }
+        
 
         $product->category_ids = json_encode($category);
         $product->brand_id = $request->brand_id;
