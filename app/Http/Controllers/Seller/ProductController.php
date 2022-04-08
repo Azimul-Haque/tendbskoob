@@ -8,6 +8,7 @@ use App\CPU\Helpers;
 use App\CPU\ImageManager;
 use App\Http\Controllers\Controller;
 use App\Model\Brand;
+use App\Model\Seller;
 use App\Model\Category;
 use App\Model\Publisher;
 use App\Model\Author;
@@ -35,7 +36,7 @@ class ProductController extends Controller
         $publishers = Publisher::get();
         $authors = Author::get();
         $seller = Seller::findOrFail(auth('seller')->id());
-        return view('seller-views.product.add-new', compact('cat', 'br', 'publishers', 'authors'));
+        return view('seller-views.product.add-new', compact('cat', 'br', 'publishers', 'authors', 'seller'));
     }
 
     public function status_update(Request $request)
