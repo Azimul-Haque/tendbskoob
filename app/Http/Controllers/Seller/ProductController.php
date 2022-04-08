@@ -338,9 +338,7 @@ class ProductController extends Controller
             'name'         => 'required',
             'name_bangla'  => 'required',
             'category_id'  => 'required',
-            // 'purchase_price'  => 'required|numeric|min:1',
-            // 'published_price' => 'required|numeric|min:1',
-            // 'unit_price'      => 'required|numeric|min:1',
+
             'current_stock'   => 'required|numeric',
         ], [
             'publisher_id.required'    => 'Publication is required!',
@@ -351,8 +349,6 @@ class ProductController extends Controller
             'published_price.required' => 'Published Price is required!',
             'unit_price.required'      => 'Sale Price is required!',
             'current_stock.required'   => 'Total Quantity is required!',
-            // 'brand_id.required' => 'brand  is required!',
-            // 'unit.required' => 'Unit  is required!',
         ]);
         
         $p = Product::find($id);
