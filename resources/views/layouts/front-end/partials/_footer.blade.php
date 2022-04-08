@@ -150,6 +150,16 @@
                         <li class="widget-list-item"><a class="widget-list-link"
                                                         href="{{ route('account-tickets') }}">{{\App\CPU\translate('support_ticket')}}</a>
                         </li>
+                        <li class="widget-list-item">
+                            <a class="widget-list-link" href="{{ route('shop.apply') }}">Become a Seller</a>
+                            <a class="dropdown-item" href="{{route('shop.apply')}}">
+                                <b>{{ \App\CPU\translate('Become a')}} {{ \App\CPU\translate('Seller')}}</b>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{route('seller.auth.login')}}">
+                                <b>{{ \App\CPU\translate('Seller')}}  {{ \App\CPU\translate('login')}} </b>
+                            </a>
+                        </li>
                         {{--<li class="widget-list-item">
                             <a class="widget-list-link"
                                href="{{route('customer.auth.login')}}">{{\App\CPU\translate('tansction_history')}}
