@@ -76,7 +76,7 @@
                                 @if(auth('admin')->user()->role->name != 'Master Admin' && auth('admin')->user()->role->name != 'Admin')
                                     
                                 @else
-                                    <th>{{\App\CPU\translate('featured')}}</th>
+                                    <th>Store Info</th>
                                     <th>{{\App\CPU\translate('Active')}} {{\App\CPU\translate('status')}}</th>
                                 @endif
                                 <th>Stocks</th>
