@@ -79,7 +79,7 @@
                                 <label for="publisher_id">{{\App\CPU\translate('Publication')}} *</label>
                                 <select
                                     class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id" id="publisher_id" required>
-                                    <option value="{{ $seller->publisher ? $seller->publisher->id : '' }}" selected >
+                                    <option value="{{ $seller->publisher ? $seller->publisher->id : '' }}" selected disabled>
                                         {{ $seller->publisher ? $seller->publisher->name_bangla : '' }}
                                     </option>
                                     {{-- @foreach($publishers as $publisher)
