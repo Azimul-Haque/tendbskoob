@@ -150,81 +150,10 @@ class ProductController extends Controller
         $p->isbn = $request->isbn;
         $p->weight = $request->weight ? $request->weight : 0;
 
-
-        // if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
-        //     $p->colors = json_encode($request->colors);
-        // } else {
-        //     $colors = [];
-        //     $p->colors = json_encode($colors);
-        // }
-        // $choice_options = [];
-        // if ($request->has('choice')) {
-        //     foreach ($request->choice_no as $key => $no) {
-        //         $str = 'choice_options_' . $no;
-        //         $item['name'] = 'choice_' . $no;
-        //         $item['title'] = $request->choice[$key];
-        //         $item['options'] = explode(',', implode('|', $request[$str]));
-        //         array_push($choice_options, $item);
-        //     }
-        // }
-        // $p->choice_options = json_encode($choice_options);
-        // //combinations start
-        // $options = [];
-        // if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
-        //     $colors_active = 1;
-        //     array_push($options, $request->colors);
-        // }
-        // if ($request->has('choice_no')) {
-        //     foreach ($request->choice_no as $key => $no) {
-        //         $name = 'choice_options_' . $no;
-        //         $my_str = implode('|', $request[$name]);
-        //         array_push($options, explode(',', $my_str));
-        //     }
-        // }
-        //Generates the combinations of customer choice options
-        
-        // $combinations = Helpers::combinations($options);
-        // $variations = [];
-        // if (count($combinations[0]) > 0) {
-        //     foreach ($combinations as $key => $combination) {
-        //         $str = '';
-        //         foreach ($combination as $k => $item) {
-        //             if ($k > 0) {
-        //                 $str .= '-' . str_replace(' ', '', $item);
-        //             } else {
-        //                 if ($request->has('colors_active') && $request->has('colors') && count($request->colors) > 0) {
-        //                     $color_name = Color::where('code', $item)->first()->name;
-        //                     $str .= $color_name;
-        //                 } else {
-        //                     $str .= str_replace(' ', '', $item);
-        //                 }
-        //             }
-        //         }
-        //         $item = [];
-        //         $item['type'] = $str;
-        //         $item['price'] = BackEndHelper::currency_to_usd(abs($request['price_' . str_replace('.', '_', $str)]));
-        //         $item['sku'] = $request['sku_' . str_replace('.', '_', $str)];
-        //         $item['qty'] = abs($request['qty_' . str_replace('.', '_', $str)]);
-        //         array_push($variations, $item);
-        //         $stock_count += $item['qty'];
-        //     }
-        // } else {
-        //     $stock_count = (integer)$request['current_stock'];
-        // }
-
         if ($validator->errors()->count() > 0) {
             return response()->json(['errors' => Helpers::error_processor($validator)]);
         }
 
-        // if ($request->file('images')) {
-        //     foreach ($request->file('images') as $img) {
-        //         $product_images[] = ImageManager::upload('product/', 'png', $img);
-        //     }
-        //     $p->images = json_encode($product_images);
-        // }
-        // $p->thumbnail = ImageManager::upload('product/thumbnail/', 'png', $request->image);
-        // $p->thumbnail = Image::make('product/thumbnail/');
-        //combinations end
         $empty_array       = [];
         $p->colors         = json_encode($empty_array);
         $p->choice_options = json_encode($empty_array);
