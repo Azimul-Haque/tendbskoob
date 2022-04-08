@@ -362,40 +362,6 @@ class ProductController extends Controller
             // }
             // Translation::insert($data);
 
-            Toastr::success(translate('Product added successfully!'));
-            return redirect()->route('admin.product.list', ['in_house']);
-        }
-
-        
-
-        
-
-        if ($request->ajax()) {
-            return response()->json([], 200);
-        } else {
-            $product->save();
-            $data = [];
-            foreach ($request->lang as $index => $key) {
-                if ($request->name[$index] && $key != 'en') {
-                    array_push($data, array(
-                        'translationable_type' => 'App\Model\Product',
-                        'translationable_id' => $product->id,
-                        'locale' => $key,
-                        'key' => 'name',
-                        'value' => $request->name[$index],
-                    ));
-                }
-                if ($request->description[$index] && $key != 'en') {
-                    array_push($data, array(
-                        'translationable_type' => 'App\Model\Product',
-                        'translationable_id' => $product->id,
-                        'locale' => $key,
-                        'key' => 'description',
-                        'value' => $request->description[$index],
-                    ));
-                }
-            }
-            Translation::insert($data);
             Toastr::success('Product added successfully!');
             return redirect()->route('seller.product.list');
         }
