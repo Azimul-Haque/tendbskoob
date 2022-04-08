@@ -72,7 +72,11 @@
                                         </a>
                                     <?php endif; ?>
                                 </th>
-                                <th>Price</th>                                
+                                <th>Price</th>
+                                <?php if($type == 'seller'): ?>
+                                    <th>Aprrove Status</th>
+                                <?php endif; ?>
+                                
                                 <?php if(auth('admin')->user()->role->name != 'Master Admin' && auth('admin')->user()->role->name != 'Admin'): ?>
                                     
                                 <?php else: ?>
