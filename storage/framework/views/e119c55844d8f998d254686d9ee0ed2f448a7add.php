@@ -133,11 +133,13 @@
                                                 
                                             </td>
                                             <td>
+                                                Featured: 
                                                 <label class="switch">
                                                     <input type="checkbox"
                                                         onclick="featured_status('<?php echo e($p['id']); ?>')" <?php echo e($p->featured == 1?'checked':''); ?>>
                                                     <span class="slider round"></span>
-                                                </label>
+                                                </label><br/>
+                                                Active: 
                                                 <label class="switch switch-status">
                                                     <input type="checkbox" class="status"
                                                         id="<?php echo e($p['id']); ?>" <?php echo e($p->status == 1?'checked':''); ?>>
