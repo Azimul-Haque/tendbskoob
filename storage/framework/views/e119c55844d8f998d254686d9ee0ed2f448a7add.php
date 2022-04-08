@@ -100,6 +100,10 @@
                                         <td>
                                             <?php echo e($p->publisher->name_bangla); ?>
 
+                                            <?php if($p->added_by == 'seller'): ?>
+                                                <?php echo e($p->publisher->seller); ?>
+
+                                            <?php endif; ?>
                                         </td>
                                         <td>
                                             <small>

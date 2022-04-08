@@ -98,6 +98,9 @@
                                         </td>
                                         <td>
                                             {{ $p->publisher->name_bangla }}
+                                            @if($p->added_by == 'seller')
+                                                {{ $p->publisher->seller }}
+                                            @endif
                                         </td>
                                         <td>
                                             <small>
