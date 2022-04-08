@@ -73,12 +73,8 @@
                                     @endif
                                 </th>
                                 <th>Price</th>
-                                @if(auth('admin')->user()->role->name != 'Master Admin' && auth('admin')->user()->role->name != 'Admin')
-                                    
-                                @else
-                                    <th>{{\App\CPU\translate('featured')}}</th>
-                                    <th>{{\App\CPU\translate('Active')}} {{\App\CPU\translate('status')}}</th>
-                                @endif
+                                <th>Store Info</th>
+                                <th>Status</th>
                                 <th>Stocks</th>
                                 <th>Stock Status</th>
                                 <th style="width: 5px" class="text-center">{{\App\CPU\translate('Action')}}</th>
