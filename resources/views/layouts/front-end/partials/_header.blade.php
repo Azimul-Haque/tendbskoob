@@ -733,6 +733,7 @@
                         -->
                         @php($seller_registration=\App\Model\BusinessSetting::where(['type'=>'seller_registration'])->first()->value)
                         @if($seller_registration)
+                        <!--
                             <li class="nav-item dropdown ml-2">
                                 <div class="dropdown">
                                     <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -752,6 +753,7 @@
                                     </div>
                                 </div>
                             </li>
+                        -->
                         @endif 
                     </ul>
                 </div>
