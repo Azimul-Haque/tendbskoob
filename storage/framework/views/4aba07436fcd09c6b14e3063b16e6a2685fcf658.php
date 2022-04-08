@@ -73,12 +73,8 @@
                                     <?php endif; ?>
                                 </th>
                                 <th>Price</th>
-                                <?php if(auth('admin')->user()->role->name != 'Master Admin' && auth('admin')->user()->role->name != 'Admin'): ?>
-                                    
-                                <?php else: ?>
-                                    <th><?php echo e(\App\CPU\translate('featured')); ?></th>
-                                    <th><?php echo e(\App\CPU\translate('Active')); ?> <?php echo e(\App\CPU\translate('status')); ?></th>
-                                <?php endif; ?>
+                                <th>Store Info</th>
+                                <th>Status</th>
                                 <th>Stocks</th>
                                 <th>Stock Status</th>
                                 <th style="width: 5px" class="text-center"><?php echo e(\App\CPU\translate('Action')); ?></th>
