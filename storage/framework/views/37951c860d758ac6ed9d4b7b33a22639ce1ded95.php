@@ -421,12 +421,7 @@
 
                                                 </div>
                                                 <?php if($publisher->products->count() > 0 ): ?>
-                                                    <div>
-                                                        <span class="count-value">
-                                                        <?php echo e($publisher->products->count()); ?>
-
-                                                        </span>
-                                                    </div>
+                                                    
                                                 <?php endif; ?>
                                             </li>
                                         </div>
@@ -477,12 +472,7 @@
 
                                                 </div>
                                                 <?php if($category->products->count() > 0 ): ?>
-                                                    <div>
-                                                        <span class="count-value">
-                                                        <?php echo e($category->products->count()); ?>
-
-                                                        </span>
-                                                    </div>
+                                                    
                                                 <?php endif; ?>
                                             </li>
                                         </div>

@@ -469,11 +469,11 @@
                                                     {{ $publisher['name_bangla'] }}
                                                 </div>
                                                 @if($publisher->products->count() > 0 )
-                                                    <div>
+                                                    {{-- <div>
                                                         <span class="count-value">
                                                         {{ $publisher->products->count() }}
                                                         </span>
-                                                    </div>
+                                                    </div> --}}
                                                 @endif
                                             </li>
                                         </div>
@@ -523,11 +523,11 @@
                                                     {{ $category['name_bangla'] }}
                                                 </div>
                                                 @if($category->products->count() > 0 )
-                                                    <div>
+                                                    {{-- <div>
                                                         <span class="count-value">
                                                         {{ $category->products->count() }}
                                                         </span>
-                                                    </div>
+                                                    </div> --}}
                                                 @endif
                                             </li>
                                         </div>
