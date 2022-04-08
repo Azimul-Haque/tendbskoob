@@ -111,25 +111,18 @@
                                                 <b><?php echo e(\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['unit_price']))); ?></b>
                                             </small>
                                         </td>
-                                        <?php if(auth('admin')->user()->role->name != 'Master Admin' && auth('admin')->user()->role->name != 'Admin'): ?>
-                                    
-                                        <?php else: ?>
-                                            <td>
-                                                <label class="switch">
-                                                    <input type="checkbox"
-                                                        onclick="featured_status('<?php echo e($p['id']); ?>')" <?php echo e($p->featured == 1?'checked':''); ?>>
-                                                    <span class="slider round"></span>
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <label class="switch switch-status">
-                                                    <input type="checkbox" class="status"
-                                                        id="<?php echo e($p['id']); ?>" <?php echo e($p->status == 1?'checked':''); ?>>
-                                                    <span class="slider round"></span>
-                                                </label>
-                                            </td>
-                                        <?php endif; ?>
-                                        
+                                        <td>
+                                            Active: <?php if($p->status == 1): ?> <span class="badge badge-success">Yes</span> <?php else: ?> <span class="badge badge-warning">No</span> <?php endif; ?><br/>
+                                            Featured: <?php if($p->featured == 1): ?> <span class="badge badge-success">Yes</span> <?php else: ?> <span class="badge badge-warning">No</span> <?php endif; ?>
+                                            
+                                        </td>
+                                        <td>
+                                            <label class="switch switch-status">
+                                                <input type="checkbox" class="status"
+                                                    id="<?php echo e($p['id']); ?>" <?php echo e($p->status == 1?'checked':''); ?>>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </td>
                                         <td>
                                             <?php echo e($p->current_stock); ?>
 
