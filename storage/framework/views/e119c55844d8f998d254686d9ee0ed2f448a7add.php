@@ -125,13 +125,15 @@
                                         <?php if(auth('admin')->user()->role->name != 'Master Admin' && auth('admin')->user()->role->name != 'Admin'): ?>
                                     
                                         <?php else: ?>
+                                        <?php if($p->added_by == 'seller'): ?>
                                             <td>
-                                                <?php if($p->added_by == 'seller'): ?>
-                                                    <br/><?php echo e($p->publisher->seller ? $p->publisher->seller->name : ''); ?>
-
-                                                <?php endif; ?>
-                                                
+                                                <label class="switch switch-status">
+                                                    <input type="checkbox" class="status"
+                                                        id="<?php echo e($p['id']); ?>" <?php echo e($p->status == 1?'checked':''); ?>>
+                                                    <span class="slider round"></span>
+                                                </label>
                                             </td>
+                                        <?php endif; ?>
                                             <td>
                                                 Featured: 
                                                 <label class="switch">
