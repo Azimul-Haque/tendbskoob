@@ -34,6 +34,7 @@ class ProductController extends Controller
         $br = Brand::orderBY('name', 'ASC')->get();
         $publishers = Publisher::get();
         $authors = Author::get();
+        $seller = Seller::findOrFail(auth('seller')->id());
         return view('seller-views.product.add-new', compact('cat', 'br', 'publishers', 'authors'));
     }
 
