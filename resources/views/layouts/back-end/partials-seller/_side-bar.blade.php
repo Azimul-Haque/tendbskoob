@@ -248,7 +248,7 @@
                         </li> --}}
 
 
-                        <li class="navbar-vertical-aside-has-menu {{Request::is('seller/shop*')?'active':''}}">
+                        {{-- <li class="navbar-vertical-aside-has-menu {{Request::is('seller/shop*')?'active':''}}">
                             <a class="js-navbar-vertical-aside-menu-link nav-link"
                                href="{{route('seller.shop.view')}}">
                                 <i class="tio-home nav-icon"></i>
@@ -256,11 +256,11 @@
                                     {{\App\CPU\translate('my_shop')}}
                                 </span>
                             </a>
-                        </li>
+                        </li> --}}
 
 
                         <!-- End Pages -->
-                        <li class="nav-item {{( Request::is('seller/business-settings*'))?'scroll-here':''}}">
+                        {{-- <li class="nav-item {{( Request::is('seller/business-settings*'))?'scroll-here':''}}">
                             <small class="nav-subtitle" title="">{{\App\CPU\translate('business_section')}}</small>
                             <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                         </li>
@@ -285,7 +285,7 @@
                                         {{\App\CPU\translate('withdraws')}}
                                     </span>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
                 <!-- End Content -->

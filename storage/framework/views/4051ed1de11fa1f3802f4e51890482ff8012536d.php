@@ -98,69 +98,14 @@
                         </li>
 
 
-                        <li class="navbar-vertical-aside-has-menu <?php echo e(Request::is('seller/messages*')?'active':''); ?>">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link"
-                               href="<?php echo e(route('seller.messages.chat')); ?>">
-                                <i class="tio-email nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                    <?php echo e(\App\CPU\translate('messages')); ?>
-
-                                </span>
-                            </a>
-                        </li>
-                        <li class="navbar-vertical-aside-has-menu <?php echo e(Request::is('seller/profile*')?'active':''); ?>">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link"
-                               href="<?php echo e(route('seller.profile.view')); ?>">
-                                <i class="tio-shop nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                    <?php echo e(\App\CPU\translate('my_bank_info')); ?>
-
-                                </span>
-                            </a>
-                        </li>
+                        
 
 
-                        <li class="navbar-vertical-aside-has-menu <?php echo e(Request::is('seller/shop*')?'active':''); ?>">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link"
-                               href="<?php echo e(route('seller.shop.view')); ?>">
-                                <i class="tio-home nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate">
-                                    <?php echo e(\App\CPU\translate('my_shop')); ?>
-
-                                </span>
-                            </a>
-                        </li>
+                        
 
 
                         <!-- End Pages -->
-                        <li class="nav-item <?php echo e(( Request::is('seller/business-settings*'))?'scroll-here':''); ?>">
-                            <small class="nav-subtitle" title=""><?php echo e(\App\CPU\translate('business_section')); ?></small>
-                            <small class="tio-more-horizontal nav-subtitle-replacer"></small>
-                        </li>
-                        <?php ($shippingMethod = \App\CPU\Helpers::get_business_settings('shipping_method')); ?>
-                        <?php if($shippingMethod=='sellerwise_shipping'): ?>
-                            <li class="navbar-vertical-aside-has-menu <?php echo e(Request::is('seller/business-settings/shipping-method*')?'active':''); ?>">
-                                <a class="js-navbar-vertical-aside-menu-link nav-link"
-                                href="<?php echo e(route('seller.business-settings.shipping-method.add')); ?>">
-                                    <i class="tio-settings nav-icon"></i>
-                                    <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate text-capitalize">
-                                        <?php echo e(\App\CPU\translate('shipping_method')); ?>
-
-                                    </span>
-                                </a>
-                            </li>
-                        <?php endif; ?>
-
-                        <li class="navbar-vertical-aside-has-menu <?php echo e(Request::is('seller/business-settings/withdraws*')?'active':''); ?>">
-                            <a class="js-navbar-vertical-aside-menu-link nav-link"
-                               href="<?php echo e(route('seller.business-settings.withdraw.list')); ?>">
-                                <i class="tio-wallet-outlined nav-icon"></i>
-                                <span class="navbar-vertical-aside-mini-mode-hidden-elements text-truncate text-capitalize">
-                                        <?php echo e(\App\CPU\translate('withdraws')); ?>
-
-                                    </span>
-                            </a>
-                        </li>
+                        
                     </ul>
                 </div>
                 <!-- End Content -->
