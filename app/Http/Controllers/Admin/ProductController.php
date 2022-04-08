@@ -61,6 +61,7 @@ class ProductController extends BaseController
     {
         $product = Product::find($request->id);
         $product->request_status = ($product['request_status'] == 0) ? 1 : 0;
+        $product->status = 1;
         $product->save();
 
         return redirect()->route('admin.product.list', ['seller', 'status' => $product['request_status']]);
