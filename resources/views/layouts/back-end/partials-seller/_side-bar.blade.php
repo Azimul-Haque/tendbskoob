@@ -69,7 +69,7 @@
                         <!-- End Dashboards -->
 
 
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <small class="nav-subtitle">{{\App\CPU\translate('order_management')}}</small>
                             <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                         </li>
@@ -171,7 +171,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                         <!-- End Pages -->
 
                         <li class="nav-item">
