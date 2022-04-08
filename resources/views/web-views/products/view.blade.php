@@ -688,8 +688,8 @@
                                                 onclick="location.href='{{route('products',['id'=> $author['id'],'data_from'=>'author','page'=>1, 'author_name'=>$author['slug']])}}'">
                                                 {{ $author['name_bangla'] }}
                                                 @if($author->products->count() > 0 )
-                                                    <span class="for-count-value"
-                                                          style="float: {{Session::get('direction') === "rtl" ? 'left' : 'right'}}">{{ $author->products->count() }}</span>
+                                                    {{-- <span class="for-count-value"
+                                                          style="float: {{Session::get('direction') === "rtl" ? 'left' : 'right'}}">{{ $author->products->count() }}</span> --}}
 
                                                 @endif
                                             </li>
