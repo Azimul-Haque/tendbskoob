@@ -39,12 +39,11 @@
                                 <label for="publisher_id"><?php echo e(\App\CPU\translate('Publication')); ?> *</label>
                                 <select
                                     class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id" id="publisher_id" required>
-                                    <option value="<?php echo e(old('publisher_id')); ?>" selected disabled>Select Publication</option>
-                                    <?php $__currentLoopData = $publishers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $publisher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <option value="<?php echo e($publisher['id']); ?>" <?php if($product->publisher_id == $publisher['id']): ?> selected="" <?php endif; ?>>
-                                            <?php echo e($publisher['name_bangla']); ?> (<?php echo e($publisher['name']); ?>)
-                                        </option>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($seller->publisher ? $seller->publisher->id : ''); ?>" selected>
+                                        <?php echo e($seller->publisher ? $seller->publisher->name_bangla : ''); ?>
+
+                                    </option>
+                                    
                                 </select>
                             </div>
                             <div class="form-group">
