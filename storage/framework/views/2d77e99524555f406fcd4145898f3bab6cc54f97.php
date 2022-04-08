@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', \App\CPU\translate('Product Edit')); ?>
+<?php $__env->startSection('title', \App\CPU\translate('Seller Product Edit')); ?>
 
 <?php $__env->startPush('css_or_js'); ?>
     <link href="<?php echo e(asset('public/assets/back-end/css/tags-input.min.css')); ?>" rel="stylesheet">
@@ -588,4 +588,4 @@
     
 <?php $__env->stopPush(); ?>
 
-<?php echo $__env->make('layouts.back-end.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp\www\booksbd\resources\views/seller-views/product/edit.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.back-end.app-seller', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp\www\booksbd\resources\views/seller-views/product/edit.blade.php ENDPATH**/ ?>
