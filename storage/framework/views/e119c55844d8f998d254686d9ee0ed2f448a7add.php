@@ -101,7 +101,7 @@
                                             <?php echo e($p->publisher->name_bangla); ?>
 
                                             <?php if($p->added_by == 'seller'): ?>
-                                                <?php echo e($p->publisher->seller ? $p->publisher->seller->name : ''); ?>
+                                                <br/><?php echo e($p->publisher->seller ? $p->publisher->seller->name : ''); ?>
 
                                             <?php endif; ?>
                                         </td>
