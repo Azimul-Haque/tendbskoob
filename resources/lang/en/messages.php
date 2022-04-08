@@ -1501,4 +1501,5 @@
   'BookR List' => 'BookR List',
   'Seller Book List' => 'Seller Book List',
   'Seller Product Edit' => 'Seller Product Edit',
+  'Seller Add Book' => 'Seller Add Book',
 );

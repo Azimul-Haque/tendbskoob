@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', \App\CPU\translate('Add Book')); ?>
+<?php $__env->startSection('title', \App\CPU\translate('Seller Add Book')); ?>
 
 <?php $__env->startPush('css_or_js'); ?>
     <link href="<?php echo e(asset('public/assets/back-end/css/tags-input.min.css')); ?>" rel="stylesheet">
