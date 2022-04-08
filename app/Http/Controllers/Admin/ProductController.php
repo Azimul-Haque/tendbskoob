@@ -413,7 +413,7 @@ class ProductController extends BaseController
         } else {
             $pro->sortByDesc('publisher.name_bangla');
         }
-        return view('admin-views.product.list', compact('pro', 'search', 'request_status', 'orderby'));
+        return view('admin-views.product.list', compact('pro', 'search', 'request_status', 'orderby', 'type'));
     }
 
     public function status_update(Request $request)

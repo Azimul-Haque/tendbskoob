@@ -73,7 +73,7 @@
                                     @endif
                                 </th>
                                 <th>Price</th>
-                                @if($p->added_by == 'seller')
+                                @if($type == 'seller')
                                     <th>Aprrove Status</th>
                                 @endif
                                 
