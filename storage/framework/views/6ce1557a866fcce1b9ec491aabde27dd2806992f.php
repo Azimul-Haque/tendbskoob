@@ -37,17 +37,17 @@
     <?php endif; ?>
 
     <?php if($product['meta_title']!=null): ?>
-        <meta property="og:title" content="<?php echo e($product->name_bangla . ' - ' . $product->name); ?>"/>
-        <meta property="twitter:title" content="<?php echo e($product->name_bangla . ' - ' . $product->name); ?>"/>
+        <meta property="og:title" content="<?php echo e($product['name_bangla'] . ' - ' . $bn_book_writer_for_title . ' | Booksbd.net'); ?>"/>
+        <meta property="twitter:title" content="<?php echo e($product['name_bangla'] . ' - ' . $bn_book_writer_for_title . ' | Booksbd.net'); ?>"/>
     <?php else: ?>
-        <meta property="og:title" content="<?php echo e($product->name_bangla . ' - ' . $product->name); ?>"/>
-        <meta property="twitter:title" content="<?php echo e($product->name_bangla . ' - ' . $product->name); ?>"/>
+        <meta property="og:title" content="<?php echo e($product['name_bangla'] . ' - ' . $bn_book_writer_for_title . ' | Booksbd.net'); ?>"/>
+        <meta property="twitter:title" content="<?php echo e($product['name_bangla'] . ' - ' . $bn_book_writer_for_title . ' | Booksbd.net'); ?>"/>
     <?php endif; ?>
     <meta property="og:url" content="<?php echo e(route('product',[$product->slug])); ?>">
 
     <?php if($product['meta_description']!=null): ?>
-        <meta property="twitter:description" content="<?php echo e($product['meta_description']); ?>">
-        <meta property="og:description" content="<?php echo e($product['meta_description']); ?>">
+        <meta property="twitter:description" content="<?php echo e('লেখকঃ ' . $bn_book_writer_for_title); ?>,  মূল্যঃ ৳ <?php echo e($product->unit_price); ?>, লিংকঃ <?php echo e(route('product',[$product->slug])); ?>, booksbd.net থেকে বইটি সংগ্রহ করুন booksbd.net থেকে">
+        <meta property="og:description" content="<?php echo e('লেখকঃ ' . $bn_book_writer_for_title); ?>,  মূল্যঃ ৳ <?php echo e($product->unit_price); ?>, লিংকঃ <?php echo e(route('product',[$product->slug])); ?>, booksbd.net থেকে বইটি সংগ্রহ করুন booksbd.net থেকে">
     <?php else: ?>
         <meta property="og:description"
               content="<?php $__currentLoopData = explode(' ',$product['name']); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $keyword): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> <?php echo e($keyword.' , '); ?> <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>">
