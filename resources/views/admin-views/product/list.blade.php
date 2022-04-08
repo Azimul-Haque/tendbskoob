@@ -307,6 +307,24 @@
             });
         });
 
+        function approve_status(id) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "{{route('admin.product.featured-status')}}",
+                method: 'POST',
+                data: {
+                    id: id
+                },
+                success: function () {
+                    toastr.success('{{\App\CPU\translate('Featured status updated successfully')}}');
+                }
+            });
+        }
+
         function featured_status(id) {
             $.ajaxSetup({
                 headers: {
