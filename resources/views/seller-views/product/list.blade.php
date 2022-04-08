@@ -110,11 +110,13 @@
                                             </small>
                                         </td>
                                         <td>
-                                            <label class="switch">
+                                            Featured: @if($p->featured == 1) <span class="badge badge-success">Yes</span> @else @endif<br/>
+                                            Featured: @if($p->featured == 1) <span class="badge badge-success">Yes</span> @else @endif<br/>
+                                            {{-- <label class="switch">
                                                 <input type="checkbox"
                                                     onclick="featured_status('{{$p['id']}}')" {{$p->featured == 1?'checked':''}}>
                                                 <span class="slider round"></span>
-                                            </label>
+                                            </label> --}}
                                         </td>
                                         <td>
                                             <label class="switch switch-status">
