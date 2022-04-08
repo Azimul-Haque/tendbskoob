@@ -122,12 +122,15 @@
                                         @if(auth('admin')->user()->role->name != 'Master Admin' && auth('admin')->user()->role->name != 'Admin')
                                     
                                         @else
+                                        @if($p->added_by == 'seller')
                                             <td>
-                                                @if($p->added_by == 'seller')
-                                                    <br/>{{ $p->publisher->seller ? $p->publisher->seller->name : '' }}
-                                                @endif
-                                                
+                                                <label class="switch switch-status">
+                                                    <input type="checkbox" class="status"
+                                                        id="{{$p['id']}}" {{$p->status == 1?'checked':''}}>
+                                                    <span class="slider round"></span>
+                                                </label>
                                             </td>
+                                        @endif
                                             <td>
                                                 Featured: 
                                                 <label class="switch">
