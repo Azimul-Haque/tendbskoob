@@ -201,14 +201,23 @@
                                                 <b>{{\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($p['unit_price']))}}</b>
                                             </small>
                                         </td>
+                                        @if($p->added_by == 'seller')
+                                            <td>
+                                                <label class="switch">
+                                                    <input type="checkbox"
+                                                        onclick="approve_status('{{$p['id']}}')" {{$p->request_status == 1?'checked':''}}>
+                                                    <span class="slider round"></span>
+                                                </label><br/>
+                                            </td>
+                                        @endif
                                         <td>
+                                            Featured: 
                                             <label class="switch">
                                                 <input type="checkbox"
                                                     onclick="featured_status('{{$p['id']}}')" {{$p->featured == 1?'checked':''}}>
                                                 <span class="slider round"></span>
-                                            </label>
-                                        </td>
-                                        <td>
+                                            </label><br/>
+                                            Active: 
                                             <label class="switch switch-status">
                                                 <input type="checkbox" class="status"
                                                     id="{{$p['id']}}" {{$p->status == 1?'checked':''}}>
