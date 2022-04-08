@@ -126,7 +126,7 @@
                                             <td>
                                                 <label class="switch">
                                                     <input type="checkbox"
-                                                        onclick="approve_status('{{$p['id']}}')" {{$p->featured == 1?'checked':''}}>
+                                                        onclick="approve_status('{{$p['id']}}')" {{$p->request_status == 1?'checked':''}}>
                                                     <span class="slider round"></span>
                                                 </label><br/>
                                             </td>

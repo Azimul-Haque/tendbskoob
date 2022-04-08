@@ -127,11 +127,11 @@
                                         <?php else: ?>
                                         <?php if($p->added_by == 'seller'): ?>
                                             <td>
-                                                <label class="switch switch-status">
-                                                    <input type="checkbox" class="status"
-                                                        id="<?php echo e($p['id']); ?>" <?php echo e($p->status == 1?'checked':''); ?>>
+                                                <label class="switch">
+                                                    <input type="checkbox"
+                                                        onclick="approve_status('<?php echo e($p['id']); ?>')" <?php echo e($p->request_status == 1?'checked':''); ?>>
                                                     <span class="slider round"></span>
-                                                </label>
+                                                </label><br/>
                                             </td>
                                         <?php endif; ?>
                                             <td>
@@ -318,6 +318,24 @@
                 }
             });
         });
+
+        function approve_status(id) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "<?php echo e(route('admin.product.approve-status')); ?>",
+                method: 'POST',
+                data: {
+                    id: id
+                },
+                success: function () {
+                    toastr.success('<?php echo e(\App\CPU\translate('Book has been approved successfully')); ?>');
+                }
+            });
+        }
 
         function featured_status(id) {
             $.ajaxSetup({
