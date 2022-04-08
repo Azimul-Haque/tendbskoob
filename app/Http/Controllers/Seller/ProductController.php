@@ -492,7 +492,7 @@ class ProductController extends Controller
             }
 
             Toastr::success('Product updated successfully!');
-            return redirect()->route('seller.product.list');
+            return redirect()->route('seller.product.list', ['in_house']);
         }
     }
 
