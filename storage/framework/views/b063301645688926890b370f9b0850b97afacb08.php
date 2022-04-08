@@ -224,7 +224,7 @@
                     <!--order management ends-->
 
                         <?php if(\App\CPU\Helpers::module_permission_check('product_management')): ?>
-                            <li class="nav-item <?php echo e((Request::is('admin/brand*') || Request::is('admin/category*') || Request::is('admin/sub*') || Request::is('admin/attribute*') || Request::is('admin/product*'))?'scroll-here':''); ?>">
+                            <li class="nav-item <?php echo e((Request::is('admin/brand*') || Request::is('admin/category*') || Request::is('admin/sub*') || Request::is('admin/attribute*'))?'scroll-here':''); ?>">
                                 <small class="nav-subtitle" title=""><?php echo e(\App\CPU\translate('book_management')); ?></small>
                                 <small class="tio-more-horizontal nav-subtitle-replacer"></small>
                             </li>
