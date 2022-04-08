@@ -99,24 +99,9 @@ class ProductController extends Controller
             'published_price.required' => 'Published Price is required!',
             'unit_price.required'      => 'Sale Price is required!',
             'current_stock.required'   => 'Total Quantity is required!',
-            // 'brand_id.required' => 'brand  is required!',
-            // 'unit.required' => 'Unit  is required!',
+
         ]);
 
-        // if ($request['discount_type'] == 'percent') {
-        //     $dis = ($request['unit_price'] / 100) * $request['discount'];
-        // } else {
-        //     $dis = $request['discount'];
-        // }
-
-        // if ($request['unit_price'] <= $dis) {
-        //     $validator->after(function ($validator) {
-        //         $validator->errors()->add(
-        //             'unit_price', 'Discount can not be more or equal to the price!'
-        //         );
-        //     });
-        // }
-        // dd($request->all());
         $p              = new Product();
         $p->user_id = auth('seller')->id();
         $p->added_by = "seller";
