@@ -126,13 +126,14 @@
                                                 @if($p->added_by == 'seller')
                                                     <br/>{{ $p->publisher->seller ? $p->publisher->seller->name : '' }}
                                                 @endif
+                                                
+                                            </td>
+                                            <td>
                                                 <label class="switch">
                                                     <input type="checkbox"
                                                         onclick="featured_status('{{$p['id']}}')" {{$p->featured == 1?'checked':''}}>
                                                     <span class="slider round"></span>
                                                 </label>
-                                            </td>
-                                            <td>
                                                 <label class="switch switch-status">
                                                     <input type="checkbox" class="status"
                                                         id="{{$p['id']}}" {{$p->status == 1?'checked':''}}>
