@@ -163,11 +163,7 @@ class ProductController extends Controller
         $p->purchase_price  = $request->purchase_price ? $request->purchase_price : 0;
         $p->published_price = $request->published_price ? $request->published_price : 0;
         $p->unit_price      = $request->unit_price ? $request->unit_price : 0;
-        // $p->tax = $request->tax_type == 'flat' ? BackEndHelper::currency_to_usd($request->tax) : $request->tax;
-        // $p->tax_type = $request->tax_type;
-        // $p->discount = $request->discount_type == 'flat' ? BackEndHelper::currency_to_usd($request->discount) : $request->discount;
-        // $p->discount_type = $request->discount_type;
-        // $p->attributes = json_encode($request->choice_attributes);
+        
         $stock_count      = (integer) $request['current_stock'];
         $p->current_stock = abs($stock_count);
         $p->details       = $request->description;
