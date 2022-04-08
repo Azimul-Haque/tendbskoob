@@ -133,7 +133,7 @@
                                         </td>
                                         <td>
                                             <a class="btn btn-primary btn-sm"
-                                            href="<?php echo e(route('admin.product.edit',[$p['id']])); ?>">
+                                            href="<?php echo e(route('seller.product.edit',[$p['id']])); ?>">
                                                 <i class="tio-edit"></i> <?php echo e(\App\CPU\translate('Edit')); ?>
 
                                             </a>
@@ -142,7 +142,7 @@
                                                 <i class="tio-add-to-trash"></i> <?php echo e(\App\CPU\translate('Delete')); ?>
 
                                             </a>
-                                            <form action="<?php echo e(route('admin.product.delete',[$p['id']])); ?>"
+                                            <form action="<?php echo e(route('seller.product.delete',[$p['id']])); ?>"
                                                 method="post" id="product-<?php echo e($p['id']); ?>">
                                                 <?php echo csrf_field(); ?> <?php echo method_field('delete'); ?>
                                             </form>

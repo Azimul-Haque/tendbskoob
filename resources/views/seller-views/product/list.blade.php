@@ -138,14 +138,14 @@
                                         </td>
                                         <td>
                                             <a class="btn btn-primary btn-sm"
-                                            href="{{route('admin.product.edit',[$p['id']])}}">
+                                            href="{{route('seller.product.edit',[$p['id']])}}">
                                                 <i class="tio-edit"></i> {{\App\CPU\translate('Edit')}}
                                             </a>
                                             <a class="btn btn-danger btn-sm" href="javascript:"
                                             onclick="form_alert('product-{{$p['id']}}','Want to delete this item ?')">
                                                 <i class="tio-add-to-trash"></i> {{\App\CPU\translate('Delete')}}
                                             </a>
-                                            <form action="{{route('admin.product.delete',[$p['id']])}}"
+                                            <form action="{{route('seller.product.delete',[$p['id']])}}"
                                                 method="post" id="product-{{$p['id']}}">
                                                 @csrf @method('delete')
                                             </form>
