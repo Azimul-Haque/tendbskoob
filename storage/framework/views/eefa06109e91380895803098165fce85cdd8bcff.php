@@ -150,8 +150,9 @@
                         </li>
                         <li class="widget-list-item">
                             <a class="widget-list-link" href="<?php echo e(route('shop.apply')); ?>">Become a Seller</a>
+                        </li>
+                        <li class="widget-list-item">
                             <a class="widget-list-link" href="<?php echo e(route('seller.auth.login')); ?>">Seller Login</a>
-                            <div class="dropdown-divider"></div>
                         </li>
                         
                     </ul>
