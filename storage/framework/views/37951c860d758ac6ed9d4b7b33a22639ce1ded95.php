@@ -596,8 +596,7 @@
                                                 <?php echo e($author['name_bangla']); ?>
 
                                                 <?php if($author->products->count() > 0 ): ?>
-                                                    <span class="for-count-value"
-                                                          style="float: <?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>"><?php echo e($author->products->count()); ?></span>
+                                                    
 
                                                 <?php endif; ?>
                                             </li>
@@ -639,8 +638,7 @@
                                                 <?php echo e($publisher['name_bangla']); ?>
 
                                                 <?php if($publisher->products->count() > 0 ): ?>
-                                                    <span class="for-count-value"
-                                                          style="float: <?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>"><?php echo e($publisher->products->count()); ?></span>
+                                                    
 
                                                 <?php endif; ?>
                                             </li>
@@ -683,8 +681,7 @@
                                                 <?php echo e($category['name_bangla']); ?>
 
                                                 <?php if($category->products->count() > 0 ): ?>
-                                                    <span class="for-count-value"
-                                                          style="float: <?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>"><?php echo e($category->products->count()); ?></span>
+                                                    
 
                                                 <?php endif; ?>
                                             </li>
