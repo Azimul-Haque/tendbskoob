@@ -713,9 +713,12 @@
                                         </div>
                                         
                                         <div class="align-baseline">
-                                            @if($publisher->products()->count() > 0)
-                                                <span class="count-value px-2">( {{ $publisher->products()->count() }} )</span>
-                                            @endif
+                                            <!--
+                                                @if($publisher->products()->count() > 0)
+                                                    <span class="count-value px-2">( {{ $publisher->products()->count() }} )</span>
+                                                @endif
+                                            -->
+                                            
                                         </div>
                                     </li>
                                 @endforeach

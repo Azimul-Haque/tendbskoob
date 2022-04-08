@@ -1,4 +1,4 @@
-<?php $__env->startSection('title',\App\CPU\translate('All Authors Page')); ?>
+<?php $__env->startSection('title', 'লেখক পাতা | Booksbd.net'); ?>
 
 <?php $__env->startPush('css_or_js'); ?>
     <meta property="og:image" content="<?php echo e(asset('storage/app/public/company')); ?>/<?php echo e($web_config['web_logo']->value); ?>"/>
