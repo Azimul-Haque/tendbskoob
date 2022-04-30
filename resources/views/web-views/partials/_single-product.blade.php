@@ -17,6 +17,7 @@
                 $categories[] = $product->categories[$i]->name;
             }
         }
+        dd($categories);
     @endphp
     @if($product['category'] == 3)
         <label style="left: 29%!important; top: 29%!important;"

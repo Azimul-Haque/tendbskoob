@@ -1,13 +1,25 @@
-<?php ($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews)); ?>
+<?php($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews))
 
-<div class="product-card card <?php echo e($product['current_stock']==0?'stock-card':''); ?>"
+<div class="product-card card {{$product['current_stock']==0?'stock-card':''}}"
      style="margin-bottom: 40px;display: flex; align-items: center; justify-content: center;">
-    
-    <?php if($product['stock_status'] == 3): ?>
+    {{-- @if($product['current_stock']<=0)
         <label style="left: 29%!important; top: 29%!important;"
-               class="badge badge-danger stock-out"><?php echo e(\App\CPU\translate('Back Order')); ?></label>
-    <?php endif; ?>
-    <?php if($product['stock_status'] == 3): ?>
+               class="badge badge-danger stock-out">{{\App\CPU\translate('stock_out')}}</label>
+    @endif --}}
+    @if($product['stock_status'] == 3)
+        <label style="left: 29%!important; top: 29%!important;"
+               class="badge badge-danger stock-out">{{\App\CPU\translate('Back Order')}}</label>
+    @endif
+    @php
+        $categories = [];
+        if($product->categories->count() > 0) {
+            for($i = 0; $i < count($product->categories); $i++){
+                $categories[] = $product->categories[$i]->name;
+            }
+        }
+        dd($categories);
+    ?>
+    <?php if($product['category'] == 3): ?>
         <label style="left: 29%!important; top: 29%!important;"
                class="badge badge-danger stock-out"><?php echo e(\App\CPU\translate('Back Order')); ?></label>
     <?php endif; ?>
