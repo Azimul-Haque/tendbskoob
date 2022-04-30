@@ -88,6 +88,23 @@ class OrderController extends Controller
         return view('admin-views.order.order-details', compact('order', 'linked_orders'));
     }
 
+    public function delete($id)
+    {
+        $translation = Order::where('translationable_type', 'App\Model\Product')
+            ->where('translationable_id', $id);
+        $translation->delete();
+        $product = Product::find($id);
+        // foreach (json_decode($product['images'], true) as $image) {
+        //     ImageManager::delete('/product/' . $image);
+        // }
+        ImageManager::delete('/product/thumbnail/' . $product['thumbnail']);
+        $product->delete();
+        FlashDealProduct::where(['product_id' => $id])->delete();
+        DealOfTheDay::where(['product_id' => $id])->delete();
+        Toastr::success('Product removed successfully!');
+        return back();
+    }
+
     public function status(Request $request)
     {
         $order = Order::find($request->id);
