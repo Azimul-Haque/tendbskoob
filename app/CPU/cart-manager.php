@@ -250,7 +250,7 @@ class CartManager
             } else {
                 return [
                     'status' => 0,
-                    'message' => translate('ইতোমধ্যে একটি বই !')
+                    'message' => translate('ইতোমধ্যে একটি প্রি-অর্ডারের বই তালিকায় আছে, তাই !')
                 ];
             }
         }
