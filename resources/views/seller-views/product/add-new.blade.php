@@ -581,7 +581,7 @@
             var unit_price = published_price - (published_price * (unit_price_percentage/100));
             console.log(unit_price_percentage);
             $('#unit_price').val(unit_price);
-            $('#purchase_percentage_text').text('(৳: ' + unit_price + ')');
+            $('#unit_percentage_text').text('(৳: ' + unit_price + ')');
         }
 
         function readURL(input) {
