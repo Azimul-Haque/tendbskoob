@@ -330,9 +330,9 @@
                                             <label class="control-label">কাস্টমার কমিশন (%) <small id="unit_percentage_text"></small></label>
                                             <input type="number" min="0" step="0.01" max="100"
                                                 placeholder="শুধুমাত্র ইংরেজি নম্বরে পারসেন্টিজটি উল্লেখ করুন"
-                                                name="unit_price" 
-                                                onkeyup="purchasePercetage()"
-                                                id="unit_price" value="{{old('unit_price')}}" class="form-control"
+                                                value="{{old('unit_price')}}"
+                                                onkeyup="unitPercetage()"
+                                                name="unit_price" id="unit_price"  class="form-control"
                                                 required>
                                         </div>
                                     @endif
