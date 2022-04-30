@@ -99,6 +99,7 @@ class OrderController extends Controller
         foreach($ordertransactions as $ordertransaction) {
             $ordertransaction->delete();
         }
+        
         $order->delete();
         Toastr::success('Order deleted successfully!');
         return back();
