@@ -190,7 +190,8 @@
                                            href="<?php echo e(route('admin.orders.generate-invoice',[$order['id']])); ?>"><i
                                                 class="tio-download"></i> <?php echo e(\App\CPU\translate('invoice')); ?></a>
                                         <a class="dropdown-item" class="tio-delete" href="javascript:"
-                                        onclick="form_alert('order-<?php echo e($order['id']); ?>','Want to delete this item ?')">
+                                        onclick="form_alert('order-<?php echo e($order['id']); ?>','Want to delete this item ?')"><i
+                                        class="tio-delete"></i>
                                             <?php echo e(\App\CPU\translate('Delete')); ?>
 
                                         </a>
