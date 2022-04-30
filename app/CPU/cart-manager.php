@@ -313,7 +313,7 @@ class CartManager
         $cart['seller_id'] = $product->user_id;
         $cart['seller_is'] = $product->added_by;
         if ($product->added_by == 'seller') {
-            $cart['shop_info'] = Shop::where(['seller_id' => $product->user_id])->first()->name;
+            $cart['shop_info'] = Seller::where(['seller_id' => $product->user_id])->first()->name;
         } else {
             $cart['shop_info'] = Helpers::get_business_settings('company_name');
         }
