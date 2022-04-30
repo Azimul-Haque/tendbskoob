@@ -244,11 +244,12 @@ class CartManager
             }
         }
         if(in_array('Pre Order', $category_names)) {
-            if($user != 'offline') {
-                $check_pre_preorder_cart = Cart::where(['customer_id' => $user->id, 'preorder_status' => 1])->first();
-            } else {
+            if($user == 'offline') {
+                
                 $check = session('offline_cart');
                 $cart_check = $check->where('seller_id', $product->user_id)->where('seller_is', $product->added_by)->first();
+            } else {
+                $check_pre_preorder_cart = Cart::where(['customer_id' => $user->id, 'preorder_status' => 1])->first();
             }
             
             if (isset($check_pre_preorder_cart) == false) {
