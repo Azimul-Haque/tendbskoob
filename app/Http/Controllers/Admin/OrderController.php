@@ -96,6 +96,7 @@ class OrderController extends Controller
         $ordertransaction = OrderTransaction::where('order_id', $id)->first();
         $ordertransaction->delete();
         $order->delete();
+        Toastr::success('Product removed successfully!');
         return back();
     }
 

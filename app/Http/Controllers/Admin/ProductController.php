@@ -693,7 +693,7 @@ class ProductController extends BaseController
         $product->delete();
         FlashDealProduct::where(['product_id' => $id])->delete();
         DealOfTheDay::where(['product_id' => $id])->delete();
-        Toastr::success('Product removed successfully!');
+        Toastr::success('Book removed successfully!');
         return back();
     }
 
