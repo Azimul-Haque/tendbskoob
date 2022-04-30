@@ -42,6 +42,7 @@ class CartManager
                     'publisher_id'  => $item['publisher_id'],
                     'seller_id'  => $item['seller_id'],
                     'seller_is'  => $item['seller_is'],
+                    'preorder_status'  => $item['preorder_status'],
                     'shop_info'  => $item['shop_info'],
                     'created_at' => now(),
                     'updated_at' => now(),
