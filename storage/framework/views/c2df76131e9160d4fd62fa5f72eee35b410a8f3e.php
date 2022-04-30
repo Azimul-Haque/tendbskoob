@@ -34,7 +34,7 @@
                                         <div class="cart_product">
                                             <div class="product-title">
                                                 <a href="<?php echo e(route('product',$cartItem['slug'])); ?>"><?php echo e($cartItem['name_bangla']); ?></a>
-                                                <?php
+                                                {{-- <?php
                                                     $category_names = [];
                                                     if($product->categories->count() > 0) {
                                                         for($i = 0; $i < count($product->categories); $i++){
@@ -44,7 +44,7 @@
                                                 ?>
                                                 <?php if(in_array('Pre Order', $category_names)): ?>
                                                     <label style="background-color: #FF9900 !important; color: #FFFFFF !important;" class="badge badge-danger stock-out">Pre Order</label><br/><br/>
-                                                <?php endif; ?>
+                                                <?php endif; ?> --}}
                                                 
                                                 <br/>
                                                 <small><?php echo e($cartItem['author']); ?></small>
