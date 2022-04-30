@@ -243,17 +243,17 @@ class CartManager
                 $category_names[] = $product->categories[$i]->name;
             }
         }
-        // if(in_array('Pre Order', $category_names)) {
-        //     $check_pre_preorder_cart = Cart::where(['customer_id' => $user->id, 'preorder_status' => 1])->first();
-        //     if (isset($check_pre_preorder_cart) == false) {
+        if(in_array('Pre Order', $category_names)) {
+            $check_pre_preorder_cart = Cart::where(['customer_id' => $user->id, 'preorder_status' => 1])->first();
+            if (isset($check_pre_preorder_cart) == false) {
                 
-        //     } else {
-        //         return [
-        //             'status' => 0,
-        //             'message' => 'ইতোমধ্যে একটি প্রি-অর্ডারের বই তালিকায় আছে। একের অধিক প্রি-অর্ডারের বই একসাথে অর্ডার করা সম্ভব হচ্ছে না। আপনি চাইলে প্রি-অর্ডার বইয়ের সাথে স্টকে থাকা অন্য কোন বই যুক্ত করতে পারেন!'
-        //         ];
-        //     }
-        // }
+            } else {
+                return [
+                    'status' => 0,
+                    'message' => 'ইতোমধ্যে একটি প্রি-অর্ডারের বই তালিকায় আছে। একের অধিক প্রি-অর্ডারের বই একসাথে অর্ডার করা সম্ভব হচ্ছে না। আপনি চাইলে প্রি-অর্ডার বইয়ের সাথে স্টকে থাকা অন্য কোন বই যুক্ত করতে পারেন!'
+                ];
+            }
+        }
         
         // pre order ekta thakle aar jeno add korte na paare
         // pre order ekta thakle aar jeno add korte na paare
