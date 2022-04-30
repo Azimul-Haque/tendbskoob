@@ -273,7 +273,7 @@
                                 ?>
                                 <?php if(in_array('Pre Order', $category_names)): ?>
                                     
-                                    <h5 class="mt-3" style="color: green"><img style="margin-right: 8px; width: 18px; height: auto;" src="<?php echo e(asset('public/assets/front-end/img/in-stock(mini).svg')); ?>"> <?php echo e(\App\CPU\translate('Book in')); ?> <label style="left: 29%!important; top: 29%!important; background-color: #FF9900 !important; color: #FFFFFF !important;" class="badge badge-danger stock-out">Pre Order</label></h5>
+                                    <h5 class="mt-3" style="color: green"><?php echo e(\App\CPU\translate('Book in')); ?> <label style="left: 29%!important; top: 29%!important; background-color: #FF9900 !important; color: #FFFFFF !important;" class="badge badge-danger stock-out">Pre Order</label></h5>
                                     
                                 <?php endif; ?>
                             </div>
