@@ -92,15 +92,6 @@ class OrderController extends Controller
     {
         $order = Order::findOrFail($id);
         $order->delete();
-        $product = Product::find($id);
-        // foreach (json_decode($product['images'], true) as $image) {
-        //     ImageManager::delete('/product/' . $image);
-        // }
-        ImageManager::delete('/product/thumbnail/' . $product['thumbnail']);
-        $product->delete();
-        FlashDealProduct::where(['product_id' => $id])->delete();
-        DealOfTheDay::where(['product_id' => $id])->delete();
-        Toastr::success('Product removed successfully!');
         return back();
     }
 
