@@ -318,6 +318,15 @@ class CartManager
         } else {
             $cart['shop_info'] = Helpers::get_business_settings('company_name');
         }
+
+        // pre order status
+        $category_names = [];
+        if($product->categories->count() > 0) {
+            for($i = 0; $i < count($product->categories); $i++){
+                $category_names[] = $product->categories[$i]->name;
+            }
+        }
+        // pre order status
         $cart['preorder_status'] = '';
 
         if ($user == 'offline') {
