@@ -714,7 +714,7 @@
 
             $.ajax({
                 type: "POST",
-                url: '{{route('admin.product.sku-combination')}}',
+                url: '{{route('seller.product.sku-combination')}}',
                 data: $('#product_form').serialize(),
                 success: function (data) {
                     $('#sku_combination').html(data.view);
