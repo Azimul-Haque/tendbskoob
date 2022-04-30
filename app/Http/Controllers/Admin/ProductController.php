@@ -87,7 +87,7 @@ class ProductController extends BaseController
         return view('admin-views.product.view', compact('product', 'reviews'));
     }
 
-    public function store(Request $request)
+    public function stores(Request $request)
     {
         dd($request->all());
         $validator = Validator::make($request->all(), [
