@@ -17,7 +17,7 @@
     ?>
     <?php if(in_array('Pre Order', $category_names)): ?>
         <label style="left: 29%!important; top: 29%!important;"
-               class="badge" style="background-color: #FF9900 !important; color: #FFFFFF !important;">Pre Order</label>
+               class="badge badge-danger stock-out" style="background-color: #FF9900 !important; color: #FFFFFF !important;">Pre Order</label>
     <?php endif; ?>
 
     <div class="card-header inline_product clickable" style="cursor: pointer;max-height: 193px;min-height: 193px">
