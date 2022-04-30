@@ -178,7 +178,7 @@
                                     
                                     <div class="col-md-6" id="quantity">
                                         <label
-                                            class="control-label"><?php echo e(\App\CPU\translate('total')); ?> <?php echo e(\App\CPU\translate('Quantity')); ?></label>
+                                            class="control-label">মোট পরিমাণ</label>
                                         <input type="number" min="0" value="0" step="1"
                                                placeholder="<?php echo e(\App\CPU\translate('Quantity')); ?>"
                                                name="current_stock" class="form-control" required>
