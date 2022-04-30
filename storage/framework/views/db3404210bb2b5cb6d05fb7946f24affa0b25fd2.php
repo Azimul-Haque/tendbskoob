@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="name">বইয়ের কাভারের ছবি *</label> <small
+                                        <label for="name">বইয়ের কাভারের ছবি সিলেক্ট করুন *</label> <small
                                             style="color: red">(w: 260px, h: 372px)</small>
                                     </div>
                                     <center>
@@ -115,7 +115,7 @@
                                 </div>
                             </div><br/>
                             <div class="form-group">
-                                <label class="input-label" for="description"><?php echo e(\App\CPU\translate('description (Optional)')); ?></label>
+                                <label class="input-label" for="description">বইয়ের বর্ণনা/ লুক ইনসাইড</label>
                                 <textarea name="description" class="editor textarea" id="textarea" cols="30" rows="10"><?php echo e(old('description')); ?></textarea>
                             </div>
                         </div>
