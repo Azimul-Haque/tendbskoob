@@ -14,11 +14,7 @@
         $categories = [];
         if($product->categories->count() > 0) {
             for($i = 0; $i < count($product->categories); $i++){
-                $route = route('products',['id'=> $product->categories[$i]->id,'data_from'=>'category','page'=>1]);
-                $category_html .= '<a class="font-weight-normal text-accent" style="color: #5C7CFF !important;" href="' . $route . '">' . $product->categories[$i]->name_bangla . '</a>';
-                if($i < (count($product->categories) -1)){
-                    $category_html .= ", ";
-                }
+                $categories[] = $product->categories[$i]->name;
             }
         }
     @endphp
