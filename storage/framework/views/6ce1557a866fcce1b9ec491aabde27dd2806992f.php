@@ -274,7 +274,6 @@
                                 <?php if(in_array('Pre Order', $category_names)): ?>
                                     <label style="background-color: #FF9900 !important; color: #FFFFFF !important;" class="badge badge-danger stock-out">Pre Order</label><br/><br/>
                                 <?php endif; ?>
-                                <label style="background-color: #FF9900 !important; color: #FFFFFF !important;" class="badge badge-danger stock-out">Pre Order</label><br/><br/>
                             </div>
                         </div>
 
