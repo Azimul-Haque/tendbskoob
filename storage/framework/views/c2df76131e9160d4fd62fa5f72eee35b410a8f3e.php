@@ -35,7 +35,7 @@
                                             <div class="product-title">
                                                 <a href="<?php echo e(route('product',$cartItem['slug'])); ?>"><?php echo e($cartItem['name_bangla']); ?></a>
                                                 <?php if($cartItem['preorder_status'] == 1): ?>
-                                                    <span style="background-color: #FF9900 !important; color: #FFFFFF !important;" class="badge badge-danger stock-out">Pre Order</span><br/><br/>
+                                                    <label style="background-color: #FF9900 !important; color: #FFFFFF !important;" class="badge badge-danger stock-out">Pre Order</label>
                                                 <?php endif; ?>
                                                 <br/>
                                                 <small><?php echo e($cartItem['author']); ?></small>
