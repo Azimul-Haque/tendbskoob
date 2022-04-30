@@ -568,7 +568,7 @@
                 var purchase_price_percentage = $('#purchase_price').val() ? $('#purchase_price').val() : 0;
                 var purchase_price = published_price - (published_price * (purchase_price_percentage/100));
                 $('#purchase_price').val = purchase_price;
-                $('#purchase_percentage_text').text = 'purchase_price';
+                $('#purchase_percentage_text').text = purchase_price;
             }
         });
 
