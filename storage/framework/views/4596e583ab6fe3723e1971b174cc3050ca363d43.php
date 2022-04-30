@@ -342,6 +342,15 @@
             $('#purchase_percentage_text').text('(৳: ' + purchase_price + ')');
         }
 
+        function unitPercetage() {
+            var published_price = $('#published_price').val() ? $('#published_price').val() : 0;
+            var unit_price_percentage = $('#unit_price_percentage').val() ? $('#unit_price_percentage').val() : 0;
+            var unit_price = published_price - (published_price * (unit_price_percentage/100));
+            console.log(unit_price_percentage);
+            $('#unit_price').val(unit_price);
+            $('#unit_percentage_text').text('(৳: ' + unit_price + ')');
+        }
+
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
