@@ -184,7 +184,7 @@
                                                 class="tio-download"></i> {{\App\CPU\translate('invoice')}}</a>
                                         <a class="dropdown-item" target="_blank"
                                            href="{{route('admin.orders.generate-invoice',[$order['id']])}}"><i
-                                                class="tio-download"></i> {{\App\CPU\translate('invoice')}}</a>
+                                                class="tio-delete"></i> Delete</a>
                                     </div>
                                 </div>
                             </td>

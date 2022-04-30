@@ -191,7 +191,7 @@
                                                 class="tio-download"></i> <?php echo e(\App\CPU\translate('invoice')); ?></a>
                                         <a class="dropdown-item" target="_blank"
                                            href="<?php echo e(route('admin.orders.generate-invoice',[$order['id']])); ?>"><i
-                                                class="tio-download"></i> <?php echo e(\App\CPU\translate('invoice')); ?></a>
+                                                class="tio-delete"></i> <?php echo e(\App\CPU\translate('invoice')); ?></a>
                                     </div>
                                 </div>
                             </td>
