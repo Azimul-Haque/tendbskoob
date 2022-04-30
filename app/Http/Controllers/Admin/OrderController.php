@@ -90,9 +90,8 @@ class OrderController extends Controller
 
     public function delete($id)
     {
-        $translation = Order::findOrFail($id);
-            ->where('translationable_id', $id);
-        $translation->delete();
+        $order = Order::findOrFail($id);
+        $order->delete();
         $product = Product::find($id);
         // foreach (json_decode($product['images'], true) as $image) {
         //     ImageManager::delete('/product/' . $image);
