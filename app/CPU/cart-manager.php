@@ -318,6 +318,7 @@ class CartManager
         } else {
             $cart['shop_info'] = Helpers::get_business_settings('company_name');
         }
+        $cart['preorder_status'] = '';
 
         if ($user == 'offline') {
             $offline_cart = session('offline_cart');
