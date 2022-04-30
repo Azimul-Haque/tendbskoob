@@ -10,7 +10,7 @@
         <label style="left: 29%!important; top: 29%!important;"
                class="badge badge-danger stock-out">{{\App\CPU\translate('Back Order')}}</label>
     @endif
-    @if($product['stock_status'] == 3)
+    @if($product['category'] == 3)
         <label style="left: 29%!important; top: 29%!important;"
                class="badge badge-danger stock-out">{{\App\CPU\translate('Back Order')}}</label>
     @endif
