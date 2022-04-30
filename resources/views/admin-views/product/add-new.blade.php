@@ -284,13 +284,13 @@
 
                     <div class="card mt-2 rest-part">
                         <div class="card-header">
-                            <h4>{{\App\CPU\translate('Product price & stock')}}</h4>
+                            <h4>{{\App\CPU\translate('Product Price & Stock')}}</h4>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label class="control-label">{{\App\CPU\translate('ISBN Number')}}</label>
+                                        <label class="control-label">ISBN নম্বর</label>
                                         <input type="text"
                                                placeholder="{{\App\CPU\translate('ISBN Number')}}"
                                                name="isbn" value="{{old('isbn')}}" class="form-control">
