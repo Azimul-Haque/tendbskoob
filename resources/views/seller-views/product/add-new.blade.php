@@ -328,7 +328,7 @@
                                         <div class="col-md-4">
                                             <label class="control-label">কাস্টমার কমিশন (৳)</label>
                                             <input type="number" min="0" step="0.01" max="100"
-                                                placeholder="{{\App\CPU\translate('Sale Price')}}"
+                                                placeholder="শুধুমাত্র ইংরেজি নম্বরে পারসেন্টিজটি উল্লেখ করুন"
                                                 name="unit_price" value="{{old('unit_price')}}" class="form-control"
                                                 required>
                                         </div>

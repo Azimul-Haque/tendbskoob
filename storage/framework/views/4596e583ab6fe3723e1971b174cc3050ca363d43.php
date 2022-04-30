@@ -166,9 +166,9 @@
                                         </div>
                                         
                                         <div class="col-md-4">
-                                            <label class="control-label"><?php echo e(\App\CPU\translate('Sale Price')); ?> (৳)</label>
-                                            <input type="number" min="0" step="0.01"
-                                                placeholder="<?php echo e(\App\CPU\translate('Sale Price')); ?>"
+                                            <label class="control-label">কাস্টমার কমিশন (৳)</label>
+                                            <input type="number" min="0" step="0.01" max="100"
+                                                placeholder="শুধুমাত্র ইংরেজি নম্বরে পারসেন্টিজটি উল্লেখ করুন"
                                                 name="unit_price" value="<?php echo e(old('unit_price')); ?>" class="form-control"
                                                 required>
                                         </div>
