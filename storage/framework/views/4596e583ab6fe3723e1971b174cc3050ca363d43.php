@@ -158,20 +158,24 @@
                                         </div>    
                                         <div class="col-md-4">
                                             <label
-                                                class="control-label">বুকসবিডির কমিশন (%) <small>asd</small></label>
+                                                class="control-label">বুকসবিডির কমিশন (%) <small id="purchase_percentage_text"></small></label>
                                             <input type="number" min="0" step="0.01" max="100"
                                                 placeholder="শুধুমাত্র ইংরেজি নম্বরে পারসেন্টিজটি উল্লেখ করুন"
-                                                value="<?php echo e(old('purchase_price')); ?>"
+                                                value="<?php echo e(old('purchase_price_percentage')); ?>"
                                                 onkeyup="purchasePercetage()"
-                                                name="purchase_price" id="purchase_price" class="form-control" required>
+                                                id="purchase_price_percentage" class="form-control" required>
+                                            <input type="hidden" name="purchase_price" id="purchase_price">
                                         </div>
                                         
                                         <div class="col-md-4">
-                                            <label class="control-label">কাস্টমার কমিশন (%)</label>
+                                            <label class="control-label">কাস্টমার কমিশন (%) <small id="unit_percentage_text"></small></label>
                                             <input type="number" min="0" step="0.01" max="100"
                                                 placeholder="শুধুমাত্র ইংরেজি নম্বরে পারসেন্টিজটি উল্লেখ করুন"
-                                                name="unit_price" id="unit_price" value="<?php echo e(old('unit_price')); ?>" class="form-control"
+                                                value="<?php echo e(old('unit_price')); ?>"
+                                                onkeyup="unitPercetage()"
+                                                id="unit_price_percentage"  class="form-control"
                                                 required>
+                                            <input type="hidden" name="unit_price" id="unit_price">
                                         </div>
                                     <?php endif; ?>
                                 </div>
@@ -325,6 +329,14 @@
                     });
                 }
             });
+
+            purchasePercetage() {
+                var published_price = $('#published_price').val() ? $('#published_price').val() : 0;
+                var purchase_price_percentage = $('#purchase_price').val() ? $('#purchase_price').val() : 0;
+                var purchase_price = published_price - (published_price * (purchase_price_percentage/100));
+                $('#purchase_price').val = purchase_price;
+                $('#purchase_percentage_text').text = '(৳: )' + purchase_price;
+            }
         });
 
         function readURL(input) {
