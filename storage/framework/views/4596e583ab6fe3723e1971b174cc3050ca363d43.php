@@ -162,7 +162,7 @@
                                             <input type="number" min="0" step="0.01" max="100"
                                                 placeholder="শুধুমাত্র ইংরেজি নম্বরে পারসেন্টিজটি উল্লেখ করুন"
                                                 value="<?php echo e(old('purchase_price_percentage')); ?>"
-                                                onkeyup="purchasePercetage()"
+                                                onkeyup="purchasePercetage();"
                                                 id="purchase_price_percentage" class="form-control" required>
                                             <input type="hidden" name="purchase_price" id="purchase_price">
                                         </div>
@@ -330,14 +330,16 @@
                 }
             });
 
-            function purchasePercetage() {
-                var published_price = $('#published_price').val() ? $('#published_price').val() : 0;
-                var purchase_price_percentage = $('#purchase_price').val() ? $('#purchase_price').val() : 0;
-                var purchase_price = published_price - (published_price * (purchase_price_percentage/100));
-                $('#purchase_price').val = purchase_price;
-                $('#purchase_percentage_text').text = '(৳: )' + purchase_price;
-            }
+            
         });
+
+        function purchasePercetage() {
+            var published_price = $('#published_price').val() ? $('#published_price').val() : 0;
+            var purchase_price_percentage = $('#purchase_price').val() ? $('#purchase_price').val() : 0;
+            var purchase_price = published_price - (published_price * (purchase_price_percentage/100));
+            $('#purchase_price').val = purchase_price;
+            $('#purchase_percentage_text').text = '(৳: )' + purchase_price;
+        }
 
         function readURL(input) {
             if (input.files && input.files[0]) {
