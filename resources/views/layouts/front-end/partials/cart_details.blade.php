@@ -38,17 +38,10 @@
                                         <div class="cart_product">
                                             <div class="product-title">
                                                 <a href="{{route('product',$cartItem['slug'])}}">{{$cartItem['name_bangla']}}</a>
-                                                <?php
-                                                    // $category_names = [];
-                                                    // if($product->categories->count() > 0) {
-                                                    //     for($i = 0; $i < count($product->categories); $i++){
-                                                    //         $category_names[] = $product->categories[$i]->name;
-                                                    //     }
-                                                    // }
-                                                ?>
-                                                {{-- @if(in_array('Pre Order', $category_names))
+                                                
+                                                @if($cartItem['preorder_status'])
                                                     <label style="background-color: #FF9900 !important; color: #FFFFFF !important;" class="badge badge-danger stock-out">Pre Order</label><br/><br/>
-                                                @endif --}}
+                                                @endif
                                                 
                                                 <br/>
                                                 <small>{{$cartItem['author']}}</small>

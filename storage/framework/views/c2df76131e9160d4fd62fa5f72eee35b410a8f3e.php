@@ -34,15 +34,10 @@
                                         <div class="cart_product">
                                             <div class="product-title">
                                                 <a href="<?php echo e(route('product',$cartItem['slug'])); ?>"><?php echo e($cartItem['name_bangla']); ?></a>
-                                                <?php
-                                                    // $category_names = [];
-                                                    // if($product->categories->count() > 0) {
-                                                    //     for($i = 0; $i < count($product->categories); $i++){
-                                                    //         $category_names[] = $product->categories[$i]->name;
-                                                    //     }
-                                                    // }
-                                                ?>
                                                 
+                                                <?php if($cartItem['preorder_status']): ?>
+                                                    <label style="background-color: #FF9900 !important; color: #FFFFFF !important;" class="badge badge-danger stock-out">Pre Order</label><br/><br/>
+                                                <?php endif; ?>
                                                 
                                                 <br/>
                                                 <small><?php echo e($cartItem['author']); ?></small>
