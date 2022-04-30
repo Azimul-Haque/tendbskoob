@@ -159,7 +159,7 @@
                                     </div>    
                                     <div class="col-md-4">
                                         <label
-                                            class="control-label">বুকসবিডির কমিশন (%) <small id="purchase_percentage_text"></small></label>
+                                            class="control-label">বুকসবিডির কমিশন (%) <small id="purchase_percentage_text" style="color: green; font-weight: bold;"></small></label>
                                         <input type="number" min="0" step="0.01" max="100"
                                             placeholder="শুধুমাত্র ইংরেজি নম্বরে পারসেন্টিজটি উল্লেখ করুন"
                                             value="<?php echo e(old('purchase_price_percentage')); ?>"
@@ -169,7 +169,7 @@
                                     </div>
                                         
                                     <div class="col-md-4">
-                                        <label class="control-label">কাস্টমার কমিশন (%) <small id="unit_percentage_text"></small></label>
+                                        <label class="control-label">কাস্টমার কমিশন (%) <small id="unit_percentage_text" style="color: green; font-weight: bold;"></small></label>
                                         <input type="number" min="0" step="0.01" max="100"
                                             placeholder="শুধুমাত্র ইংরেজি নম্বরে পারসেন্টিজটি উল্লেখ করুন"
                                             value="<?php echo e(old('unit_price')); ?>"
