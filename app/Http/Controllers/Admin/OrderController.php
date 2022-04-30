@@ -93,8 +93,8 @@ class OrderController extends Controller
         $order = Order::findOrFail($id);
         $orderdetails = OrderDetail::where('order_id', $id)->first();
         $orderdetails->delete();
-        $orderdetails = OrderTransaction::where('order_id', $id)->first();
-        $orderdetails->delete();
+        $ordertransaction = OrderTransaction::where('order_id', $id)->first();
+        $ordertransaction->delete();
         $order->delete();
         return back();
     }
