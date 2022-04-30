@@ -237,7 +237,7 @@ class CartManager
 
         // pre order ekta thakle aar jeno add korte na paare
         // pre order ekta thakle aar jeno add korte na paare
-        $check_pre_preorder_cart = Cart::where(['customer_id' => $user->id, 'customer_id' => $user->id, 'variant' => $str])->first();
+        $check_pre_preorder_cart = Cart::where(['product_id' => $request->id, 'customer_id' => $user->id, 'variant' => $str])->first();
         // pre order ekta thakle aar jeno add korte na paare
         // pre order ekta thakle aar jeno add korte na paare
 
