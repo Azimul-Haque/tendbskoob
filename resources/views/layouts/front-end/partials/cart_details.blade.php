@@ -42,7 +42,7 @@
                                                 @if($cartItem['preorder_status'] == 1)
                                                     <label style="background-color: #FF9900 !important; color: #FFFFFF !important;" class="badge badge-danger stock-out">Pre Order</label><br/><br/>
                                                 @endif
-                                                
+                                                {{ $cartItem['preorder_status'] }}
                                                 <br/>
                                                 <small>{{$cartItem['author']}}</small>
                                             </div>

@@ -38,7 +38,8 @@
                                                 <?php if($cartItem['preorder_status'] == 1): ?>
                                                     <label style="background-color: #FF9900 !important; color: #FFFFFF !important;" class="badge badge-danger stock-out">Pre Order</label><br/><br/>
                                                 <?php endif; ?>
-                                                
+                                                <?php echo e($cartItem['preorder_status']); ?>
+
                                                 <br/>
                                                 <small><?php echo e($cartItem['author']); ?></small>
                                             </div>
