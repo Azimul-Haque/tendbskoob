@@ -301,7 +301,7 @@
             </div>
             <div class="col-lg-3 col-md-3" style="background: #F6F6F6;">
                 <center style="padding: 10px;">
-                    <b>দৃষ্টি আকর্ষণ</b>
+                    <h5><b>দৃষ্টি আকর্ষণ</b></h5>
                 </center>
             </div>
         </div>
