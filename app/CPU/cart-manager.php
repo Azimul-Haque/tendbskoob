@@ -326,8 +326,10 @@ class CartManager
                 $category_names[] = $product->categories[$i]->name;
             }
         }
+        if(in_array('Pre Order', $category_names)) {
+            $cart['preorder_status'] = '';
+        }
         // pre order status
-        $cart['preorder_status'] = '';
 
         if ($user == 'offline') {
             $offline_cart = session('offline_cart');
