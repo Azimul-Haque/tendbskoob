@@ -329,6 +329,8 @@ class CartManager
         }
         if(in_array('Pre Order', $category_names)) {
             $cart['preorder_status'] = 1;
+        } else {
+            $cart['preorder_status'] = 0;
         }
         // pre order status
 
