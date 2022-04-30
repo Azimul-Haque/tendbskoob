@@ -421,6 +421,7 @@
                                                         {{ $author->products->count() }}
                                                         </span>
                                                     </div> --}}
+                                                    
                                                 @endif
                                             </li>
                                         </div>
