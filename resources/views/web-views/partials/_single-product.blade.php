@@ -11,16 +11,16 @@
                class="badge badge-danger stock-out">{{\App\CPU\translate('Back Order')}}</label>
     @endif
     @php
-        $categories = [];
+        $category_names = [];
         if($product->categories->count() > 0) {
             for($i = 0; $i < count($product->categories); $i++){
-                $categories[] = $product->categories[$i]->name;
+                $category_names[] = $product->categories[$i]->name;
             }
         }
     @endphp
     @if($product['category'] == 3)
         <label style="left: 29%!important; top: 29%!important;"
-               class="badge badge-danger stock-out">{{ $categories }}</label>
+               class="badge badge-danger stock-out">{{ $category_names }}</label>
     @endif
 
     <div class="card-header inline_product clickable" style="cursor: pointer;max-height: 193px;min-height: 193px">
