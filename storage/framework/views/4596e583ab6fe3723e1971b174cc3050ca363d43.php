@@ -481,7 +481,7 @@
 
             $.ajax({
                 type: "POST",
-                url: '<?php echo e(route('admin.product.sku-combination')); ?>',
+                url: '<?php echo e(route('seller.product.sku-combination')); ?>',
                 data: $('#product_form').serialize(),
                 success: function (data) {
                     $('#sku_combination').html(data.view);
@@ -535,7 +535,7 @@
                     }
                 });
                 $.post({
-                    url: '<?php echo e(route('admin.product.store')); ?>',
+                    url: '<?php echo e(route('seller.product.add-new')); ?>',
                     data: formData,
                     contentType: false,
                     processData: false,
