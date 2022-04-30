@@ -10,6 +10,10 @@
         <label style="left: 29%!important; top: 29%!important;"
                class="badge badge-danger stock-out">{{\App\CPU\translate('Back Order')}}</label>
     @endif
+    @if($product['stock_status'] == 3)
+        <label style="left: 29%!important; top: 29%!important;"
+               class="badge badge-danger stock-out">{{\App\CPU\translate('Back Order')}}</label>
+    @endif
 
     <div class="card-header inline_product clickable" style="cursor: pointer;max-height: 193px;min-height: 193px">
         @if($product->discount > 0)

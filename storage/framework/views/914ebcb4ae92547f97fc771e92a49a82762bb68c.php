@@ -7,6 +7,10 @@
         <label style="left: 29%!important; top: 29%!important;"
                class="badge badge-danger stock-out"><?php echo e(\App\CPU\translate('Back Order')); ?></label>
     <?php endif; ?>
+    <?php if($product['stock_status'] == 3): ?>
+        <label style="left: 29%!important; top: 29%!important;"
+               class="badge badge-danger stock-out"><?php echo e(\App\CPU\translate('Back Order')); ?></label>
+    <?php endif; ?>
 
     <div class="card-header inline_product clickable" style="cursor: pointer;max-height: 193px;min-height: 193px">
         <?php if($product->discount > 0): ?>
