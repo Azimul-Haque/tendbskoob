@@ -182,7 +182,7 @@
                                         <a class="dropdown-item" target="_blank"
                                            href="{{route('admin.orders.generate-invoice',[$order['id']])}}"><i
                                                 class="tio-download"></i> {{\App\CPU\translate('invoice')}}</a>
-                                        <a class="dropdown-item" class="tio-delete" href="javascript:"
+                                        <a class="dropdown-item" href="javascript:"
                                         onclick="form_alert('order-{{$order['id']}}','Want to delete this item ?')"><i
                                         class="tio-delete"></i>
                                             {{\App\CPU\translate('Delete')}}
