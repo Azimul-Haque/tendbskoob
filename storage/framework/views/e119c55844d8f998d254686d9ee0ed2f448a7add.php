@@ -168,7 +168,7 @@
 
                                             </a>
                                             <a class="btn btn-danger btn-sm" href="javascript:"
-                                            onclick="form_alert('product-<?php echo e($p['id']); ?>','Want to delete this item ?')">
+                                            onclick="form_alert('product-<?php echo e($p['id']); ?>','Want to delete this Book ?')">
                                                 <i class="tio-add-to-trash"></i> <?php echo e(\App\CPU\translate('Delete')); ?>
 
                                             </a>
