@@ -99,6 +99,17 @@
                                                 <?php echo e(\Illuminate\Support\Str::limit($p['name'],20)); ?>
 
                                             </a>
+                                            <?php
+                                                $category_names = [];
+                                                if($p->categories->count() > 0) {
+                                                    for($i = 0; $i < count($p->categories); $i++){
+                                                        $category_names[] = $p->categories[$i]->name;
+                                                    }
+                                                }
+                                            ?>
+                                            <?php if(in_array('Pre Order', $category_names)): ?>
+                                                <label style="background-color: #FF9900 !important; color: #FFFFFF !important;" class="badge badge-danger stock-out">Pre Order</label><br/><br/>
+                                            <?php endif; ?>
                                         </td>
                                         <td>
                                             <?php echo e($p->publisher->name_bangla); ?>
