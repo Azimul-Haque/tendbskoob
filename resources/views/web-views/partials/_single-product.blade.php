@@ -20,7 +20,7 @@
     ?>
     @if(in_array('Pre Order', $category_names))
         <label style="left: 29%!important; top: 29%!important;"
-               class="badge badge-danger" style="background: #FFAD33;">Pre Order</label>
+               class="badge badge-danger stock-out">Pre Order</label>
     @endif
 
     <div class="card-header inline_product clickable" style="cursor: pointer;max-height: 193px;min-height: 193px">
