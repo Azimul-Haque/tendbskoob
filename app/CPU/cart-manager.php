@@ -244,11 +244,9 @@ class CartManager
             }
         }
         if(in_array('Pre Order', $category_names)) {
-            $cart['preorder_status'] = 1;
-        } else {
-            $cart['preorder_status'] = 0;
+            $check_pre_preorder_cart = Cart::where(['product_id' => $request->id, 'customer_id' => $user->id, 'variant' => $str])->first();
         }
-        $check_pre_preorder_cart = Cart::where(['product_id' => $request->id, 'customer_id' => $user->id, 'variant' => $str])->first();
+        
         // pre order ekta thakle aar jeno add korte na paare
         // pre order ekta thakle aar jeno add korte na paare
 
