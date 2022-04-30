@@ -182,13 +182,11 @@
                                         <a class="dropdown-item" target="_blank"
                                            href="{{route('admin.orders.generate-invoice',[$order['id']])}}"><i
                                                 class="tio-download"></i> {{\App\CPU\translate('invoice')}}</a>
+                                        <a class="dropdown-item" target="_blank"
+                                           href="{{route('admin.orders.generate-invoice',[$order['id']])}}"><i
+                                                class="tio-download"></i> {{\App\CPU\translate('invoice')}}</a>
                                     </div>
                                 </div>
-                                <button class="btn btn-outline-secondary dropdown-toggle" type="button"
-                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                    <i class="tio-settings"></i>
-                                </button>
                             </td>
                         </tr>
                     @endforeach
