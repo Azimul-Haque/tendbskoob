@@ -560,6 +560,10 @@
                     });
                 }
             });
+
+            purchasePercetage() {
+                
+            }
         });
 
         function readURL(input) {
