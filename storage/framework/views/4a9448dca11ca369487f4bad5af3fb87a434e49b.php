@@ -191,6 +191,11 @@
                                                 class="tio-download"></i> <?php echo e(\App\CPU\translate('invoice')); ?></a>
                                     </div>
                                 </div>
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                    <i class="tio-settings"></i>
+                                </button>
                             </td>
                         </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
