@@ -185,6 +185,14 @@
                                         <a class="dropdown-item" target="_blank"
                                            href="{{route('admin.orders.generate-invoice',[$order['id']])}}"><i
                                                 class="tio-delete"></i> Delete</a>
+                                                <a class="btn btn-danger btn-sm" href="javascript:"
+                                                onclick="form_alert('product-{{$p['id']}}','Want to delete this item ?')">
+                                                    <i class="tio-add-to-trash"></i> {{\App\CPU\translate('Delete')}}
+                                                </a>
+                                                <form action="{{route('admin.product.delete',[$p['id']])}}"
+                                                    method="post" id="product-{{$p['id']}}">
+                                                    @csrf @method('delete')
+                                                </form>
                                     </div>
                                 </div>
                             </td>
