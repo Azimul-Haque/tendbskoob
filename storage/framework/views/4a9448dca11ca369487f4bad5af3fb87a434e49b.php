@@ -197,7 +197,7 @@
                                             <?php echo e(\App\CPU\translate('Delete')); ?>
 
                                         </a>
-                                        <form action="<?php echo e(route('admin.order.delete',[$p['id']])); ?>"
+                                        <form action="<?php echo e(route('admin.order.delete',[$order['id']])); ?>"
                                             method="post" id="order-<?php echo e($order['id']); ?>">
                                             <?php echo csrf_field(); ?> <?php echo method_field('delete'); ?>
                                         </form>

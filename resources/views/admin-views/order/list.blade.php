@@ -189,7 +189,7 @@
                                         onclick="form_alert('order-{{$order['id']}}','Want to delete this item ?')">
                                             {{\App\CPU\translate('Delete')}}
                                         </a>
-                                        <form action="{{route('admin.order.delete',[$p['id']])}}"
+                                        <form action="{{route('admin.order.delete',[$order['id']])}}"
                                             method="post" id="order-{{$order['id']}}">
                                             @csrf @method('delete')
                                         </form>
