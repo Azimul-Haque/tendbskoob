@@ -163,7 +163,7 @@
                                                 <i class="tio-edit"></i> {{\App\CPU\translate('Edit')}}
                                             </a>
                                             <a class="btn btn-danger btn-sm" href="javascript:"
-                                            onclick="form_alert('product-{{$p['id']}}','Want to delete this item ?')">
+                                            onclick="form_alert('product-{{$p['id']}}','Want to delete this Book ?')">
                                                 <i class="tio-add-to-trash"></i> {{\App\CPU\translate('Delete')}}
                                             </a>
                                             <form action="{{route('admin.product.delete',[$p['id']])}}"
