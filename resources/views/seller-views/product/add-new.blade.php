@@ -567,6 +567,7 @@
         });
 
         $("#purchase_price_percentage").keyup(function () {
+            console.log('kaaj kore');
             var published_price = $('#published_price').val() ? $('#published_price').val() : 0;
             var purchase_price_percentage = $('#purchase_price').val() ? $('#purchase_price').val() : 0;
             var purchase_price = published_price - (published_price * (purchase_price_percentage/100));
