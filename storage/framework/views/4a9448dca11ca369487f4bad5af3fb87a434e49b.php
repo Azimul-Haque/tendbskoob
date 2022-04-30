@@ -191,7 +191,16 @@
                                                 class="tio-download"></i> <?php echo e(\App\CPU\translate('invoice')); ?></a>
                                         <a class="dropdown-item" target="_blank"
                                            href="<?php echo e(route('admin.orders.generate-invoice',[$order['id']])); ?>"><i
-                                                class="tio-delete"></i> <?php echo e(\App\CPU\translate('invoice')); ?></a>
+                                                class="tio-delete"></i> Delete</a>
+                                        <a class="dropdown-item" class="tio-delete" href="javascript:"
+                                        onclick="form_alert('order-<?php echo e($order['id']); ?>','Want to delete this item ?')">
+                                            <?php echo e(\App\CPU\translate('Delete')); ?>
+
+                                        </a>
+                                        <form action="<?php echo e(route('admin.order.delete',[$p['id']])); ?>"
+                                            method="post" id="order-<?php echo e($order['id']); ?>">
+                                            <?php echo csrf_field(); ?> <?php echo method_field('delete'); ?>
+                                        </form>
                                     </div>
                                 </div>
                             </td>
