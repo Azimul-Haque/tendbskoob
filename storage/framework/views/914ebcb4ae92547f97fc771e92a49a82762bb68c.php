@@ -1,13 +1,13 @@
-<?php($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews))
+<?php ($overallRating = \App\CPU\ProductManager::get_overall_rating($product->reviews)); ?>
 
-<div class="product-card card {{$product['current_stock']==0?'stock-card':''}}"
+<div class="product-card card <?php echo e($product['current_stock']==0?'stock-card':''); ?>"
      style="margin-bottom: 40px;display: flex; align-items: center; justify-content: center;">
     
-    @if($product['stock_status'] == 3)
+    <?php if($product['stock_status'] == 3): ?>
         <label style="left: 29%!important; top: 29%!important;"
-               class="badge badge-danger stock-out">{{\App\CPU\translate('Back Order')}}</label>
-    @endif
-    @php
+               class="badge badge-danger stock-out"><?php echo e(\App\CPU\translate('Back Order')); ?></label>
+    <?php endif; ?>
+    <?php
         $category_names = [];
         if($product->categories->count() > 0) {
             for($i = 0; $i < count($product->categories); $i++){
