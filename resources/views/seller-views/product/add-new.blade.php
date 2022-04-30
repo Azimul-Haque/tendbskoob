@@ -292,9 +292,9 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label class="control-label">{{\App\CPU\translate('ISBN Number')}}</label>
+                                        <label class="control-label">ISBN নম্বর</label>
                                         <input type="text"
-                                               placeholder="{{\App\CPU\translate('ISBN Number')}}"
+                                               placeholder="ISBN নম্বর"
                                                name="isbn" value="{{old('isbn')}}" class="form-control">
                                     </div>
                                     <div class="col-md-6">

@@ -1505,4 +1505,5 @@
   'SSBook List' => 'SSBook List',
   'Book has been approved successfully' => 'Book has been approved successfully',
   'Sellers Add Book' => 'Sellers Add Book',
+  'Product Price & Stock' => 'Product Price & Stock',
 );

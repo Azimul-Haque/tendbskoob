@@ -127,15 +127,15 @@
 
                     <div class="card mt-2 rest-part">
                         <div class="card-header">
-                            <h4><?php echo e(\App\CPU\translate('Product price & stock')); ?></h4>
+                            <h4><?php echo e(\App\CPU\translate('Product Price & Stock')); ?></h4>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label class="control-label"><?php echo e(\App\CPU\translate('ISBN Number')); ?></label>
+                                        <label class="control-label">ISBN নম্বর</label>
                                         <input type="text"
-                                               placeholder="<?php echo e(\App\CPU\translate('ISBN Number')); ?>"
+                                               placeholder="ISBN নম্বর"
                                                name="isbn" value="<?php echo e(old('isbn')); ?>" class="form-control">
                                     </div>
                                     <div class="col-md-6">
