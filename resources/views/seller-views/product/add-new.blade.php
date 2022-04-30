@@ -310,6 +310,13 @@
                                 <div class="row pt-4">
                                     @if (auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin')
                                         <div class="col-md-4">
+                                            <label class="control-label">{{\App\CPU\translate('Published Price')}} (৳)</label>
+                                            <input type="number" min="0" step="0.01"
+                                                placeholder="{{\App\CPU\translate('Published Price')}}"
+                                                name="published_price" value="{{old('published_price')}}" class="form-control"
+                                                required>
+                                        </div>    
+                                        <div class="col-md-4">
                                             <label
                                                 class="control-label">{{\App\CPU\translate('Purchase Price')}} (৳)</label>
                                             <input type="number" min="0" step="0.01"
@@ -317,13 +324,7 @@
                                                 value="{{old('purchase_price')}}"
                                                 name="purchase_price" class="form-control" required>
                                         </div>
-                                        <div class="col-md-4">
-                                            <label class="control-label">{{\App\CPU\translate('Published Price')}} (৳)</label>
-                                            <input type="number" min="0" step="0.01"
-                                                placeholder="{{\App\CPU\translate('Published Price')}}"
-                                                name="published_price" value="{{old('published_price')}}" class="form-control"
-                                                required>
-                                        </div>
+                                        
                                         <div class="col-md-4">
                                             <label class="control-label">{{\App\CPU\translate('Sale Price')}} (৳)</label>
                                             <input type="number" min="0" step="0.01"
