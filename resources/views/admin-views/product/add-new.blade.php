@@ -325,8 +325,8 @@
                                         </div>
                                         
                                         <div class="col-md-4">
-                                            <label class="control-label">{{\App\CPU\translate('Sale Price')}} (৳)</label>
-                                            <input type="number" min="0" step="0.01"
+                                            <label class="control-label">কাস্টমার কমিশন (৳)</label>
+                                            <input type="number" min="0" step="0.01" max="100"
                                                 placeholder="{{\App\CPU\translate('Sale Price')}}"
                                                 name="unit_price" value="{{old('unit_price')}}" class="form-control"
                                                 required>
