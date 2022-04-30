@@ -7,6 +7,7 @@ use App\Model\CartShipping;
 use App\Model\Color;
 use App\Model\Product;
 use App\Model\Shop;
+use App\Model\Seller;
 use Barryvdh\Debugbar\Twig\Extension\Debug;
 use Cassandra\Collection;
 use Illuminate\Support\Str;
