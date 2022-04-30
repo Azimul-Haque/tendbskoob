@@ -309,7 +309,7 @@
                                     @if (auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin')
                                         
                                         <div class="col-md-4">
-                                            <label class="control-label">{{\App\CPU\translate('Published Price')}} (৳)</label>
+                                            <label class="control-label">মুদ্রিত মূল্য (৳)</label>
                                             <input type="number" min="0" step="0.01"
                                                 placeholder="{{\App\CPU\translate('Published Price')}}"
                                                 name="published_price" value="{{old('published_price')}}" class="form-control"
