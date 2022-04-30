@@ -317,7 +317,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label
-                                                class="control-label">{{\App\CPU\translate('Purchase Price')}} (৳)</label>
+                                                class="control-label">বুকসবিডির কমিশন (৳)</label>
                                             <input type="number" min="0" step="0.01"
                                                 placeholder="{{\App\CPU\translate('Purchase Price')}}"
                                                 value="{{old('purchase_price')}}"
