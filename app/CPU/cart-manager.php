@@ -250,7 +250,7 @@ class CartManager
             } else {
                 return [
                     'status' => 0,
-                    'message' => translate('already_added!')
+                    'message' => translate('ইতোমধ্যে একটি বই !')
                 ];
             }
         }
