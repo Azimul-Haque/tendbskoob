@@ -768,7 +768,7 @@
                     }
                 });
                 $.post({
-                    url: '{{route('admin.product.store')}}',
+                    url: '{{route('seller.product.store')}}',
                     data: formData,
                     contentType: false,
                     processData: false,
