@@ -36,7 +36,7 @@
 
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="publisher_id"><?php echo e(\App\CPU\translate('Publication')); ?> *</label>
+                                <label for="publisher_id">প্রকাশনীর নাম *</label>
                                 <select
                                     class="js-example-basic-multiple js-states js-example-responsive form-control" name="publisher_id" id="publisher_id" required>
                                     <option value="<?php echo e($seller->publisher ? $seller->publisher->id : ''); ?>" selected>
@@ -49,18 +49,18 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label class="input-label" for="name_bangla"><?php echo e(\App\CPU\translate('Book Name (Bangla)')); ?> *</label>
+                                        <label class="input-label" for="name_bangla">বইয়ের নাম (বাংলা) *</label>
                                         <input type="text" name="name_bangla" id="name_bangla" class="form-control" placeholder="Book Name in Bangla" required>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="input-label" for="name"><?php echo e(\App\CPU\translate('Book Name (English)')); ?> *</label>
+                                        <label class="input-label" for="name">বইয়ের নাম (ইংরেজি) *</label>
                                         <input type="text" name="name" id="name" class="form-control" placeholder="Book Name" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="name"><?php echo e(\App\CPU\translate('Writer')); ?></label>
+                                    <label for="name">লেখক (একাধিক নাম সিলেক্ট করতে পারবেন)</label>
                                     <select
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
                                         name="writer_id[]" id="writer_id" multiple>
@@ -71,7 +71,7 @@
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select><br/><br/>
                                     
-                                    <label for="name"><?php echo e(\App\CPU\translate('Translator')); ?></label>
+                                    <label for="name">অনুবাদক (একাধিক নাম সিলেক্ট করতে পারবেন)</label>
                                     <select
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control"
                                         name="translator_id[]" id="translator_id" multiple>
@@ -82,7 +82,7 @@
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select><br/><br/>
 
-                                    <label for="name"><?php echo e(\App\CPU\translate('Editor')); ?></label>
+                                    <label for="name">সম্পাদক (একাধিক নাম সিলেক্ট করতে পারবেন)</label>
                                     <select
                                         class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control" name="editor_id[]" id="editor_id" multiple>
                                         <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $editor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -92,7 +92,7 @@
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select><br/><br/>
 
-                                    <label for="name"><?php echo e(\App\CPU\translate('Category')); ?> *</label>
+                                    <label for="name">ক্যাটাগরি *</label>
                                     <select class="js-example-basic-multiple multiple js-states js-example-responsive form-control form-control" name="category_id[]" id="category_id" multiple required>
                                         <?php $__currentLoopData = $cat; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $c): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <option value="<?php echo e($c['id']); ?>" <?php echo e(old('name_bangla')==$c['id']? 'selected': ''); ?>>
@@ -103,7 +103,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="name"><?php echo e(\App\CPU\translate('Book Image')); ?> *</label> <small
+                                        <label for="name">বইয়ের কাভারের ছবি *</label> <small
                                             style="color: red">(w: 260px, h: 372px)</small>
                                     </div>
                                     <center>
