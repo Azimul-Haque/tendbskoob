@@ -152,7 +152,7 @@
                                     <?php if(auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin'): ?>
                                         
                                         <div class="col-md-4">
-                                            <label class="control-label"><?php echo e(\App\CPU\translate('Published Price')); ?> (৳)</label>
+                                            <label class="control-label">মুদ্রিত মূল্য (৳)</label>
                                             <input type="number" min="0" step="0.01"
                                                 placeholder="<?php echo e(\App\CPU\translate('Published Price')); ?>"
                                                 name="published_price" value="<?php echo e(old('published_price')); ?>" class="form-control"
