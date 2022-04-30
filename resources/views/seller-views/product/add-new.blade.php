@@ -313,7 +313,7 @@
                                             <label class="control-label">মুদ্রিত মূল্য (৳)</label>
                                             <input type="number" min="0" step="0.01"
                                                 placeholder="{{\App\CPU\translate('Published Price')}}"
-                                                name="published_price" value="{{old('published_price')}}" class="form-control"
+                                                name="published_price" id="published_price" value="{{old('published_price')}}" class="form-control"
                                                 required>
                                         </div>    
                                         <div class="col-md-4">
@@ -322,14 +322,14 @@
                                             <input type="number" min="0" step="0.01" max="100"
                                                 placeholder="শুধুমাত্র ইংরেজি নম্বরে পারসেন্টিজটি উল্লেখ করুন"
                                                 value="{{old('purchase_price')}}"
-                                                name="purchase_price" class="form-control" required>
+                                                name="purchase_price" id="purchase_price" class="form-control" required>
                                         </div>
                                         
                                         <div class="col-md-4">
                                             <label class="control-label">কাস্টমার কমিশন (%)</label>
                                             <input type="number" min="0" step="0.01" max="100"
                                                 placeholder="শুধুমাত্র ইংরেজি নম্বরে পারসেন্টিজটি উল্লেখ করুন"
-                                                name="unit_price" value="{{old('unit_price')}}" class="form-control"
+                                                name="unit_price" id="unit_price" value="{{old('unit_price')}}" class="form-control"
                                                 required>
                                         </div>
                                     @endif
