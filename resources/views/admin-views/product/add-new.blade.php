@@ -155,7 +155,7 @@
                                 </div>
                             </div><br/>
                             <div class="form-group">
-                                <label class="input-label" for="description">{{\App\CPU\translate('description (Optional)')}}</label>
+                                <label class="input-label" for="description">বইয়ের বর্ণনা/ লুক ইনসাইড</label>
                                 <textarea name="description" class="editor textarea" id="textarea" cols="30" rows="10">{{old('description')}}</textarea>
                             </div>
                         </div>
