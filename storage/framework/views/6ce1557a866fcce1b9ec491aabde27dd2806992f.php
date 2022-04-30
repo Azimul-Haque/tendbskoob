@@ -300,7 +300,9 @@
                 </div>
             </div>
             <div class="col-lg-3 col-md-3" style="background: #F6F6F6;">
-                দৃষ্টি আকর্ষণ 
+                <center style="padding: 10px;">
+                    দৃষ্টি আকর্ষণ 
+                </center>
             </div>
         </div>
     </div>
