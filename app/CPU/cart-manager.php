@@ -237,7 +237,7 @@ class CartManager
 
         // pre order ekta thakle aar jeno add korte na paare
         // pre order ekta thakle aar jeno add korte na paare
-        
+        $check_pre_preorder_cart = 
         // pre order ekta thakle aar jeno add korte na paare
         // pre order ekta thakle aar jeno add korte na paare
 
