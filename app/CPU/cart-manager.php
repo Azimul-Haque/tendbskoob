@@ -235,6 +235,12 @@ class CartManager
             }
         }
 
+        // pre order ekta thakle aar jeno add korte na paare
+        // pre order ekta thakle aar jeno add korte na paare
+        
+        // pre order ekta thakle aar jeno add korte na paare
+        // pre order ekta thakle aar jeno add korte na paare
+
         $cart['color'] = $request->has('color') ? $request['color'] : null;
         $cart['product_id'] = $product->id;
         $cart['choices'] = json_encode($choices);
