@@ -11,7 +11,7 @@
                class="badge badge-danger stock-out">{{\App\CPU\translate('Back Order')}}</label>
     @endif
     @php
-        $category_html = '';
+        $categories = [];
         if($product->categories->count() > 0) {
             for($i = 0; $i < count($product->categories); $i++){
                 $route = route('products',['id'=> $product->categories[$i]->id,'data_from'=>'category','page'=>1]);
