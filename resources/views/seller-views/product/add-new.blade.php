@@ -300,7 +300,7 @@
                                     <div class="col-md-6">
                                         @if (auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin')
                                             <label
-                                                class="control-label">{{\App\CPU\translate('Book Weight (KG)')}}</label>
+                                                class="control-label">বইয়ের ওজন (কিলোগ্রাম)</label>
                                             <input type="number" min="0" step="0.01"
                                                 placeholder="{{\App\CPU\translate('Book Weight')}}"
                                                 value="{{old('weight')}}" name="weight" class="form-control">
