@@ -333,12 +333,12 @@ class CartManager
         }
 
         // pre order status
-        $category_names = [];
-        if($product->categories->count() > 0) {
-            for($i = 0; $i < count($product->categories); $i++){
-                $category_names[] = $product->categories[$i]->name;
-            }
-        }
+        // $category_names = [];
+        // if($product->categories->count() > 0) {
+        //     for($i = 0; $i < count($product->categories); $i++){
+        //         $category_names[] = $product->categories[$i]->name;
+        //     }
+        // }
         if(in_array('Pre Order', $category_names)) {
             $cart['preorder_status'] = 1;
         } else {
