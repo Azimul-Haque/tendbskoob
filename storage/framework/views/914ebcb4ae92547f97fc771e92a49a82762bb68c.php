@@ -2,10 +2,7 @@
 
 <div class="product-card card {{$product['current_stock']==0?'stock-card':''}}"
      style="margin-bottom: 40px;display: flex; align-items: center; justify-content: center;">
-    {{-- @if($product['current_stock']<=0)
-        <label style="left: 29%!important; top: 29%!important;"
-               class="badge badge-danger stock-out">{{\App\CPU\translate('stock_out')}}</label>
-    @endif --}}
+    
     @if($product['stock_status'] == 3)
         <label style="left: 29%!important; top: 29%!important;"
                class="badge badge-danger stock-out">{{\App\CPU\translate('Back Order')}}</label>
