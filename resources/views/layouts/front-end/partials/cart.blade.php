@@ -35,7 +35,11 @@
                                 </a>
                                 <div class="media-body">
                                     <h6 class="widget-product-title">
-                                        <a href="{{route('product',$cartItem['slug'])}}">{{$cartItem['name_bangla']}}</a></h6>
+                                        <a href="{{route('product',$cartItem['slug'])}}">{{$cartItem['name_bangla']}}</a>
+                                        @if($cartItem['preorder_status'] == 1)
+                                            <label style="background-color: #FF9900 !important; color: #FFFFFF !important;">Pre Order</label>
+                                        @endif
+                                    </h6>
                                     @foreach(json_decode($cartItem['variations'],true) as $key =>$variation)
                                         <span style="font-size: 14px">{{$key}} : {{$variation}}</span><br>
                                     @endforeach
