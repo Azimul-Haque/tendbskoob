@@ -324,6 +324,7 @@
                                                 value="{{old('purchase_price')}}"
                                                 onkeyup="purchasePercetage()"
                                                 name="purchase_price" id="purchase_price_percentage" class="form-control" required>
+                                                <input type="hidden" name="purchase_price" id="purchase_price">
                                         </div>
                                         
                                         <div class="col-md-4">
