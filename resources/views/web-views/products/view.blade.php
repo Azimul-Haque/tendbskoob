@@ -433,7 +433,6 @@
                 
                 @if ($data['data_from'] != 'publisher')
                     <!-- Publisher Sidebar-->
-                    
                     <div class="cz-sidebar rounded-lg box-shadow-lg" id="shop-sidebar" style="margin-bottom: 11px;">
                         <div class="cz-sidebar-header box-shadow-sm">
                             <button class="close {{Session::get('direction') === "rtl" ? 'mr-auto' : 'ml-auto'}}"
