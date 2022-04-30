@@ -444,6 +444,7 @@
                                 @if(in_array('Pre Order', $category_names))
                                     <label style="left: 29%!important; top: 29%!important; background-color: #FF9900 !important; color: #FFFFFF !important;"
                                            class="badge badge-danger stock-out">Pre Order</label>
+                                    {{-- <h5 class="mt-3" style="color: green"><img style="margin-right: 8px; width: 18px; height: auto;" src="{{asset('public/assets/front-end/img/in-stock(mini).svg')}}"> {{\App\CPU\translate('Book in Stock')}}</h5> --}}
                                 @endif
                             </div>
                         </div>
