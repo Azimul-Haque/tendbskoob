@@ -475,7 +475,7 @@
                          class="sharethis-inline-share-buttons"></div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3" style="background: #F6F6F6;">
+            <div class="col-lg-3 col-md-3" style="background: #F6F6F6;" onmousedown='return false;' onselectstart='return false;'>
                 <center style="padding: 10px;">
                     <h5><b>দৃষ্টি আকর্ষণ</b></h5>
                 </center>
