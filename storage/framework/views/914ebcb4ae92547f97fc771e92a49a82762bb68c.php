@@ -17,11 +17,10 @@
                 $categories[] = $product->categories[$i]->name;
             }
         }
-        dd($categories);
     ?>
     <?php if($product['category'] == 3): ?>
         <label style="left: 29%!important; top: 29%!important;"
-               class="badge badge-danger stock-out"><?php echo e(\App\CPU\translate('Back Order')); ?></label>
+               class="badge badge-danger stock-out"><?php echo e($categories); ?></label>
     <?php endif; ?>
 
     <div class="card-header inline_product clickable" style="cursor: pointer;max-height: 193px;min-height: 193px">

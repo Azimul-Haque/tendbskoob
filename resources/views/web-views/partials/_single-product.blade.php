@@ -20,7 +20,7 @@
     @endphp
     @if($product['category'] == 3)
         <label style="left: 29%!important; top: 29%!important;"
-               class="badge badge-danger stock-out">{{\App\CPU\translate('Back Order')}}</label>
+               class="badge badge-danger stock-out">{{ $categories }}</label>
     @endif
 
     <div class="card-header inline_product clickable" style="cursor: pointer;max-height: 193px;min-height: 193px">
