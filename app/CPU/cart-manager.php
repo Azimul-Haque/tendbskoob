@@ -246,7 +246,7 @@ class CartManager
         if(in_array('Pre Order', $category_names)) {
             if($user == 'offline') {
                 $check = session('offline_cart');
-                $check_pre_preorder_cart = $check->where('customer_id', $user->id)->where('seller_is', $product->added_by)->first();
+                $check_pre_preorder_cart = $check->where('customer_id', $user->id)->where('preorder_status', 1)->first();
             } else {
                 $check_pre_preorder_cart = Cart::where(['customer_id' => $user->id, 'preorder_status' => 1])->first();
             }
