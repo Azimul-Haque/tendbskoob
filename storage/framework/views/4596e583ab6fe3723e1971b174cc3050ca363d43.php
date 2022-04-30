@@ -150,7 +150,7 @@
                                 <div class="row pt-4">
                                     <?php if(auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin'): ?>
                                         <div class="col-md-4">
-                                            <label class="control-label"><?php echo e(\App\CPU\translate('Published Price')); ?> (৳)</label>
+                                            <label class="control-label">মুদ্রিত মূল্য (৳)</label>
                                             <input type="number" min="0" step="0.01"
                                                 placeholder="<?php echo e(\App\CPU\translate('Published Price')); ?>"
                                                 name="published_price" value="<?php echo e(old('published_price')); ?>" class="form-control"
@@ -158,9 +158,9 @@
                                         </div>    
                                         <div class="col-md-4">
                                             <label
-                                                class="control-label"><?php echo e(\App\CPU\translate('Purchase Price')); ?> (৳)</label>
+                                                class="control-label">বুকসবিডির কমিশন (৳)</label>
                                             <input type="number" min="0" step="0.01"
-                                                placeholder="<?php echo e(\App\CPU\translate('Purchase Price')); ?>"
+                                                placeholder="শুধুমাত্র ইংরেজি নম্বরে পারসেন্টিজটি উল্লেখ করুন"
                                                 value="<?php echo e(old('purchase_price')); ?>"
                                                 name="purchase_price" class="form-control" required>
                                         </div>

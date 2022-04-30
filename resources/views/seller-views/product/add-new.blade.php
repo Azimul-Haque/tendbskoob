@@ -320,7 +320,7 @@
                                             <label
                                                 class="control-label">বুকসবিডির কমিশন (৳)</label>
                                             <input type="number" min="0" step="0.01"
-                                                placeholder="{{\App\CPU\translate('Purchase Price')}}"
+                                                placeholder="শুধুমাত্র ইংরেজি নম্বরে পারসেন্টিজটি উল্লেখ করুন"
                                                 value="{{old('purchase_price')}}"
                                                 name="purchase_price" class="form-control" required>
                                         </div>
