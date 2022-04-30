@@ -77,7 +77,7 @@ class ProductController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function stores(Request $request)
     {
         dd($request->all());
         $validator = Validator::make($request->all(), [
