@@ -333,8 +333,9 @@
                                                 placeholder="শুধুমাত্র ইংরেজি নম্বরে পারসেন্টিজটি উল্লেখ করুন"
                                                 value="{{old('unit_price')}}"
                                                 onkeyup="unitPercetage()"
-                                                name="unit_price" id="unit_price"  class="form-control"
+                                                id="unit_price_percentage"  class="form-control"
                                                 required>
+                                            <input type="hidden" name="unit_price" id="unit_price">
                                         </div>
                                     @endif
                                 </div>
