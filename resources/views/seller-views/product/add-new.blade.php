@@ -322,6 +322,7 @@
                                             <input type="number" min="0" step="0.01" max="100"
                                                 placeholder="শুধুমাত্র ইংরেজি নম্বরে পারসেন্টিজটি উল্লেখ করুন"
                                                 value="{{old('purchase_price')}}"
+                                                onkeyup="purchasePercetage()"
                                                 name="purchase_price" id="purchase_price" class="form-control" required>
                                         </div>
                                         
