@@ -10,6 +10,18 @@
         <label style="left: 29%!important; top: 29%!important;"
                class="badge badge-danger stock-out">{{\App\CPU\translate('Back Order')}}</label>
     @endif
+    @php
+        $category_html = '';
+        if($product->categories->count() > 0) {
+            for($i = 0; $i < count($product->categories); $i++){
+                $route = route('products',['id'=> $product->categories[$i]->id,'data_from'=>'category','page'=>1]);
+                $category_html .= '<a class="font-weight-normal text-accent" style="color: #5C7CFF !important;" href="' . $route . '">' . $product->categories[$i]->name_bangla . '</a>';
+                if($i < (count($product->categories) -1)){
+                    $category_html .= ", ";
+                }
+            }
+        }
+    @endphp
     @if($product['category'] == 3)
         <label style="left: 29%!important; top: 29%!important;"
                class="badge badge-danger stock-out">{{\App\CPU\translate('Back Order')}}</label>
