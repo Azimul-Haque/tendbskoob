@@ -90,7 +90,7 @@ class OrderController extends Controller
 
     public function delete($id)
     {
-        $translation = Order::where('translationable_type', 'App\Model\Product')
+        $translation = Order::findOrFail($id);
             ->where('translationable_id', $id);
         $translation->delete();
         $product = Product::find($id);
