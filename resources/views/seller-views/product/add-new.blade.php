@@ -562,7 +562,7 @@
             });
 
             purchasePercetage() {
-                
+                var published_price = $('#published_price').val() ? $('#published_price').val() : 0;
             }
         });
 
