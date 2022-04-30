@@ -433,6 +433,18 @@
                                 @if($product['current_stock'] > 0)
                                     <h5 class="mt-3" style="color: green"><img style="margin-right: 8px; width: 18px; height: auto;" src="{{asset('public/assets/front-end/img/in-stock(mini).svg')}}"> {{\App\CPU\translate('Book in Stock')}}</h5>
                                 @endif
+                                <?php
+                                    $category_names = [];
+                                    if($product->categories->count() > 0) {
+                                        for($i = 0; $i < count($product->categories); $i++){
+                                            $category_names[] = $product->categories[$i]->name;
+                                        }
+                                    }
+                                ?>
+                                @if(in_array('Pre Order', $category_names))
+                                    <label style="left: 29%!important; top: 29%!important; background-color: #FF9900 !important; color: #FFFFFF !important;"
+                                           class="badge badge-danger stock-out">Pre Order</label>
+                                @endif
                             </div>
                         </div>
 
