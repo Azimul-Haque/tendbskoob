@@ -39,7 +39,7 @@
                                             <div class="product-title">
                                                 <a href="{{route('product',$cartItem['slug'])}}">{{$cartItem['name_bangla']}}</a>
                                                 
-                                                @if($cartItem['preorder_status'])
+                                                @if($cartItem['preorder_status'] == 1)
                                                     <label style="background-color: #FF9900 !important; color: #FFFFFF !important;" class="badge badge-danger stock-out">Pre Order</label><br/><br/>
                                                 @endif
                                                 
