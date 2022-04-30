@@ -91,9 +91,9 @@ class OrderController extends Controller
     public function delete($id)
     {
         $order = Order::findOrFail($id);
-        $orderdetails = OrderDetail::where('order_id', $id)->get();
-        foreach($orderdetails as $orderdetail) {
-            $orderdetail->delete()
+        $ordersdetails = OrderDetail::where('order_id', $id)->get();
+        foreach($ordersdetails as $orderdetails) {
+            $orderdetails->delete();
         }
         $ordertransaction = OrderTransaction::where('order_id', $id)->first();
         $ordertransaction ? $ordertransaction->delete() : null;
