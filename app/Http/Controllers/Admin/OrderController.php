@@ -95,8 +95,10 @@ class OrderController extends Controller
         foreach($ordersdetails as $orderdetails) {
             $orderdetails->delete();
         }
-        $ordertransaction = OrderTransaction::where('order_id', $id)->get();
-        $ordertransaction ? $ordertransaction->delete() : null;
+        $ordertransactions = OrderTransaction::where('order_id', $id)->get();
+        foreach($ordertransactions as $ordertransaction) {
+            $ordertransaction->delete();
+        }
         $order->delete();
         Toastr::success('Order deleted successfully!');
         return back();
