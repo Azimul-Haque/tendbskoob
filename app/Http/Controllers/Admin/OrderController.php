@@ -100,7 +100,6 @@ class OrderController extends Controller
             $ordertransaction->delete();
         }
         $order->delete();
-        
         Toastr::success('Order deleted successfully!');
         return back();
     }
