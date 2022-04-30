@@ -56,7 +56,7 @@
     display: inline-block;
     word-wrap: break-word;
     overflow: hidden;
-    max-height: 2.4em; /* (Number of lines you want visible) * (line-height) */
+    max-height: 3em; /* (Number of lines you want visible) * (line-height) */
     line-height: 1.2em;
 }
 
