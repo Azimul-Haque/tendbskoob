@@ -577,11 +577,11 @@
 
         function unitPercetage() {
             var published_price = $('#published_price').val() ? $('#published_price').val() : 0;
-            var purchase_price_percentage = $('#purchase_price_percentage').val() ? $('#purchase_price_percentage').val() : 0;
-            var purchase_price = published_price - (published_price * (purchase_price_percentage/100));
-            console.log(purchase_price_percentage);
-            $('#purchase_price').val(purchase_price);
-            $('#purchase_percentage_text').text('(৳: ' + purchase_price + ')');
+            var unit_price_percentage = $('#unit_price_percentage').val() ? $('#unit_price_percentage').val() : 0;
+            var unit_price = published_price - (published_price * (unit_price_percentage/100));
+            console.log(unit_price_percentage);
+            $('#unit_price').val(unit_price);
+            $('#purchase_percentage_text').text('(৳: ' + unit_price + ')');
         }
 
         function readURL(input) {
