@@ -146,7 +146,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="name">বইয়ের কাভারের ছবি *</label> <small
+                                        <label for="name">বইয়ের কাভারের ছবি সিলেক্ট করুন *</label> <small
                                             style="color: red">(w: 260px, h: 372px)</small>
                                     </div>
                                     <center>
