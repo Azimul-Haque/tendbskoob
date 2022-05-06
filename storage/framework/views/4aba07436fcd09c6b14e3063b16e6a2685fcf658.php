@@ -134,7 +134,7 @@
                                                 <span class="badge badge-info">Pending</span> 
                                             <?php endif; ?> <br/>
                                             <?php if(in_array('Pre Order', $category_names)): ?>
-                                                <small style="background-color: #FF9900 !important; color: #FFFFFF !important;" class="badge badge-danger stock-out">Pre Order</small><br/><br/>
+                                                <small style="color: #0300c4 !important;">Pre Order</small><br/><br/>
                                             <?php endif; ?>
                                             
                                         </td>
