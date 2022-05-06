@@ -442,10 +442,10 @@
                                     }
                                 ?>
                                 @if(in_array('Pre Order', $category_names))
-                                    <label style="background-color: #FF9900 !important; color: #FFFFFF !important;" class="badge badge-danger stock-out">Pre Order</label><br/>
+                                    <label style="background-color: #FF9900 !important; color: #FFFFFF !important;" class="badge badge-danger stock-out">Pre Order</label><br/><br/>
                                 @endif
                                 @if(in_array('Pre Order', $category_names) && $product->release_date)
-                                    <br/><small style="color: #0300c4 !important;">Release Date: {{ date('F d, Y', strtotime($product->release_date)) }}</small><br/>
+                                    <small style="color: #0300c4 !important;">Release Date: {{ date('F d, Y', strtotime($product->release_date)) }}</small><br/>
                                 @endif
                             </div>
                         </div>
