@@ -184,6 +184,7 @@ class ProductController extends Controller
         if($request->release_date != null) {
             $p->release_date = $request->release_date;
         }
+        
         $p->meta_title = $request->bangla_name . '-' . $request->name;
         $p->meta_description = $request->description;
         // $p->meta_image = ImageManager::upload('product/meta/', 'png', $request->image);
