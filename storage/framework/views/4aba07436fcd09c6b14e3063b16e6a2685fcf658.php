@@ -128,7 +128,14 @@
                                             
                                         </td>
                                         <td>
-                                            <?php if($p->request_status == 1): ?> <span class="badge badge-success">Approved</span> <?php else: ?> <span class="badge badge-info">Pending</span> <?php endif; ?>
+                                            <?php if($p->request_status == 1): ?> 
+                                                <span class="badge badge-success">Approved</span> 
+                                            <?php else: ?>
+                                                <span class="badge badge-info">Pending</span> 
+                                            <?php endif; ?> <br/>
+                                            <?php if(in_array('Pre Order', $category_names)): ?>
+                                                <label style="background-color: #FF9900 !important; color: #FFFFFF !important;" class="badge badge-danger stock-out">Pre Order</label><br/><br/>
+                                            <?php endif; ?>
                                             
                                         </td>
                                         <td>

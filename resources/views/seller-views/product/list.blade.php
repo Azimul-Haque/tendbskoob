@@ -130,7 +130,14 @@
                                             </label> --}}
                                         </td>
                                         <td>
-                                            @if($p->request_status == 1) <span class="badge badge-success">Approved</span> @else <span class="badge badge-info">Pending</span> @endif
+                                            @if($p->request_status == 1) 
+                                                <span class="badge badge-success">Approved</span> 
+                                            @else
+                                                <span class="badge badge-info">Pending</span> 
+                                            @endif <br/>
+                                            @if(in_array('Pre Order', $category_names))
+                                                <label style="background-color: #FF9900 !important; color: #FFFFFF !important;" class="badge badge-danger stock-out">Pre Order</label><br/><br/>
+                                            @endif
                                             {{-- <label class="switch switch-status">
                                                 <input type="checkbox" class="status"
                                                     id="{{$p['id']}}" {{$p->status == 1?'checked':''}}>
