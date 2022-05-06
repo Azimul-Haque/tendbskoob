@@ -372,7 +372,7 @@
                                                placeholder="{{\App\CPU\translate('Quantity')}}"
                                                name="current_stock" class="form-control" required>
                                     </div>
-                                    <div class="col-md-4" id="quantity">
+                                    <div class="col-md-4" id="release_date">
                                         <label
                                             class="control-label">প্রকাশনার সম্ভ্যাব্য তারিখ (অপশনাল)</label>
                                             <input type="date" name="release_date" id="release_date" class="form-control">
