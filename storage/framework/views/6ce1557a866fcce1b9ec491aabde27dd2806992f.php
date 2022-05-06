@@ -275,7 +275,7 @@
                                     <label style="background-color: #FF9900 !important; color: #FFFFFF !important;" class="badge badge-danger stock-out">Pre Order</label><br/><br/>
                                 <?php endif; ?>
                                 <?php if(in_array('Pre Order', $category_names) && $product->release_date): ?>
-                                    <br/><small style="color: #0300c4 !important;">প্রি-অর্ডারের এ বইটি <?php echo e(date('F d, Y', strtotime($product->release_date))); ?> তারিখে প্রকাশ পেতে পারে বলে প্রকাশনী থেকে জানানো হয়েছে। তবে বিশেষ কোন কারণে প্রকাশিত হওয়ার তারিখ পরিবর্তিত হতে পারে।</small><br/>
+                                    <br/><span style="color: #0300c4 !important;">প্রি-অর্ডারের এ বইটি <?php echo e(date('F d, Y', strtotime($product->release_date))); ?> তারিখে প্রকাশ পেতে পারে বলে প্রকাশনী থেকে জানানো হয়েছে। তবে বিশেষ কোন কারণে প্রকাশিত হওয়ার তারিখ পরিবর্তিত হতে পারে।</span><br/>
                                 <?php endif; ?>
                             </div>
                         </div>
