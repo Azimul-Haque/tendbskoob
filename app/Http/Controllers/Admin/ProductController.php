@@ -89,7 +89,7 @@ class ProductController extends BaseController
 
     public function store(Request $request)
     {
-        dd($request->release_date);
+        // dd($request->release_date);
         // dd($request->all());
         $validator = Validator::make($request->all(), [
             'publisher_id' => 'required',
