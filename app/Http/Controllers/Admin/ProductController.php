@@ -496,7 +496,8 @@ class ProductController extends BaseController
 
     public function update(Request $request, $id)
     {
-        release_date
+        dd($request->release_date);
+        
         $validator = Validator::make($request->all(), [
             'publisher_id' => 'required',
             'name'         => 'required',
