@@ -133,7 +133,7 @@
                                             <?php else: ?>
                                                 <span class="badge badge-info">Pending</span> 
                                             <?php endif; ?> <br/>
-                                            <?php if(in_array('Pre Order', $category_names)): ?>
+                                            <?php if(in_array('Pre Order', $category_names) && $p->release_date): ?>
                                                 <small style="color: #0300c4 !important;">Release Date: <?php echo e($p->release_date ? date('F d, Y', strtotime($p->release_date)) : ''); ?></small><br/><br/>
                                             <?php endif; ?>
                                             
