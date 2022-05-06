@@ -388,6 +388,11 @@
                                             class="control-label">{{\App\CPU\translate('total')}} {{\App\CPU\translate('Quantity')}}</label>
                                         <input type="number" min="0" step="1" placeholder="{{\App\CPU\translate('Quantity')}}" name="current_stock" value="{{ $product->current_stock }}" class="form-control" required>
                                     </div>
+                                    <div class="col-md-4" id="release_date">
+                                        <label
+                                            class="control-label">প্রকাশনার সম্ভ্যাব্য তারিখ (অপশনাল)</label>
+                                            <input type="date" name="release_date" id="release_date" class="form-control">
+                                    </div>
                                     <div class="col-md-6 pt-6">
                                         <center>
                                             <label class="radio-inline" style="margin-right: 10px;">
