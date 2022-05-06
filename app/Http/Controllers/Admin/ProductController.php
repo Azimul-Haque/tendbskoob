@@ -286,10 +286,13 @@ class ProductController extends BaseController
         } else {
             $p->stock_status = 2; // 1 = in stock, 2 = out of stock, 3 = back order
         }
+
+        // release date
+        // release date
         if($request->release_date != null) {
-            $p->stock_status = $request->release_date;
+            $p->release_date = $request->release_date;
         } else {
-            $p->stock_status = 2;
+            $p->release_date = 2;
         }
 
         $p->meta_title = $request->bangla_name . '-' . $request->name;
