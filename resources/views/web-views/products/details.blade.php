@@ -445,7 +445,7 @@
                                     <label style="background-color: #FF9900 !important; color: #FFFFFF !important;" class="badge badge-danger stock-out">Pre Order</label><br/><br/>
                                 @endif
                                 @if(in_array('Pre Order', $category_names) && $product->release_date)
-                                    <small style="color: #0300c4 !important;">প্রি-অর্ডারের এই পণ্যটি 08 Aug 2022 তারিখে প্রকাশ পেতে পারে বলে প্রকাশনী থেকে জানানো হয়েছে। তবে দৈব দুর্বিপাক বা বিশেষ কোন কারণে প্রকাশিত হওয়ার তারিখ পরিবর্তন হতেও পারে।{{ date('F d, Y', strtotime($product->release_date)) }}</small><br/>
+                                    <br/><small style="color: #0300c4 !important;">প্রি-অর্ডারের এই পণ্যটি 08 Aug 2022 তারিখে প্রকাশ পেতে পারে বলে প্রকাশনী থেকে জানানো হয়েছে। তবে দৈব দুর্বিপাক বা বিশেষ কোন কারণে প্রকাশিত হওয়ার তারিখ পরিবর্তন হতেও পারে।{{ date('F d, Y', strtotime($product->release_date)) }}</small><br/>
                                 @endif
                             </div>
                         </div>
