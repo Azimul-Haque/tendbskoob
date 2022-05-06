@@ -70,7 +70,7 @@
                                                 <option selected disabled>নির্বাচন করুন</option>
                                                 <option value="বিকাশ">বিকাশ</option>
                                                 <option value="নগদ">নগদ</option>
-                                                <option value="রকেট">মিরপুর (হেড অফিস)</option>
+                                                <option value="রকেট">রকেট</option>
                                             </select>
                                         </div>
                                     </div>

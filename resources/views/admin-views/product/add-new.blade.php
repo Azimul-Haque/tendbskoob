@@ -365,14 +365,19 @@
                                     <div class="pt-4 col-12 sku_combination" id="sku_combination">
 
                                     </div> --}}
-                                    <div class="col-md-6" id="quantity">
+                                    <div class="col-md-4" id="quantity">
                                         <label
                                             class="control-label">মোট পরিমাণ</label>
                                         <input type="number" min="0" value="0" step="1"
                                                placeholder="{{\App\CPU\translate('Quantity')}}"
                                                name="current_stock" class="form-control" required>
                                     </div>
-                                    <div class="col-md-6 pt-6">
+                                    <div class="col-md-4" id="quantity">
+                                        <label
+                                            class="control-label">প্রকাশনার সম্ভ্যাব্য তারিখ (অপশনাল)</label>
+                                            <input type="date" name="release_date" id="release_date" class="form-control">
+                                    </div>
+                                    <div class="col-md-4 pt-4">
                                         <center>
                                             <label class="radio-inline" style="margin-right: 10px;">
                                                 <input type="radio" name="stock_status" value="1" checked> In Stock 

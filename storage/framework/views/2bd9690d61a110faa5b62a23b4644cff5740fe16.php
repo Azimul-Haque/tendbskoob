@@ -1,42 +1,40 @@
-@extends('layouts.back-end.app')
+<?php $__env->startSection('title', \App\CPU\translate('Earning Report')); ?>
 
-@section('title', \App\CPU\translate('Earning Report'))
+<?php $__env->startPush('css_or_js'); ?>
 
-@push('css_or_js')
+<?php $__env->stopPush(); ?>
 
-@endpush
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="content container-fluid">
         <!-- Page Header -->
         <div class="page-header">
             <div class="media mb-3">
                 <!-- Avatar -->
-                <div class="avatar avatar-xl avatar-4by3 {{Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'}}">
-                    <img class="avatar-img" src="{{asset('public/assets/back-end')}}/svg/illustrations/earnings.png"
+                <div class="avatar avatar-xl avatar-4by3 <?php echo e(Session::get('direction') === "rtl" ? 'ml-2' : 'mr-2'); ?>">
+                    <img class="avatar-img" src="<?php echo e(asset('public/assets/back-end')); ?>/svg/illustrations/earnings.png"
                          alt="Image Description">
                 </div>
                 <!-- End Avatar -->
 
                 <div class="media-body">
                     <div class="row">
-                        <div class="row col-lg mb-3 mb-lg-0 {{Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'}}" style="display: block; text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
+                        <div class="row col-lg mb-3 mb-lg-0 <?php echo e(Session::get('direction') === "rtl" ? 'mr-2' : 'ml-2'); ?>" style="display: block; text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;">
                             <div>
-                                <h1 class="page-header-title">{{\App\CPU\translate('Earning')}} {{\App\CPU\translate('Report')}}  {{\App\CPU\translate('Overview')}} </h1>
+                                <h1 class="page-header-title"><?php echo e(\App\CPU\translate('Earning')); ?> <?php echo e(\App\CPU\translate('Report')); ?>  <?php echo e(\App\CPU\translate('Overview')); ?> </h1>
                             </div>
 
                             <div class="row align-items-center">
                                 <div class="flex-between col-auto">
-                                    <h5 class="text-muted {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}">{{\App\CPU\translate('Admin')}} : </h5>
-                                    <h5 class="text-muted">{{auth('admin')->user()->name}}</h5>
+                                    <h5 class="text-muted <?php echo e(Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'); ?>"><?php echo e(\App\CPU\translate('Admin')); ?> : </h5>
+                                    <h5 class="text-muted"><?php echo e(auth('admin')->user()->name); ?></h5>
                                 </div>
 
                                 <div class="col-auto">
                                     <div class="row align-items-center g-0">
-                                        <h5 class="text-muted col-auto {{Session::get('direction') === "rtl" ? 'pl-2' : 'pr-2'}}">{{\App\CPU\translate('Date')}}</h5>
+                                        <h5 class="text-muted col-auto <?php echo e(Session::get('direction') === "rtl" ? 'pl-2' : 'pr-2'); ?>"><?php echo e(\App\CPU\translate('Date')); ?></h5>
 
                                         <!-- Flatpickr -->
-                                        <h5 class="text-muted">( {{session('from_date')}} - {{session('to_date')}} )</h5>
+                                        <h5 class="text-muted">( <?php echo e(session('from_date')); ?> - <?php echo e(session('to_date')); ?> )</h5>
                                         <!-- End Flatpickr -->
                                     </div>
                                 </div>
@@ -45,7 +43,7 @@
 
                         <div class="col-lg-auto">
                             <div class="d-flex">
-                                <a class="btn btn-icon btn-primary rounded-circle" href="{{route('admin.dashboard')}}">
+                                <a class="btn btn-icon btn-primary rounded-circle" href="<?php echo e(route('admin.dashboard')); ?>">
                                     <i class="tio-home-outlined"></i>
                                 </a>
                             </div>
@@ -60,19 +58,19 @@
             <div class="js-nav-scroller hs-nav-scroller-horizontal">
             <span class="hs-nav-scroller-arrow-prev" style="display: none;">
               <a class="hs-nav-scroller-arrow-link" href="javascript:;">
-                <i class="tio-chevron-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}"></i>
+                <i class="tio-chevron-<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>"></i>
               </a>
             </span>
 
                 <span class="hs-nav-scroller-arrow-next" style="display: none;">
               <a class="hs-nav-scroller-arrow-link" href="javascript:;">
-                <i class="tio-chevron-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}"></i>
+                <i class="tio-chevron-<?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>"></i>
               </a>
             </span>
 
                 <ul class="nav nav-tabs page-header-tabs" id="projectsTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" href="javascript:">{{\App\CPU\translate('Overview')}}</a>
+                        <a class="nav-link active" href="javascript:"><?php echo e(\App\CPU\translate('Overview')); ?></a>
                     </li>
                 </ul>
             </div>
@@ -82,12 +80,12 @@
 
         <div class="row border-bottom border-right border-left border-top">
             <div class="col-lg-12">
-                <form action="{{route('admin.report.set-date')}}" method="post">
-                    @csrf
+                <form action="<?php echo e(route('admin.report.set-date')); ?>" method="post">
+                    <?php echo csrf_field(); ?>
                     <div class="row">
                         <div class="col-12">
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">{{\App\CPU\translate('show_data_by_date_range')}}</label>
+                                <label for="exampleInputEmail1" class="form-label"><?php echo e(\App\CPU\translate('show_data_by_date_range')); ?></label>
                             </div>
                         </div>
                         <div class="col-4">
@@ -104,15 +102,15 @@
                         </div>
                         <div class="col-4">
                             <div class="mb-3">
-                                <button type="submit" class="btn btn-primary btn-block">{{\App\CPU\translate('Show')}}</button>
+                                <button type="submit" class="btn btn-primary btn-block"><?php echo e(\App\CPU\translate('Show')); ?></button>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
 
-            @php
-               $from = session('from_date');
+            <?php
+                $from = session('from_date');
                $to = session('to_date');
                $total_tax=\App\Model\OrderTransaction::where(['status'=>'disburse'])
                ->whereBetween('created_at', [$from, $to])
@@ -120,26 +118,26 @@
                if($total_tax==0){
                    $total_tax=0.01;
                }
-            @endphp
-            @php
+            ?>
+            <?php
                 $total_earning =\App\Model\OrderTransaction::where(['status'=>'disburse'])
                ->whereBetween('created_at', [$from, $to])
                ->sum('order_amount');
             if($total_earning==0){
                 $total_earning=.01;
             }
-            @endphp
-            @php
+            ?>
+            <?php
                 $total_commission =\App\Model\OrderTransaction::where(['status'=>'disburse'])
                ->whereBetween('created_at', [$from, $to])
                ->sum('admin_commission');
             if($total_commission==0){
                 $total_commission=.01;
             }
-            @endphp
-            @php
+            ?>
+            <?php
                 $total = $total_earning+$total_tax + $total_commission;
-            @endphp
+            ?>
 
             <div class="col-sm-3 col-lg-4 mb-3 mb-lg-6">
             <!-- Card -->
@@ -152,9 +150,10 @@
                                     <i class="tio-dollar-outlined nav-icon"></i>
 
                                     <div class="media-body">
-                                        <h4 class="mb-1">{{\App\CPU\translate('Total')}} {{\App\CPU\translate('earning')}} </h4>
+                                        <h4 class="mb-1"><?php echo e(\App\CPU\translate('Total')); ?> <?php echo e(\App\CPU\translate('earning')); ?> </h4>
                                         <span class="font-size-sm text-success">
-                                          <i class="tio-trending-up"></i> {{\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($total_earning))}}
+                                          <i class="tio-trending-up"></i> <?php echo e(\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($total_earning))); ?>
+
                                         </span>
                                     </div>
 
@@ -166,7 +165,7 @@
                                 <!-- Circle -->
                                 <div class="js-circle"
                                      data-hs-circles-options='{
-                                       "value": {{$total_earning=='.01'?0:round((($total_earning)/$total)*100)}},
+                                       "value": <?php echo e($total_earning=='.01'?0:round((($total_earning)/$total)*100)); ?>,
                                        "maxValue": 100,
                                        "duration": 2000,
                                        "isViewportInit": true,
@@ -199,9 +198,10 @@
                                     <i class="tio-money nav-icon"></i>
 
                                     <div class="media-body">
-                                        <h4 class="mb-1">{{\App\CPU\translate('Total')}} {{\App\CPU\translate('Tax')}} </h4>
+                                        <h4 class="mb-1"><?php echo e(\App\CPU\translate('Total')); ?> <?php echo e(\App\CPU\translate('Tax')); ?> </h4>
                                         <span class="font-size-sm text-warning">
-                                          <i class="tio-trending-up"></i>  {{\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($total_tax))}}
+                                          <i class="tio-trending-up"></i>  <?php echo e(\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($total_tax))); ?>
+
                                         </span>
                                     </div>
                                 </div>
@@ -212,7 +212,7 @@
                                 <!-- Circle -->
                                 <div class="js-circle"
                                      data-hs-circles-options='{
-                           "value": {{$total_tax=='0.01'?0:round(((abs($total_tax))/$total)*100)}},
+                           "value": <?php echo e($total_tax=='0.01'?0:round(((abs($total_tax))/$total)*100)); ?>,
                            "maxValue": 100,
                            "duration": 2000,
                            "isViewportInit": true,
@@ -244,9 +244,10 @@
                                     <i class="tio-money nav-icon"></i>
 
                                     <div class="media-body">
-                                        <h4 class="mb-1">{{\App\CPU\translate('Total')}} {{\App\CPU\translate('commission')}} </h4>
+                                        <h4 class="mb-1"><?php echo e(\App\CPU\translate('Total')); ?> <?php echo e(\App\CPU\translate('commission')); ?> </h4>
                                         <span class="font-size-sm text-primary">
-                                          <i class="tio-trending-up"></i>  {{\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($total_commission))}}
+                                          <i class="tio-trending-up"></i>  <?php echo e(\App\CPU\BackEndHelper::set_symbol(\App\CPU\BackEndHelper::usd_to_currency($total_commission))); ?>
+
                                         </span>
                                     </div>
                                 </div>
@@ -257,7 +258,7 @@
                                 <!-- Circle -->
                                 <div class="js-circle"
                                      data-hs-circles-options='{
-                           "value": {{$total_commission=='0.01'?0:round(((abs($total_commission))/$total)*100)}},
+                           "value": <?php echo e($total_commission=='0.01'?0:round(((abs($total_commission))/$total)*100)); ?>,
                            "maxValue": 100,
                            "duration": 2000,
                            "isViewportInit": true,
@@ -285,54 +286,55 @@
         <div class="card mb-3 mb-lg-5 border-top border-left border-right border-bottom">
             <!-- Header -->
             <div class="card-header">
-                @php
+                <?php
                     $total_sold=\App\Model\OrderTransaction::where(['status'=>'disburse'])->whereBetween('created_at', [date('y-01-01'), date('y-12-31')])->sum('order_amount');
                     $t=\App\Model\OrderTransaction::where(['status'=>'disburse'])->whereBetween('created_at', [date('y-01-01'), date('y-12-31')])->sum('tax');
                     $c=\App\Model\OrderTransaction::where(['status'=>'disburse'])->whereBetween('created_at', [date('y-01-01'), date('y-12-31')])->sum('admin_commission');
                     $t_c_t = $total_sold +$t +$c;
-                @endphp
+                ?>
                 <div class="flex-start">
-                    <h6 class="card-subtitle mt-1">{{\App\CPU\translate('total_sale_of')}} {{date('Y')}} :</h6>
-                    <h6><span class="h3 {{Session::get('direction') === "rtl" ? 'mr-sm-2' : 'ml-sm-2'}}"> {{\App\CPU\BackEndHelper::usd_to_currency($total_sold)." "}}</span></h6>
-                    <h6><span class="h3 {{Session::get('direction') === "rtl" ? 'mr-sm-2' : 'ml-sm-2'}}"> {{\App\CPU\BackEndHelper::currency_symbol()}}</span></h6>
+                    <h6 class="card-subtitle mt-1"><?php echo e(\App\CPU\translate('total_sale_of')); ?> <?php echo e(date('Y')); ?> :</h6>
+                    <h6><span class="h3 <?php echo e(Session::get('direction') === "rtl" ? 'mr-sm-2' : 'ml-sm-2'); ?>"> <?php echo e(\App\CPU\BackEndHelper::usd_to_currency($total_sold)." "); ?></span></h6>
+                    <h6><span class="h3 <?php echo e(Session::get('direction') === "rtl" ? 'mr-sm-2' : 'ml-sm-2'); ?>"> <?php echo e(\App\CPU\BackEndHelper::currency_symbol()); ?></span></h6>
                 </div>
 
                 <!-- Unfold -->
                 <div class="hs-unfold">
                     <a class="js-hs-unfold-invoker btn btn-white"
-                       href="{{route('admin.orders.list',['all'])}}">
-                        <i class="tio-shopping-cart-outlined {{Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'}}"></i> {{\App\CPU\translate('Orders')}}
+                       href="<?php echo e(route('admin.orders.list',['all'])); ?>">
+                        <i class="tio-shopping-cart-outlined <?php echo e(Session::get('direction') === "rtl" ? 'ml-1' : 'mr-1'); ?>"></i> <?php echo e(\App\CPU\translate('Orders')); ?>
+
                     </a>
                 </div>
                 <!-- End Unfold -->
             </div>
             <!-- End Header -->
 
-        @php
+        <?php
             $sold=[];
                 for ($i=1;$i<=12;$i++){
                     $from = date('Y-'.$i.'-01');
                     $to = date('Y-'.$i.'-30');
                     $sold[$i]=\App\Model\OrderTransaction::where(['status'=>'disburse'])->whereBetween('created_at', [$from, $to])->sum('order_amount');
                 }
-        @endphp
+        ?>
 
-        @php
+        <?php
             $tax=[];
                 for ($i=1;$i<=12;$i++){
                     $from = date('Y-'.$i.'-01');
                     $to = date('Y-'.$i.'-30');
                     $tax[$i]=\App\Model\OrderTransaction::where(['status'=>'disburse'])->whereBetween('created_at', [$from, $to])->sum('tax');
                 }
-        @endphp
-        @php
+        ?>
+        <?php
             $commission=[];
                 for ($i=1;$i<=12;$i++){
                     $from = date('Y-'.$i.'-01');
                     $to = date('Y-'.$i.'-30');
                     $commission[$i]=\App\Model\OrderTransaction::where(['status'=>'disburse'])->whereBetween('created_at', [$from, $to])->sum('admin_commission');
                 }
-        @endphp
+        ?>
 
 
         <!-- Body -->
@@ -345,7 +347,7 @@
                         "data": {
                            "labels": ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
                            "datasets": [{
-                            "data": [{{$sold[1]}},{{$sold[2]}},{{$sold[3]}},{{$sold[4]}},{{$sold[5]}},{{$sold[6]}},{{$sold[7]}},{{$sold[8]}},{{$sold[9]}},{{$sold[10]}},{{$sold[11]}},{{$sold[12]}}],
+                            "data": [<?php echo e($sold[1]); ?>,<?php echo e($sold[2]); ?>,<?php echo e($sold[3]); ?>,<?php echo e($sold[4]); ?>,<?php echo e($sold[5]); ?>,<?php echo e($sold[6]); ?>,<?php echo e($sold[7]); ?>,<?php echo e($sold[8]); ?>,<?php echo e($sold[9]); ?>,<?php echo e($sold[10]); ?>,<?php echo e($sold[11]); ?>,<?php echo e($sold[12]); ?>],
                             "backgroundColor": ["rgba(55, 125, 255, 0)", "rgba(255, 255, 255, 0)"],
                             "borderColor": "green",
                             "borderWidth": 2,
@@ -357,7 +359,7 @@
                             "hoverBackgroundColor": "#377dff"
                           },
                           {
-                            "data": [{{$tax[1]}},{{$tax[2]}},{{$tax[3]}},{{$tax[4]}},{{$tax[5]}},{{$tax[6]}},{{$tax[7]}},{{$tax[8]}},{{$tax[9]}},{{$tax[10]}},{{$tax[11]}},{{$tax[12]}}],
+                            "data": [<?php echo e($tax[1]); ?>,<?php echo e($tax[2]); ?>,<?php echo e($tax[3]); ?>,<?php echo e($tax[4]); ?>,<?php echo e($tax[5]); ?>,<?php echo e($tax[6]); ?>,<?php echo e($tax[7]); ?>,<?php echo e($tax[8]); ?>,<?php echo e($tax[9]); ?>,<?php echo e($tax[10]); ?>,<?php echo e($tax[11]); ?>,<?php echo e($tax[12]); ?>],
                             "backgroundColor": ["rgba(0, 201, 219, 0)", "rgba(255, 255, 255, 0)"],
                             "borderColor": "#ec9a3c",
                             "borderWidth": 2,
@@ -369,7 +371,7 @@
                             "hoverBackgroundColor": "#00c9db"
                           },
                           {
-                            "data": [{{$commission[1]}},{{$commission[2]}},{{$commission[3]}},{{$commission[4]}},{{$commission[5]}},{{$commission[6]}},{{$commission[7]}},{{$commission[8]}},{{$commission[9]}},{{$commission[10]}},{{$commission[11]}},{{$commission[12]}}],
+                            "data": [<?php echo e($commission[1]); ?>,<?php echo e($commission[2]); ?>,<?php echo e($commission[3]); ?>,<?php echo e($commission[4]); ?>,<?php echo e($commission[5]); ?>,<?php echo e($commission[6]); ?>,<?php echo e($commission[7]); ?>,<?php echo e($commission[8]); ?>,<?php echo e($commission[9]); ?>,<?php echo e($commission[10]); ?>,<?php echo e($commission[11]); ?>,<?php echo e($commission[12]); ?>],
                             "backgroundColor": ["rgba(0, 201, 219, 0)", "rgba(255, 255, 255, 0)"],
                             "borderColor": "#355db5",
                             "borderWidth": 2,
@@ -392,12 +394,12 @@
                                 },
                                 "ticks": {
                                   "min": 0,
-                                  "max": {{$t_c_t}},
-                                  "stepSize": {{round($t_c_t/5)}},
+                                  "max": <?php echo e($t_c_t); ?>,
+                                  "stepSize": <?php echo e(round($t_c_t/5)); ?>,
                                   "fontColor": "#97a4af",
                                   "fontFamily": "Open Sans, sans-serif",
                                   "padding": 10,
-                                  "postfix": " {{\App\CPU\BackEndHelper::currency_symbol()}}"
+                                  "postfix": " <?php echo e(\App\CPU\BackEndHelper::currency_symbol()); ?>"
                                 }
                               }],
                               "xAxes": [{
@@ -437,18 +439,18 @@
         <!-- End Card -->
         <!-- End Row -->
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('script')
+<?php $__env->startPush('script'); ?>
 
-@endpush
+<?php $__env->stopPush(); ?>
 
-@push('script_2')
+<?php $__env->startPush('script_2'); ?>
 
-    <script src="{{asset('public/assets/back-end')}}/vendor/chart.js/dist/Chart.min.js"></script>
+    <script src="<?php echo e(asset('public/assets/back-end')); ?>/vendor/chart.js/dist/Chart.min.js"></script>
     <script
-        src="{{asset('public/assets/back-end')}}/vendor/chartjs-chart-matrix/dist/chartjs-chart-matrix.min.js"></script>
-    <script src="{{asset('public/assets/back-end')}}/js/hs.chartjs-matrix.js"></script>
+        src="<?php echo e(asset('public/assets/back-end')); ?>/vendor/chartjs-chart-matrix/dist/chartjs-chart-matrix.min.js"></script>
+    <script src="<?php echo e(asset('public/assets/back-end')); ?>/js/hs.chartjs-matrix.js"></script>
 
     <script>
         $(document).on('ready', function () {
@@ -644,7 +646,7 @@
                 if (fr > to) {
                     $('#from_date').val('');
                     $('#to_date').val('');
-                    toastr.error('{{\App\CPU\translate('Invalid date range')}}!', Error, {
+                    toastr.error('<?php echo e(\App\CPU\translate('Invalid date range')); ?>!', Error, {
                         CloseButton: true,
                         ProgressBar: true
                     });
@@ -653,4 +655,6 @@
 
         })
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layouts.back-end.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp\www\booksbd\resources\views/admin-views/report/earning-index.blade.php ENDPATH**/ ?>
