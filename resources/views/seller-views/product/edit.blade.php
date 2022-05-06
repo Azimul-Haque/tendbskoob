@@ -353,7 +353,7 @@
                                             <label class="control-label">{{\App\CPU\translate('Sale Price')}} (৳)</label>
                                             <input type="number" min="0" step="0.01"
                                                 placeholder="{{\App\CPU\translate('Sale Price')}}"
-                                                name="unit_price" value="{{ $product->published_price }}" class="form-control"
+                                                name="unit_price" value="{{ $product->unit_price }}" class="form-control"
                                                 required>
                                         </div>
                                     @endif
