@@ -136,7 +136,7 @@
                                                 <span class="badge badge-info">Pending</span> 
                                             @endif <br/>
                                             @if(in_array('Pre Order', $category_names))
-                                                <small style="color: #0300c4 !important;">Pre Order</small><br/><br/>
+                                                <small style="color: #0300c4 !important;">Release Date: </small><br/><br/>
                                             @endif
                                             {{-- <label class="switch switch-status">
                                                 <input type="checkbox" class="status"
