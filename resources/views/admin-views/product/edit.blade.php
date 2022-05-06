@@ -391,7 +391,7 @@
                                     <div class="col-md-4" id="release_date">
                                         <label
                                             class="control-label">প্রকাশনার সম্ভ্যাব্য তারিখ (অপশনাল)</label>
-                                            <input type="date" name="release_date" id="release_date" class="form-control">
+                                            <input type="date" name="release_date" value="{{ $product->release_date }}" id="release_date" class="form-control">
                                     </div>
                                     <div class="col-md-4 pt-4">
                                         <center>
