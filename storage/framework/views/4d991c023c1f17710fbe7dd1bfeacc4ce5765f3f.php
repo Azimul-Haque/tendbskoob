@@ -200,7 +200,7 @@
                                 </div>
                                 <div class="row pt-4">
                                     
-                                    <div class="col-md-6" id="quantity">
+                                    <div class="col-md-4" id="quantity">
                                         <label
                                             class="control-label"><?php echo e(\App\CPU\translate('total')); ?> <?php echo e(\App\CPU\translate('Quantity')); ?></label>
                                         <input type="number" min="0" step="1" placeholder="<?php echo e(\App\CPU\translate('Quantity')); ?>" name="current_stock" value="<?php echo e($product->current_stock); ?>" class="form-control" required>
@@ -210,7 +210,7 @@
                                             class="control-label">প্রকাশনার সম্ভ্যাব্য তারিখ (অপশনাল)</label>
                                             <input type="date" name="release_date" id="release_date" class="form-control">
                                     </div>
-                                    <div class="col-md-6 pt-6">
+                                    <div class="col-md-4 pt-4">
                                         <center>
                                             <label class="radio-inline" style="margin-right: 10px;">
                                                 <input type="radio" name="stock_status" value="1" <?php if($product->stock_status == 1): ?> checked <?php endif; ?>> In Stock 
