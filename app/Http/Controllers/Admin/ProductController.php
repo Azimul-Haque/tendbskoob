@@ -291,8 +291,6 @@ class ProductController extends BaseController
         // release date
         if($request->release_date != null) {
             $p->release_date = $request->release_date;
-        } else {
-            $p->release_date = 2;
         }
 
         $p->meta_title = $request->bangla_name . '-' . $request->name;
