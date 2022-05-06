@@ -286,7 +286,7 @@ class ProductController extends BaseController
         } else {
             $p->stock_status = 2; // 1 = in stock, 2 = out of stock, 3 = back order
         }
-        if($p->release_date > 0) {
+        if($request->release_date != null) {
             $p->stock_status = $request->release_date;
         } else {
             $p->stock_status = 2;
