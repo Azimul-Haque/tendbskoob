@@ -334,28 +334,34 @@
                                 </div>
                                 <div class="row pt-4">
                                     @if (auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin')
-                                        <div class="col-md-4">
-                                            <label
-                                                class="control-label">{{\App\CPU\translate('Purchase Price')}} (৳)</label>
-                                            <input type="number" min="0" step="0.01"
-                                                placeholder="{{\App\CPU\translate('Purchase Price')}}"
-                                                value="{{ $product->purchase_price }}"
-                                                name="purchase_price" class="form-control" required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="control-label">{{\App\CPU\translate('Published Price')}} (৳)</label>
-                                            <input type="number" min="0" step="0.01"
-                                                placeholder="{{\App\CPU\translate('Published Price')}}"
-                                                name="published_price" value="{{ $product->published_price }}" class="form-control"
-                                                required>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="control-label">{{\App\CPU\translate('Sale Price')}} (৳)</label>
-                                            <input type="number" min="0" step="0.01"
-                                                placeholder="{{\App\CPU\translate('Sale Price')}}"
-                                                name="unit_price" value="{{ $product->unit_price }}" class="form-control"
-                                                required>
-                                        </div>
+                                    <div class="col-md-4">
+                                        <label class="control-label">মুদ্রিত মূল্য (৳)</label>
+                                        <input type="number" min="0" step="0.01"
+                                            placeholder="{{\App\CPU\translate('Published Price')}}"
+                                            name="published_price" id="published_price" value="{{ $product->published_price }}" class="form-control"
+                                            required>
+                                    </div>    
+                                    <div class="col-md-4">
+                                        <label
+                                            class="control-label">বুকসবিডির কমিশন (%) <small id="purchase_percentage_text" style="color: green; font-weight: bold;">৳ {{ $product->purchase_price }}</small></label>
+                                        <input type="number" min="0" step="0.01" max="100"
+                                            placeholder="শুধুমাত্র ইংরেজি নম্বরে পারসেন্টিজটি উল্লেখ করুন"
+                                            value="{{ (($product->published_price - $product->purchase_price) / $product->published_price) * 100 }}"
+                                            onkeyup="purchasePercetage();"
+                                            id="purchase_price_percentage" class="form-control" required>
+                                        <input type="hidden" name="purchase_price" id="purchase_price">
+                                    </div>
+                                        
+                                    <div class="col-md-4">
+                                        <label class="control-label">কাস্টমার কমিশন (%) <small id="unit_percentage_text" style="color: green; font-weight: bold;">৳ {{ $product->unit_price }}</small></label>
+                                        <input type="number" min="0" step="0.01" max="100"
+                                            placeholder="শুধুমাত্র ইংরেজি নম্বরে পারসেন্টিজটি উল্লেখ করুন"
+                                            value="{{ (($product->published_price - $product->unit_price) / $product->published_price) * 100 }}"
+                                            onkeyup="unitPercetage()"
+                                            id="unit_price_percentage"  class="form-control"
+                                            required>
+                                        <input type="hidden" name="unit_price" id="unit_price">
+                                    </div>
                                     @endif
                                 </div>
                                 <div class="row pt-4">
