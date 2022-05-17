@@ -523,41 +523,18 @@
                                                     </div>
                                                 @endif
                                             </a>
-                                            @if($category->childes->count()>0)
-                                                <ul class="dropdown-menu"
-                                                    style="right: 100%; text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
-                                                    @foreach($category['childes'] as $subCategory)
-                                                        <li class="dropdown">
-                                                            <a class="dropdown-item flex-between <?php if ($subCategory->childes->count() > 0) echo "data-toggle='dropdown"?> "
-                                                               <?php if ($subCategory->childes->count() > 0) echo "data-toggle='dropdown'"?> href="javascript:"
-                                                               onclick="location.href='{{route('products',['id'=> $subCategory['id'],'data_from'=>'category','page'=>1])}}'">
-                                                                <div>
-                                                                    <span
-                                                                        class="{{Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'}}">{{$subCategory['name']}}</span>
-                                                                </div>
-                                                                @if ($subCategory->childes->count() > 0)
-                                                                    <div>
-                                                                        <i class="czi-arrow-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}"></i>
-                                                                    </div>
-                                                                @endif
-                                                            </a>
-                                                            @if($subCategory->childes->count()>0)
-                                                                <ul class="dropdown-menu"
-                                                                    style="right: 100%; text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
-                                                                    @foreach($subCategory['childes'] as $subSubCategory)
-                                                                        <li>
-                                                                            <a class="dropdown-item"
-                                                                               href="{{route('products',['id'=> $subSubCategory['id'],'data_from'=>'category','page'=>1])}}">{{$subSubCategory['name']}}</a>
-                                                                        </li>
-                                                                    @endforeach
-                                                                </ul>
-                                                            @endif
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            @endif
                                         </li>
                                     @endforeach
+                                    <li class="dropdown">
+                                        <a class="dropdown-item flex-between"
+                                            <?php if ($category->childes->count() > 0) echo "data-toggle='dropdown'"?> href="javascript:"
+                                            onclick="location.href='{{route('products',['id'=> 444,'data_from'=>'category','page'=>1])}}'">
+                                            <div>
+                                                <i class="fa fa-ticket"></i>
+                                                <span class="{{Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'}}">প্রি অর্ডার</span>
+                                            </div>
+                                        </a>
+                                    </li>
                                     <a class="dropdown-item" href="{{route('categories')}}"
                                        style="{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 29%">
                                         {{\App\CPU\translate('view_more')}}
