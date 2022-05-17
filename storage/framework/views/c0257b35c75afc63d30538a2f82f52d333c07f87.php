@@ -269,6 +269,11 @@
                     </li> 
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <li class="list-item">
+                    <a class="link-level-2" href="<?php echo e(route('products', ['id'=> 444,'data_from'=>'category','page'=>1])); ?>">
+                        প্রি অর্ডার
+                    </a>
+                </li>
+                <li class="list-item">
                     <a class="link-level-2" href="<?php echo e(route('categories')); ?>">
                         <b>আরও দেখুন <i class="fa fa-angle-double-right"></i></b>
                     </a>
