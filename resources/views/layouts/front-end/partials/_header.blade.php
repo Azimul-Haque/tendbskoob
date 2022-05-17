@@ -517,11 +517,6 @@
                                                     <span
                                                         class="{{Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'}}">{{$category['name_bangla']}}</span>
                                                 </div>
-                                                @if ($category->childes->count() > 0)
-                                                    <div>
-                                                        <i class="czi-arrow-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}"></i>
-                                                    </div>
-                                                @endif
                                             </a>
                                         </li>
                                     @endforeach
