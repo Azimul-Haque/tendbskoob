@@ -492,10 +492,10 @@
                                                         </div>
                                                     @endif
                                                 </a>
-                                                @if($category->childes->count()>0)
+                                                /* @if($category->childes->count()>0)
                                                     <ul class="dropdown-menu"
                                                         style="right: 100%; text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
-                                                        /* @foreach($category['childes'] as $subCategory)
+                                                        @foreach($category['childes'] as $subCategory)
                                                             <li class="dropdown">
                                                                 <a class="dropdown-item flex-between"
                                                                    <?php if ($subCategory->childes->count() > 0) echo "data-toggle='dropdown'"?> href="javascript:"
@@ -522,9 +522,9 @@
                                                                     </ul>
                                                                 @endif
                                                             </li>
-                                                        @endforeach */
+                                                        @endforeach
                                                     </ul>
-                                                @endif
+                                                @endif */
                                             </li>
                                         @endif
                                     @endforeach
