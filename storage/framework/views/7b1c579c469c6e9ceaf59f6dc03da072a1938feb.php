@@ -27,11 +27,11 @@
                             <div class="form-group row">
                                 <div class="col-md-4 mb-3 mb-sm-0">
                                     <label for="name">প্রকাশনীর নাম</label>
-                                    <input type="text" class="form-control form-control-user" id="name" name="name" value="<?php echo e(old('name')); ?>" placeholder="Din Publications" required>
+                                    <input type="text" class="form-control form-control-user" id="name" name="name" value="<?php echo e(old('name')); ?>" placeholder="Din Publications" autocomplete="off" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="address">প্রকাশনীর ঠিকানা</label>
-                                    <input type="text" class="form-control form-control-user" id="address" name="address" value="<?php echo e(old('address')); ?>" placeholder="Banglabazar, Dhaka" required>
+                                    <input type="text" class="form-control form-control-user" id="address" name="address" value="<?php echo e(old('address')); ?>" placeholder="Banglabazar, Dhaka" autocomplete="off" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="address">প্রকাশনীর লোগো <span style="color:red;">(অনুপাত - ১ঃ১)</span></label>
@@ -79,15 +79,15 @@
                             <div class="form-group row">
                                 <div class="col-md-4 mb-3 mb-sm-0">
                                     <label for="email">আপনার ই-মেইল</label>
-                                    <input type="email" class="form-control form-control-user" id="email" name="email" value="<?php echo e(old('email')); ?>" placeholder="bdjp@booksbd.net" required>
+                                    <input type="email" class="form-control form-control-user" id="email" name="email" value="<?php echo e(old('email')); ?>" placeholder="bdjp@booksbd.net"  autocomplete="off" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="password">আপনার পাসওয়ার্ড দিন</label>
-                                    <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="পাসওয়ার্ড লিখুন" required>
+                                    <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="পাসওয়ার্ড লিখুন" autocomplete="off" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="password_confirmation ">আপনার পাসওয়ার্ডটি পুনরায় দিন</label>
-                                    <input type="password" class="form-control form-control-user" id="password_confirmation" name="password_confirmation" placeholder="পুনরায় পাসওয়ার্ড লিখুন" required>
+                                    <input type="password" class="form-control form-control-user" id="password_confirmation" name="password_confirmation" placeholder="পুনরায় পাসওয়ার্ড লিখুন" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="">

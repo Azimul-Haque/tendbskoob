@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="password_confirmation ">আপনার পাসওয়ার্ডটি পুনরায় দিন</label>
-                                    <input type="password" class="form-control form-control-user" id="password_confirmation" name="password_confirmation" placeholder="পুনরায় পাসওয়ার্ড লিখুন" required>
+                                    <input type="password" class="form-control form-control-user" id="password_confirmation" name="password_confirmation" placeholder="পুনরায় পাসওয়ার্ড লিখুন" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="">
