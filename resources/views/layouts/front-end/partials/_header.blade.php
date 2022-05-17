@@ -263,6 +263,9 @@
                     </li> 
                 @endforeach
                 <li class="list-item">
+                    <a class="link-level-2" href="{{route('products', ['id'=> $category['id'],'data_from'=>'category','page'=>1]) }}">
+                            {{ $category->name_bangla }}
+                        </a>
                     <a class="dropdown-item flex-between"
                         <?php if ($category->childes->count() > 0) echo "data-toggle='dropdown'"?> href="javascript:"
                         onclick="location.href='{{route('products',['id'=> 444,'data_from'=>'category','page'=>1])}}'">
