@@ -150,6 +150,12 @@
                         <li class="widget-list-item"><a class="widget-list-link"
                                                         href="{{ route('account-tickets') }}">{{\App\CPU\translate('support_ticket')}}</a>
                         </li>
+                        <li class="widget-list-item">
+                            <a class="widget-list-link" href="{{ route('shop.apply') }}">Become a Seller</a>
+                        </li>
+                        <li class="widget-list-item">
+                            <a class="widget-list-link" href="{{ route('seller.auth.login') }}">Seller Login</a>
+                        </li>
                         {{--<li class="widget-list-item">
                             <a class="widget-list-link"
                                href="{{route('customer.auth.login')}}">{{\App\CPU\translate('tansction_history')}}
@@ -177,6 +183,12 @@
                         </li>
                         <li class="widget-list-item"><a class="widget-list-link"
                                                         href="{{route('customer.auth.login')}}">{{\App\CPU\translate('support_ticket')}}</a>
+                        </li>
+                        <li class="widget-list-item">
+                            <a class="widget-list-link" href="{{ route('shop.apply') }}">Become a Seller</a>
+                        </li>
+                        <li class="widget-list-item">
+                            <a class="widget-list-link" href="{{ route('seller.auth.login') }}">Seller Login</a>
                         </li>
                         {{--to do--}}
                         {{--<li class="widget-list-item">
