@@ -492,7 +492,7 @@
                                                             src="<?php echo e(asset("storage/app/public/category/$category->icon")); ?>"
                                                             onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                                                             style="width: 18px; height: 18px; "> -->
-                                                        <i class="fa fa-ticket"></i> SS
+                                                        <i class="fa fa-ticket"></i>
                                                             <span
                                                             class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>"><?php echo e($category['name_bangla']); ?></span>
                                                     </div>
@@ -505,7 +505,7 @@
                                                 <?php if($category->childes->count()>0): ?>
                                                     <ul class="dropdown-menu"
                                                         style="right: 100%; text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;">
-                                                        <?php $__currentLoopData = $category['childes']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        /* <?php $__currentLoopData = $category['childes']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                             <li class="dropdown">
                                                                 <a class="dropdown-item flex-between"
                                                                    <?php if ($subCategory->childes->count() > 0) echo "data-toggle='dropdown'"?> href="javascript:"
@@ -532,7 +532,7 @@
                                                                     </ul>
                                                                 <?php endif; ?>
                                                             </li>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> */
                                                     </ul>
                                                 <?php endif; ?>
                                             </li>
