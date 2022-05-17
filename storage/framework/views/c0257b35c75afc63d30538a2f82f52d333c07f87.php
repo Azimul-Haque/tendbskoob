@@ -484,10 +484,10 @@
                                     <li class="dropdown">
                                         <a class="dropdown-item flex-between"
                                             <?php if ($category->childes->count() > 0) echo "data-toggle='dropdown'"?> href="javascript:"
-                                            onclick="location.href='<?php echo e(route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])); ?>'">
+                                            onclick="location.href='<?php echo e(route('products',['id'=> 444,'data_from'=>'category','page'=>1])); ?>'">
                                             <div>
                                                 <i class="fa fa-ticket"></i>
-                                                <span class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>"><?php echo e($category['name_bangla']); ?></span>
+                                                <span class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>">প্রি অর্ডার</span>
                                             </div>
                                         </a>
                                     </li>
