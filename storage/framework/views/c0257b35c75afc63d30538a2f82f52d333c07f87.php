@@ -577,33 +577,18 @@
                                             <span
                                                 class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>"><?php echo e($category['name_bangla']); ?></span>
                                         </a>
-                                        <?php if($category->childes->count()>0): ?>
-                                            <ul class="dropdown-menu"
-                                                style="right: 100%; text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;">
-                                                <?php $__currentLoopData = $category['childes']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <li class="dropdown">
-                                                        <a class="dropdown-item <?php if ($subCategory->childes->count() > 0) echo "dropdown-toggle"?> "
-                                                           <?php if ($subCategory->childes->count() > 0) echo "data-toggle='dropdown'"?> href="<?php echo e(route('products',['id'=> $subCategory['id'],'data_from'=>'category','page'=>1])); ?>">
-                                                            <span
-                                                                class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>"><?php echo e($subCategory['name_bangla']); ?></span>
-                                                        </a>
-                                                        <?php if($subCategory->childes->count()>0): ?>
-                                                            <ul class="dropdown-menu"
-                                                                style="right: 100%; text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;">
-                                                                <?php $__currentLoopData = $subCategory['childes']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subSubCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                    <li>
-                                                                        <a class="dropdown-item"
-                                                                           href="<?php echo e(route('products',['id'=> $subSubCategory['id'],'data_from'=>'category','page'=>1])); ?>"><?php echo e($subSubCategory['name_bangla']); ?></a>
-                                                                    </li>
-                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                            </ul>
-                                                        <?php endif; ?>
-                                                    </li>
-                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                            </ul>
-                                        <?php endif; ?>
                                     </li>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                <li class="dropdown">
+                                        <a class="dropdown-item flex-between"
+                                            <?php if ($category->childes->count() > 0) echo "data-toggle='dropdown'"?> href="javascript:"
+                                            onclick="location.href='<?php echo e(route('products',['id'=> 444,'data_from'=>'category','page'=>1])); ?>'">
+                                            <div>
+                                                <i class="fa fa-ticket"></i>
+                                                <span class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>">প্রি অর্ডার</span>
+                                            </div>
+                                        </a>
+                                    </li>
                                 <a class="dropdown-item" href="<?php echo e(route('categories')); ?>"
                                 style="<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>: 29%">
                                     <?php echo e(\App\CPU\translate('view_more')); ?>

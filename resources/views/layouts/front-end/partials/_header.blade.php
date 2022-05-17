@@ -567,6 +567,16 @@
                                         </a>
                                     </li>
                                 @endforeach
+                                <li class="dropdown">
+                                        <a class="dropdown-item flex-between"
+                                            <?php if ($category->childes->count() > 0) echo "data-toggle='dropdown'"?> href="javascript:"
+                                            onclick="location.href='{{route('products',['id'=> 444,'data_from'=>'category','page'=>1])}}'">
+                                            <div>
+                                                <i class="fa fa-ticket"></i>
+                                                <span class="{{Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'}}">প্রি অর্ডার</span>
+                                            </div>
+                                        </a>
+                                    </li>
                                 <a class="dropdown-item" href="{{route('categories')}}"
                                 style="{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 29%">
                                     {{\App\CPU\translate('view_more')}}
