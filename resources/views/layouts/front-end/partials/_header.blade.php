@@ -565,31 +565,6 @@
                                             <span
                                                 class="{{Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'}}">{{$category['name_bangla']}}</span>
                                         </a>
-                                        @if($category->childes->count()>0)
-                                            <ul class="dropdown-menu"
-                                                style="right: 100%; text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
-                                                @foreach($category['childes'] as $subCategory)
-                                                    <li class="dropdown">
-                                                        <a class="dropdown-item <?php if ($subCategory->childes->count() > 0) echo "dropdown-toggle"?> "
-                                                           <?php if ($subCategory->childes->count() > 0) echo "data-toggle='dropdown'"?> href="{{route('products',['id'=> $subCategory['id'],'data_from'=>'category','page'=>1])}}">
-                                                            <span
-                                                                class="{{Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'}}">{{$subCategory['name_bangla']}}</span>
-                                                        </a>
-                                                        @if($subCategory->childes->count()>0)
-                                                            <ul class="dropdown-menu"
-                                                                style="right: 100%; text-align: {{Session::get('direction') === "rtl" ? 'right' : 'left'}};">
-                                                                @foreach($subCategory['childes'] as $subSubCategory)
-                                                                    <li>
-                                                                        <a class="dropdown-item"
-                                                                           href="{{route('products',['id'=> $subSubCategory['id'],'data_from'=>'category','page'=>1])}}">{{$subSubCategory['name_bangla']}}</a>
-                                                                    </li>
-                                                                @endforeach
-                                                            </ul>
-                                                        @endif
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        @endif
                                     </li>
                                 @endforeach
                                 <a class="dropdown-item" href="{{route('categories')}}"
