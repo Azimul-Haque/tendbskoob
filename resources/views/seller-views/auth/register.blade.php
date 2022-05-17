@@ -23,7 +23,7 @@
                             <h3 class=""><b>বুকস বিডিতে প্রকাশনী হিসেবে</b> অ্যাকাউন্ট করুন</h3>
                             <hr>
                         </div>
-                        <form class="user mt-4" action="{{route('shop.apply')}}" method="post" enctype="multipart/form-data">
+                        <form class="user mt-4" action="{{route('shop.apply')}}" method="post" enctype="multipart/form-data" autocomplete="off">
                             @csrf
                             <h5 class="black">প্রকাশনী সম্পর্কিত তথ্যাদি</h5>
                             <div class="form-group row">
