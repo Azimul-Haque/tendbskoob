@@ -478,19 +478,9 @@
                                                    <?php if ($category->childes->count() > 0) echo "data-toggle='dropdown'"?> href="javascript:"
                                                    onclick="location.href='{{route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])}}'">
                                                     <div>
-                                                        <!-- <img
-                                                            src="{{asset("storage/app/public/category/$category->icon")}}"
-                                                            onerror="this.src='{{asset('public/assets/front-end/img/image-place-holder.png')}}'"
-                                                            style="width: 18px; height: 18px; "> -->
                                                         <i class="fa fa-ticket"></i>
-                                                            <span
-                                                            class="{{Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'}}">{{$category['name_bangla']}}</span>
+                                                        <span class="{{Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'}}">{{$category['name_bangla']}}</span>
                                                     </div>
-                                                    @if ($category->childes->count() > 0)
-                                                        <div>
-                                                            <i class="czi-arrow-{{Session::get('direction') === "rtl" ? 'left' : 'right'}}"></i>
-                                                        </div>
-                                                    @endif
                                                 </a>
                                             </li>
                                         @endif
