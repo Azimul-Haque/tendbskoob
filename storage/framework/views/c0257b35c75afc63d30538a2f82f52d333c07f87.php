@@ -481,6 +481,16 @@
                             <?php if(request()->is('/')): ?>
                                 <ul class="dropdown-menu"
                                     style="right: 0%; display: block!important;margin-top: 7px; box-shadow: none;min-width: 303px !important;<?php echo e(Session::get('direction') === "rtl" ? 'margin-right: 1px!important;text-align: right;' : 'margin-left: 1px!important;text-align: left;'); ?>padding-bottom: 0px!important;">
+                                    <li class="dropdown">
+                                        <a class="dropdown-item flex-between"
+                                            <?php if ($category->childes->count() > 0) echo "data-toggle='dropdown'"?> href="javascript:"
+                                            onclick="location.href='<?php echo e(route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])); ?>'">
+                                            <div>
+                                                <i class="fa fa-ticket"></i>
+                                                <span class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>"><?php echo e($category['name_bangla']); ?></span>
+                                            </div>
+                                        </a>
+                                    </li>
                                     <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <?php if($key<11): ?>
                                             <li class="dropdown">
