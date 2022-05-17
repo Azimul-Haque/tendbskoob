@@ -488,53 +488,10 @@
                                                    <?php if ($category->childes->count() > 0) echo "data-toggle='dropdown'"?> href="javascript:"
                                                    onclick="location.href='<?php echo e(route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])); ?>'">
                                                     <div>
-                                                        <!-- <img
-                                                            src="<?php echo e(asset("storage/app/public/category/$category->icon")); ?>"
-                                                            onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
-                                                            style="width: 18px; height: 18px; "> -->
                                                         <i class="fa fa-ticket"></i>
-                                                            <span
-                                                            class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>"><?php echo e($category['name_bangla']); ?></span>
+                                                        <span class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>"><?php echo e($category['name_bangla']); ?></span>
                                                     </div>
-                                                    <?php if($category->childes->count() > 0): ?>
-                                                        <div>
-                                                            <i class="czi-arrow-<?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>"></i>
-                                                        </div>
-                                                    <?php endif; ?>
                                                 </a>
-                                                /* <?php if($category->childes->count()>0): ?>
-                                                    <ul class="dropdown-menu"
-                                                        style="right: 100%; text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;">
-                                                        <?php $__currentLoopData = $category['childes']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                            <li class="dropdown">
-                                                                <a class="dropdown-item flex-between"
-                                                                   <?php if ($subCategory->childes->count() > 0) echo "data-toggle='dropdown'"?> href="javascript:"
-                                                                   onclick="location.href='<?php echo e(route('products',['id'=> $subCategory['id'],'data_from'=>'category','page'=>1])); ?>'">
-                                                                    <div>
-                                                                        <span
-                                                                            class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>"><?php echo e($subCategory['name']); ?></span>
-                                                                    </div>
-                                                                    <?php if($subCategory->childes->count() > 0): ?>
-                                                                        <div>
-                                                                            <i class="czi-arrow-<?php echo e(Session::get('direction') === "rtl" ? 'left' : 'right'); ?>"></i>
-                                                                        </div>
-                                                                    <?php endif; ?>
-                                                                </a>
-                                                                <?php if($subCategory->childes->count()>0): ?>
-                                                                    <ul class="dropdown-menu"
-                                                                        style="right: 100%; text-align: <?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>;">
-                                                                        <?php $__currentLoopData = $subCategory['childes']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subSubCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                            <li>
-                                                                                <a class="dropdown-item"
-                                                                                   href="<?php echo e(route('products',['id'=> $subSubCategory['id'],'data_from'=>'category','page'=>1])); ?>"><?php echo e($subSubCategory['name']); ?></a>
-                                                                            </li>
-                                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                                    </ul>
-                                                                <?php endif; ?>
-                                                            </li>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                    </ul>
-                                                <?php endif; ?> */
                                             </li>
                                         <?php endif; ?>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
