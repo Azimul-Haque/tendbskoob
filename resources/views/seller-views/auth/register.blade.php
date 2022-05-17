@@ -81,7 +81,7 @@
                             <div class="form-group row">
                                 <div class="col-md-4 mb-3 mb-sm-0">
                                     <label for="email">আপনার ই-মেইল</label>
-                                    <input type="email" class="form-control form-control-user" id="email" name="email" value="{{old('email')}}" placeholder="bdjp@booksbd.net"  autocomplete="off" required>
+                                    <input type="email" class="form-control form-control-user" id="email" name="email" value="{{old('email')}}" placeholder="bdjp@booksbd.net"  autocomplete="off" style="display:none" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="password">আপনার পাসওয়ার্ড দিন</label>
