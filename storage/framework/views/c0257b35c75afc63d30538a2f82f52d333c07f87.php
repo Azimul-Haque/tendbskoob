@@ -481,18 +481,9 @@
                             <?php if(request()->is('/')): ?>
                                 <ul class="dropdown-menu"
                                     style="right: 0%; display: block!important;margin-top: 7px; box-shadow: none;min-width: 303px !important;<?php echo e(Session::get('direction') === "rtl" ? 'margin-right: 1px!important;text-align: right;' : 'margin-left: 1px!important;text-align: left;'); ?>padding-bottom: 0px!important;">
-                                    <li class="dropdown">
-                                        <a class="dropdown-item flex-between"
-                                            <?php if ($category->childes->count() > 0) echo "data-toggle='dropdown'"?> href="javascript:"
-                                            onclick="location.href='<?php echo e(route('products',['id'=> 444,'data_from'=>'category','page'=>1])); ?>'">
-                                            <div>
-                                                <i class="fa fa-ticket"></i>
-                                                <span class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>">প্রি অর্ডার</span>
-                                            </div>
-                                        </a>
-                                    </li>
+                                    
                                     <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <?php if($key<11): ?>
+                                        <?php if($key<10): ?>
                                             <li class="dropdown">
                                                 <a class="dropdown-item flex-between"
                                                    <?php if ($category->childes->count() > 0) echo "data-toggle='dropdown'"?> href="javascript:"
@@ -505,6 +496,16 @@
                                             </li>
                                         <?php endif; ?>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    <li class="dropdown">
+                                        <a class="dropdown-item flex-between"
+                                            <?php if ($category->childes->count() > 0) echo "data-toggle='dropdown'"?> href="javascript:"
+                                            onclick="location.href='<?php echo e(route('products',['id'=> 444,'data_from'=>'category','page'=>1])); ?>'">
+                                            <div>
+                                                <i class="fa fa-ticket"></i>
+                                                <span class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>">প্রি অর্ডার</span>
+                                            </div>
+                                        </a>
+                                    </li>
                                     <a class="dropdown-item" href="<?php echo e(route('categories')); ?>"
                                        style="<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>: 29%">
                                         <?php echo e(\App\CPU\translate('view_more')); ?>

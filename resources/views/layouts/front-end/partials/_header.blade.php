@@ -473,7 +473,7 @@
                                     style="right: 0%; display: block!important;margin-top: 7px; box-shadow: none;min-width: 303px !important;{{Session::get('direction') === "rtl" ? 'margin-right: 1px!important;text-align: right;' : 'margin-left: 1px!important;text-align: left;'}}padding-bottom: 0px!important;">
                                     
                                     @foreach($categories as $key=>$category)
-                                        @if($key<11)
+                                        @if($key<10)
                                             <li class="dropdown">
                                                 <a class="dropdown-item flex-between"
                                                    <?php if ($category->childes->count() > 0) echo "data-toggle='dropdown'"?> href="javascript:"
