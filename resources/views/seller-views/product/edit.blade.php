@@ -333,7 +333,7 @@
                                     </div>
                                 </div>
                                 <div class="row pt-4">
-                                    @if ((auth('admin')->user() && auth('admin')->user()->role->name == 'Master Admin') || (auth('admin') && auth('admin')->user()->role->name == 'Admin'))
+                                    @if ((auth('admin')->user() && auth('admin')->user()->role->name == 'Master Admin') || (auth('admin')->user() && auth('admin')->user()->role->name == 'Admin'))
                                     <div class="col-md-4">
                                         <label class="control-label">মুদ্রিত মূল্য (৳)</label>
                                         <input type="number" min="0" step="0.01"
