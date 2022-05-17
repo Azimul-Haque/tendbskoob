@@ -492,7 +492,7 @@
                                                             src="<?php echo e(asset("storage/app/public/category/$category->icon")); ?>"
                                                             onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
                                                             style="width: 18px; height: 18px; "> -->
-                                                        <i class="fa fa-ticket"></i>
+                                                        <i class="fa fa-ticket"></i> SS
                                                             <span
                                                             class="<?php echo e(Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'); ?>"><?php echo e($category['name_bangla']); ?></span>
                                                     </div>
