@@ -471,6 +471,16 @@
                             @if(request()->is('/'))
                                 <ul class="dropdown-menu"
                                     style="right: 0%; display: block!important;margin-top: 7px; box-shadow: none;min-width: 303px !important;{{Session::get('direction') === "rtl" ? 'margin-right: 1px!important;text-align: right;' : 'margin-left: 1px!important;text-align: left;'}}padding-bottom: 0px!important;">
+                                    <li class="dropdown">
+                                        <a class="dropdown-item flex-between"
+                                            <?php if ($category->childes->count() > 0) echo "data-toggle='dropdown'"?> href="javascript:"
+                                            onclick="location.href='{{route('products',['id'=> $category['id'],'data_from'=>'category','page'=>1])}}'">
+                                            <div>
+                                                <i class="fa fa-ticket"></i>
+                                                <span class="{{Session::get('direction') === "rtl" ? 'pr-3' : 'pl-3'}}">{{$category['name_bangla']}}</span>
+                                            </div>
+                                        </a>
+                                    </li>
                                     @foreach($categories as $key=>$category)
                                         @if($key<11)
                                             <li class="dropdown">
