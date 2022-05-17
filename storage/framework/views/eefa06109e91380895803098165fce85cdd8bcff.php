@@ -174,6 +174,12 @@
                         <li class="widget-list-item"><a class="widget-list-link"
                                                         href="<?php echo e(route('customer.auth.login')); ?>"><?php echo e(\App\CPU\translate('support_ticket')); ?></a>
                         </li>
+                        <li class="widget-list-item">
+                            <a class="widget-list-link" href="<?php echo e(route('shop.apply')); ?>">Become a Seller</a>
+                        </li>
+                        <li class="widget-list-item">
+                            <a class="widget-list-link" href="<?php echo e(route('seller.auth.login')); ?>">Seller Login</a>
+                        </li>
                         
                         
                     </ul>
