@@ -171,7 +171,7 @@
                                             <label class="control-label">কাস্টমার কমিশন (%) <small id="unit_percentage_text" style="color: green; font-weight: bold;"></small></label>
                                             <input type="number" min="0" step="0.01" max="100"
                                                 placeholder="শুধুমাত্র ইংরেজি নম্বরে পারসেন্টিজটি উল্লেখ করুন"
-                                                value="<?php echo e(old('unit_price')); ?>"
+                                                value="<?php echo e(old('unit_percentage_text')); ?>"
                                                 onkeyup="unitPercetage()"
                                                 id="unit_price_percentage"  class="form-control"
                                                 required>
