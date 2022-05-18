@@ -138,7 +138,7 @@
                                                name="isbn" value="<?php echo e(old('isbn')); ?>" class="form-control">
                                     </div>
                                     <div class="col-md-6">
-                                        <?php if(auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin'): ?>
+                                        <?php if((auth('admin')->user() && auth('admin')->user()->role->name == 'Master Admin') || (auth('admin')->user() && auth('admin')->user()->role->name == 'Admin')): ?>
                                             <label
                                                 class="control-label">বইয়ের ওজন (কিলোগ্রাম)</label>
                                             <input type="number" min="0" step="0.01"
@@ -148,7 +148,7 @@
                                     </div>
                                 </div>
                                 <div class="row pt-4">
-                                    <?php if(auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin'): ?>
+                                    <?php if((auth('admin')->user() && auth('admin')->user()->role->name == 'Master Admin') || (auth('admin')->user() && auth('admin')->user()->role->name == 'Admin')): ?>
                                         <div class="col-md-4">
                                             <label class="control-label">মুদ্রিত মূল্য (৳)</label>
                                             <input type="number" min="0" step="0.01"
@@ -166,7 +166,6 @@
                                                 id="purchase_price_percentage" class="form-control" required>
                                             <input type="hidden" name="purchase_price" id="purchase_price">
                                         </div>
-                                        
                                         <div class="col-md-4">
                                             <label class="control-label">কাস্টমার কমিশন (%) <small id="unit_percentage_text" style="color: green; font-weight: bold;"></small></label>
                                             <input type="number" min="0" step="0.01" max="100"
