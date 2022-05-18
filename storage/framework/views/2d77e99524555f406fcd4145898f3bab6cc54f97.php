@@ -162,7 +162,7 @@
                                                name="isbn" value="<?php echo e($product->isbn); ?>" class="form-control">
                                     </div>
                                     <div class="col-md-6">
-                                        <?php if(auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin'): ?>
+                                        <?php if((auth('admin')->user() && auth('admin')->user()->role->name == 'Master Admin') || (auth('admin')->user() && auth('admin')->user()->role->name == 'Admin')): ?>
                                             <label
                                                 class="control-label"><?php echo e(\App\CPU\translate('Book Weight (KG)')); ?></label>
                                             <input type="number" min="0" step="0.01"
@@ -172,7 +172,9 @@
                                     </div>
                                 </div>
                                 <div class="row pt-4">
-                                    <?php if(auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin'): ?>
+                                    <?php if((auth('admin')->user() && auth('admin')->user()->role->name == 'Master Admin') || (auth('admin')->user() && auth('admin')->user()->role->name == 'Admin')): ?>
+                                    
+                                    <?php endif; ?>
                                     <div class="col-md-4">
                                         <label class="control-label">মুদ্রিত মূল্য (৳)</label>
                                         <input type="number" min="0" step="0.01"
@@ -185,7 +187,7 @@
                                             class="control-label">বুকসবিডির কমিশন (%) <small id="purchase_percentage_text" style="color: green; font-weight: bold;">৳ <?php echo e($product->purchase_price); ?></small></label>
                                         <input type="number" min="0" step="0.01" max="100"
                                             placeholder="শুধুমাত্র ইংরেজি নম্বরে পারসেন্টিজটি উল্লেখ করুন"
-                                            value="<?php echo e((($product->published_price - $product->purchase_price) / $product->published_price) * 100); ?>"
+                                            value="<?php echo e((($product->published_price - $product->purchase_price) / ($product->published_price == 0 ? 1 : $product->published_price)) * 100); ?>"
                                             onkeyup="purchasePercetage();"
                                             id="purchase_price_percentage" class="form-control" required>
                                         <input type="hidden" name="purchase_price" id="purchase_price">
@@ -195,13 +197,12 @@
                                         <label class="control-label">কাস্টমার কমিশন (%) <small id="unit_percentage_text" style="color: green; font-weight: bold;">৳ <?php echo e($product->unit_price); ?></small></label>
                                         <input type="number" min="0" step="0.01" max="100"
                                             placeholder="শুধুমাত্র ইংরেজি নম্বরে পারসেন্টিজটি উল্লেখ করুন"
-                                            value="<?php echo e((($product->published_price - $product->unit_price) / $product->published_price) * 100); ?>"
+                                            value="<?php echo e((($product->published_price - $product->unit_price) / ($product->published_price == 0 ? 1 : $product->published_price)) * 100); ?>"
                                             onkeyup="unitPercetage()"
                                             id="unit_price_percentage"  class="form-control"
                                             required>
                                         <input type="hidden" name="unit_price" id="unit_price">
                                     </div>
-                                    <?php endif; ?>
                                 </div>
                                 <div class="row pt-4">
                                     
