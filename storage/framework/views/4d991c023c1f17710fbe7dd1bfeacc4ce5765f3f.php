@@ -186,7 +186,7 @@
                                             class="control-label">বুকসবিডির কমিশন (%) <small id="purchase_percentage_text" style="color: green; font-weight: bold;">৳ <?php echo e($product->purchase_price); ?></small></label>
                                         <input type="number" min="0" step="0.01" max="100"
                                             placeholder="শুধুমাত্র ইংরেজি নম্বরে পারসেন্টিজটি উল্লেখ করুন"
-                                            value="<?php echo e((($product->published_price - $product->purchase_price) / $product->published_price) * 100); ?>"
+                                            value="<?php echo e((($product->published_price - $product->purchase_price) / ($product->published_price == 0 ? 1 : $product->published_price)) * 100); ?>"
                                             onkeyup="purchasePercetage();"
                                             id="purchase_price_percentage" class="form-control" required>
                                         <input type="hidden" name="purchase_price" id="purchase_price">
@@ -196,7 +196,7 @@
                                         <label class="control-label">কাস্টমার কমিশন (%) <small id="unit_percentage_text" style="color: green; font-weight: bold;">৳ <?php echo e($product->unit_price); ?></small></label>
                                         <input type="number" min="0" step="0.01" max="100"
                                             placeholder="শুধুমাত্র ইংরেজি নম্বরে পারসেন্টিজটি উল্লেখ করুন"
-                                            value="<?php echo e((($product->published_price - $product->unit_price) / $product->published_price) * 100); ?>"
+                                            value="<?php echo e((($product->published_price - $product->unit_price) / ($product->published_price == 0 ? 1 : $product->published_price)) * 100); ?>"
                                             onkeyup="unitPercetage()"
                                             id="unit_price_percentage"  class="form-control"
                                             required>
