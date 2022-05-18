@@ -334,6 +334,8 @@
                                 </div>
                                 <div class="row pt-4">
                                     @if ((auth('admin')->user() && auth('admin')->user()->role->name == 'Master Admin') || (auth('admin')->user() && auth('admin')->user()->role->name == 'Admin'))
+                                    
+                                    @endif
                                     <div class="col-md-4">
                                         <label class="control-label">মুদ্রিত মূল্য (৳)</label>
                                         <input type="number" min="0" step="0.01"
@@ -362,7 +364,6 @@
                                             required>
                                         <input type="hidden" name="unit_price" id="unit_price">
                                     </div>
-                                    @endif
                                 </div>
                                 <div class="row pt-4">
                                     {{-- <div class="col-md-5">
