@@ -13,6 +13,6 @@ class Customer extends Authenticatable
 
     public function shippingAddress()
     {
-        return $this->belongsTo(ShippingAddress::class);
+        return $this->belongsTo(ShippingAddress::class, 'shipping_address');
     }
 }
