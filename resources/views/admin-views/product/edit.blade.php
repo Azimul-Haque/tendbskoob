@@ -321,12 +321,13 @@
                                     </div>
                                     <div class="col-md-6">
                                         @if (auth('admin')->user()->role->name == 'Master Admin' || auth('admin')->user()->role->name == 'Admin')
-                                            <label
-                                                class="control-label">{{\App\CPU\translate('Book Weight (KG)')}}</label>
-                                            <input type="number" min="0" step="0.01"
-                                                placeholder="{{\App\CPU\translate('Book Weight')}}"
-                                                value="{{ $product->weight }}" name="weight" class="form-control">
+                                            
                                         @endif
+                                        <label
+                                            class="control-label">{{\App\CPU\translate('Book Weight (KG)')}}</label>
+                                        <input type="number" min="0" step="0.01"
+                                            placeholder="{{\App\CPU\translate('Book Weight')}}"
+                                            value="{{ $product->weight }}" name="weight" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row pt-4">

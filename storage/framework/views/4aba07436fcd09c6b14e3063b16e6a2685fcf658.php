@@ -144,9 +144,9 @@
                                         </td>
                                         <td>
                                             <select id="stock_status<?php echo e($p['id']); ?>" onchange="stock_status('<?php echo e($p['id']); ?>')" class="form-control" style="width: 140px;">
-                                                <option value="1" <?php echo e($p->stock_status == 1?'selected':''); ?>>In Stock</option>
-                                                <option value="2" <?php echo e($p->stock_status == 2?'selected':''); ?>>Out of Stock</option>
-                                                <option value="3" <?php echo e($p->stock_status == 3?'selected':''); ?>>Back Order</option>
+                                                <option value="1" <?php echo e($p->stock_status == 1 ? 'selected' : ''); ?>>In Stock</option>
+                                                <option value="2" <?php echo e($p->stock_status == 2 ? 'selected' : ''); ?>>Out of Stock</option>
+                                                <option value="3" <?php echo e($p->stock_status == 3 ? 'selected' : ''); ?>>Back Order</option>
                                             </select>
                                         </td>
                                         <td>
@@ -217,9 +217,9 @@
                                         </td>
                                         <td>
                                             <select id="stock_status<?php echo e($p['id']); ?>" onchange="stock_status('<?php echo e($p['id']); ?>')" class="form-control" style="width: 140px;">
-                                                <option value="1" <?php echo e($p->stock_status == 1?'selected':''); ?>>In Stock</option>
-                                                <option value="2" <?php echo e($p->stock_status == 2?'selected':''); ?>>Out of Stock</option>
-                                                <option value="3" <?php echo e($p->stock_status == 3?'selected':''); ?>>Back Order</option>
+                                                <option value="1" <?php echo e($p->stock_status == 1 ? 'selected' : ''); ?>>In Stock</option>
+                                                <option value="2" <?php echo e($p->stock_status == 2 ? 'selected' : ''); ?>>Out of Stock</option>
+                                                <option value="3" <?php echo e($p->stock_status == 3 ? 'selected' : ''); ?>>Back Order</option>
                                             </select>
                                         </td>
                                         <td>
