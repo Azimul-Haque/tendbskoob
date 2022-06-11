@@ -10,8 +10,8 @@ class ShippingAddress extends Model
         'customer_id' => 'integer',
     ];
 
-    public function shippingaddresses()
-    {
-        return $this->hasMany(ShippingAddress::class, 'shipping_address');
-    }
+    // public function customer()
+    // {
+    //     return $this->belongsTo(Customer::class);
+    // }
 }
