@@ -10,8 +10,8 @@ class ShippingAddress extends Model
         'customer_id' => 'integer',
     ];
 
-    // public function customer()
-    // {
-    //     return $this->belongsTo(Customer::class);
-    // }
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 }
