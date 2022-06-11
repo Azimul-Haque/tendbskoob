@@ -281,11 +281,12 @@ class ProductController extends BaseController
             $p->status = 0;
         }
         $p->request_status = 1; // status default to 1 for admin
-        if($p->current_stock > 0) {
-            $p->stock_status = $request->stock_status; // 1 = in stock, 2 = out of stock, 3 = back order
-        } else {
-            $p->stock_status = 2; // 1 = in stock, 2 = out of stock, 3 = back order
-        }
+        // if($p->current_stock > 0) {
+        //     $p->stock_status = $request->stock_status; // 1 = in stock, 2 = out of stock, 3 = back order
+        // } else {
+        //     $p->stock_status = 2; // 1 = in stock, 2 = out of stock, 3 = back order
+        // }
+        $p->stock_status = $request->stock_status;
 
         // release date
         // release date
@@ -588,7 +589,7 @@ class ProductController extends BaseController
         // } else {
         //     $p->stock_status = 2; // 1 = in stock, 2 = out of stock, 3 = back order
         // }
-        $p->stock_status = $request->stock_status;;
+        $p->stock_status = $request->stock_status;
 
         // release date
         // release date
