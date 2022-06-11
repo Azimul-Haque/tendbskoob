@@ -452,9 +452,13 @@
 
                             @if($order->shippingAddress)
                                 @php($shipping=$order->shippingAddress)
-                            @else
+                            @elseif($order['shipping_address_data'] != null)
                                 @php($shipping=json_decode($order['shipping_address_data']))
+                            @else
+                                @php($shipping=$order->customer)
+                            
                             @endif
+                            
 
                             <span class="d-block">{{\App\CPU\translate('Name')}} :
                                 <strong>{{$shipping? $shipping->contact_person_name : \App\CPU\translate('empty')}}</strong><br>
