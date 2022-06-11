@@ -136,7 +136,7 @@
                                      style=" border-radius: 50px; margin-<?php echo e(Session::get('direction') === "rtl" ? 'right' : 'left'); ?>: 30px; width: 50px!important;height: 50px!important;"
                                      class="rounded-circle border"
                                      onerror="this.src='<?php echo e(asset('public/assets/front-end/img/image-place-holder.png')); ?>'"
-                                     src="<?php echo e(asset('storage/app/public/profile')); ?>/<?php echo e($customerDetail['image']); ?>">
+                                     src="<?php echo e(asset('storage/app/public/profile')); ?>/<?php echo e($customerDetail['image']); ?>" onmousedown='return false;' onselectstart='return false;'>
 
                                 <div class="col-md-10">
                                     <h5 class="font-name"><?php echo e($customerDetail->f_name. ' '.$customerDetail->l_name); ?></h5>
