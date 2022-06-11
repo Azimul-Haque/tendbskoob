@@ -11,7 +11,7 @@ class Customer extends Authenticatable
 {
     use Notifiable, HasApiTokens;
 
-    public function shippingAddress()
+    public function shippingaddresses()
     {
         return $this->hasMany(ShippingAddress::class, 'shipping_address');
     }
