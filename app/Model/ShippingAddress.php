@@ -12,6 +12,6 @@ class ShippingAddress extends Model
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(Customer::class, 'users');
     }
 }

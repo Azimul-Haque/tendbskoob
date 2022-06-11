@@ -485,7 +485,6 @@
                                 <?php ($shipping=json_decode($order['shipping_address_data'])); ?>
                             <?php else: ?>
                                 <?php ($shipping=$order->customer->shippingaddress); ?>
-                                
                             <?php endif; ?>
                             
 
