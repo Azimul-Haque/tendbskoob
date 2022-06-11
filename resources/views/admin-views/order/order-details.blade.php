@@ -455,7 +455,7 @@
                             @elseif($order['shipping_address_data'] != null)
                                 @php($shipping=json_decode($order['shipping_address_data']))
                             @else
-                                @php($shipping=$order->customer)
+                                @php($shipping=$order->customer->shippingaddresses)
                             
                             @endif
                             
