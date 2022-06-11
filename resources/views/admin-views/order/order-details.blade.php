@@ -457,7 +457,6 @@
                                 @php($shipping=json_decode($order['shipping_address_data']))
                             @else
                                 @php($shipping=$order->customer->shippingaddress)
-                                
                             @endif
                             
 
