@@ -11,4 +11,8 @@ class Customer extends Authenticatable
 {
     use Notifiable, HasApiTokens;
 
+    public function shippingAddress()
+    {
+        return $this->belongsTo(ShippingAddress::class);
+    }
 }
