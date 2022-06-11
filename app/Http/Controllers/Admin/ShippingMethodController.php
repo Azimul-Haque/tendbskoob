@@ -72,7 +72,7 @@ class ShippingMethodController extends Controller
         ]);
 
         DB::table('shipping_methods')->where(['id' => $id])->update([
-            'creator_id'   => auth('admin')->id(),
+            // 'creator_id'   => auth('admin')->id(),
             'creator_type' => 'admin',
             'title'        => $request['title'],
             'duration'     => $request['duration'],
