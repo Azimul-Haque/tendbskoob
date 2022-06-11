@@ -480,9 +480,13 @@
 
                             <?php if($order->shippingAddress): ?>
                                 <?php ($shipping=$order->shippingAddress); ?>
-                            <?php else: ?>
+                            <?php elseif($order['shipping_address_data'] != null): ?>
                                 <?php ($shipping=json_decode($order['shipping_address_data'])); ?>
+                            <?php else: ?>
+                                <?php ($shipping=$order->customer->shippingaddress); ?>
+                            
                             <?php endif; ?>
+                            
 
                             <span class="d-block"><?php echo e(\App\CPU\translate('Name')); ?> :
                                 <strong><?php echo e($shipping? $shipping->contact_person_name : \App\CPU\translate('empty')); ?></strong><br>
