@@ -31,16 +31,29 @@
                 <div class="checkout_details mt-3">
                 <?php echo $__env->make('web-views.partials._checkout-steps',['step'=>3], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 <!-- Payment methods accordion-->
-                    <h2 class="h6 pb-3 mb-2 mt-5"><?php echo e(\App\CPU\translate('choose_payment')); ?></h2>
+                    <h2 class="h6 pb-3 mt-4">পেমেন্ট করুন</h2>
 
                     <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6 mb-4">
+                            <center>
+                                <select id="selectLoc" class="form-control" onchange="selectLoc();">
+                                    <option selected disabled>আপনার লোকেশন সিলেক্ট করুন</option>
+                                    <option value="inside">ঢাকার ভেতরে</option>
+                                    <option value="outside">ঢাকার বাহিরে</option>
+                                </select>
+                            </center>
+                        </div>
+                    </div>
+                    <div class="row" id="paymentMethodList" style="display: none;">
                         <?php ($config=\App\CPU\Helpers::get_business_settings('cash_on_delivery')); ?>
                         <?php if($config['status']): ?>
-                            <div class="col-md-6 mb-4" style="cursor: pointer">
+                            <div class="col-md-6 mb-4" style="cursor: pointer" id="paymentMethodCOD">
                                 <div class="card">
                                     <div class="card-body" style="height: 100px">
                                         <a class="btn btn-block"
                                            href="<?php echo e(route('checkout-complete',['payment_method'=>'cash_on_delivery'])); ?>">
+                                            Cash on Delivery
                                             <img width="150" style="margin-top: -10px"
                                                  src="<?php echo e(asset('public/assets/front-end/img/cod.png')); ?>" onmousedown='return false;' onselectstart='return false;'/>
                                         </a>
@@ -316,7 +329,7 @@
                         <?php endif; ?>
                     </div>
                     <!-- Navigation (desktop)-->
-                    <div class="row">
+                    <div class="row mt-4">
                         <div class="col-4"></div>
                         <div class="col-4">
                             <a class="btn btn-secondary btn-block" href="<?php echo e(route('checkout-details')); ?>">
@@ -474,6 +487,18 @@
                 }
             }
             Swal.fire("Payment Failed!", message, "error");
+        }
+
+        
+        function selectLoc() {
+            if($('#selectLoc').val() == 'inside') {
+                $('#paymentMethodList').css('display', 'flex');
+                $('#paymentMethodCOD').css('display', 'flex');
+            } else {
+                $('#paymentMethodList').css('display', 'flex');
+                $('#paymentMethodCOD').css('display', 'none');
+            }
+            
         }
     </script>
 <?php $__env->stopPush(); ?>
