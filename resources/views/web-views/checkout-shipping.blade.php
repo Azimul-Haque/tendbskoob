@@ -133,7 +133,7 @@
                                                 </div>
                                                 <div class="form-check" style="padding-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 1.25rem;">
                                                     <input type="checkbox" name="save_address" class="form-check-input"
-                                                           id="exampleCheck1">
+                                                           id="exampleCheck1" value="checked" readonly>
                                                     <label class="form-check-label" for="exampleCheck1" style="padding-{{Session::get('direction') === "rtl" ? 'right' : 'left'}}: 1.09rem">
                                                         {{ \App\CPU\translate('save_this_address')}}
                                                     </label>
