@@ -451,12 +451,13 @@
                             </div>
 
                             @if($order->shippingAddress)
+                            dd($order->customer->shippingaddress)
                                 @php($shipping=$order->shippingAddress)
                             @elseif($order['shipping_address_data'] != null)
                                 @php($shipping=json_decode($order['shipping_address_data']))
                             @else
                                 @php($shipping=$order->customer->shippingaddress)
-                            
+                                
                             @endif
                             
 
