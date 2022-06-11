@@ -479,7 +479,7 @@
                             </div>
 
                             <?php if($order->shippingAddress): ?>
-                                <?php (dd($order->customer->shippingaddress)); ?>
+                                <?php (dd($order->customer)); ?>
                                 <?php ($shipping=$order->shippingAddress); ?>
                             <?php elseif($order['shipping_address_data'] != null): ?>
                                 <?php ($shipping=json_decode($order['shipping_address_data'])); ?>
